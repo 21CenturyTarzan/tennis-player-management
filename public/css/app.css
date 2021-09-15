@@ -10074,3 +10074,26 @@ h3 {
     margin-top: 13%;
   }
 }
+
+#loginModal .modal-content, #registerModal .modal-content {
+  border-radius: 0;
+}
+#loginModal .modal-content .btn, #registerModal .modal-content .btn {
+  border-radius: 0;
+  width: 100%;
+}
+#loginModal .modal-content input, #registerModal .modal-content input {
+  border-radius: 0;
+}
+#loginModal .modal-content input:focus, #registerModal .modal-content input:focus {
+  border: 1px solid #3490dc;
+  box-shadow: none;
+}
+#loginModal .modal-content .modal-body, #registerModal .modal-content .modal-body {
+  padding: 20px 20px 30px 20px;
+}
+@media (max-width: 991.98px) {
+  #loginModal .modal-content .form-group label, #registerModal .modal-content .form-group label {
+    display: none;
+  }
+}
