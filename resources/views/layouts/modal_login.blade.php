@@ -1,8 +1,9 @@
+
 <div class="modal fade show" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModal" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <img src="{{asset('images/login.png')}}" alt="" width="35px" height="35px">
+                <img src="{{asset('img/login.png')}}" alt="" width="35px" height="35px">
                 <h5 class="modal-title" id="loginModal">{{ __('Login') }}</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>

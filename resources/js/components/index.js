@@ -8,5 +8,5 @@ const App = () => {
 
 ReactDOM.render(
       <App />,
-  document.getElementById('profile')
+  document.getElementById('s')
 );

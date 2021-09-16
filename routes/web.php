@@ -20,10 +20,16 @@ Route::get('/', function () {
     return view('home');
 })->name('home');
 
-Route::get('/profile/edit', [ProfileController::class, 'index'])->name('profile.edit');
-Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-
 Auth::routes();
+
+Route::middleware(['auth', 'verified'])->name('account.')->group(function () {
+    
+    Route::get('/profile/edit', [ProfileController::class, 'index'])->name('profile.edit');
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+});
+
+
+
 
 
 

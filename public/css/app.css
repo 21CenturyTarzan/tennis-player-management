@@ -10097,3 +10097,20 @@ h3 {
     display: none;
   }
 }
+
+#profile {
+  background-image: url(/images/tennis_1.jpg?3282b52094bd5a241f79c733da9bccbb);
+  background-size: 1600px 800px;
+}
+#profile .mask-black {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  opacity: 0.5;
+}
+@media (max-width: 767.98px) {
+  #profile {
+    background-size: 800px 100vh;
+  }
+}
