@@ -2,7 +2,7 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <img src="{{asset('img/login.png')}}" alt="" width="35px" height="35px">
+                <img src="{{asset('images/login.png')}}" alt="" width="35px" height="35px">
                 <h5 class="modal-title" id="registerModal">{{ __('Sign up') }}</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
@@ -13,11 +13,17 @@
                     @csrf
 
                     <div class="form-group row">
-                        <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('表示用の名前') }}</label>
+                        <label for="firstnameInput" class="col-md-4 col-form-label text-md-right">{{ __('性名') }}</label>
                         <div class="col-md-8">
-                           
-                            <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}"  autocomplete="name" placeholder="表示用の名前" required autofocus >
-                               
+                            <div class="row">     
+                                <div class="col-6">
+                                    <input id="firstnameInput" type="text" class="form-control" name="firstname" value="{{ old('name') }}"  autocomplete="name" placeholder="性" required autofocus >
+                                </div>
+                                <div class="col-6">
+                                    <input id="lastnameInput" type="text" class="form-control" name="lastname" value="{{ old('name') }}"  autocomplete="name" placeholder="名" required>
+                                </div>
+                            </div>
+
                             <span class="invalid-feedback" role="alert" id="nameError">
                                 <strong></strong>
                             </span>
@@ -25,8 +31,18 @@
                     </div>
 
                     <div class="form-group row">
-                        <label for="emailInput" class="col-md-4 col-form-label text-md-right">{{ __('メール') }}</label>
+                        <label for="type" class="col-md-4 col-form-label text-md-right">{{ __('選手 / 親') }}</label>
+                        <div class="col-md-8">
+                            <!-- <input type="text" name="type" style="display:none"> -->
+                            <select id="user_type" name="user_type" class="form-control form-select" aria-label="Default select example">
+                                <option value="player" selected>選手</option>
+                                <option value="parent">親</option>
+                            </select>
+                        </div>
+                    </div>
 
+                    <div class="form-group row">
+                        <label for="emailInput" class="col-md-4 col-form-label text-md-right">{{ __('メール') }}</label>
                         <div class="col-md-8">
                             <input id="emailInput" type="email" class="form-control" name="email" value="{{ old('email') }}"  autocomplete="email" placeholder="メール" required>
                             <span class="invalid-feedback" role="alert" id="emailError">
@@ -74,6 +90,8 @@
 
 <script>
 $(function () {
+
+
     $('#registerForm').submit(function (e) {
         e.preventDefault();
         let formData = $(this).serializeArray();

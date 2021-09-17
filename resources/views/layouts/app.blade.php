@@ -20,17 +20,17 @@
     <div id="home">
         <div class="topmv">
             <figure>
-                <img src="{{asset('img/top_mv_l2.png')}}" alt="">
+                <img src="{{asset('images/top_mv_l2.png')}}" alt="">
             </figure>
             <figure style="  position: absolute;  right: -300px;  ">
-                <img src="{{asset('img/top_mv_r1.png')}}" alt="">
+                <img src="{{asset('images/top_mv_r1.png')}}" alt="">
             </figure>
             <div class="bg"></div>
         </div>
         <div class="logo-wrapper">
             <picture>
-                <source media="(max-width: 767px)" srcset="{{asset('img/top_mv_logo.svg')}}" width="350" height="300">
-                <img src="{{asset('img/top_mv_logo.svg')}}" alt="logo.svg" >
+                <source media="(max-width: 767px)" srcset="{{asset('images/top_mv_logo.svg')}}" width="350" height="300">
+                <img src="{{asset('images/top_mv_logo.svg')}}" alt="logo.svg" >
             </picture>
             <p class="mt-1 mt-md-4">HYS TENNIS PLAYER MANAGEMENT</p>
 

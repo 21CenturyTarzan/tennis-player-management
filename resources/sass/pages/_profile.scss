@@ -1,7 +1,7 @@
 @charset "UTF-8";
 
 #profile{
-    background-image: url(../../../public/img/tennis_1.jpg);
+    background-image: url(../../../public/images/tennis_1.jpg);
     background-size: 1600px 800px;
 
     .mask-black{
@@ -10,6 +10,39 @@
         height: 100%;
         background-color: black;
         opacity: .5;
+    }
+
+    .nav-link{
+        color: white;
+    }
+
+    .shadow-sm{
+        box-shadow: 0 0.125rem 0.25rem rgb(255 255 255 / 8%) !important;
+    }
+
+    .navbar-toggler{
+        border: none;
+        .navbar-toggler-icon{
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 255.5%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e")
+        }
+    }
+
+    .dropdown-menu{
+        border-radius: 0px;
+    }
+
+    .profile-edit{
+        
+        text-align: center;
+        color: white;
+        z-index: 10;
+        position: fixed;
+        top: 40%;
+        margin: auto;
+        width: 100%;
+        padding: 10px 20px;
+        font-size: 30px;
+        
     }
 
     @include media-breakpoint-down(sm){
