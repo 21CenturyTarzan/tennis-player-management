@@ -72,10 +72,26 @@
     </nav>
 
     <div class="profile-edit">
-        <a href="">プロフィールを編集する必要があります。</a>
+        <a class="btn" data-toggle="modal" data-target="#profileEditModal">プロフィールを編集する必要があります。</a>
+    </div>
+
+    <div class="modal fade" id="profileEditModal" tabindex="-1" role="dialog" aria-labelledby="profileEditModal" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <img src="/images/login.png" alt="" width="35px" height="35px"/>
+                    <h5 class="modal-title" id="registerModal">プロファイルの編集</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body" id="profile-modal-content"> 
+
+                </div>
+            </div>
+        </div>
     </div>
 
 </body>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="{{ asset('js/app.js') }}" defer></script>
 </html>

@@ -10021,6 +10021,18 @@ h3 {
   background-color: black;
   opacity: 0.3;
 }
+#home .topmv .bg::before {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.5);
+  transition: transform 0.6s;
+  transform: scale3d(1.9, 1.4, 1) rotate3d(0, 0, 1, 45deg) translate3d(0, -120%, 0);
+}
 #home .topmv figure {
   width: 60%;
   height: 100%;
@@ -10049,7 +10061,7 @@ h3 {
   font-family: sans-serif;
   font-size: 30px;
 }
-#home .logo-wrapper .btn-bar a {
+#home .logo-wrapper .btn-bar .btn {
   width: 200px;
   color: #52265a;
   background-color: white;
@@ -10059,12 +10071,11 @@ h3 {
   font-family: cursive;
   border: 3px solid white;
 }
-#home .logo-wrapper .btn-bar a:first-child {
+#home .logo-wrapper .btn-bar .btn:first-child {
   background-color: transparent;
   color: white;
 }
-#home .logo-wrapper .btn-bar a:hover {
-  opacity: 0.8;
+#home .logo-wrapper .btn-bar .btn:hover {
   transform: scale(1.05);
   transition-delay: 0.5s;
   transition-duration: 0.5s;
@@ -10075,25 +10086,25 @@ h3 {
   }
 }
 
-#loginModal .modal-content, #registerModal .modal-content {
+.modal-content {
   border-radius: 0;
 }
-#loginModal .modal-content .btn, #registerModal .modal-content .btn {
+.modal-content .btn {
   border-radius: 0;
   width: 100%;
 }
-#loginModal .modal-content .form-control, #registerModal .modal-content .form-control {
+.modal-content .form-control {
   border-radius: 0;
 }
-#loginModal .modal-content .form-control:focus, #registerModal .modal-content .form-control:focus {
-  border: 1px solid #3490dc;
+.modal-content .form-control:focus {
+  border: 2px solid #3490dc;
   box-shadow: none;
 }
-#loginModal .modal-content .modal-body, #registerModal .modal-content .modal-body {
+.modal-content .modal-body {
   padding: 20px 20px 30px 20px;
 }
 @media (max-width: 991.98px) {
-  #loginModal .modal-content .form-group label, #registerModal .modal-content .form-group label {
+  #registerModal .form-group label, #loginModal .form-group label {
     display: none;
   }
 }
@@ -10134,6 +10145,38 @@ h3 {
   width: 100%;
   padding: 10px 20px;
   font-size: 30px;
+}
+#profile .profile-edit .btn {
+  color: white;
+  font-size: 25px;
+  max-width: 400px;
+  padding: 20px 40px;
+  border: 2px solid white;
+  border-radius: 0;
+}
+#profile .profile-edit .btn:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+@media (max-width: 767.98px) {
+  #profile .profile-edit .btn {
+    padding: 10px;
+  }
+}
+#profile .react-date-picker {
+  width: 100%;
+}
+#profile .react-date-picker__wrapper {
+  padding: 7px;
+  border: 1px solid #cccccc;
+}
+#profile .css-yk16xz-control {
+  border-radius: 0;
+}
+#profile .react-date-picker__inputGroup__input {
+  padding: 0px 15px;
+}
+#profile .css-1pahdxg-control {
+  border-radius: 0;
 }
 @media (max-width: 767.98px) {
   #profile {

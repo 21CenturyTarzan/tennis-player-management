@@ -33,10 +33,9 @@
                     <div class="form-group row">
                         <label for="type" class="col-md-4 col-form-label text-md-right">{{ __('選手 / 親') }}</label>
                         <div class="col-md-8">
-                            <!-- <input type="text" name="type" style="display:none"> -->
                             <select id="user_type" name="user_type" class="form-control form-select" aria-label="Default select example">
-                                <option value="player" selected>選手</option>
-                                <option value="parent">親</option>
+                                <option value="1" selected>選手</option>
+                                <option value="2">親</option>
                             </select>
                         </div>
                     </div>
@@ -90,7 +89,6 @@
 
 <script>
 $(function () {
-
 
     $('#registerForm').submit(function (e) {
         e.preventDefault();

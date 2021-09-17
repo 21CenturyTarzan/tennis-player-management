@@ -1,7 +1,7 @@
 @charset "UTF-8";
 
 
-#loginModal, #registerModal{
+
     .modal-content{
         border-radius: 0;
     
@@ -12,7 +12,7 @@
         .form-control{
             border-radius: 0;
             &:focus{
-                border: 1px solid #3490dc;
+                border: 2px solid #3490dc;
                 box-shadow: none;
             }
         }
@@ -22,12 +22,21 @@
         }
     
         @include media-breakpoint-down(md){
+            
+            
+        }
+        
+    }
+
+    #registerModal, #loginModal{
+
+        @include media-breakpoint-down(md){
             .form-group{
                 label{
                     display: none;
                 }
             }
+            
         }
-        
+      
     }
-}
