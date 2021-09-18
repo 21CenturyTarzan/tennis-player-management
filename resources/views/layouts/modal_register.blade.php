@@ -31,8 +31,17 @@
                     </div>
 
                     <div class="form-group row">
-                        <label for="emailInput" class="col-md-4 col-form-label text-md-right">{{ __('メール') }}</label>
+                        <label for="type" class="col-md-4 col-form-label text-md-right">{{ __('選手 / 親') }}</label>
+                        <div class="col-md-8">
+                            <select id="user_type" name="user_type" class="form-control form-select" aria-label="Default select example">
+                                <option value="player" selected>選手</option>
+                                <option value="parent">親</option>
+                            </select>
+                        </div>
+                    </div>
 
+                    <div class="form-group row">
+                        <label for="emailInput" class="col-md-4 col-form-label text-md-right">{{ __('メール') }}</label>
                         <div class="col-md-8">
                             <input id="emailInput" type="email" class="form-control" name="email" value="{{ old('email') }}"  autocomplete="email" placeholder="メール" required>
                             <span class="invalid-feedback" role="alert" id="emailError">
@@ -80,6 +89,7 @@
 
 <script>
 $(function () {
+
     $('#registerForm').submit(function (e) {
         e.preventDefault();
         let formData = $(this).serializeArray();
@@ -92,7 +102,7 @@ $(function () {
             },
             url: "{{ route('register') }}",
             data: formData,
-            success: () => window.location.assign("{{ route('home') }}"),
+            success: () => window.location.assign("{{ route('account.profile.edit') }}"),
             error: (response) => {
                 if(response.status === 422) {
                     let errors = response.responseJSON.errors;
