@@ -10135,7 +10135,7 @@ h3 {
 #profile .dropdown-menu {
   border-radius: 0px;
 }
-#profile .profile-edit {
+#profile .edit-modal-show {
   text-align: center;
   color: white;
   z-index: 10;
@@ -10146,7 +10146,7 @@ h3 {
   padding: 10px 20px;
   font-size: 30px;
 }
-#profile .profile-edit .btn {
+#profile .edit-modal-show .btn {
   color: white;
   font-size: 25px;
   max-width: 400px;
@@ -10154,28 +10154,48 @@ h3 {
   border: 2px solid white;
   border-radius: 0;
 }
-#profile .profile-edit .btn:hover {
+#profile .edit-modal-show .btn:hover {
   background-color: rgba(255, 255, 255, 0.2);
 }
 @media (max-width: 767.98px) {
-  #profile .profile-edit .btn {
+  #profile .edit-modal-show .btn {
     padding: 10px;
   }
 }
-#profile .react-date-picker {
+#profile .modal-dialog #profile-modal-content {
+  padding: 0;
+}
+#profile .modal-dialog #profile-modal-content .avatar-editor-wrapper {
+  margin: 20px;
+  padding: 0px 60px;
+}
+#profile .modal-dialog #profile-modal-content .avatar-editor-wrapper canvas {
+  width: 100% !important;
+  height: auto !important;
+}
+@media (max-width: 767.98px) {
+  #profile .modal-dialog #profile-modal-content .avatar-editor-wrapper {
+    padding: 0px;
+  }
+}
+#profile .modal-dialog #profile-modal-content .profile-edit-box {
+  border-top: 1px solid #dee2e6;
+  padding: 20px;
+}
+#profile .modal-dialog #profile-modal-content .react-date-picker {
   width: 100%;
 }
-#profile .react-date-picker__wrapper {
+#profile .modal-dialog #profile-modal-content .react-date-picker__wrapper {
   padding: 7px;
   border: 1px solid #cccccc;
 }
-#profile .css-yk16xz-control {
+#profile .modal-dialog #profile-modal-content .css-yk16xz-control {
   border-radius: 0;
 }
-#profile .react-date-picker__inputGroup__input {
+#profile .modal-dialog #profile-modal-content .react-date-picker__inputGroup__input {
   padding: 0px 15px;
 }
-#profile .css-1pahdxg-control {
+#profile .modal-dialog #profile-modal-content .css-1pahdxg-control {
   border-radius: 0;
 }
 @media (max-width: 767.98px) {

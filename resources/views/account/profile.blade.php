@@ -71,7 +71,7 @@
         </div>
     </nav>
 
-    <div class="profile-edit">
+    <div class="edit-modal-show">
         <a class="btn" data-toggle="modal" data-target="#profileEditModal">プロフィールを編集する必要があります。</a>
     </div>
 
