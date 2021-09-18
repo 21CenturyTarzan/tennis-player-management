@@ -18,7 +18,7 @@
     <nav class="navbar navbar-expand-md navbar-light shadow-sm">
         <div class="container">
             <a class="nav-link btn btn-custom btn-icon" href="{{ url('/') }}">
-                <img src="{{asset('images/top_mv_logo.svg')}}" alt="" width="50px" height="50px">
+                <img src="{{asset('images/top_mv_logo.svg')}}" alt="" width="50" height="50">
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                 <span class="navbar-toggler-icon"></span>
@@ -26,15 +26,14 @@
             
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
-                <ul class="navbar-nav ml-auto">
+                <ul class="nav ml-auto">
                 
                     <li class="nav-item" data-toggle="tooltip" data-trigger="hover" data-bs-placement="right" data-bs-dismiss="click" title="Projects">                    
                         <a class="nav-link btn btn-custom btn-icon active" data-bs-toggle="tab" href="#kt_aside_nav_tab_projects">
                             <!--begin::Svg Icon | path: icons/duotune/abstract/abs042.svg-->
                             <span class="svg-icon svg-icon-2x">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 24 24" fill="#ffffff">
-                                    <path d="M18 21.6C16.6 20.4 9.1 20.3 6.3 21.2C5.7 21.4 5.1 21.2 4.7 20.8L2 18C4.2 15.8 10.8 15.1 15.8 15.8C16.2 18.3 17 20.5 18 21.6ZM18.8 2.8C18.4 2.4 17.8 2.20001 17.2 2.40001C14.4 3.30001 6.9 3.2 5.5 2C6.8 3.3 7.4 5.5 7.7 7.7C9 7.9 10.3 8 11.7 8C15.8 8 19.8 7.2 21.5 5.5L18.8 2.8Z" fill="#ffffff" />
-                                    <path opacity="0.3" d="M21.2 17.3C21.4 17.9 21.2 18.5 20.8 18.9L18 21.6C15.8 19.4 15.1 12.8 15.8 7.8C18.3 7.4 20.4 6.70001 21.5 5.60001C20.4 7.00001 20.2 14.5 21.2 17.3ZM8 11.7C8 9 7.7 4.2 5.5 2L2.8 4.8C2.4 5.2 2.2 5.80001 2.4 6.40001C2.7 7.40001 3.00001 9.2 3.10001 11.7C3.10001 15.5 2.40001 17.6 2.10001 18C3.20001 16.9 5.3 16.2 7.8 15.8C8 14.2 8 12.7 8 11.7Z" fill="#ffffff" />
+                                    <path d="M9 11a4 4 0 1 0-4-4a4 4 0 0 0 4 4zm8 2a3 3 0 1 0-3-3a3 3 0 0 0 3 3zm4 7a1 1 0 0 0 1-1a5 5 0 0 0-8.06-3.95A7 7 0 0 0 2 20a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1" fill="#ffffff" />
                                 </svg>
                             </span>
                         </a>
@@ -109,13 +108,11 @@
                     
                     <li class="nav-item dropdown">
                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                            {{ Auth::user()->name }}
+                            <img src="{{$img_url}}" alt="" width="50" height="50" style="border-radius:50%">
                         </a>
 
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="{{ route('logout') }}"
-                                onclick="event.preventDefault();
-                                                document.getElementById('logout-form').submit();">
+                            <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
                                 {{ __('Logout') }}
                             </a>
 
@@ -129,9 +126,16 @@
         </div>
     </nav>
 
-    <div id="">
+    <main class="m-3">
+        <div class="row">
+            <div class="col-md-4" style="background-color:white">
+                <div id="player-list"></div>
+            </div>
+            <div class="col-md-8" ></div>
 
-    </div>
+        </div>
+    </main>
+
 </body>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="{{ asset('js/app.js') }}" defer></script>

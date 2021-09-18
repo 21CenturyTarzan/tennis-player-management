@@ -53,7 +53,6 @@ const  Profile = () => {
         axios.post('/profile/store/parent', formdata)
         .then(response => {
             if(response.data=='success'){
-                setSubmit(false)
                 window.location.href = '/dashboard';
             }
         })

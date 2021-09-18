@@ -10010,7 +10010,7 @@ h3 {
   height: 100vh;
   width: 100%;
   overflow: hidden;
-  background-image: url(/images/top_mv_bg.png?65c74ee47f46a8971b2b74787242283a);
+  background-image: url(/images/top_mv_bg.png);
   background-size: 100% 100%;
 }
 #home .topmv .bg {
@@ -10110,21 +10110,24 @@ h3 {
 }
 
 #profile {
-  background-image: url(/images/tennis_1.jpg?3282b52094bd5a241f79c733da9bccbb);
-  background-size: 1600px 800px;
+  background-image: url(/images/court.jpg);
 }
 #profile .mask-black {
   position: absolute;
   width: 100%;
   height: 100%;
   background-color: black;
-  opacity: 0.5;
+  opacity: 0.2;
+}
+#profile .navbar {
+  background-color: #10580c;
+  padding: 5px 20px;
 }
 #profile .nav-link {
   color: white;
 }
 #profile .shadow-sm {
-  box-shadow: 0 0.125rem 0.25rem rgba(255, 255, 255, 0.08) !important;
+  box-shadow: 0 0.125rem 0.25rem #093100 !important;
 }
 #profile .navbar-toggler {
   border: none;
@@ -10165,7 +10168,7 @@ h3 {
 #profile .modal-dialog {
   max-width: 650px;
 }
-#profile .modal-dialog .modal-content {
+#profile .modal-dialog .modal-content .modal-body {
   padding: 0;
 }
 #profile .modal-dialog .modal-content .avatar-editor-wrapper {
@@ -10227,20 +10230,47 @@ h3 {
   }
 }
 
+#dashboard {
+  background-image: url(/images/court.jpg);
+}
 #dashboard .navbar {
-  background-color: #563d7c;
+  background-color: #10580c;
   padding: 0px 20px;
 }
 #dashboard .navbar .nav-link {
   margin-left: 3px;
   margin-right: 3px;
+  padding: 10px;
 }
 #dashboard .navbar .nav-link:hover {
-  background-color: #412868;
+  background-color: #084405;
   transition: 0.3s;
 }
 #dashboard .navbar .nav-link:focus {
-  background-color: #412868;
+  background-color: #084405;
   box-shadow: none;
   border-bottom: 1px solid white;
+}
+#dashboard .navbar .navbar-toggler {
+  border: none;
+}
+#dashboard .navbar .navbar-toggler .navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 255.5%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+#dashboard .navbar.shadow-sm {
+  box-shadow: 0 0.125rem 0.25rem #093100 !important;
+}
+#dashboard .symbol {
+  display: inline-block;
+  flex-shrink: 0;
+  position: relative;
+  border-radius: 0.475rem;
+}
+#dashboard .symbol img {
+  width: 70px;
+  height: 70px;
+  border-radius: 10%;
+}
+#dashboard .me-5 {
+  margin-right: 1.25rem !important;
 }

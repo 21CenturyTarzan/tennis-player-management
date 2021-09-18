@@ -1,21 +1,51 @@
 @charset "UTF-8";
 
 #dashboard{
+    background-image: url(/images/court.jpg);
     .navbar{
-        background-color: #563d7c;
+        background-color: #10580c;
         padding: 0px 20px;
         .nav-link{
             margin-left: 3px;
             margin-right: 3px;
+            padding: 10px;
             &:hover{
-                background-color: #412868;
+                background-color: #084405;
                 transition: .3s;
             }
             &:focus{
-                background-color: #412868;
+                background-color: #084405;
                 box-shadow: none;
                 border-bottom: 1px solid white;
             }
         }
+        .navbar-toggler{
+            border: none;
+            .navbar-toggler-icon{
+                background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 255.5%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e")
+            }
+        }
+        &.shadow-sm{
+            box-shadow: 0 0.125rem 0.25rem rgb(9 49 0) !important;
+        }
+    }
+
+    
+
+    .symbol{
+        display: inline-block;
+        flex-shrink: 0;
+        position: relative;
+        border-radius: 0.475rem;
+
+        img{
+            width: 70px;
+            height: 70px;
+            border-radius: 10%;
+        }
+    }
+
+    .me-5 {
+        margin-right: 1.25rem !important;
     }
 }

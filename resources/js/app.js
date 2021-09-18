@@ -13,3 +13,4 @@ require('./bootstrap');
  */
 require('./components/profile/profile_player');
 require('./components/profile/profile_parent');
+require('./components/dashboard/player');
