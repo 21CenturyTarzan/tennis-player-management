@@ -84,7 +84,6 @@ const  PlayerProfile = () => {
         axios.post('/profile/store/player', formdata)
         .then(response => {
             if(response.data=='success'){
-                setSubmit(false)
                 window.location.href = '/dashboard';
             }
         })
