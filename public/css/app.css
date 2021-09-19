@@ -10162,44 +10162,85 @@ h3 {
     padding: 10px;
   }
 }
-#profile .modal-dialog #profile-modal-content {
+#profile .modal-dialog {
+  max-width: 650px;
+}
+#profile .modal-dialog .modal-content {
   padding: 0;
 }
-#profile .modal-dialog #profile-modal-content .avatar-editor-wrapper {
+#profile .modal-dialog .modal-content .avatar-editor-wrapper {
   margin: 20px;
-  padding: 0px 60px;
+  padding: 0px 120px;
 }
-#profile .modal-dialog #profile-modal-content .avatar-editor-wrapper canvas {
-  width: 100% !important;
-  height: auto !important;
+#profile .modal-dialog .modal-content .avatar-editor-wrapper .img-wrap {
+  width: 100%;
+  max-height: 350px;
+  border: 1px solid #dee2e6;
+  margin-bottom: 20px;
+}
+#profile .modal-dialog .modal-content .avatar-editor-wrapper .img-wrap img {
+  width: 100%;
+  max-height: 348px;
+  -o-object-fit: contain;
+     object-fit: contain;
 }
 @media (max-width: 767.98px) {
-  #profile .modal-dialog #profile-modal-content .avatar-editor-wrapper {
+  #profile .modal-dialog .modal-content .avatar-editor-wrapper {
     padding: 0px;
   }
 }
-#profile .modal-dialog #profile-modal-content .profile-edit-box {
+#profile .modal-dialog .modal-content .profile-edit-box {
   border-top: 1px solid #dee2e6;
-  padding: 20px;
+  padding: 30px 50px;
 }
-#profile .modal-dialog #profile-modal-content .react-date-picker {
+#profile .modal-dialog .modal-content .profile-edit-box input#height, #profile .modal-dialog .modal-content .profile-edit-box input#weight {
+  padding-right: 40px;
+  text-align: right;
+}
+#profile .modal-dialog .modal-content .profile-edit-box .form-group {
+  margin-bottom: 7px;
+}
+@media (max-width: 767.98px) {
+  #profile .modal-dialog .modal-content .profile-edit-box {
+    padding: 20px;
+  }
+}
+#profile .modal-dialog .modal-content .react-date-picker {
   width: 100%;
 }
-#profile .modal-dialog #profile-modal-content .react-date-picker__wrapper {
+#profile .modal-dialog .modal-content .react-date-picker__wrapper {
   padding: 7px;
   border: 1px solid #cccccc;
 }
-#profile .modal-dialog #profile-modal-content .css-yk16xz-control {
+#profile .modal-dialog .modal-content .css-yk16xz-control {
   border-radius: 0;
 }
-#profile .modal-dialog #profile-modal-content .react-date-picker__inputGroup__input {
+#profile .modal-dialog .modal-content .react-date-picker__inputGroup__input {
   padding: 0px 15px;
 }
-#profile .modal-dialog #profile-modal-content .css-1pahdxg-control {
+#profile .modal-dialog .modal-content .css-1pahdxg-control {
   border-radius: 0;
 }
 @media (max-width: 767.98px) {
   #profile {
     background-size: 800px 100vh;
   }
+}
+
+#dashboard .navbar {
+  background-color: #563d7c;
+  padding: 0px 20px;
+}
+#dashboard .navbar .nav-link {
+  margin-left: 3px;
+  margin-right: 3px;
+}
+#dashboard .navbar .nav-link:hover {
+  background-color: #412868;
+  transition: 0.3s;
+}
+#dashboard .navbar .nav-link:focus {
+  background-color: #412868;
+  box-shadow: none;
+  border-bottom: 1px solid white;
 }

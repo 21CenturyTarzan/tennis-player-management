@@ -9,11 +9,13 @@ import { useNavigate } from 'react-router-dom';
 // material
 import { Stack, Button,TextField, IconButton, InputAdornment } from '@material-ui/core';
 import { LoadingButton } from '@material-ui/lab';
-
+import axios from 'axios';
 import Select from 'react-select'
 import DatePicker from 'react-date-picker';
 
-import AvatarEditor from 'react-avatar-editor';
+import ImageCrop from 'react-image-crop-component';
+
+import 'react-image-crop-component/style.css'
 
 
 // ----------------------------------------------------------------------
@@ -40,13 +42,11 @@ var grade_year_options = [
   ]
 
 
-const  Profile = () => {
+const  PlayerProfile = () => {
 
     const [isEditFlag, setEditFlag] = useState(false);
     
-    const [birthday, setBirth] = useState(new Date());
-    const [image_src, setImageSrc] = useState('/images/avatar.jpg')
-    const [image_file, setImageFile] = useState('');
+    const [birth, setBirth] = useState(new Date());
     const [gender, setGender] = useState(gender_options[0]);
     const [school, setSchool] = useState('');
     const [grade, setGrade] = useState(grade_options[0]);
@@ -54,23 +54,41 @@ const  Profile = () => {
     const [phone, setPhone] = useState('');
     const [address, setAddress] = useState('');
     const [lesson, setLesson] = useState('');
-    const [experience, setExperience] = useState('');
+    const [career, setCareer] = useState('');
+    const [height, setheight] = useState('');
+    const [weight, setWeight] = useState('');
+    
+    const [imgUri, setImgUri] = useState('/images/avatar.jpg');
+    const [convertimgUri, setConvertImgUri] = useState('/images/avatar.jpg');
 
+    const [isSubmitting, setSubmit] = useState(false);
 
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log('geklk')
-        console.log(birthday)
-        console.log(image_file)
-        console.log(gender)
-        console.log(school)
-        console.log(grade)
-        console.log(grade_year)
-        console.log(phone)
-        console.log(address)
-        console.log(lesson)
-        console.log(experience)
+        const formdata = new FormData();
+        formdata.append('gender', JSON.stringify(gender.value));
+        formdata.append('birth', JSON.stringify(birth.getFullYear()+'-'+(birth.getMonth()+1)+'-'+birth.getDate()));
+        formdata.append('height', JSON.stringify(height));
+        formdata.append('weight', JSON.stringify(weight));
+        formdata.append('school', JSON.stringify(school));
+        formdata.append('grade', JSON.stringify(grade.value +' '+ grade_year.value));
+        formdata.append('phone', JSON.stringify(phone));
+        formdata.append('address', JSON.stringify(address));
+        formdata.append('lesson', JSON.stringify(lesson));
+        formdata.append('career', JSON.stringify(career));
+        formdata.append('image', convertimgUri);
+
+        setSubmit(true)
+
+        axios.post('/profile/store/player', formdata)
+        .then(response => {
+            if(response.data=='success'){
+                setSubmit(false)
+                window.location.href = '/dashboard';
+            }
+        })
+        console.log(formdata)
     }
 
     const changeGrade = (opt) => {
@@ -91,24 +109,54 @@ const  Profile = () => {
         ]
         setGrade(opt);
     }
+
+    const onCropped = function (e) {
+        let image = e.image
+        let image_data = e.data
+        setConvertImgUri(e.image)
+    }
     
-  
+    const handleImageChange = (e) => {
+
+        e.preventDefault();
+        let reader = new FileReader();
+        let _file = e.target.files[0];
+
+        reader.readAsDataURL(_file);
+
+        reader.onloadend = () => {
+            setImgUri(reader.result);
+            setConvertImgUri(reader.result);
+        };
+    };
   
     return (
 
-        <form  onSubmit={handleSubmit} method="POST" action="/profile">
+        <form className="needs-validation"  onSubmit={handleSubmit}>
             <div className="avatar-editor-wrapper">
-                
-                <input type="file" name="upload-avatar-file" style={{marginBottom: '7px'}} />
+                <div className="img-wrap">
                 {
                     isEditFlag ?
-                        <AvatarEditor  image={image_src}  border={50}  color={[0, 0, 0, 0.6]} scale={1.2}  rotate={0} borderRadius = {0} />
-                    : <img src={image_src} style={{width:'100%', border:'1px solid #dee2e6', marginBottom:'7px'}}/>
+                        <ImageCrop src={imgUri} setWidth={400} setHeight={350} square={false} resize={true} border={"dashed #ffffff 2px"} onCrop={onCropped}/>
+                    : <img src={convertimgUri}/>
                 }
-                <Stack direction={{ xs: 'row', sm: 'row' }} spacing={2}>
-                    <Button fullWidth variant="contained" onClick={()=>setEditFlag(false)}>Save</Button>
-                    <Button fullWidth variant="contained" onClick={()=>setEditFlag(true)}>Edit</Button>
-                </Stack>
+                </div>
+
+                <div className="row">
+                    <div className="col-2">
+                        <label htmlFor="upload" style={{marginBottom: '0px'}}>
+                            <img src="https://cdn1.iconfinder.com/data/icons/hawcons/32/699329-icon-57-document-download-128.png" width="50" height="42"/>
+                            <input type="file" id="upload" name="upload-avatar-file" style={{marginBottom: '7px', display:'none'}}  accept=".png, .jpg, .jpeg" onChange={(e) => handleImageChange(e)} />
+                        </label>
+                    </div>
+                    <div className="col-10">
+                    {
+                        isEditFlag ? 
+                            <Button fullWidth variant="contained" onClick={(e)=>{ e.preventDefault(); setEditFlag(false)}}>save</Button> 
+                            :<Button fullWidth variant="contained" onClick={(e)=>{ e.preventDefault(); setEditFlag(true)}}>crop</Button>                                
+                    }    
+                    </div>
+                </div> 
             </div>
 
             <div className="profile-edit-box">
@@ -122,7 +170,23 @@ const  Profile = () => {
                 <div className="form-group row">
                     <label htmlFor="birth" className="col-md-3 col-form-label text-md-right">生年月日</label>
                     <div className="col-md-9">
-                        <DatePicker id="birth" value={birthday} onChange={setBirth}/>
+                        <DatePicker id="birth" value={birth} onChange={(date) => setBirth(date)}/>
+                    </div>
+                </div>
+
+                <div className="form-group row">
+                    <label htmlFor="height" className="col-md-3 col-form-label text-md-right">キー / 体重</label>
+                    <div className="col-md-9">
+                        <div className="row">
+                            <div className="col-6">
+                                <input id="height" name="height" type="number" className="form-control"  value={height} onChange={(e)=>{setheight(e.target.value)}} required/>
+                                <label style={{position: 'absolute', bottom:'0', right:'25px'}}>cm</label>
+                            </div>
+                            <div className="col-6">
+                                <input id="weight" name="weight" type="number" className="form-control"  value={weight} onChange={(e)=>{setWeight(e.target.value)}} required/>
+                                <label style={{position: 'absolute', bottom:'0', right:'25px'}}>kg</label>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -171,22 +235,27 @@ const  Profile = () => {
                 <div className="form-group row">
                     <label htmlFor="footprint" className="col-md-3 col-form-label text-md-right">主な戦績</label>
                     <div className="col-md-9">
-                        <textarea id="footprint" name="footprint"  className="form-control" rows="7" value={experience} onChange={(e)=>{setExperience(e.target.value)}} required/>
+                        <textarea id="career" name="career"  className="form-control" rows="7" value={career} onChange={(e)=>{setCareer(e.target.value)}} required/>
                     </div>
                 </div>
-                
-                <LoadingButton   fullWidth  size="large"  type="submit"   variant="contained">
-                    送信
-                </LoadingButton>
+
+                <div className="form-group row">
+                    <div className="col-md-9 offset-md-3">
+                        <LoadingButton   fullWidth  size="large"  type="submit"   variant="contained" loading={isSubmitting}>
+                            送信
+                        </LoadingButton>
+                    </div>
+                </div>
+
             </div>
         </form>
     );
   }
 
-if(document.getElementById('profile-modal-content')){
+if(document.getElementById('player-profile-modal-content')){
     ReactDOM.render(
-        <Profile />,
-    document.getElementById('profile-modal-content')
+        <PlayerProfile />,
+    document.getElementById('player-profile-modal-content')
   );
 }
 

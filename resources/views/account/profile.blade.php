@@ -85,13 +85,24 @@
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
-                <div class="modal-body" id="profile-modal-content"> 
-
-                </div>
+                @if (strcmp(Auth::user()->type, 'player') == 0)
+                    <div class="modal-body" id="player-profile-modal-content"></div>
+                @elseif (strcmp(Auth::user()->type, 'parent') == 0)
+                    <div class="modal-body" id="parent-profile-modal-content"></div>
+                @endif
             </div>
         </div>
     </div>
 
 </body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="{{ asset('js/app.js') }}" defer></script>
+
+    <script>
+    $(function() {
+        $('#profileEditModal').modal({
+            show: true
+        });
+    });
+    </script>
 </html>

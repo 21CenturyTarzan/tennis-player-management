@@ -25,7 +25,8 @@ Auth::routes();
 Route::middleware(['auth', 'verified'])->name('account.')->group(function () {
     
     Route::get('/profile/edit', [ProfileController::class, 'index'])->name('profile.edit');
-    Route::post('/profile', [ProfileController::class, 'save'])->name('profile.save');
+    Route::post('/profile/store/player', [ProfileController::class, 'store_player'])->name('profile.store.player');
+    Route::post('/profile/store/parent', [ProfileController::class, 'store_parent'])->name('profile.store.parent');
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 });
 

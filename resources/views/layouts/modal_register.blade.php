@@ -34,8 +34,8 @@
                         <label for="type" class="col-md-4 col-form-label text-md-right">{{ __('選手 / 親') }}</label>
                         <div class="col-md-8">
                             <select id="user_type" name="user_type" class="form-control form-select" aria-label="Default select example">
-                                <option value="1" selected>選手</option>
-                                <option value="2">親</option>
+                                <option value="player" selected>選手</option>
+                                <option value="parent">親</option>
                             </select>
                         </div>
                     </div>
@@ -102,7 +102,7 @@ $(function () {
             },
             url: "{{ route('register') }}",
             data: formData,
-            success: () => window.location.assign("{{ route('account.dashboard') }}"),
+            success: () => window.location.assign("{{ route('account.profile.edit') }}"),
             error: (response) => {
                 if(response.status === 422) {
                     let errors = response.responseJSON.errors;
