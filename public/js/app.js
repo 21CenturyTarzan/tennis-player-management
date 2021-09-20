@@ -12570,141 +12570,100 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
-/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
-/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_2__);
 
 
 
 
-
+var PLAYER = [{
+  img: 'images/avatar/150-1.jpg',
+  name: '富士　中村',
+  time: '1 months ago'
+}, {
+  img: 'images/avatar/150-2.jpg',
+  name: '富士　中村',
+  time: '1 months ago'
+}, {
+  img: 'images/avatar/150-3.jpg',
+  name: '富士　中村',
+  time: '1 months ago'
+}, {
+  img: 'images/avatar/150-4.jpg',
+  name: '富士　中村',
+  time: '1 months ago'
+}, {
+  img: 'images/avatar/150-5.jpg',
+  name: '富士　中村',
+  time: '1 months ago'
+}, {
+  img: 'images/avatar/150-6.jpg',
+  name: '富士　中村',
+  time: '1 months ago'
+}, {
+  img: 'images/avatar/150-7.jpg',
+  name: '富士　中村',
+  time: '1 months ago'
+}, {
+  img: 'images/avatar/150-8.jpg',
+  name: '富士　中村',
+  time: '1 months ago'
+}, {
+  img: 'images/avatar/150-9.jpg',
+  name: '富士　中村',
+  time: '1 months ago'
+}, {
+  img: 'images/avatar/150-10.jpg',
+  name: '富士　中村',
+  time: '1 months ago'
+}];
 function PlayerList() {
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-      "class": "d-flex align-items-center mb-2",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
-        "class": "symbol me-5",
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("img", {
-          src: "assets/media/avatars/150-1.jpg",
-          "class": "",
-          alt: ""
-        })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-        "class": "flex-grow-1",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("a", {
-          href: "",
-          "class": "text-dark fw-bolder text-hover-primary fs-6",
-          children: "Emma Smith"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", {
-          "class": "text-muted d-block fw-bold",
-          children: "Project Manager"
-        })]
-      })]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-      "class": "d-flex align-items-center mb-2",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
-        "class": "symbol me-5",
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("img", {
-          src: "assets/media/avatars/150-1.jpg",
-          "class": "",
-          alt: ""
-        })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-        "class": "flex-grow-1",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("a", {
-          href: "",
-          "class": "text-dark fw-bolder text-hover-primary fs-6",
-          children: "Emma Smith"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", {
-          "class": "text-muted d-block fw-bold",
-          children: "Project Manager"
-        })]
-      })]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-      "class": "d-flex align-items-center mb-2",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
-        "class": "symbol me-5",
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("img", {
-          src: "assets/media/avatars/150-1.jpg",
-          "class": "",
-          alt: ""
-        })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-        "class": "flex-grow-1",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("a", {
-          href: "",
-          "class": "text-dark fw-bolder text-hover-primary fs-6",
-          children: "Emma Smith"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", {
-          "class": "text-muted d-block fw-bold",
-          children: "Project Manager"
-        })]
-      })]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-      "class": "d-flex align-items-center mb-2",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
-        "class": "symbol me-5",
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("img", {
-          src: "assets/media/avatars/150-1.jpg",
-          "class": "",
-          alt: ""
-        })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-        "class": "flex-grow-1",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("a", {
-          href: "",
-          "class": "text-dark fw-bolder text-hover-primary fs-6",
-          children: "Emma Smith"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", {
-          "class": "text-muted d-block fw-bold",
-          children: "Project Manager"
-        })]
-      })]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-      "class": "d-flex align-items-center mb-2",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
-        "class": "symbol me-5",
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("img", {
-          src: "assets/media/avatars/150-1.jpg",
-          "class": "",
-          alt: ""
-        })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-        "class": "flex-grow-1",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("a", {
-          href: "",
-          "class": "text-dark fw-bolder text-hover-primary fs-6",
-          children: "Emma Smith"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", {
-          "class": "text-muted d-block fw-bold",
-          children: "Project Manager"
-        })]
-      })]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-      "class": "d-flex align-items-center mb-2",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
-        "class": "symbol me-5",
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("img", {
-          src: "assets/media/avatars/150-1.jpg",
-          "class": "",
-          alt: ""
-        })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-        "class": "flex-grow-1",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("a", {
-          href: "",
-          "class": "text-dark fw-bolder text-hover-primary fs-6",
-          children: "Emma Smith"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", {
-          "class": "text-muted d-block fw-bold",
-          children: "Project Manager"
-        })]
-      })]
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
+      className: "px-3 pt-3",
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("input", {
+        type: "search",
+        className: "form-control",
+        placeholder: "\u9078\u624B\u691C\u7D22"
+      })
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("p", {
+      className: "pr-3 pl-3 m-0 text-right",
+      children: "(".concat(PLAYER.length, "\u4EBA)")
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
+      className: "player-list pl-3 pr-3",
+      children: PLAYER.map(function (player, id) {
+        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("a", {
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+            className: "d-flex align-items-center mb-2",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
+              className: "symbol me-5",
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("img", {
+                src: player.img,
+                alt: player.img
+              })
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+              className: "flex-grow-1",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", {
+                className: "text-dark fw-bolder text-hover-primary fs-6",
+                children: player.name
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", {
+                className: "text-muted d-block fw-bold",
+                children: player.time
+              })]
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("img", {
+                src: "/images/edit_star_1.svg",
+                width: "20",
+                height: "20"
+              })
+            })]
+          })
+        }, id);
+      })
     })]
   });
 }
 
-if (document.getElementById('player-list')) {
-  react_dom__WEBPACK_IMPORTED_MODULE_1__.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(PlayerList, {}), document.getElementById('player-list'));
+if (document.getElementById('l-side-content')) {
+  react_dom__WEBPACK_IMPORTED_MODULE_1__.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(PlayerList, {}), document.getElementById('l-side-content'));
 }
 
 /***/ }),
@@ -12799,12 +12758,12 @@ var Profile = function Profile() {
       childEmail = _useState10[0],
       setChildEmail = _useState10[1];
 
-  var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_3__.useState)('/images/avatar.jpg'),
+  var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_3__.useState)('/images/blank.png'),
       _useState12 = _slicedToArray(_useState11, 2),
       imgUri = _useState12[0],
       setImgUri = _useState12[1];
 
-  var _useState13 = (0,react__WEBPACK_IMPORTED_MODULE_3__.useState)('/images/avatar.jpg'),
+  var _useState13 = (0,react__WEBPACK_IMPORTED_MODULE_3__.useState)('/images/blank.png'),
       _useState14 = _slicedToArray(_useState13, 2),
       convertimgUri = _useState14[0],
       setConvertImgUri = _useState14[1];
@@ -13170,12 +13129,12 @@ var PlayerProfile = function PlayerProfile() {
       weight = _useState24[0],
       setWeight = _useState24[1];
 
-  var _useState25 = (0,react__WEBPACK_IMPORTED_MODULE_3__.useState)('/images/avatar.jpg'),
+  var _useState25 = (0,react__WEBPACK_IMPORTED_MODULE_3__.useState)('/images/blank.png'),
       _useState26 = _slicedToArray(_useState25, 2),
       imgUri = _useState26[0],
       setImgUri = _useState26[1];
 
-  var _useState27 = (0,react__WEBPACK_IMPORTED_MODULE_3__.useState)('/images/avatar.jpg'),
+  var _useState27 = (0,react__WEBPACK_IMPORTED_MODULE_3__.useState)('/images/blank.png'),
       _useState28 = _slicedToArray(_useState27, 2),
       convertimgUri = _useState28[0],
       setConvertImgUri = _useState28[1];

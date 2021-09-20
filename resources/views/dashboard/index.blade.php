@@ -10,8 +10,11 @@
 
     <link rel="shortcut icon" href="{{asset('ball.png')}}">
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel = "stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body id="dashboard">
@@ -28,8 +31,8 @@
 
                 <ul class="nav ml-auto">
                 
-                    <li class="nav-item" data-toggle="tooltip" data-trigger="hover" data-bs-placement="right" data-bs-dismiss="click" title="Projects">                    
-                        <a class="nav-link btn btn-custom btn-icon active" data-bs-toggle="tab" href="#kt_aside_nav_tab_projects">
+                    <li class="nav-item" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-placement="bottom" data-bs-dismiss="click" title="選手検索">                    
+                        <a class="nav-link btn btn-custom btn-icon active" data-bs-toggle="tab" href="#">
                             <!--begin::Svg Icon | path: icons/duotune/abstract/abs042.svg-->
                             <span class="svg-icon svg-icon-2x">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 24 24" fill="#ffffff">
@@ -39,7 +42,7 @@
                         </a>
                     </li>
                     
-                    <li class="nav-item" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-placement="right" data-bs-dismiss="click" title="Menu">
+                    <li class="nav-item" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-placement="bottom" data-bs-dismiss="click" title="選手管理">
                         <a class="nav-link btn btn-custom btn-icon" data-bs-toggle="tab" href="#kt_aside_nav_tab_menu">
                             <span class="svg-icon svg-icon-2x">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 24 24" fill="#ffffff">
@@ -52,7 +55,7 @@
                         </a>
                     </li>
                                     
-                    <li class="nav-item" data-toggle="tooltip" data-placement="top" title="Tooltip on top"> 
+                    <li class="nav-item" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-placement="bottom" data-bs-dismiss="click" title="試合前準備"> 
                         <a class="nav-link btn btn-custom btn-icon" data-bs-toggle="tab" href="#kt_aside_nav_tab_subscription">
                             <span class="svg-icon svg-icon-2x">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 24 24" fill="#ffffff">
@@ -65,7 +68,7 @@
                         </a>
                     </li>
 
-                    <li class="nav-item" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-placement="right" data-bs-dismiss="click" title="Tasks">
+                    <li class="nav-item" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-placement="bottom" data-bs-dismiss="click" title="試合後リフレクション">
                         <a class="nav-link btn btn-custom btn-icon" data-bs-toggle="tab" href="#kt_aside_nav_tab_tasks">
                             <span class="svg-icon svg-icon-2x">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 24 24" fill="#ffffff">
@@ -75,19 +78,8 @@
                             </span>
                         </a>
                     </li>
-                    
-                    <li class="nav-item" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-placement="right" data-bs-dismiss="click" title="Notifications">
-                        <a class="nav-link btn btn-custom btn-icon" data-bs-toggle="tab" href="#kt_aside_nav_tab_notifications">
-                            <span class="svg-icon svg-icon-2x">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 24 24" fill="#ffffff">
-                                    <path opacity="0.3" d="M21.25 18.525L13.05 21.825C12.35 22.125 11.65 22.125 10.95 21.825L2.75 18.525C1.75 18.125 1.75 16.725 2.75 16.325L4.04999 15.825L10.25 18.325C10.85 18.525 11.45 18.625 12.05 18.625C12.65 18.625 13.25 18.525 13.85 18.325L20.05 15.825L21.35 16.325C22.35 16.725 22.35 18.125 21.25 18.525ZM13.05 16.425L21.25 13.125C22.25 12.725 22.25 11.325 21.25 10.925L13.05 7.62502C12.35 7.32502 11.65 7.32502 10.95 7.62502L2.75 10.925C1.75 11.325 1.75 12.725 2.75 13.125L10.95 16.425C11.65 16.725 12.45 16.725 13.05 16.425Z" fill="#ffffff" />
-                                    <path d="M11.05 11.025L2.84998 7.725C1.84998 7.325 1.84998 5.925 2.84998 5.525L11.05 2.225C11.75 1.925 12.45 1.925 13.15 2.225L21.35 5.525C22.35 5.925 22.35 7.325 21.35 7.725L13.05 11.025C12.45 11.325 11.65 11.325 11.05 11.025Z" fill="#ffffff" />
-                                </svg>
-                            </span>
-                        </a>
-                    </li>
-                    
-                    <li class="nav-item" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-placement="right" data-bs-dismiss="click" title="Authors">
+                                    
+                    <li class="nav-item" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-placement="bottom" data-bs-dismiss="click" title="通知">
                         <a class="nav-link btn btn-custom btn-icon" data-bs-toggle="tab" href="#kt_aside_nav_tab_authors">
                             <!--begin::Svg Icon | path: icons/duotune/finance/fin006.svg-->
                             <span class="svg-icon svg-icon-2x">
@@ -105,38 +97,269 @@
                
                 
                 <ul class="navbar-nav ml-auto">
-                    
-                    <li class="nav-item dropdown">
-                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                    <li class="nav-item" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-placement="bottom" data-bs-dismiss="click" title="ログアウト">
+                        <a class="nav-link btn btn-custom btn-icon" data-bs-toggle="tab" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
+                            <!--begin::Svg Icon | path: icons/duotune/finance/fin006.svg-->
                             <img src="{{$img_url}}" alt="" width="50" height="50" style="border-radius:50%">
-                        </a>
-
-                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
-                                {{ __('Logout') }}
-                            </a>
-
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                 @csrf
                             </form>
-                        </div>
+                        </a>
                     </li>
+                    
+                   
                 </ul>
             </div>
         </div>
     </nav>
 
-    <main class="m-3">
-        <div class="row">
-            <div class="col-md-4" style="background-color:white">
-                <div id="player-list"></div>
-            </div>
-            <div class="col-md-8" ></div>
+    <main>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 l-side">
+                    <div class="l-side-content bg-white radius-15" id="l-side-content">
+                        
+                    </div>
+                </div>
+                <div class="col-md-8 r-side">
+                    <div class="r-side-content">
+                        <div class="radius-t-15 player-main-info text-white" id="player-main-info">
+                            <div class="name pt-3 pt-md-5 ">
+                                <p class="text-center bg-red-4 font-weight-bold">浮田　愛未</p>
+                            </div>
+                            <div class="img-wrap mt-3 mt-md-5">
+                                <div class="row">
+                                    <div class="col-md-4 text-center text-md-right">
+                                        <img src="/images/avatar/150-1.jpg" alt="">
+                                    </div>
+                                    <div class="col-md-8">
+                                        <p class="text-center bg-black-4">私の目標は○○！！</p>
+                                        <p class="text-center bg-black-4">誰々に勝ちたい！！</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="person-info mt-3 mt-md-5  bg-black-6">
+                                <div class="row">
+                                    <div class="col-4">
+                                        <p class="value">34<span>歳</span></p>
+                                    </div>
+                                    <div class="col-4">
+                                        <p class="value">170<span>cm</span></p>
+                                    </div>
+                                    <div class="col-4">
+                                        <p class="value">65.4<span>kg</span></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
+                        <div class="mt-5 py-2 radius-15 bg-white shadow-lg" id="player-manage">
+                            <h3 class="mt-2 p-1 text-white bg-green text-center font-weight-bold">選手管理</h3>
+                            <p class="w-50 w-md-75 p-1 pl-2 mb-2 bg-black-4 radius-r-20 text-white">近日予定の試合</p>
+                            <div class="px-2 mb-2">
+                                <table class="table table-success table-striped mb-2">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">日にち</th>
+                                            <th scope="col">試合名</th>
+                                            <th scope="col">目標</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th>2018-10-29</th>
+                                            <td>Olymipic</td>
+                                            <td>1位</td>
+                                        </tr>
+                                        <tr>
+                                            <th>2018-10-29</th>
+                                            <td>Olymipic</td>
+                                            <td>1位</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <table class="table table-info mb-2">
+                                    <tbody>
+                                        <tr>
+                                            <th>長期目標</th>
+                                            <td>2位</td>
+                                        </tr>
+                                        <tr>
+                                            <th>中期目標</th>
+                                            <td>2位</td>
+                                        </tr>
+                                        <tr>
+                                            <th>短期目標</th>
+                                            <td>2位</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <p class="w-50 w-md-75 p-1 pl-2 mb-2 bg-black-4 radius-r-20 text-white">短期目標に向かっての課題</p>
+                            <div class="px-2 mb-2">
+                                <table class="table mb-2">
+                                    <tbody>
+                                        <tr class="table-warning">
+                                            <th><i class="fa-solid fa-head-side-brain"></i></th>
+                                            <td>I will train harder and harder to win a gold medal.</td>
+                                            <td>
+                                                <img src="/images/star5.svg" alt="">
+                                            </td>
+                                        </tr>
+                                        <tr class="table-warning">
+                                            <th><i class="fa-solid fa-head-side-brain"></i></th>
+                                            <td>I will train harder and harder to win a gold medal.</td>
+                                            <td>
+                                                <img src="/images/star4.svg" alt="">
+                                            </td>
+                                        </tr>
+                                        <tr class="table-warning">
+                                            <th><i class="fa-solid fa-head-side-brain"></i></th>
+                                            <td>I will train harder and harder to win a gold medal.</td>
+                                            <td>
+                                                <img src="/images/star4.svg" alt="">
+                                            </td>
+                                        </tr>
+                                        <tr class="table-success">
+                                            <th><i class="fa-solid fa-head-side-brain"></i></th>
+                                            <td>I will train harder and harder to win a gold medal.</td>
+                                            <td>
+                                                <img src="/images/star3.svg" alt="">
+                                            </td>
+                                        </tr>
+                                        <tr class="table-success">
+                                            <th><i class="fa-solid fa-head-side-brain"></i></th>
+                                            <td>I will train harder and harder to win a gold medal.</td>
+                                            <td>
+                                                <img src="/images/star3.svg" alt="">
+                                            </td>
+                                        </tr>
+                                        <tr class="table-success">
+                                            <th><i class="fa-solid fa-head-side-brain"></i></th>
+                                            <td>I will train harder and harder to win a gold medal.</td>
+                                            <td>
+                                                <img src="/images/star3.svg" alt="">
+                                            </td>
+                                        </tr>
+                                        <tr class="table-danger">
+                                            <th><i class="fa-solid fa-head-side-brain"></i></th>
+                                            <td>I will train harder and harder to win a gold medal.</td>
+                                            <td>
+                                                <img src="/images/star4.svg" alt="">
+                                            </td>
+                                        </tr>
+                                        <tr class="table-danger">
+                                            <th><i class="fa-solid fa-head-side-brain"></i></th>
+                                            <td>I will train harder and harder to win a gold medal.</td>
+                                            <td>
+                                                <img src="/images/star4.svg" alt="">
+                                            </td>
+                                        </tr>
+                                        <tr class="table-danger">
+                                            <th><i class="fa-solid fa-head-side-brain"></i></th>
+                                            <td>I will train harder and harder to win a gold medal.</td>
+                                            <td>
+                                                <img src="/images/star4.svg" alt="/images/star4.svg">
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <p class="w-100 p-1 pl-2 mb-2 bg-black-4 text-white text-right">最新の更新日 : 2019/3/20 19:40</p>
+                        </div>
+
+                        <div class="mt-5 py-2 radius-15 bg-white shadow-lg" id="contest-before">
+                            <h3 class="mt-2 p-1 text-white bg-green text-center font-weight-bold">試合前準備</h3>
+                            
+                            <p class="w-50 w-md-75 p-1 pl-2 mb-2 bg-black-4 radius-r-20 text-white">大会情報</p>
+                            <div class="px-2 mb-2">
+                                <table class="table table-info mb-2">
+                                    <tbody>
+                                        <tr>
+                                            <td>大会名</td>
+                                            <td>---------------</td>
+                                        </tr>
+                                        <tr>
+                                            <td>トーナメント日にち</td>
+                                            <td>2019-8-29</td>
+                                        </tr>
+                                        <tr>
+                                            <td>対戦相手名前</td>
+                                            <td>浮田　愛未</td>
+                                        </tr>
+                                        <tr>
+                                            <td>クラブ名</td>
+                                            <td>Manchester</td>
+                                        </tr>
+                                        <tr>
+                                            <td>サーフェス</td>
+                                            <td>クレー/オムニ/ハード</td>
+                                        </tr>
+                                        <tr>
+                                            <td>ラウンド</td>
+                                            <td>本戦/予選</td>
+                                        </tr>
+                                        <tr>
+                                            <td>天気</td>
+                                            <td>晴/曇/雨</td>
+                                        </tr>
+                                        <tr>
+                                            <td>起きた時の体調や気分</td>
+                                            <td><img src="/images/star5.svg" alt=""></td>
+                                        </tr>
+                                        <tr>
+                                            <td>カテゴリー</td>
+                                            <td>U34</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <p class="w-50 w-md-75 p-1 pl-2 mb-2 bg-black-4 radius-r-20 text-white">普段試合で起きることを書く</p>
+                            <div class="px-2 mb-2">
+                                I dont know here exactly? Can you explain about this section?
+                            </div>
+
+                            <p class="w-50 w-md-75 p-1 pl-2 mb-2 bg-black-4 radius-r-20 text-white">試合前の課題設定最低3つ</p>
+                            <div class="px-2 mb-2">
+                                I dont know here exactly? Can you explain about this section?
+                            </div>
+
+
+                            <p class="w-100 p-1 pl-2 mb-2 bg-black-4 text-white text-right">最新の更新日 : 2019/3/20 19:40</p>
+                        </div>
+
+                        <div class="mt-5 py-2 radius-15 bg-white shadow-lg" id="contest-after">
+                            <h3 class="mt-2 p-1 text-white bg-green text-center font-weight-bold">試合後リフレクション</h3>
+                            
+                            <p class="w-50 w-md-75 p-1 pl-2 mb-2 bg-black-4 radius-r-20 text-white"></p>
+                            
+
+                            <p class="w-50 w-md-75 p-1 pl-2 mb-2 bg-black-4 radius-r-20 text-white"></p>
+                            
+
+                            <p class="w-50 w-md-75 p-1 pl-2 mb-2 bg-black-4 radius-r-20 text-white"></p>
+                            
+
+
+                            <p class="w-100 p-1 pl-2 mb-2 bg-black-4 text-white text-right">最新の更新日 : 2019/3/20 19:40</p>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
         </div>
     </main>
 
 </body>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <script src="{{ asset('js/app.js') }}" defer></script>
+    <script>
+        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+        var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+        return new bootstrap.Tooltip(tooltipTriggerEl)
+        })
+    </script>
 </html>

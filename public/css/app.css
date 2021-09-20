@@ -10236,6 +10236,10 @@ h3 {
 #dashboard .navbar {
   background-color: #10580c;
   padding: 0px 20px;
+  width: 100%;
+  z-index: 2;
+  position: fixed;
+  top: 0px;
 }
 #dashboard .navbar .nav-link {
   margin-left: 3px;
@@ -10260,6 +10264,16 @@ h3 {
 #dashboard .navbar.shadow-sm {
   box-shadow: 0 0.125rem 0.25rem #093100 !important;
 }
+#dashboard .container {
+  max-width: 90%;
+}
+@media (max-width: 991.98px) {
+  #dashboard .container {
+    margin-left: 0;
+    margin-right: 0;
+    max-width: 100%;
+  }
+}
 #dashboard .symbol {
   display: inline-block;
   flex-shrink: 0;
@@ -10267,10 +10281,193 @@ h3 {
   border-radius: 0.475rem;
 }
 #dashboard .symbol img {
-  width: 70px;
-  height: 70px;
+  width: 60px;
+  height: 60px;
   border-radius: 10%;
+}
+#dashboard .text-dark, #dashboard .text-muted {
+  font-size: 15px !important;
 }
 #dashboard .me-5 {
   margin-right: 1.25rem !important;
+}
+#dashboard .w-100 {
+  width: 100%;
+}
+#dashboard .l-side {
+  margin-top: 72px;
+  padding-top: 20px;
+  top: 0;
+  bottom: 0;
+}
+#dashboard .l-side .l-side-content {
+  width: 100%;
+  height: 580px;
+  box-shadow: 0 0 8px #000 !important;
+}
+#dashboard .l-side .l-side-content .form-control {
+  border-radius: 0;
+}
+#dashboard .l-side .l-side-content .form-control:focus {
+  border: 2px solid #3490dc;
+  box-shadow: none;
+}
+#dashboard .l-side .l-side-content .player-list {
+  overflow-y: scroll;
+  height: 465px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+#dashboard .l-side .l-side-content .player-list .d-flex {
+  cursor: pointer;
+}
+#dashboard .l-side .l-side-content .player-list .d-flex:hover {
+  background-color: #e7e7e7;
+}
+#dashboard .l-side .l-side-content .player-list .d-flex:focus {
+  background-color: #e7e7e7;
+}
+#dashboard .r-side {
+  top: 0px;
+  right: 0;
+  margin-top: 72px;
+  padding-top: 20px;
+}
+#dashboard .r-side .r-side-content {
+  width: 100%;
+  height: 100%;
+}
+#dashboard .r-side .r-side-content .player-main-info {
+  background-image: url(/images/info_back.jpg);
+  background-size: 100% 100%;
+  box-shadow: 0 0 8px #000 !important;
+}
+#dashboard .r-side .r-side-content .player-main-info .name p {
+  padding: 0;
+  font-size: 30px;
+  margin: 0;
+}
+#dashboard .r-side .r-side-content .player-main-info .img-wrap img {
+  border-radius: 10px;
+}
+#dashboard .r-side .r-side-content .player-main-info .img-wrap p {
+  margin: 1rem 0;
+  font-size: 30px;
+}
+@media (max-width: 767.98px) {
+  #dashboard .r-side .r-side-content .player-main-info .img-wrap p {
+    font-size: 20px;
+    margin: 5px;
+  }
+}
+#dashboard .r-side .r-side-content .player-main-info .person-info {
+  border-top: 1px solid white;
+  border-top-right-radius: 20px;
+  border-top-left-radius: 20px;
+  text-align: center;
+}
+#dashboard .r-side .r-side-content .player-main-info .person-info p.value {
+  margin: 0px;
+  font-size: 50px;
+}
+#dashboard .r-side .r-side-content .player-main-info .person-info p.value span {
+  font-size: 15px;
+  padding-left: 5px;
+}
+@media (max-width: 767.98px) {
+  #dashboard .r-side .r-side-content .player-main-info .person-info p.value {
+    font-size: 30px;
+  }
+}
+#dashboard .dropdown-toggle::after {
+  display: none;
+}
+
+.bg-red-4 {
+  background-color: rgba(255, 0, 0, 0.4);
+}
+
+.bg-red-6 {
+  background-color: rgba(255, 0, 0, 0.6);
+}
+
+.bg-black-4 {
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.bg-black-6 {
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.bg-black {
+  background-color: black;
+}
+
+.bg-green {
+  background-color: #093100;
+}
+
+.bg-green-6 {
+  background-color: #093100;
+  opacity: 0.6;
+}
+
+.shadow-lg {
+  box-shadow: 0 0 8px #000 !important;
+}
+
+.w-30 {
+  width: 30% !important;
+}
+
+@media (max-width: 991.98px) {
+  .w-md-25 {
+    width: 25% !important;
+  }
+}
+
+@media (max-width: 991.98px) {
+  .w-md-50 {
+    width: 50% !important;
+  }
+}
+
+@media (max-width: 991.98px) {
+  .w-md-75 {
+    width: 75% !important;
+  }
+}
+
+.radius-r-20 {
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+
+.radius-t-15 {
+  border-top-right-radius: 15px;
+  border-top-left-radius: 15px;
+}
+
+.radius-15 {
+  border-radius: 15px;
+}
+
+table, th, td {
+  padding: 5px !important;
+}
+
+.reviewRateStar {
+  font-family: "Font Awesome 5 Free";
+  content: "";
+  font-size: 1.8vw;
+  font-weight: 900;
+}
+
+span.star {
+  display: inline-block;
+  width: 80px;
+  line-height: 1;
+  vertical-align: middle;
+  margin-top: -1px;
+  font-size: 0;
 }
