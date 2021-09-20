@@ -1,0 +1,92 @@
+@charset "UTF-8";
+
+.bg-red-4{
+    background-color: rgba(255, 0, 0, 0.4);
+}
+
+.bg-red-6{
+    background-color: rgba(255, 0, 0, 0.6);
+}
+
+.bg-black-4{
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.bg-black-6{
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+.bg-black{
+    background-color: black;
+}
+
+.bg-green{
+    background-color: #093100
+}
+
+.bg-green-6{
+    background-color: #093100;
+    opacity: .6;
+}
+
+.shadow-lg{
+    box-shadow: 0 0 8px #000 !important;
+}
+
+
+.w-30{   width: 30% !important; }
+
+.w-md-25{
+    @include media-breakpoint-down(md){
+        width: 25% !important;
+    }
+}
+
+.w-md-50{
+    @include media-breakpoint-down(md){
+        width: 50% !important;
+    }
+}
+
+.w-md-75{
+    @include media-breakpoint-down(md){
+        width: 75% !important;
+    }
+}
+
+.radius-r-20{
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+.radius-t-15{
+    border-top-right-radius: 15px;
+    border-top-left-radius: 15px;
+}
+
+.radius-15{
+    border-radius: 15px;
+}
+
+
+table, th, td{
+    padding: 5px !important;
+}
+
+.reviewRateStar{
+    font-family: 'Font Awesome 5 Free';
+    content: "\f005";
+    font-size: 1.8vw;
+    font-weight: 900;
+}
+
+span.star{
+    display: inline-block;
+    width: 80px;
+    line-height: 1;
+    vertical-align: middle;
+    margin-top: -1px;
+    font-size: 0;
+}
+
+

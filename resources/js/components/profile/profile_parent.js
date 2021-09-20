@@ -34,8 +34,8 @@ const  Profile = () => {
     const [phone, setPhone] = useState('');
     const [childEmail, setChildEmail] = useState('');
     
-    const [imgUri, setImgUri] = useState('/images/avatar.jpg');
-    const [convertimgUri, setConvertImgUri] = useState('/images/avatar.jpg');
+    const [imgUri, setImgUri] = useState('/images/blank.png');
+    const [convertimgUri, setConvertImgUri] = useState('/images/blank.png');
 
     const [isSubmitting, setSubmit] = useState(false);
 
