@@ -1,13 +1,7 @@
 import ReactDOM from 'react-dom';
-import * as Yup from 'yup';
-import { useState, useEffect } from 'react';
-import { Icon } from '@iconify/react';
-import { useFormik, Form, FormikProvider } from 'formik';
-import eyeFill from '@iconify/icons-eva/eye-fill';
-import eyeOffFill from '@iconify/icons-eva/eye-off-fill';
-import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 // material
-import { Stack, Button,TextField, IconButton, InputAdornment } from '@material-ui/core';
+import { Button } from '@material-ui/core';
 import { LoadingButton } from '@material-ui/lab';
 import axios from 'axios';
 import Select from 'react-select'
@@ -25,19 +19,18 @@ const gender_options = [
   { value: 'w', label: '女性' }
 ]
 
-const  Profile = () => {
+const  ProfileParent = () => {
 
     const [isEditFlag, setEditFlag] = useState(false);
+    const [isSubmitting, setSubmit] = useState(false);
     
     const [birth, setBirth] = useState(new Date());
     const [gender, setGender] = useState(gender_options[0]);
     const [phone, setPhone] = useState('');
     const [childEmail, setChildEmail] = useState('');
-    
     const [imgUri, setImgUri] = useState('/images/blank.png');
     const [convertimgUri, setConvertImgUri] = useState('/images/blank.png');
 
-    const [isSubmitting, setSubmit] = useState(false);
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -154,7 +147,7 @@ const  Profile = () => {
 
 if(document.getElementById('parent-profile-modal-content')){
     ReactDOM.render(
-        <Profile />,
+        <ProfileParent />,
     document.getElementById('parent-profile-modal-content')
   );
 }

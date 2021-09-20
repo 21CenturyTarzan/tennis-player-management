@@ -36,7 +36,7 @@ class ProfileTableSeeder extends Seeder
                     'account_id' => $player->id,
                     'type' => $player->type,
                     'name' => $player->name,
-                    'img' => '/images/blank.png',
+                    'img' => $this->avatar(),
                     'gender' => $this->gender(),
                     'birth' => $birth,
                     'height' => rand(15000, 18000)/100,
@@ -46,7 +46,8 @@ class ProfileTableSeeder extends Seeder
                     'phone' => $this->phone(),
                     'address' => $this->address(),
                     'lesson' => $faker->sentence(20),
-                    'career' => $faker->sentence(30)
+                    'career' => $faker->sentence(30),
+                    'created_at'=>$faker->dateTimeBetween($startDate = '-5 years', $endDate = 'now')
                 ]);
             }
             else if(strcmp($player->type, 'parent') == 0){
@@ -55,10 +56,11 @@ class ProfileTableSeeder extends Seeder
                     'account_id' => $player->id,
                     'type' => $player->type,
                     'name' => $player->name,
-                    'img' => '/images/blank.png',
+                    'img' => $this->avatar(),
                     'gender' => $this->gender(),
                     'birth' => $birth,
-                    'phone' => $this->phone()
+                    'phone' => $this->phone(),
+                    'created_at'=>$faker->dateTimeBetween($startDate = '-5 years', $endDate = 'now')
                 ]);
                 $cnt = User::count();
                 $users = User::get();
@@ -132,5 +134,9 @@ class ProfileTableSeeder extends Seeder
             'Jobu Shikizai Co., Ltd.'
         );
         return $address[rand(0,11)];
+    }
+
+    public function avatar(){
+        return '/images/avatar/150-'.rand(1, 24).'.jpg';
     }
 }

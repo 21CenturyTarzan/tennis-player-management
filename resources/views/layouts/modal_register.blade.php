@@ -13,17 +13,9 @@
                     @csrf
 
                     <div class="form-group row">
-                        <label for="firstnameInput" class="col-md-4 col-form-label text-md-right">{{ __('性名') }}</label>
+                        <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('性名') }}</label>
                         <div class="col-md-8">
-                            <div class="row">     
-                                <div class="col-6">
-                                    <input id="firstnameInput" type="text" class="form-control" name="firstname" value="{{ old('name') }}"  autocomplete="name" placeholder="性" required autofocus >
-                                </div>
-                                <div class="col-6">
-                                    <input id="lastnameInput" type="text" class="form-control" name="lastname" value="{{ old('name') }}"  autocomplete="name" placeholder="名" required>
-                                </div>
-                            </div>
-
+                            <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}"  autocomplete="name" placeholder="性名" required autofocus >
                             <span class="invalid-feedback" role="alert" id="nameError">
                                 <strong></strong>
                             </span>
