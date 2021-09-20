@@ -35,7 +35,7 @@ var grade_year_options = [
   ]
 
 
-const  PlayerProfile = () => {
+const  PlayerProfileEdit = () => {
 
     const [isEditFlag, setEditFlag] = useState(false);
     
@@ -80,7 +80,6 @@ const  PlayerProfile = () => {
                 window.location.href = '/dashboard';
             }
         })
-        console.log(formdata)
     }
 
     const changeGrade = (opt) => {
@@ -246,7 +245,7 @@ const  PlayerProfile = () => {
 
 if(document.getElementById('player-profile-modal-content')){
     ReactDOM.render(
-        <PlayerProfile />,
+        <PlayerProfileEdit />,
     document.getElementById('player-profile-modal-content')
   );
 }
