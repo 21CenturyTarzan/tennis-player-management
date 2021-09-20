@@ -126,8 +126,11 @@
 
                 <div class="col-md-4">
                     <div style="padding-top: 72px;" id="players">
-                        <div class="mt-3 pt-2 bg-white radius-15" id="player-list-wrapper">
-
+                        <div class="mt-3 pt-2 bg-white radius-15" id="player-list-box">
+                        </div>
+                    </div>
+                    <div style="padding-top: 72px;" id="notice">
+                        <div class="mt-3 pt-2 bg-white radius-15" id="notice-box">
                         </div>
                     </div>
                 </div>

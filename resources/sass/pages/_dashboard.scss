@@ -35,15 +35,12 @@
         width: 100%;
     }
 
-    // .l-side, .r-side{
-    //     margin-top: 92px;
-    // }
-
   
-    #player-list-wrapper{
+    #player-list-box{
         width: 100%;
         height: 580px;
         box-shadow: 0 0 8px #000 !important;
+        position: relative;
 
         .form-control{
             border-radius: 0;

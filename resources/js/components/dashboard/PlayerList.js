@@ -79,7 +79,7 @@ export default function PlayerList() {
         </div>
         <p className="pr-3 pl-3 m-0 text-right">{`(${PLAYERLIST.length}/${FILTERLIST.length})`}</p>
         {
-          isLoadPlayerList != 'loaded' ? <PageLoader id="player-list-wrapper"/> : players() 
+          isLoadPlayerList != 'loaded' ? <PageLoader id="player-list-box"/> : players() 
         }
         
       </>
@@ -87,10 +87,10 @@ export default function PlayerList() {
 }
 
 
-if(document.getElementById('player-list-wrapper')){
+if(document.getElementById('player-list-box')){
     ReactDOM.render(
         <PlayerList />,
-    document.getElementById('player-list-wrapper')
+    document.getElementById('player-list-box')
   );
 }
 
