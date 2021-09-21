@@ -18,7 +18,7 @@ export default function PlayerList() {
   const players = () => {
       return(
         <Scrollbar>
-          <div className="player-list pl-3 pr-3">
+          <div className="player-list pl-3 pr-3 pr-md-1">
             {
               FILTERLIST.length == 0 ? 
                 <p className="text-center">
@@ -30,11 +30,11 @@ export default function PlayerList() {
                   <a key={id}>
                     <div className="d-flex align-items-center mb-2">
                         <div className="symbol me-5">
-                            <img src={player.img} alt={player.img} />
+                            <img src={player.account.img} alt={player.account.img} />
                         </div>
                         <div className="flex-grow-1">
-                            <span className="text-dark fw-bolder text-hover-primary fs-6">{player.name}</span>
-                            <span className="text-muted d-block fw-bold">{convertDate(player.created_at)}</span>
+                            <span className="text-dark fw-bolder text-hover-primary fs-6">{player.account.name}</span>
+                            <span className="text-muted d-block">{convertDate(player.account.created_at)}</span>
                         </div>
                         <div>
                           <img src="/images/edit_star_1.svg" width="20" height="20"/>
@@ -61,13 +61,13 @@ export default function PlayerList() {
 
   const convertDate = (str_date) => {
         let date = new Date(str_date)
-        return ('' + date.getFullYear() + '-' + (date.getMonth()+1) + '-' + date.getDate());
+        return ('' + (date.getMonth()+1) + '/' + date.getDate() + '/' + date.getFullYear());
   }
 
   const handleChange = (e) => {
       var query = e.target.value;
       setFilterName(query);
-      var filterlist = filter(PLAYERLIST, (_user) => _user.name.toLowerCase().indexOf(query.toLowerCase()) !== -1);
+      var filterlist = filter(PLAYERLIST, (_user) => _user.account.name.toLowerCase().indexOf(query.toLowerCase()) !== -1);
       setFilterList(filterlist);
   }
 
@@ -79,7 +79,7 @@ export default function PlayerList() {
         </div>
         <p className="pr-3 pl-3 m-0 text-right">{`(${PLAYERLIST.length}/${FILTERLIST.length})`}</p>
         {
-          isLoadPlayerList != 'loaded' ? <PageLoader id="player-list-box"/> : players() 
+          isLoadPlayerList != 'loaded' ? <PageLoader query="#player-list-box"/> : players() 
         }
         
       </>
@@ -87,10 +87,10 @@ export default function PlayerList() {
 }
 
 
-if(document.getElementById('player-list-box')){
+if(document.querySelector('#player-list-box')){
     ReactDOM.render(
         <PlayerList />,
-    document.getElementById('player-list-box')
+    document.querySelector('#player-list-box')
   );
 }
 

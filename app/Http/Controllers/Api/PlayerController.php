@@ -10,7 +10,7 @@ class PlayerController extends Controller
 {
     //
     public function index(){
-        return ProfilePlayer::orderBy('created_at')->get();
+        return ProfilePlayer::orderBy('created_at')->with('account')->get();
     }
 
     public function show(){

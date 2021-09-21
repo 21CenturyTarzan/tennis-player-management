@@ -2,14 +2,14 @@ import React, { useState, useEffect }from 'react';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
 
-export  default function PageLoader({id}){
+export  default function PageLoader({query}){
   // save current window width in the state object
     let [width, setWidth] = useState(null);
     let [height, setHeight] = useState(null);
 
     const handleResize = () => {
-        var w = document.getElementById(id).offsetWidth / 2 - 20;
-        var h = document.getElementById(id).offsetHeight / 2 - 20;
+        var w = document.querySelector(query).offsetWidth / 2 - 20;
+        var h = document.querySelector(query).offsetHeight / 2 - 20;
         setWidth(w);
         setHeight(h);
     }

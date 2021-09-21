@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\ProfilePlayer;
 use App\Models\ProfileParent;
 use App\Models\Children;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -85,9 +86,6 @@ class ProfileController extends Controller
         try {
             ProfilePlayer::create([
                 'account_id' => Auth::user()->id,
-                'type' => Auth::user()->type,
-                'name' => Auth::user()->name,
-                'img' => $img_url,
                 'gender' => $gender,
                 'birth' => $birth,
                 'height' => $height,
@@ -98,6 +96,9 @@ class ProfileController extends Controller
                 'address' => $address,
                 'lesson' => $lesson,
                 'career' => $career
+            ]);
+            User::where(['id'=>Auth::id()])->first()->update([
+                'img'=> $img_url
             ]);
             return 'success';
         } catch (\Throwable $th) {
@@ -133,9 +134,6 @@ class ProfileController extends Controller
         try {
             ProfileParent::create([
                 'account_id' => Auth::user()->id,
-                'type' => Auth::user()->type,
-                'name' => Auth::user()->name,
-                'img' => $img_url,
                 'gender' => $gender,
                 'birth' => $birth,
                 'phone' => $phone
@@ -143,6 +141,10 @@ class ProfileController extends Controller
             Children::create([
                 'parent_id' => Auth::user()->id,
                 'child_email' => $child_email
+            ]);
+
+            User::where(['id'=>Auth::id()])->first()->update([
+                'img'=> $img_url
             ]);
 
             return 'success';

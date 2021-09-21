@@ -16,9 +16,6 @@ class ProfileParent extends Model
     protected $table = 'profile_parent';
     protected $fillable = [
         'account_id',
-        'type',
-        'name',
-        'img',
         'gender',
         'birth',
         'phone'

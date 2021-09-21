@@ -14,3 +14,4 @@ require('./bootstrap');
 require('./components/profile/PlayerProfileEdit');
 require('./components/profile/ParentProfileEdit');
 require('./components/dashboard/PlayerList');
+require('./components/dashboard/MessageBox');
