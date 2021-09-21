@@ -10119,21 +10119,8 @@ h3 {
   background-color: black;
   opacity: 0.2;
 }
-#profile .navbar {
-  background-color: #10580c;
-  padding: 5px 20px;
-}
-#profile .nav-link {
-  color: white;
-}
 #profile .shadow-sm {
   box-shadow: 0 0.125rem 0.25rem #093100 !important;
-}
-#profile .navbar-toggler {
-  border: none;
-}
-#profile .navbar-toggler .navbar-toggler-icon {
-  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 255.5%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
 }
 #profile .dropdown-menu {
   border-radius: 0px;
@@ -10233,37 +10220,6 @@ h3 {
 #dashboard {
   background-image: url(/images/court.jpg);
 }
-#dashboard .navbar {
-  background-color: #10580c;
-  padding: 0px 20px;
-  width: 100%;
-  z-index: 2;
-  position: fixed;
-  top: 0px;
-}
-#dashboard .navbar .nav-link {
-  margin-left: 3px;
-  margin-right: 3px;
-  padding: 10px;
-}
-#dashboard .navbar .nav-link:hover {
-  background-color: #084405;
-  transition: 0.3s;
-}
-#dashboard .navbar .nav-link:focus {
-  background-color: #084405;
-  box-shadow: none;
-  border-bottom: 1px solid white;
-}
-#dashboard .navbar .navbar-toggler {
-  border: none;
-}
-#dashboard .navbar .navbar-toggler .navbar-toggler-icon {
-  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 255.5%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
-}
-#dashboard .navbar.shadow-sm {
-  box-shadow: 0 0.125rem 0.25rem #093100 !important;
-}
 #dashboard .container {
   max-width: 90%;
 }
@@ -10313,7 +10269,6 @@ h3 {
   box-shadow: none;
 }
 #dashboard .l-side .l-side-content .player-list {
-  overflow-y: scroll;
   height: 465px;
   padding-top: 10px;
   padding-bottom: 10px;
@@ -10326,12 +10281,6 @@ h3 {
 }
 #dashboard .l-side .l-side-content .player-list .d-flex:focus {
   background-color: #e7e7e7;
-}
-#dashboard .r-side {
-  top: 0px;
-  right: 0;
-  margin-top: 72px;
-  padding-top: 20px;
 }
 #dashboard .r-side .r-side-content {
   width: 100%;
@@ -10455,6 +10404,11 @@ h3 {
 table, th, td {
   padding: 5px !important;
 }
+@media (max-width: 991.98px) {
+  table, th, td {
+    font-size: 15px !important;
+  }
+}
 
 .reviewRateStar {
   font-family: "Font Awesome 5 Free";
@@ -10470,4 +10424,51 @@ span.star {
   vertical-align: middle;
   margin-top: -1px;
   font-size: 0;
+}
+
+.ft-15 {
+  font-size: 15px !important;
+}
+
+@media (max-width: 991.98px) {
+  .ft-md-15 {
+    font-size: 15px !important;
+  }
+}
+
+.navbar {
+  background-color: #10580c;
+  padding: 0px 20px;
+  width: 100%;
+  z-index: 2;
+  position: fixed;
+  top: 0px;
+}
+@media (max-width: 991.98px) {
+  .navbar .nav {
+    justify-content: space-evenly;
+  }
+}
+.navbar .nav-link {
+  margin-left: 3px;
+  margin-right: 3px;
+  padding: 10px;
+}
+.navbar .nav-link:hover {
+  background-color: #084405;
+  transition: 0.3s;
+}
+.navbar .nav-link:focus {
+  background-color: #084405;
+  box-shadow: none;
+  border-bottom: 1px solid white;
+}
+.navbar .navbar-toggler {
+  border: none;
+}
+.navbar .navbar-toggler .navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 255.5%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+.navbar.shadow-sm {
+  box-shadow: 0 0.125rem 0.25rem #093100 !important;
 }

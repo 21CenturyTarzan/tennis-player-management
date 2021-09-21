@@ -69,6 +69,9 @@
 
 table, th, td{
     padding: 5px !important;
+    @include media-breakpoint-down(md){
+        font-size: 15px !important;
+    }
 }
 
 .reviewRateStar{
@@ -85,6 +88,56 @@ span.star{
     vertical-align: middle;
     margin-top: -1px;
     font-size: 0;
+}
+
+.ft-15{
+    font-size: 15px !important;
+}
+
+.ft-md-15{
+    @include media-breakpoint-down(md){
+        font-size: 15px !important;
+    }
+}
+
+
+.navbar{
+    background-color: #10580c;
+    padding: 0px 20px;
+    width: 100%;
+    z-index: 2;
+    position: fixed;
+    top: 0px;
+
+    .nav{
+        @include media-breakpoint-down(md){
+            justify-content: space-evenly;
+        }
+    }
+    
+    .nav-link{
+        margin-left: 3px;
+        margin-right: 3px;
+        padding: 10px;
+        &:hover{
+            background-color: #084405;
+            transition: .3s;
+        }
+        &:focus{
+            background-color: #084405;
+            box-shadow: none;
+            border-bottom: 1px solid white;
+        }
+    }
+    .navbar-toggler{
+        border: none;
+        .navbar-toggler-icon{
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 255.5%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e")
+        }
+    }
+    &.shadow-sm{
+        box-shadow: 0 0.125rem 0.25rem rgb(9 49 0) !important;
+    }
 }
 
 
