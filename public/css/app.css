@@ -10250,30 +10250,31 @@ h3 {
 #dashboard .w-100 {
   width: 100%;
 }
-#dashboard #player-list-wrapper {
+#dashboard #player-list-box {
   width: 100%;
   height: 580px;
   box-shadow: 0 0 8px #000 !important;
+  position: relative;
 }
-#dashboard #player-list-wrapper .form-control {
+#dashboard #player-list-box .form-control {
   border-radius: 0;
 }
-#dashboard #player-list-wrapper .form-control:focus {
+#dashboard #player-list-box .form-control:focus {
   border: 2px solid #3490dc;
   box-shadow: none;
 }
-#dashboard #player-list-wrapper .player-list {
+#dashboard #player-list-box .player-list {
   height: 465px;
   padding-top: 10px;
   padding-bottom: 10px;
 }
-#dashboard #player-list-wrapper .player-list .d-flex {
+#dashboard #player-list-box .player-list .d-flex {
   cursor: pointer;
 }
-#dashboard #player-list-wrapper .player-list .d-flex:hover {
+#dashboard #player-list-box .player-list .d-flex:hover {
   background-color: #e7e7e7;
 }
-#dashboard #player-list-wrapper .player-list .d-flex:focus {
+#dashboard #player-list-box .player-list .d-flex:focus {
   background-color: #e7e7e7;
 }
 #dashboard .player-main-info {

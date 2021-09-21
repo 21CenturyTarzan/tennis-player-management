@@ -13120,13 +13120,13 @@ function PlayerList() {
       className: "pr-3 pl-3 m-0 text-right",
       children: "(".concat(PLAYERLIST.length, "/").concat(FILTERLIST.length, ")")
     }), isLoadPlayerList != 'loaded' ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_layouts_pageloader__WEBPACK_IMPORTED_MODULE_6__.default, {
-      id: "player-list-wrapper"
+      id: "player-list-box"
     }) : players()]
   });
 }
 
-if (document.getElementById('player-list-wrapper')) {
-  react_dom__WEBPACK_IMPORTED_MODULE_2__.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(PlayerList, {}), document.getElementById('player-list-wrapper'));
+if (document.getElementById('player-list-box')) {
+  react_dom__WEBPACK_IMPORTED_MODULE_2__.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(PlayerList, {}), document.getElementById('player-list-box'));
 }
 
 /***/ }),
@@ -13176,11 +13176,10 @@ function PageLoader(_ref) {
       setHeight = _useState4[1];
 
   var handleResize = function handleResize() {
-    var w = document.getElementById(id).offsetWidth / 2 - 10;
+    var w = document.getElementById(id).offsetWidth / 2 - 20;
     var h = document.getElementById(id).offsetHeight / 2 - 20;
     setWidth(w);
     setHeight(h);
-    console.log(w, h);
   };
 
   (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {

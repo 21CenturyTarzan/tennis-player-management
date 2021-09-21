@@ -8,12 +8,10 @@ export  default function PageLoader({id}){
     let [height, setHeight] = useState(null);
 
     const handleResize = () => {
-        var w = document.getElementById(id).offsetWidth / 2 - 10;
+        var w = document.getElementById(id).offsetWidth / 2 - 20;
         var h = document.getElementById(id).offsetHeight / 2 - 20;
         setWidth(w);
         setHeight(h);
-        
-        console.log(w, h)
     }
 
     useEffect(() => {
