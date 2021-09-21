@@ -138,6 +138,10 @@ span.star{
     &.shadow-sm{
         box-shadow: 0 0.125rem 0.25rem rgb(9 49 0) !important;
     }
+
+    .dropdown-toggle::after{
+        display: none;
+    }
 }
 
 

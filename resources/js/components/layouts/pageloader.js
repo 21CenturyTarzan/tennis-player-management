@@ -1,54 +1,39 @@
 import React, { useState, useEffect }from 'react';
 import CircularProgress from '@material-ui/core/CircularProgress';
-import { makeStyles } from '@material-ui/styles';
 
 
-const useStyles = makeStyles({
-  loader: {
-    zIndex: 10,
-    position: 'fixed',
-    top: '0px'
-}
-});
-
-const getWidth = () => {
-    return (document.getElementById('l-side-content').clientWidth / 2 - 10)
-}
-
-const getHeight = () => {
-    return (document.getElementById('l-side-content').clientHeight / 2 - 20)
-}
-
-export  default function PageLoader(){
+export  default function PageLoader({id}){
   // save current window width in the state object
-  let [width, setWidth] = useState(getWidth());
-  let [height, setHeight] = useState(getHeight());
+    let [width, setWidth] = useState(null);
+    let [height, setHeight] = useState(null);
 
-  const classes = useStyles();
-
-  // in this case useEffect will execute only once because
-  // it does not have any dependencies.
-  useEffect(() => {
-    const resizeListener = () => {
-      // change width from the state object
-      setWidth(getWidth())
-      setHeight(getHeight())
-    };
-    // set resize listener
-    window.addEventListener('resize', resizeListener);
-
-    setWidth(getWidth())
-    setHeight(getHeight())
-    // clean up function
-    return () => {
-      // remove resize listener
-      window.removeEventListener('resize', resizeListener);
+    const handleResize = () => {
+        var w = document.getElementById(id).offsetWidth / 2 - 10;
+        var h = document.getElementById(id).offsetHeight / 2 - 20;
+        setWidth(w);
+        setHeight(h);
+        
+        console.log(w, h)
     }
-   
-  }, [])
+
+    useEffect(() => {
+
+        handleResize();
+
+        const resizeListener = () => {
+            handleResize();
+        };
+
+        window.addEventListener('resize', resizeListener);
+
+        return () => {
+          window.removeEventListener('resize', resizeListener);
+        }
+
+    }, []);
+
 
   return (
-   
-        <CircularProgress color="secondary" style={{top:height, color:'#10580c', left:width, position:'absolute'}}/>
+    <CircularProgress color="secondary" style={{top:height, color:'#10580c', left:width, position:'absolute'}}/>
   );
 }

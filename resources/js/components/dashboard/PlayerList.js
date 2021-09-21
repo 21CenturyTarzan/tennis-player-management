@@ -48,7 +48,6 @@ export default function PlayerList() {
       )      
   }
 
-
   useEffect( async () => {
     // ルームを取得
     setLoadPlayerListFlag('loading');
@@ -80,7 +79,7 @@ export default function PlayerList() {
         </div>
         <p className="pr-3 pl-3 m-0 text-right">{`(${PLAYERLIST.length}/${FILTERLIST.length})`}</p>
         {
-          isLoadPlayerList != 'loaded' ? <PageLoader /> : players() 
+          isLoadPlayerList != 'loaded' ? <PageLoader id="player-list-wrapper"/> : players() 
         }
         
       </>
@@ -88,10 +87,10 @@ export default function PlayerList() {
 }
 
 
-if(document.getElementById('l-side-content')){
+if(document.getElementById('player-list-wrapper')){
     ReactDOM.render(
         <PlayerList />,
-    document.getElementById('l-side-content')
+    document.getElementById('player-list-wrapper')
   );
 }
 
