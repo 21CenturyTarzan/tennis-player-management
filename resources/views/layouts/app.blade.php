@@ -15,8 +15,7 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
 </head>
-<body>
-
+<body style="overflow:hidden">
     <div id="home">
         <div class="topmv">
             <figure>

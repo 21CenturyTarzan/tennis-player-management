@@ -19,7 +19,7 @@ const gender_options = [
   { value: 'w', label: '女性' }
 ]
 
-const  ProfileParent = () => {
+const  ParentProfileEdit = () => {
 
     const [isEditFlag, setEditFlag] = useState(false);
     const [isSubmitting, setSubmit] = useState(false);
@@ -49,7 +49,6 @@ const  ProfileParent = () => {
                 window.location.href = '/dashboard';
             }
         })
-        console.log(formdata)
     }
 
     const onCropped = function (e) {
@@ -138,8 +137,6 @@ const  ProfileParent = () => {
                         </LoadingButton>
                     </div>
                 </div>
-                
-                
             </div>
         </form>
     );
@@ -147,7 +144,7 @@ const  ProfileParent = () => {
 
 if(document.getElementById('parent-profile-modal-content')){
     ReactDOM.render(
-        <ProfileParent />,
+        <ParentProfileEdit />,
     document.getElementById('parent-profile-modal-content')
   );
 }

@@ -11,6 +11,6 @@ require('./bootstrap');
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
-require('./components/profile/profile_player');
-require('./components/profile/profile_parent');
-require('./components/dashboard/player');
+require('./components/profile/PlayerProfileEdit');
+require('./components/profile/ParentProfileEdit');
+require('./components/dashboard/PlayerList');

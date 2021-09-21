@@ -14260,11 +14260,11 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
  */
 
 
-__webpack_require__(/*! ./components/profile/profile_player */ "./resources/js/components/profile/profile_player.js");
+__webpack_require__(/*! ./components/profile/PlayerProfileEdit */ "./resources/js/components/profile/PlayerProfileEdit.js");
 
-__webpack_require__(/*! ./components/profile/profile_parent */ "./resources/js/components/profile/profile_parent.js");
+__webpack_require__(/*! ./components/profile/ParentProfileEdit */ "./resources/js/components/profile/ParentProfileEdit.js");
 
-__webpack_require__(/*! ./components/dashboard/player */ "./resources/js/components/dashboard/player.js");
+__webpack_require__(/*! ./components/dashboard/PlayerList */ "./resources/js/components/dashboard/PlayerList.js");
 
 /***/ }),
 
@@ -14312,10 +14312,10 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 /***/ }),
 
-/***/ "./resources/js/components/dashboard/player.js":
-/*!*****************************************************!*\
-  !*** ./resources/js/components/dashboard/player.js ***!
-  \*****************************************************/
+/***/ "./resources/js/components/dashboard/PlayerList.js":
+/*!*********************************************************!*\
+  !*** ./resources/js/components/dashboard/PlayerList.js ***!
+  \*********************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -14677,10 +14677,10 @@ function Scrollbar(_ref2) {
 
 /***/ }),
 
-/***/ "./resources/js/components/profile/profile_parent.js":
-/*!***********************************************************!*\
-  !*** ./resources/js/components/profile/profile_parent.js ***!
-  \***********************************************************/
+/***/ "./resources/js/components/profile/ParentProfileEdit.js":
+/*!**************************************************************!*\
+  !*** ./resources/js/components/profile/ParentProfileEdit.js ***!
+  \**************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -14730,7 +14730,7 @@ var gender_options = [{
   label: '女性'
 }];
 
-var ProfileParent = function ProfileParent() {
+var ParentProfileEdit = function ParentProfileEdit() {
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(false),
       _useState2 = _slicedToArray(_useState, 2),
       isEditFlag = _useState2[0],
@@ -14785,7 +14785,6 @@ var ProfileParent = function ProfileParent() {
         window.location.href = '/dashboard';
       }
     });
-    console.log(formdata);
   };
 
   var onCropped = function onCropped(e) {
@@ -14968,15 +14967,15 @@ var ProfileParent = function ProfileParent() {
 };
 
 if (document.getElementById('parent-profile-modal-content')) {
-  react_dom__WEBPACK_IMPORTED_MODULE_1__.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(ProfileParent, {}), document.getElementById('parent-profile-modal-content'));
+  react_dom__WEBPACK_IMPORTED_MODULE_1__.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(ParentProfileEdit, {}), document.getElementById('parent-profile-modal-content'));
 }
 
 /***/ }),
 
-/***/ "./resources/js/components/profile/profile_player.js":
-/*!***********************************************************!*\
-  !*** ./resources/js/components/profile/profile_player.js ***!
-  \***********************************************************/
+/***/ "./resources/js/components/profile/PlayerProfileEdit.js":
+/*!**************************************************************!*\
+  !*** ./resources/js/components/profile/PlayerProfileEdit.js ***!
+  \**************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -15055,7 +15054,7 @@ var grade_year_options = [{
   label: '6年'
 }];
 
-var PlayerProfile = function PlayerProfile() {
+var PlayerProfileEdit = function PlayerProfileEdit() {
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(false),
       _useState2 = _slicedToArray(_useState, 2),
       isEditFlag = _useState2[0],
@@ -15151,7 +15150,6 @@ var PlayerProfile = function PlayerProfile() {
         window.location.href = '/dashboard';
       }
     });
-    console.log(formdata);
   };
 
   var changeGrade = function changeGrade(opt) {
@@ -15510,7 +15508,7 @@ var PlayerProfile = function PlayerProfile() {
 };
 
 if (document.getElementById('player-profile-modal-content')) {
-  react_dom__WEBPACK_IMPORTED_MODULE_1__.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(PlayerProfile, {}), document.getElementById('player-profile-modal-content'));
+  react_dom__WEBPACK_IMPORTED_MODULE_1__.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(PlayerProfileEdit, {}), document.getElementById('player-profile-modal-content'));
 }
 
 /***/ }),
