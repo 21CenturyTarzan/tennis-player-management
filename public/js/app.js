@@ -13031,14 +13031,14 @@ function MessageBox() {
               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
                 className: "symbol me-5",
                 children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("img", {
-                  src: msg.img,
-                  alt: msg.img
+                  src: msg.account.img,
+                  alt: msg.account.img
                 })
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
                 className: "flex-grow-1",
                 children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", {
                   className: "text-dark fw-bolder text-hover-primary fs-6",
-                  children: "Dmitri"
+                  children: msg.account.name
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", {
                   className: "text-muted d-block ft-12",
                   children: convertDate(msg.created_at)
@@ -13069,7 +13069,6 @@ function MessageBox() {
             setLoadMsgListFlag('loading');
             _context.next = 3;
             return axios__WEBPACK_IMPORTED_MODULE_3___default().get("/api/msgs").then(function (res) {
-              console.log(res.data);
               setMsgList(res.data);
               setLoadMsgListFlag('loaded');
             });
@@ -13188,17 +13187,17 @@ function PlayerList() {
               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
                 className: "symbol me-5",
                 children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("img", {
-                  src: player.img,
-                  alt: player.img
+                  src: player.account.img,
+                  alt: player.account.img
                 })
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
                 className: "flex-grow-1",
                 children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", {
                   className: "text-dark fw-bolder text-hover-primary fs-6",
-                  children: player.name
+                  children: player.account.name
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", {
                   className: "text-muted d-block",
-                  children: convertDate(player.created_at)
+                  children: convertDate(player.account.created_at)
                 })]
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
                 children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("img", {
@@ -13245,7 +13244,7 @@ function PlayerList() {
     var query = e.target.value;
     setFilterName(query);
     var filterlist = (0,lodash__WEBPACK_IMPORTED_MODULE_3__.filter)(PLAYERLIST, function (_user) {
-      return _user.name.toLowerCase().indexOf(query.toLowerCase()) !== -1;
+      return _user.account.name.toLowerCase().indexOf(query.toLowerCase()) !== -1;
     });
     setFilterList(filterlist);
   };
@@ -13606,7 +13605,7 @@ var ParentProfileEdit = function ParentProfileEdit() {
               marginBottom: '0px'
             },
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("img", {
-              src: "https://cdn1.iconfinder.com/data/icons/hawcons/32/699329-icon-57-document-download-128.png",
+              src: "/images/icon-upload.png",
               width: "50",
               height: "42"
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("input", {
@@ -14003,7 +14002,7 @@ var PlayerProfileEdit = function PlayerProfileEdit() {
               marginBottom: '0px'
             },
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("img", {
-              src: "https://cdn1.iconfinder.com/data/icons/hawcons/32/699329-icon-57-document-download-128.png",
+              src: "/images/icon-upload.png",
               width: "50",
               height: "42"
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("input", {

@@ -25,10 +25,10 @@ export default function MessageBox() {
                   <a key={id}>
                     <div className="d-flex align-items-center mb-2">
                         <div className="symbol me-5">
-                            <img src={msg.img} alt={msg.img} />
+                            <img src={msg.account.img} alt={msg.account.img} />
                         </div>
                         <div className="flex-grow-1">
-                            <span className="text-dark fw-bolder text-hover-primary fs-6">Dmitri</span>
+                            <span className="text-dark fw-bolder text-hover-primary fs-6">{msg.account.name}</span>
                             <span className="text-muted d-block ft-12">{convertDate(msg.created_at)}</span>
                             <span className="text-muted d-block">{msg.msg.slice(0,20) + '...'}</span>
                         </div>
@@ -49,7 +49,6 @@ export default function MessageBox() {
     setLoadMsgListFlag('loading');
     await axios.get("/api/msgs")
         .then( res => {
-          console.log(res.data)
           setMsgList(res.data);
           setLoadMsgListFlag('loaded');
         })

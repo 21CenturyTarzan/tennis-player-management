@@ -34,9 +34,6 @@ class ProfileTableSeeder extends Seeder
 
                 ProfilePlayer::create([
                     'account_id' => $player->id,
-                    'type' => $player->type,
-                    'name' => $player->name,
-                    'img' => $this->avatar(),
                     'gender' => $this->gender(),
                     'birth' => $birth,
                     'height' => rand(15000, 18000)/100,
@@ -54,9 +51,6 @@ class ProfileTableSeeder extends Seeder
                 
                 ProfileParent::create([
                     'account_id' => $player->id,
-                    'type' => $player->type,
-                    'name' => $player->name,
-                    'img' => $this->avatar(),
                     'gender' => $this->gender(),
                     'birth' => $birth,
                     'phone' => $this->phone(),
@@ -136,7 +130,4 @@ class ProfileTableSeeder extends Seeder
         return $address[rand(0,11)];
     }
 
-    public function avatar(){
-        return '/images/avatar/150-'.rand(1, 24).'.jpg';
-    }
 }

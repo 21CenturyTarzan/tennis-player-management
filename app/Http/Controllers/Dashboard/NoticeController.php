@@ -14,6 +14,6 @@ class NoticeController extends Controller
     public function index()
     {
         # code...
-        return Notice::where('to', Auth::user()->id)->orderBy('created_at', 'DESC')->with('account')->limit(10)->get();
+        return Notice::where('to', Auth::user()->id)->orderBy('created_at', 'DESC')->with('account', 'profile')->limit(10)->get();
     }
 }

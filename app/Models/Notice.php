@@ -25,6 +25,11 @@ class Notice extends Model
 
     public function account()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'from');
+    }
+
+    public function profile()
+    {
+        return $this->belongsTo(ProfilePlayer::class, 'from');
     }
 }

@@ -30,11 +30,11 @@ export default function PlayerList() {
                   <a key={id}>
                     <div className="d-flex align-items-center mb-2">
                         <div className="symbol me-5">
-                            <img src={player.img} alt={player.img} />
+                            <img src={player.account.img} alt={player.account.img} />
                         </div>
                         <div className="flex-grow-1">
-                            <span className="text-dark fw-bolder text-hover-primary fs-6">{player.name}</span>
-                            <span className="text-muted d-block">{convertDate(player.created_at)}</span>
+                            <span className="text-dark fw-bolder text-hover-primary fs-6">{player.account.name}</span>
+                            <span className="text-muted d-block">{convertDate(player.account.created_at)}</span>
                         </div>
                         <div>
                           <img src="/images/edit_star_1.svg" width="20" height="20"/>
@@ -67,7 +67,7 @@ export default function PlayerList() {
   const handleChange = (e) => {
       var query = e.target.value;
       setFilterName(query);
-      var filterlist = filter(PLAYERLIST, (_user) => _user.name.toLowerCase().indexOf(query.toLowerCase()) !== -1);
+      var filterlist = filter(PLAYERLIST, (_user) => _user.account.name.toLowerCase().indexOf(query.toLowerCase()) !== -1);
       setFilterList(filterlist);
   }
 

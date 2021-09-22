@@ -17,9 +17,6 @@ class ProfilePlayer extends Model
     protected $table = 'profile_player';
     protected $fillable = [
         'account_id',
-        'type',
-        'name',
-        'img',
         'gender',
         'birth',
         'phone',
@@ -31,4 +28,9 @@ class ProfilePlayer extends Model
         'lesson',
         'career',
     ];
+
+    public function account()
+    {
+        return $this->belongsTo(User::class, 'account_id');
+    }
 }

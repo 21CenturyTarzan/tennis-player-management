@@ -28,7 +28,7 @@
                 <li class="nav-item" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-placement="bottom" title="ログアウト">
                     <a class="nav-link btn btn-custom btn-icon"  href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
                         <!--begin::Svg Icon | path: icons/duotune/finance/fin006.svg-->
-                        <img src="{{$img_url}}" alt="" width="35" height="35" style="border-radius:50%">
+                        <img src="{{ Auth::user()->img }}" alt="" width="35" height="35" style="border-radius:50%">
                         <span class="ml-1 text-white ft-15 d-none d-md-inline-block">{{ Auth::user()->name }}</span>
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                             @csrf
@@ -108,7 +108,7 @@
                     <li class="nav-item" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-placement="bottom" title="ログアウト">
                         <a class="nav-link btn btn-custom btn-icon"  href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
                             <!--begin::Svg Icon | path: icons/duotune/finance/fin006.svg-->
-                            <img src="{{$img_url}}" alt="" width="35" height="35" style="border-radius:50%">
+                            <img src="{{ Auth::user()->img }}" alt="" width="35" height="35" style="border-radius:50%">
                             <span class="ml-1 text-white ft-15 d-none d-md-inline-block">{{ Auth::user()->name }}</span>
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                 @csrf

@@ -3,8 +3,8 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <img src="{{asset('images/login.png')}}" alt="" width="35px" height="35px">
-                <h5 class="modal-title" id="loginModal">{{ __('Login') }}</h5>
+                <img src="{{asset('images/icon-login.png')}}" alt="" width="30" height="30">
+                <h5 class="modal-title ml-2" id="loginModal">{{ __('Login') }}</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>

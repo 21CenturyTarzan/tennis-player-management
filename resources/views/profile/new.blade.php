@@ -26,7 +26,7 @@
                 <li class="nav-item" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-placement="bottom" title="ログアウト">
                     <a class="nav-link btn btn-custom btn-icon"  href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
                         <!--begin::Svg Icon | path: icons/duotune/finance/fin006.svg-->
-                        <img src="{{asset('images/blank.png')}}" alt="" width="35" height="35" style="border-radius:50%">
+                        <img src="{{ Auth::user()->img }}" alt="" width="35" height="35" style="border-radius:50%">
                         <span class="ml-1 text-white ft-15 d-none d-md-inline-block">{{ Auth::user()->name }}</span>
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                             @csrf
@@ -45,8 +45,8 @@
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <img src="/images/login.png" alt="" width="35px" height="35px"/>
-                    <h5 class="modal-title" id="registerModal">プロファイルの編集</h5>
+                    <img src="/images/icon-edit.png" alt="" width="35px" height="35px"/>
+                    <h5 class="modal-title ml-2" id="registerModal">プロファイルの編集</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>

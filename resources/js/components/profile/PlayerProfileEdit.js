@@ -136,7 +136,7 @@ const  PlayerProfileEdit = () => {
                 <div className="row">
                     <div className="col-2">
                         <label htmlFor="upload" style={{marginBottom: '0px'}}>
-                            <img src="https://cdn1.iconfinder.com/data/icons/hawcons/32/699329-icon-57-document-download-128.png" width="50" height="42"/>
+                            <img src="/images/icon-upload.png" width="50" height="42"/>
                             <input type="file" id="upload" name="upload-avatar-file" style={{marginBottom: '7px', display:'none'}}  accept=".png, .jpg, .jpeg" onChange={(e) => handleImageChange(e)} />
                         </label>
                     </div>
