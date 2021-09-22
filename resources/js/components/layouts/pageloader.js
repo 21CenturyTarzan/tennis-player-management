@@ -8,8 +8,8 @@ export  default function PageLoader({query}){
     let [height, setHeight] = useState(null);
 
     const handleResize = () => {
-        var w = document.querySelector(query).offsetWidth / 2 - 20;
-        var h = document.querySelector(query).offsetHeight / 2 - 20;
+        var w = document.querySelector(query).clientWidth / 2 - 20;
+        var h = document.querySelector(query).clientHeight / 2 - 20;
         setWidth(w);
         setHeight(h);
     }

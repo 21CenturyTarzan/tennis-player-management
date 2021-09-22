@@ -23,8 +23,8 @@ class NoticeFactory extends Factory
     public function definition()
     {
         return [
-            'to' => 1,
             'from' => rand(2, 20),
+            'to' => 1,
             'msg' => $this->faker->sentence(100),
             'state' => $this->getState(),
             'created_at'=>$this->faker->dateTimeBetween($startDate = '-4 days', $endDate = 'now')

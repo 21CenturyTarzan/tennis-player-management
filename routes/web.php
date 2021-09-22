@@ -31,6 +31,8 @@ Route::middleware(['auth', 'verified'])->name('account.')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
     Route::get('/api/msgs', [NoticeController::class, 'index'])->name('msgs.get');
+    Route::put('/api/msgs/read/{id}', [NoticeController::class, 'read'])->name('message.read');
+    Route::post('/api/msgs/reply/{id}', [NoticeController::class, 'saveReplyMsg'])->name('message.reply');
 
 });
 
