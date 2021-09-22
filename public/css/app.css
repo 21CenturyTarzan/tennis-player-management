@@ -10283,25 +10283,25 @@ h3 {
 #dashboard #player-list-box .player-list .d-flex:focus {
   background-color: #e7e7e7;
 }
-#dashboard #notice-list-box {
+#dashboard #message-box {
   height: 580px;
   box-shadow: 0 0 8px #000 !important;
   position: relative;
 }
-#dashboard #notice-list-box #notice-list {
+#dashboard #message-box #message-list {
   position: relative;
   height: 500px;
 }
-#dashboard #notice-list-box #notice-list .notice {
+#dashboard #message-box #message-list .notice {
   height: 490px;
 }
-#dashboard #notice-list-box #notice-list .notice .d-flex {
+#dashboard #message-box #message-list .notice .d-flex {
   cursor: pointer;
 }
-#dashboard #notice-list-box #notice-list .notice .d-flex:hover {
+#dashboard #message-box #message-list .notice .d-flex:hover {
   background-color: #e7e7e7;
 }
-#dashboard #notice-list-box #notice-list .notice .d-flex:focus {
+#dashboard #message-box #message-list .notice .d-flex:focus {
   background-color: #e7e7e7;
 }
 #dashboard .player-main-info {

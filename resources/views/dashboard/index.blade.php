@@ -130,9 +130,9 @@
                         </div>
                     </div>
                     <div style="padding-top: 72px;" id="notice">
-                        <div class="mt-3 pt-2 bg-white radius-15" id="notice-list-box">
+                        <div class="mt-3 pt-2 bg-white radius-15" id="message-box">
                             <h3 class="mt-2 p-1 text-white bg-green text-center font-weight-bold">通知</h3>
-                            <div id="notice-list"></div>
+                            <div id="message-list"></div>
 
                         </div>
                     </div>
@@ -220,65 +220,65 @@
                                 <table class="table table-bordered mb-2">
                                     <tbody>
                                         <tr class="table-success">
-                                            <th><i class="fa-solid fa-head-side-brain"></i></th>
+                                            <th class="text-center"><img src="/images/icon-tech.png" width="30" height="30" /></th>
                                             <td>I will train harder and harder to win a gold medal.</td>
-                                            <td>
+                                            <td class="text-center">
                                                 <img src="/images/star5.svg" alt="">
                                             </td>
                                         </tr>
                                         <tr class="table-success">
-                                            <th><i class="fa-solid fa-head-side-brain"></i></th>
+                                            <th class="text-center"><img src="/images/icon-tech.png" width="30" height="30" /></th>
                                             <td>I will train harder and harder to win a gold medal.</td>
-                                            <td>
+                                            <td class="text-center">
                                                 <img src="/images/star4.svg" alt="">
                                             </td>
                                         </tr>
                                         <tr class="table-success">
-                                            <th><i class="fa-solid fa-head-side-brain"></i></th>
+                                            <th class="text-center"><img src="/images/icon-tech.png" width="30" height="30" /></th>
                                             <td>I will train harder and harder to win a gold medal.</td>
-                                            <td>
+                                            <td class="text-center">
                                                 <img src="/images/star4.svg" alt="">
                                             </td>
                                         </tr>
                                         <tr class="table-danger">
-                                            <th><i class="fa-solid fa-head-side-brain"></i></th>
+                                            <th class="text-center"><img src="/images/icon-physics.png" width="30" height="30" /></th>
                                             <td>I will train harder and harder to win a gold medal.</td>
-                                            <td>
+                                            <td class="text-center">
                                                 <img src="/images/star3.svg" alt="">
                                             </td>
                                         </tr>
                                         <tr class="table-danger">
-                                            <th><i class="fa-solid fa-head-side-brain"></i></th>
+                                            <th class="text-center"><img src="/images/icon-physics.png" width="30" height="30" /></th>
                                             <td>I will train harder and harder to win a gold medal.</td>
-                                            <td>
+                                            <td class="text-center">
                                                 <img src="/images/star3.svg" alt="">
                                             </td>
                                         </tr>
                                         <tr class="table-danger">
-                                            <th><i class="fa-solid fa-head-side-brain"></i></th>
+                                            <th class="text-center"><img src="/images/icon-physics.png" width="30" height="30" /></th>
                                             <td>I will train harder and harder to win a gold medal.</td>
-                                            <td>
+                                            <td class="text-center">
                                                 <img src="/images/star3.svg" alt="">
                                             </td>
                                         </tr>
                                         <tr class="table-info">
-                                            <th><i class="fa-solid fa-head-side-brain"></i></th>
+                                            <th class="text-center"><img src="/images/icon-mental.png" width="30" height="30" /></th>
                                             <td>I will train harder and harder to win a gold medal.</td>
-                                            <td>
+                                            <td class="text-center">
                                                 <img src="/images/star4.svg" alt="">
                                             </td>
                                         </tr>
                                         <tr class="table-info">
-                                            <th><i class="fa-solid fa-head-side-brain"></i></th>
+                                            <th class="text-center"><img src="/images/icon-mental.png" width="30" height="30" /></th>
                                             <td>I will train harder and harder to win a gold medal.</td>
-                                            <td>
+                                            <td class="text-center">
                                                 <img src="/images/star4.svg" alt="">
                                             </td>
                                         </tr>
                                         <tr class="table-info">
-                                            <th><i class="fa-solid fa-head-side-brain"></i></th>
+                                            <th class="text-center"><img src="/images/icon-mental.png" width="30" height="30" /></th>
                                             <td>I will train harder and harder to win a gold medal.</td>
-                                            <td>
+                                            <td class="text-center">
                                                 <img src="/images/star4.svg" alt="/images/star4.svg">
                                             </td>
                                         </tr>

@@ -7,7 +7,7 @@ import PageLoader from '../layouts/pageloader';
 import Scrollbar from '../layouts/scrollbar';
 
 
-export default function NoticeBox() {
+export default function MessageBox() {
 
   const [MSGLIST, setMsgList] = useState([]);
   const [isLoadMsgList, setLoadMsgListFlag] = useState('');
@@ -18,10 +18,8 @@ export default function NoticeBox() {
           <div className="notice pl-3 pr-3 pr-md-1">
             {
               MSGLIST.length == 0 ? 
-                <p className="text-center">
-                {
-                  MSGLIST.length == 0 ? <span>登録された選手がいません。</span> : <span>検索結果：0人</span>
-                }
+                <p className="text-center mt-5">
+                   <span>メッセージが存在しません。</span>
                 </p>
               : MSGLIST.map((msg,id)=>(
                   <a key={id}>
@@ -35,7 +33,7 @@ export default function NoticeBox() {
                             <span className="text-muted d-block">{msg.msg.slice(0,20) + '...'}</span>
                         </div>
                         <div>
-                          <img src="/images/msg_unread.png" width="20" height="20"/>
+                          <img src={`/images/msg_${msg.state}.png`} width="20" height="20"/>
                         </div>
                     </div>
                   </a>
@@ -65,17 +63,17 @@ export default function NoticeBox() {
   return (
       <>
         {
-          isLoadMsgList != 'loaded' ? <PageLoader query="#notice-list-box #notice-list"/> : messages() 
+          isLoadMsgList != 'loaded' ? <PageLoader query="#message-box #message-list"/> : messages() 
         }
       </>
   );
 }
 
 
-if(document.querySelector('#notice-list-box #notice-list')){
+if(document.querySelector('#message-box #message-list')){
     ReactDOM.render(
-        <NoticeBox />,
-    document.querySelector('#notice-list-box #notice-list')
+        <MessageBox />,
+    document.querySelector('#message-box #message-list')
   );
 }
 
