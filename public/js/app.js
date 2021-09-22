@@ -13029,10 +13029,15 @@ function MessageBox() {
       isSubmitting = _useState8[0],
       setSubmitFlag = _useState8[1];
 
-  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_4__.useState)(null),
+  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_4__.useState)(false),
       _useState10 = _slicedToArray(_useState9, 2),
-      currentMsg = _useState10[0],
-      setCurrentMsg = _useState10[1];
+      error = _useState10[0],
+      setError = _useState10[1];
+
+  var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_4__.useState)(null),
+      _useState12 = _slicedToArray(_useState11, 2),
+      currentMsg = _useState12[0],
+      setCurrentMsg = _useState12[1];
 
   var messages = function messages() {
     return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_layouts_scrollbar__WEBPACK_IMPORTED_MODULE_6__.default, {
@@ -13131,20 +13136,27 @@ function MessageBox() {
                   className: "pre",
                   children: currentMsg.msg
                 })
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
                 className: "px-3 py-2",
                 style: {
                   height: '50%'
                 },
-                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("textarea", {
+                children: [error && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
+                  className: "invalid-feedback d-block",
+                  role: "alert",
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("strong", {
+                    children: "You have to message."
+                  })
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("textarea", {
                   className: "p-2",
                   value: replyText,
                   placeholder: "\u8FD4\u4FE1\u5185\u5BB9",
                   onChange: function onChange(e) {
-                    return setReplyText(e.target.value);
+                    setReplyText(e.target.value);
+                    setError(false);
                   },
                   required: true
-                })
+                })]
               })]
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
               className: "modal-footer px-0",
@@ -13183,7 +13195,6 @@ function MessageBox() {
     if (loadState == 'loading') return;
     var msg_id = MSGLIST[id].id;
     setLoadState('loading');
-    setReplyText('');
     setSubmitFlag(false);
     axios__WEBPACK_IMPORTED_MODULE_3___default().put("/api/msgs/read/".concat(msg_id)).then(function (res) {
       setMsgList(res.data);
@@ -13196,6 +13207,10 @@ function MessageBox() {
     });
   };
 
+  $('#msgEdit').on('hidden.bs.modal', function () {
+    setError(false);
+    setReplyText('');
+  });
   (0,react__WEBPACK_IMPORTED_MODULE_4__.useEffect)( /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
       while (1) {
@@ -13224,10 +13239,11 @@ function MessageBox() {
 
   var handleSubmit = function handleSubmit() {
     if (replyText.length == 0) {
-      alert('input message');
+      setError(true);
       return;
     }
 
+    setError(false);
     var msg_id = currentMsg.id;
     setSubmitFlag(true);
     var formdata = new FormData();
