@@ -67,7 +67,7 @@
                         </a>
                     </li>
 
-                    <li class="nav-item" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-placement="bottom" title="試合後リフレクション">
+                    <li class="nav-item" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-placement="bottom" title="試合前準備">
                         <a class="nav-link btn btn-custom btn-icon"  href="#prepare">
                             <span class="svg-icon svg-icon-2x">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 24 24" fill="#ffffff">
@@ -78,7 +78,7 @@
                         </a>
                     </li>
                                     
-                    <li class="nav-item" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-placement="bottom" title="試合前準備"> 
+                    <li class="nav-item" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-placement="bottom" title="試合後リフレクション"> 
                         <a class="nav-link btn btn-custom btn-icon"  href="#reflect">
                             <span class="svg-icon svg-icon-2x">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 24 24" fill="#ffffff">
@@ -127,15 +127,19 @@
                 <div class="col-md-4">
                     <div style="padding-top: 72px;" id="players">
                         <div class="mt-3 pt-2 bg-white radius-15" id="player-list-box">
+                            <!-- react.component (PlayerList.js) -->
                         </div>
                     </div>
+                    @if ( strcmp(Auth::user()->type, 'parent') != 0 )
                     <div style="padding-top: 72px;" id="notice">
                         <div class="mt-3 pt-2 bg-white radius-15" id="message-box">
                             <h3 class="mt-2 p-1 text-white bg-green text-center font-weight-bold">通知</h3>
-                            <div id="message-list"></div>
-
+                            <div id="message-list">
+                                <!-- react.component (MessageBox.js) -->
+                            </div>
                         </div>
                     </div>
+                    @endif
                 </div>
 
                 <div class="col-md-8">
@@ -143,7 +147,12 @@
                     <div style="padding-top: 72px;" id="info">
                         <div class="mt-3 pt-2 radius-t-15 text-white player-main-info">
                             <div class="name pt-3 pt-md-5 ">
-                                <p class="text-center bg-red-4 font-weight-bold">浮田　愛未</p>
+                                <p class="text-center bg-red-4 font-weight-bold">
+                                    浮田　愛未
+                                    @if(strcmp(Auth::user()->type, 'player')==0)
+                                        <a href="#" class="edit"><img src="/images/icon-pencil.svg" alt="icon-pencil.svg" width="30" height="30"></a>
+                                    @endif
+                                </p>
                             </div>
                             <div class="img-wrap mt-3 mt-md-5">
                                 <div class="row">
@@ -174,7 +183,12 @@
 
                     <div style="padding-top: 72px;" id="manage">
                         <div class="mt-3 py-2 radius-15 bg-white shadow-lg">
-                            <h3 class="mt-2 p-1 text-white bg-green text-center font-weight-bold">選手管理</h3>
+                            <h3 class="mt-2 p-1 text-white bg-green text-center font-weight-bold">
+                                選手管理
+                                @if(strcmp(Auth::user()->type, 'player') ==0 )
+                                    <a href="#" class="edit py-1" style="margin-top:-5px"><img src="/images/icon-pencil.svg" alt="icon-pencil.svg" width="30" height="30"></a>
+                                @endif
+                            </h3>
                             <p class="w-50 w-md-75 p-1 pl-2 mb-2 bg-black-4 radius-r-20 text-white">近日予定の試合</p>
                             <div class="px-2 mb-2">
                                 <table class="table table-bordered table-success mb-2">
@@ -291,7 +305,12 @@
 
                     <div style="padding-top: 72px;"  id="prepare">
                         <div class="mt-3 py-2 radius-15 bg-white shadow-lg">
-                            <h3 class="mt-2 p-1 text-white bg-green text-center font-weight-bold">試合前準備</h3>
+                            <h3 class="mt-2 p-1 text-white bg-green text-center font-weight-bold">
+                                試合前準備
+                                @if(strcmp(Auth::user()->type, 'player') ==0 )
+                                    <a href="#" class="edit py-1" style="margin-top:-5px"><img src="/images/icon-pencil.svg" alt="icon-pencil.svg" width="30" height="30"></a>
+                                @endif
+                            </h3>
                             
                             <p class="w-50 w-md-75 p-1 pl-2 mb-2 bg-black-4 radius-r-20 text-white">大会情報</p>
                             <div class="px-2 mb-2">
@@ -354,7 +373,12 @@
 
                     <div style="padding-top: 72px;" id="reflect">
                         <div class="mt-3 py-2 radius-15 bg-white shadow-lg">
-                            <h3 class="mt-2 p-1 text-white bg-green text-center font-weight-bold">試合後リフレクション</h3>
+                            <h3 class="mt-2 p-1 text-white bg-green text-center font-weight-bold">
+                                試合結果
+                                @if(strcmp(Auth::user()->type, 'player') ==0 )
+                                    <a href="#" class="edit py-1" style="margin-top:-5px"><img src="/images/icon-pencil.svg" alt="icon-pencil.svg" width="30" height="30"></a>
+                                @endif    
+                            </h3>
                             
                             <p class="w-50 w-md-75 p-1 pl-2 mb-2 bg-black-4 radius-r-20 text-white"></p>
                             

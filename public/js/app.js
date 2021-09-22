@@ -13029,23 +13029,21 @@ function MessageBox() {
       isSubmitting = _useState8[0],
       setSubmitFlag = _useState8[1];
 
-  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_4__.useState)(null),
+  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_4__.useState)(false),
       _useState10 = _slicedToArray(_useState9, 2),
-      currentMsg = _useState10[0],
-      setCurrentMsg = _useState10[1];
+      error = _useState10[0],
+      setError = _useState10[1];
+
+  var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_4__.useState)(null),
+      _useState12 = _slicedToArray(_useState11, 2),
+      currentMsg = _useState12[0],
+      setCurrentMsg = _useState12[1];
 
   var messages = function messages() {
     return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_layouts_scrollbar__WEBPACK_IMPORTED_MODULE_6__.default, {
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
         className: "notice pl-3 pr-3",
-        children: MSGLIST.length == 0 ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("p", {
-          className: "text-center mt-5",
-          children: loadState == 'loaded' ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
-            children: "\u30E1\u30C3\u30BB\u30FC\u30B8\u304C\u5B58\u5728\u3057\u307E\u305B\u3093\u3002"
-          }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
-            children: "Loading..."
-          })
-        }) : MSGLIST.map(function (msg, id) {
+        children: MSGLIST.map(function (msg, id) {
           return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("a", {
             id: msg.id,
             onClick: function onClick() {
@@ -13131,20 +13129,27 @@ function MessageBox() {
                   className: "pre",
                   children: currentMsg.msg
                 })
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
                 className: "px-3 py-2",
                 style: {
                   height: '50%'
                 },
-                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("textarea", {
+                children: [error && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
+                  className: "invalid-feedback d-block",
+                  role: "alert",
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("strong", {
+                    children: "You have to message."
+                  })
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("textarea", {
                   className: "p-2",
                   value: replyText,
                   placeholder: "\u8FD4\u4FE1\u5185\u5BB9",
                   onChange: function onChange(e) {
-                    return setReplyText(e.target.value);
+                    setReplyText(e.target.value);
+                    setError(false);
                   },
                   required: true
-                })
+                })]
               })]
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
               className: "modal-footer px-0",
@@ -13183,7 +13188,6 @@ function MessageBox() {
     if (loadState == 'loading') return;
     var msg_id = MSGLIST[id].id;
     setLoadState('loading');
-    setReplyText('');
     setSubmitFlag(false);
     axios__WEBPACK_IMPORTED_MODULE_3___default().put("/api/msgs/read/".concat(msg_id)).then(function (res) {
       setMsgList(res.data);
@@ -13196,6 +13200,10 @@ function MessageBox() {
     });
   };
 
+  $('#msgEdit').on('hidden.bs.modal', function () {
+    setError(false);
+    setReplyText('');
+  });
   (0,react__WEBPACK_IMPORTED_MODULE_4__.useEffect)( /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
       while (1) {
@@ -13224,10 +13232,11 @@ function MessageBox() {
 
   var handleSubmit = function handleSubmit() {
     if (replyText.length == 0) {
-      alert('input message');
+      setError(true);
       return;
     }
 
+    setError(false);
     var msg_id = currentMsg.id;
     setSubmitFlag(true);
     var formdata = new FormData();
@@ -13240,9 +13249,15 @@ function MessageBox() {
   };
 
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.Fragment, {
-    children: [loadState != 'loaded' && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_layouts_pageloader__WEBPACK_IMPORTED_MODULE_5__.default, {
+    children: [loadState == 'loading' && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_layouts_pageloader__WEBPACK_IMPORTED_MODULE_5__.default, {
       query: "#message-box"
-    }), messages(), currentMsg != null && msg_modal()]
+    }), loadState == 'loading' && MSGLIST.length == 0 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("p", {
+      className: "text-center mt-5",
+      children: "Loading..."
+    }), loadState == 'loading' && MSGLIST.length != 0 && messages(), loadState == 'loaded' && MSGLIST.length == 0 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("p", {
+      className: "text-center mt-5",
+      children: "\u30E1\u30C3\u30BB\u30FC\u30B8\u304C\u5B58\u5728\u3057\u307E\u305B\u3093\u3002"
+    }), loadState == 'loaded' && MSGLIST.length != 0 && messages(), currentMsg != null && msg_modal()]
   });
 }
 
@@ -13314,7 +13329,7 @@ function PlayerList() {
 
   var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_5__.useState)(''),
       _useState6 = _slicedToArray(_useState5, 2),
-      isLoad = _useState6[0],
+      loadState = _useState6[0],
       setLoadState = _useState6[1];
 
   var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_5__.useState)(''),
@@ -13326,14 +13341,7 @@ function PlayerList() {
     return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_layouts_scrollbar__WEBPACK_IMPORTED_MODULE_7__.default, {
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
         className: "player-list pl-3 pr-3",
-        children: FILTERLIST.length == 0 ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("p", {
-          className: "text-center mt-5",
-          children: isLoad == 'loaded' ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", {
-            children: "\u691C\u7D22\u7D50\u679C\uFF1A0\u4EBA"
-          }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", {
-            children: "Loading..."
-          })
-        }) : FILTERLIST.map(function (player, id) {
+        children: FILTERLIST.map(function (player, id) {
           return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("a", {
             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
               className: "d-flex align-items-center mb-2",
@@ -13415,9 +13423,20 @@ function PlayerList() {
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("p", {
       className: "pr-3 pl-3 m-0 text-right",
       children: "(".concat(PLAYERLIST.length, "/").concat(FILTERLIST.length, ")")
-    }), isLoad != 'loaded' ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_layouts_pageloader__WEBPACK_IMPORTED_MODULE_6__.default, {
-      query: "#player-list-box"
-    }) : players()]
+    }), loadState == 'loading' && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_layouts_pageloader__WEBPACK_IMPORTED_MODULE_6__.default, {
+        query: "#player-list-box"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("p", {
+        className: "text-center mt-5",
+        children: "Loading..."
+      })]
+    }), loadState == 'loaded' && PLAYERLIST.length == 0 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("p", {
+      className: "text-center mt-5",
+      children: "\u767B\u9332\u3055\u308C\u305F\u9078\u624B\u304C\u3044\u307E\u305B\u3093\u3002"
+    }), loadState == 'loaded' && PLAYERLIST.length != 0 && FILTERLIST.length != 0 && players(), loadState == 'loaded' && PLAYERLIST.length != 0 && FILTERLIST.length == 0 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("p", {
+      className: "text-center mt-5",
+      children: "\u691C\u7D22\u7D50\u679C\uFF1A0\u4EBA"
+    })]
   });
 }
 

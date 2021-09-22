@@ -16,6 +16,8 @@ export default function MessageBox() {
   const [replyText, setReplyText] = useState('');
   const [isSubmitting, setSubmitFlag] = useState(false);
 
+  const [error, setError] = useState(false);
+
   const [currentMsg, setCurrentMsg] = useState(null);
 
   const messages = () => {
@@ -23,16 +25,7 @@ export default function MessageBox() {
         <Scrollbar>
           <div className="notice pl-3 pr-3">
             {
-              MSGLIST.length == 0 ? 
-              (
-                <p className="text-center mt-5">
-                {
-                  loadState =='loaded' ? <span>メッセージが存在しません。</span>
-                                       : <span>Loading...</span>
-                }
-                </p>
-              )
-              : MSGLIST.map((msg,id)=>(
+              MSGLIST.map((msg,id)=>(
                   <a key={id} id={msg.id} onClick={()=>showModal(id)}>
                     <div className="d-flex align-items-center mb-2">
                         <div className="symbol me-5">
@@ -77,7 +70,13 @@ export default function MessageBox() {
                         <pre className="pre">{currentMsg.msg}</pre>
                     </div>
                     <div className="px-3 py-2" style={{height: '50%'}}>
-                        <textarea className="p-2" value={replyText} placeholder="返信内容" onChange={e=>setReplyText(e.target.value)} required/>
+                        {
+                          error && 
+                          <span className="invalid-feedback d-block" role="alert">
+                                <strong>You have to message.</strong>
+                            </span>
+                        }
+                        <textarea className="p-2" value={replyText} placeholder="返信内容" onChange={e=>{setReplyText(e.target.value); setError(false); }} required/>
                     </div>
                   </div>
                 <div className="modal-footer px-0">
@@ -102,7 +101,6 @@ export default function MessageBox() {
       var msg_id = MSGLIST[id].id;
 
       setLoadState('loading');
-      setReplyText('');
       setSubmitFlag(false);
 
       axios.put(`/api/msgs/read/${msg_id}`)
@@ -116,6 +114,11 @@ export default function MessageBox() {
             .then(() => $('#msgEdit').modal('show'))
       })
   }
+
+  $('#msgEdit').on('hidden.bs.modal', function () {
+      setError(false);
+      setReplyText('');
+  })
 
   useEffect( async () => {
     // ルームを取得
@@ -134,9 +137,10 @@ export default function MessageBox() {
 
   const handleSubmit = () => {
       if(replyText.length == 0) {
-          alert('input message');
+          setError(true);
           return;
       }
+      setError(false);
 
       var msg_id = currentMsg.id;
       setSubmitFlag(true);
@@ -155,10 +159,21 @@ export default function MessageBox() {
   return (
       <>
         {
-          loadState != 'loaded' && <PageLoader query="#message-box"/>
+          loadState == 'loading' && <PageLoader query="#message-box"/>
         }
         {
-          messages()
+          loadState == 'loading' && MSGLIST.length == 0 && 
+            <p className="text-center mt-5">Loading...</p>
+        }
+        {
+          loadState == 'loading' && MSGLIST.length != 0 && messages()
+        }
+        {
+          loadState =='loaded' && MSGLIST.length == 0 && 
+          <p className="text-center mt-5">メッセージが存在しません。</p>
+        }
+        {
+          loadState == 'loaded' && MSGLIST.length != 0 && messages()
         }
         {
           currentMsg != null &&  msg_modal()

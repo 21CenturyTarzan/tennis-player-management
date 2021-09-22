@@ -18,6 +18,6 @@ class ProfileParent extends Model
         'account_id',
         'gender',
         'birth',
-        'phone'
+        'phone',
     ];
 }
