@@ -12,20 +12,23 @@ export default function PlayerList() {
 
   const [PLAYERLIST, setPlayerList] = useState([]);
   const [FILTERLIST, setFilterList] = useState([]);
-  const [isLoadPlayerList, setLoadPlayerListFlag] = useState('');
+  const [isLoad, setLoadState] = useState('');
   const [filterName, setFilterName] = useState('');
 
   const players = () => {
       return(
         <Scrollbar>
-          <div className="player-list pl-3 pr-3 pr-md-1">
+          <div className="player-list pl-3 pr-3">
             {
               FILTERLIST.length == 0 ? 
-                <p className="text-center">
+              (
+                <p className="text-center mt-5">
                 {
-                  PLAYERLIST.length == 0 ? <span>登録された選手がいません。</span> : <span>検索結果：0人</span>
+                  isLoad =='loaded' ? <span>検索結果：0人</span>
+                                    : <span>Loading...</span>
                 }
                 </p>
+              )
               : FILTERLIST.map((player,id)=>(
                   <a key={id}>
                     <div className="d-flex align-items-center mb-2">
@@ -50,12 +53,12 @@ export default function PlayerList() {
 
   useEffect( async () => {
     // ルームを取得
-    setLoadPlayerListFlag('loading');
+    setLoadState('loading');
     await axios.get("/api/players")
         .then( res => {
           setPlayerList(res.data);
           setFilterList(res.data);
-          setLoadPlayerListFlag('loaded');
+          setLoadState('loaded');
         })
   }, [])
 
@@ -79,7 +82,7 @@ export default function PlayerList() {
         </div>
         <p className="pr-3 pl-3 m-0 text-right">{`(${PLAYERLIST.length}/${FILTERLIST.length})`}</p>
         {
-          isLoadPlayerList != 'loaded' ? <PageLoader query="#player-list-box"/> : players() 
+          isLoad != 'loaded' ? <PageLoader query="#player-list-box"/> : players() 
         }
         
       </>

@@ -16,4 +16,35 @@ class NoticeController extends Controller
         # code...
         return Notice::where('to', Auth::user()->id)->orderBy('created_at', 'DESC')->with('account', 'profile')->limit(10)->get();
     }
+
+    public function read(Request $request)
+    {
+        $msg_id = (int)$request->id;
+        $state = Notice::where('id', $msg_id)->first()->state;
+        if(strcmp($state,'unread') == 0){
+            Notice::where(['id'=>$msg_id])->first()->update([
+                'state'=> 'read'
+            ]);
+        }
+
+        return Notice::where('to', Auth::user()->id)->orderBy('created_at', 'DESC')->with('account', 'profile')->limit(10)->get();
+    }
+
+    public function saveReplyMsg(Request $request){
+        $msg_id = (int)$request->id;
+        Notice::where(['id'=>$msg_id])->first()->update([
+            'state'=> 'reply'
+        ]);
+
+        $to = Notice::where(['id'=>$msg_id])->first()->from;
+
+        Notice::create([
+            'from' => Auth::user()->id,
+            'to' => $to,
+            'msg' => $request->get('msg'),
+            'state' => 'unread'
+        ]);
+        
+        return Notice::where('to', Auth::user()->id)->orderBy('created_at', 'DESC')->with('account', 'profile')->limit(10)->get();
+    }
 }

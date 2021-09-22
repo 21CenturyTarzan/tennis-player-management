@@ -12969,13 +12969,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ MessageBox)
 /* harmony export */ });
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/Button/Button.js");
+/* harmony import */ var _material_ui_lab__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @material-ui/lab */ "./node_modules/@material-ui/lab/LoadingButton/LoadingButton.js");
 /* harmony import */ var _layouts_pageloader__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../layouts/pageloader */ "./resources/js/components/layouts/pageloader.js");
 /* harmony import */ var _layouts_scrollbar__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../layouts/scrollbar */ "./resources/js/components/layouts/scrollbar.js");
 
@@ -13004,6 +13006,8 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
+
 function MessageBox() {
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_4__.useState)([]),
       _useState2 = _slicedToArray(_useState, 2),
@@ -13012,43 +13016,64 @@ function MessageBox() {
 
   var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_4__.useState)(''),
       _useState4 = _slicedToArray(_useState3, 2),
-      isLoadMsgList = _useState4[0],
-      setLoadMsgListFlag = _useState4[1];
+      loadState = _useState4[0],
+      setLoadState = _useState4[1];
+
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_4__.useState)(''),
+      _useState6 = _slicedToArray(_useState5, 2),
+      replyText = _useState6[0],
+      setReplyText = _useState6[1];
+
+  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_4__.useState)(false),
+      _useState8 = _slicedToArray(_useState7, 2),
+      isSubmitting = _useState8[0],
+      setSubmitFlag = _useState8[1];
+
+  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_4__.useState)(null),
+      _useState10 = _slicedToArray(_useState9, 2),
+      currentMsg = _useState10[0],
+      setCurrentMsg = _useState10[1];
 
   var messages = function messages() {
-    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_layouts_scrollbar__WEBPACK_IMPORTED_MODULE_6__.default, {
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
-        className: "notice pl-3 pr-3 pr-md-1",
-        children: MSGLIST.length == 0 ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("p", {
+    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_layouts_scrollbar__WEBPACK_IMPORTED_MODULE_6__.default, {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+        className: "notice pl-3 pr-3",
+        children: MSGLIST.length == 0 ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("p", {
           className: "text-center mt-5",
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", {
+          children: loadState == 'loaded' ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
             children: "\u30E1\u30C3\u30BB\u30FC\u30B8\u304C\u5B58\u5728\u3057\u307E\u305B\u3093\u3002"
+          }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
+            children: "Loading..."
           })
         }) : MSGLIST.map(function (msg, id) {
-          return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("a", {
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+          return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("a", {
+            id: msg.id,
+            onClick: function onClick() {
+              return showModal(id);
+            },
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
               className: "d-flex align-items-center mb-2",
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
                 className: "symbol me-5",
-                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("img", {
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("img", {
                   src: msg.account.img,
                   alt: msg.account.img
                 })
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
                 className: "flex-grow-1",
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", {
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
                   className: "text-dark fw-bolder text-hover-primary fs-6",
                   children: msg.account.name
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", {
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
                   className: "text-muted d-block ft-12",
                   children: convertDate(msg.created_at)
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", {
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
                   className: "text-muted d-block",
                   children: msg.msg.slice(0, 20) + '...'
                 })]
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
-                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("img", {
-                  src: "/images/msg_".concat(msg.state, ".png"),
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("img", {
+                  src: "/images/icon-msg-".concat(msg.state, ".png"),
                   width: "20",
                   height: "20"
                 })
@@ -13060,17 +13085,128 @@ function MessageBox() {
     });
   };
 
-  (0,react__WEBPACK_IMPORTED_MODULE_4__.useEffect)( /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().mark(function _callee() {
-    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().wrap(function _callee$(_context) {
+  var msg_modal = function msg_modal() {
+    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.Fragment, {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+        className: "modal fade",
+        id: "msgEdit",
+        "data-bs-backdrop": "static",
+        "data-bs-keyboard": "false",
+        tabIndex: "-1",
+        "aria-labelledby": "msgEdit",
+        "aria-hidden": "true",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+          className: "modal-dialog  modal-dialog-scrollable",
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+            className: "modal-content ",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+              className: "modal-header py-2",
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+                className: "d-flex align-items-center",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+                  className: "symbol me-5",
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("img", {
+                    src: currentMsg.account.img
+                  })
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+                  className: "flex-grow-1",
+                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
+                    className: "text-dark fw-bolder text-hover-primary fs-6",
+                    children: currentMsg.account.name
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
+                    className: "text-muted d-block",
+                    children: convertDate(currentMsg.created_at)
+                  })]
+                })]
+              })
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+              className: "modal-body p-0",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+                className: "px-3 py-2",
+                style: {
+                  borderBottom: '1px solid #dee2e6',
+                  height: '50%'
+                },
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("pre", {
+                  className: "pre",
+                  children: currentMsg.msg
+                })
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+                className: "px-3 py-2",
+                style: {
+                  height: '50%'
+                },
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("textarea", {
+                  className: "p-2",
+                  value: replyText,
+                  placeholder: "\u8FD4\u4FE1\u5185\u5BB9",
+                  onChange: function onChange(e) {
+                    return setReplyText(e.target.value);
+                  },
+                  required: true
+                })
+              })]
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+              className: "modal-footer px-0",
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+                className: "row w-100",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+                  className: "col-6",
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_material_ui_lab__WEBPACK_IMPORTED_MODULE_7__.default, {
+                    fullWidth: true,
+                    type: "submit",
+                    onClick: handleSubmit,
+                    variant: "contained",
+                    loading: isSubmitting,
+                    children: "\u8FD4\u4FE1"
+                  })
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+                  className: "col-6",
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_8__.default, {
+                    fullWidth: true,
+                    variant: "contained",
+                    color: "secondary",
+                    "data-bs-dismiss": "modal",
+                    id: "closeModal",
+                    children: "\u30AD\u30E3\u30F3\u30BB\u30EB"
+                  })
+                })]
+              })
+            })]
+          })
+        })
+      })
+    });
+  };
+
+  var showModal = function showModal(id) {
+    if (loadState == 'loading') return;
+    var msg_id = MSGLIST[id].id;
+    setLoadState('loading');
+    setReplyText('');
+    setSubmitFlag(false);
+    axios__WEBPACK_IMPORTED_MODULE_3___default().put("/api/msgs/read/".concat(msg_id)).then(function (res) {
+      setMsgList(res.data);
+      setLoadState('loaded');
+      Promise.resolve().then(function () {
+        setCurrentMsg(MSGLIST[id]);
+      }).then(function () {
+        return $('#msgEdit').modal('show');
+      });
+    });
+  };
+
+  (0,react__WEBPACK_IMPORTED_MODULE_4__.useEffect)( /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
             // ルームを取得
-            setLoadMsgListFlag('loading');
+            setLoadState('loading');
             _context.next = 3;
             return axios__WEBPACK_IMPORTED_MODULE_3___default().get("/api/msgs").then(function (res) {
               setMsgList(res.data);
-              setLoadMsgListFlag('loaded');
+              setLoadState('loaded');
             });
 
           case 3:
@@ -13086,15 +13222,32 @@ function MessageBox() {
     return '' + (date.getMonth() + 1) + '/' + date.getDate() + ' ' + date.getHours() + ':' + date.getMinutes();
   };
 
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
-    children: isLoadMsgList != 'loaded' ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_layouts_pageloader__WEBPACK_IMPORTED_MODULE_5__.default, {
-      query: "#message-box #message-list"
-    }) : messages()
+  var handleSubmit = function handleSubmit() {
+    if (replyText.length == 0) {
+      alert('input message');
+      return;
+    }
+
+    var msg_id = currentMsg.id;
+    setSubmitFlag(true);
+    var formdata = new FormData();
+    formdata.append('msg', replyText);
+    axios__WEBPACK_IMPORTED_MODULE_3___default().post("/api/msgs/reply/".concat(msg_id), formdata).then(function (res) {
+      setMsgList(res.data);
+      setSubmitFlag(false);
+      $('#closeModal').click();
+    });
+  };
+
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.Fragment, {
+    children: [loadState != 'loaded' && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_layouts_pageloader__WEBPACK_IMPORTED_MODULE_5__.default, {
+      query: "#message-box"
+    }), messages(), currentMsg != null && msg_modal()]
   });
 }
 
 if (document.querySelector('#message-box #message-list')) {
-  react_dom__WEBPACK_IMPORTED_MODULE_2__.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(MessageBox, {}), document.querySelector('#message-box #message-list'));
+  react_dom__WEBPACK_IMPORTED_MODULE_2__.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(MessageBox, {}), document.querySelector('#message-box #message-list'));
 }
 
 /***/ }),
@@ -13161,8 +13314,8 @@ function PlayerList() {
 
   var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_5__.useState)(''),
       _useState6 = _slicedToArray(_useState5, 2),
-      isLoadPlayerList = _useState6[0],
-      setLoadPlayerListFlag = _useState6[1];
+      isLoad = _useState6[0],
+      setLoadState = _useState6[1];
 
   var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_5__.useState)(''),
       _useState8 = _slicedToArray(_useState7, 2),
@@ -13172,13 +13325,13 @@ function PlayerList() {
   var players = function players() {
     return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_layouts_scrollbar__WEBPACK_IMPORTED_MODULE_7__.default, {
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
-        className: "player-list pl-3 pr-3 pr-md-1",
+        className: "player-list pl-3 pr-3",
         children: FILTERLIST.length == 0 ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("p", {
-          className: "text-center",
-          children: PLAYERLIST.length == 0 ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", {
-            children: "\u767B\u9332\u3055\u308C\u305F\u9078\u624B\u304C\u3044\u307E\u305B\u3093\u3002"
-          }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", {
+          className: "text-center mt-5",
+          children: isLoad == 'loaded' ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", {
             children: "\u691C\u7D22\u7D50\u679C\uFF1A0\u4EBA"
+          }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", {
+            children: "Loading..."
           })
         }) : FILTERLIST.map(function (player, id) {
           return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("a", {
@@ -13219,12 +13372,12 @@ function PlayerList() {
         switch (_context.prev = _context.next) {
           case 0:
             // ルームを取得
-            setLoadPlayerListFlag('loading');
+            setLoadState('loading');
             _context.next = 3;
             return axios__WEBPACK_IMPORTED_MODULE_4___default().get("/api/players").then(function (res) {
               setPlayerList(res.data);
               setFilterList(res.data);
-              setLoadPlayerListFlag('loaded');
+              setLoadState('loaded');
             });
 
           case 3:
@@ -13262,7 +13415,7 @@ function PlayerList() {
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("p", {
       className: "pr-3 pl-3 m-0 text-right",
       children: "(".concat(PLAYERLIST.length, "/").concat(FILTERLIST.length, ")")
-    }), isLoadPlayerList != 'loaded' ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_layouts_pageloader__WEBPACK_IMPORTED_MODULE_6__.default, {
+    }), isLoad != 'loaded' ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_layouts_pageloader__WEBPACK_IMPORTED_MODULE_6__.default, {
       query: "#player-list-box"
     }) : players()]
   });
@@ -13319,8 +13472,8 @@ function PageLoader(_ref) {
       setHeight = _useState4[1];
 
   var handleResize = function handleResize() {
-    var w = document.querySelector(query).offsetWidth / 2 - 20;
-    var h = document.querySelector(query).offsetHeight / 2 - 20;
+    var w = document.querySelector(query).clientWidth / 2 - 20;
+    var h = document.querySelector(query).clientHeight / 2 - 20;
     setWidth(w);
     setHeight(h);
   };

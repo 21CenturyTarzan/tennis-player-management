@@ -17,8 +17,8 @@ class Notice extends Model
 
     protected $table = 'notice';
     protected $fillable = [
-        'to',
         'from',
+        'to',
         'msg',
         'state'
     ];
