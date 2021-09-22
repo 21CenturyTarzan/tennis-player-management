@@ -130,7 +130,10 @@
                         </div>
                     </div>
                     <div style="padding-top: 72px;" id="notice">
-                        <div class="mt-3 pt-2 bg-white radius-15" id="notice-box">
+                        <div class="mt-3 pt-2 bg-white radius-15" id="notice-list-box">
+                            <h3 class="mt-2 p-1 text-white bg-green text-center font-weight-bold">通知</h3>
+                            <div id="notice-list"></div>
+
                         </div>
                     </div>
                 </div>

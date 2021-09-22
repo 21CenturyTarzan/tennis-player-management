@@ -10277,6 +10277,27 @@ h3 {
 #dashboard #player-list-box .player-list .d-flex:focus {
   background-color: #e7e7e7;
 }
+#dashboard #notice-list-box {
+  height: 580px;
+  box-shadow: 0 0 8px #000 !important;
+  position: relative;
+}
+#dashboard #notice-list-box #notice-list {
+  position: relative;
+  height: 500px;
+}
+#dashboard #notice-list-box #notice-list .notice {
+  height: 490px;
+}
+#dashboard #notice-list-box #notice-list .notice .d-flex {
+  cursor: pointer;
+}
+#dashboard #notice-list-box #notice-list .notice .d-flex:hover {
+  background-color: #e7e7e7;
+}
+#dashboard #notice-list-box #notice-list .notice .d-flex:focus {
+  background-color: #e7e7e7;
+}
 #dashboard .player-main-info {
   background-image: url(/images/info_back.jpg);
   background-size: 100% 100%;

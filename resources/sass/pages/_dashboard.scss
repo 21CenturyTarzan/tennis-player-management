@@ -51,7 +51,6 @@
         }
 
         .player-list{
-
             height: 465px;
             padding-top: 10px;
             padding-bottom: 10px;
@@ -65,6 +64,30 @@
                 }
             }
         }
+    }
+
+    #notice-list-box{
+        height: 580px;
+        box-shadow: 0 0 8px #000 !important;
+        position: relative;
+
+        #notice-list{
+            position: relative;
+            height: 500px;
+            .notice{
+                height: 490px;
+                .d-flex {
+                    cursor: pointer;
+                    &:hover{
+                        background-color: rgb(231, 231, 231);
+                    }
+                    &:focus{
+                        background-color: rgb(231, 231, 231);
+                    }
+                }
+            }
+        }
+
     }
         
     .player-main-info{

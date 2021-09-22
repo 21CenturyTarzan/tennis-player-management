@@ -19,6 +19,8 @@ class DashboardController extends Controller
             $img_url = ProfileParent::where(['account_id' => Auth::user()->id])->get('img')->first();
         else if(strcmp(Auth::user()->type, 'player') == 0)
             $img_url = ProfilePlayer::where(['account_id' => Auth::user()->id])->get('img')->first();
+        else return view('dashboard.index')->with(['img_url' => '/images/blank.png']);
+        
         return view('dashboard.index')->with(['img_url' => $img_url->img]);
     }
 }

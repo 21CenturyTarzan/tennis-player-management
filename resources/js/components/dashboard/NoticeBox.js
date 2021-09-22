@@ -8,7 +8,7 @@ import PageLoader from '../layouts/pageloader';
 import Scrollbar from '../layouts/scrollbar';
 
 
-export default function PlayerList() {
+export default function NoticeBox() {
 
   const [PLAYERLIST, setPlayerList] = useState([]);
   const [FILTERLIST, setFilterList] = useState([]);
@@ -18,7 +18,7 @@ export default function PlayerList() {
   const players = () => {
       return(
         <Scrollbar>
-          <div className="player-list pl-3 pr-3">
+          <div className="notice pl-3 pr-3">
             {
               FILTERLIST.length == 0 ? 
                 <p className="text-center">
@@ -37,7 +37,7 @@ export default function PlayerList() {
                             <span className="text-muted d-block fw-bold">{convertDate(player.created_at)}</span>
                         </div>
                         <div>
-                          <img src="/images/edit_star_1.svg" width="20" height="20"/>
+                          <img src="/images/msg_show.png" width="20" height="20"/>
                         </div>
                     </div>
                   </a>
@@ -74,23 +74,18 @@ export default function PlayerList() {
 
   return (
       <>
-        <div className="px-3 pt-3">
-              <input type="search" className="form-control" placeholder="選手検索" onChange={handleChange} value={filterName}/>
-        </div>
-        <p className="pr-3 pl-3 m-0 text-right">{`(${PLAYERLIST.length}/${FILTERLIST.length})`}</p>
         {
-          isLoadPlayerList != 'loaded' ? <PageLoader query="#player-list-box"/> : players() 
+          isLoadPlayerList != 'loaded' ? <PageLoader query="#notice-list-box #notice-list"/> : players() 
         }
-        
       </>
   );
 }
 
 
-if(document.querySelector('#player-list-box')){
+if(document.querySelector('#notice-list-box #notice-list')){
     ReactDOM.render(
-        <PlayerList />,
-    document.querySelector('#player-list-box')
+        <NoticeBox />,
+    document.querySelector('#notice-list-box #notice-list')
   );
 }
 
