@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Account\ProfileController;
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Dashboard\NoticeController;
+use App\Http\Controllers\Dashboard\PlayerController;
 
 
 /*
@@ -33,6 +34,8 @@ Route::middleware(['auth', 'verified'])->name('account.')->group(function () {
     Route::get('/api/msgs', [NoticeController::class, 'index'])->name('msgs.get');
     Route::put('/api/msgs/read/{id}', [NoticeController::class, 'read'])->name('message.read');
     Route::post('/api/msgs/reply/{id}', [NoticeController::class, 'saveReplyMsg'])->name('message.reply');
+
+    Route::get('/api/players', [PlayerController::class, 'index'])->name('players.get');
 
 });
 

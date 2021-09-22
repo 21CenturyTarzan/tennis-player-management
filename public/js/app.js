@@ -13043,14 +13043,7 @@ function MessageBox() {
     return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_layouts_scrollbar__WEBPACK_IMPORTED_MODULE_6__.default, {
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
         className: "notice pl-3 pr-3",
-        children: MSGLIST.length == 0 ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("p", {
-          className: "text-center mt-5",
-          children: loadState == 'loaded' ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
-            children: "\u30E1\u30C3\u30BB\u30FC\u30B8\u304C\u5B58\u5728\u3057\u307E\u305B\u3093\u3002"
-          }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
-            children: "Loading..."
-          })
-        }) : MSGLIST.map(function (msg, id) {
+        children: MSGLIST.map(function (msg, id) {
           return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("a", {
             id: msg.id,
             onClick: function onClick() {
@@ -13256,9 +13249,15 @@ function MessageBox() {
   };
 
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.Fragment, {
-    children: [loadState != 'loaded' && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_layouts_pageloader__WEBPACK_IMPORTED_MODULE_5__.default, {
+    children: [loadState == 'loading' && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_layouts_pageloader__WEBPACK_IMPORTED_MODULE_5__.default, {
       query: "#message-box"
-    }), messages(), currentMsg != null && msg_modal()]
+    }), loadState == 'loading' && MSGLIST.length == 0 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("p", {
+      className: "text-center mt-5",
+      children: "Loading..."
+    }), loadState == 'loading' && MSGLIST.length != 0 && messages(), loadState == 'loaded' && MSGLIST.length == 0 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("p", {
+      className: "text-center mt-5",
+      children: "\u30E1\u30C3\u30BB\u30FC\u30B8\u304C\u5B58\u5728\u3057\u307E\u305B\u3093\u3002"
+    }), loadState == 'loaded' && MSGLIST.length != 0 && messages(), currentMsg != null && msg_modal()]
   });
 }
 
@@ -13330,7 +13329,7 @@ function PlayerList() {
 
   var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_5__.useState)(''),
       _useState6 = _slicedToArray(_useState5, 2),
-      isLoad = _useState6[0],
+      loadState = _useState6[0],
       setLoadState = _useState6[1];
 
   var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_5__.useState)(''),
@@ -13342,14 +13341,7 @@ function PlayerList() {
     return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_layouts_scrollbar__WEBPACK_IMPORTED_MODULE_7__.default, {
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
         className: "player-list pl-3 pr-3",
-        children: FILTERLIST.length == 0 ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("p", {
-          className: "text-center mt-5",
-          children: isLoad == 'loaded' ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", {
-            children: "\u691C\u7D22\u7D50\u679C\uFF1A0\u4EBA"
-          }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", {
-            children: "Loading..."
-          })
-        }) : FILTERLIST.map(function (player, id) {
+        children: FILTERLIST.map(function (player, id) {
           return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("a", {
             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
               className: "d-flex align-items-center mb-2",
@@ -13431,9 +13423,20 @@ function PlayerList() {
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("p", {
       className: "pr-3 pl-3 m-0 text-right",
       children: "(".concat(PLAYERLIST.length, "/").concat(FILTERLIST.length, ")")
-    }), isLoad != 'loaded' ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_layouts_pageloader__WEBPACK_IMPORTED_MODULE_6__.default, {
-      query: "#player-list-box"
-    }) : players()]
+    }), loadState == 'loading' && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_layouts_pageloader__WEBPACK_IMPORTED_MODULE_6__.default, {
+        query: "#player-list-box"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("p", {
+        className: "text-center mt-5",
+        children: "Loading..."
+      })]
+    }), loadState == 'loaded' && PLAYERLIST.length == 0 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("p", {
+      className: "text-center mt-5",
+      children: "\u767B\u9332\u3055\u308C\u305F\u9078\u624B\u304C\u3044\u307E\u305B\u3093\u3002"
+    }), loadState == 'loaded' && PLAYERLIST.length != 0 && FILTERLIST.length != 0 && players(), loadState == 'loaded' && PLAYERLIST.length != 0 && FILTERLIST.length == 0 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("p", {
+      className: "text-center mt-5",
+      children: "\u691C\u7D22\u7D50\u679C\uFF1A0\u4EBA"
+    })]
   });
 }
 

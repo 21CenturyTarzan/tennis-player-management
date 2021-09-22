@@ -157,3 +157,15 @@ span.star{
     margin: 0;
 }
 
+.edit{
+    position: absolute;
+    right: 30px;
+    background-color: rgb(0,0,0,.4);
+    padding: 0 10px;
+    &:hover{
+        background-color: rgb(0,0,0,.6);
+        img{
+            transform:scale(1.1);
+        }
+    }
+}
