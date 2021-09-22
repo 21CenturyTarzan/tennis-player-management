@@ -1,5 +1,4 @@
 import ReactDOM from 'react-dom';
-import { filter } from 'lodash';
 import axios from 'axios';
 import React, {useState, useEffect} from 'react'
 
@@ -10,34 +9,33 @@ import Scrollbar from '../layouts/scrollbar';
 
 export default function NoticeBox() {
 
-  const [PLAYERLIST, setPlayerList] = useState([]);
-  const [FILTERLIST, setFilterList] = useState([]);
-  const [isLoadPlayerList, setLoadPlayerListFlag] = useState('');
-  const [filterName, setFilterName] = useState('');
+  const [MSGLIST, setMsgList] = useState([]);
+  const [isLoadMsgList, setLoadMsgListFlag] = useState('');
 
-  const players = () => {
+  const messages = () => {
       return(
         <Scrollbar>
-          <div className="notice pl-3 pr-3">
+          <div className="notice pl-3 pr-3 pr-md-1">
             {
-              FILTERLIST.length == 0 ? 
+              MSGLIST.length == 0 ? 
                 <p className="text-center">
                 {
-                  PLAYERLIST.length == 0 ? <span>登録された選手がいません。</span> : <span>検索結果：0人</span>
+                  MSGLIST.length == 0 ? <span>登録された選手がいません。</span> : <span>検索結果：0人</span>
                 }
                 </p>
-              : FILTERLIST.map((player,id)=>(
+              : MSGLIST.map((msg,id)=>(
                   <a key={id}>
                     <div className="d-flex align-items-center mb-2">
                         <div className="symbol me-5">
-                            <img src={player.img} alt={player.img} />
+                            <img src={msg.img} alt={msg.img} />
                         </div>
                         <div className="flex-grow-1">
-                            <span className="text-dark fw-bolder text-hover-primary fs-6">{player.name}</span>
-                            <span className="text-muted d-block fw-bold">{convertDate(player.created_at)}</span>
+                            <span className="text-dark fw-bolder text-hover-primary fs-6">Dmitri</span>
+                            <span className="text-muted d-block ft-12">{convertDate(msg.created_at)}</span>
+                            <span className="text-muted d-block">{msg.msg.slice(0,20) + '...'}</span>
                         </div>
                         <div>
-                          <img src="/images/msg_show.png" width="20" height="20"/>
+                          <img src="/images/msg_unread.png" width="20" height="20"/>
                         </div>
                     </div>
                   </a>
@@ -50,32 +48,24 @@ export default function NoticeBox() {
 
   useEffect( async () => {
     // ルームを取得
-    setLoadPlayerListFlag('loading');
-    await axios.get("/api/players")
+    setLoadMsgListFlag('loading');
+    await axios.get("/api/msgs")
         .then( res => {
-          setPlayerList(res.data);
-          setFilterList(res.data);
-          setLoadPlayerListFlag('loaded');
+          console.log(res.data)
+          setMsgList(res.data);
+          setLoadMsgListFlag('loaded');
         })
   }, [])
 
   const convertDate = (str_date) => {
         let date = new Date(str_date)
-        return ('' + date.getFullYear() + '-' + (date.getMonth()+1) + '-' + date.getDate());
+        return ('' + (date.getMonth()+1) + '/' + date.getDate() + ' ' + date.getHours() + ':' + date.getMinutes());
   }
-
-  const handleChange = (e) => {
-      var query = e.target.value;
-      setFilterName(query);
-      var filterlist = filter(PLAYERLIST, (_user) => _user.name.toLowerCase().indexOf(query.toLowerCase()) !== -1);
-      setFilterList(filterlist);
-  }
-
 
   return (
       <>
         {
-          isLoadPlayerList != 'loaded' ? <PageLoader query="#notice-list-box #notice-list"/> : players() 
+          isLoadMsgList != 'loaded' ? <PageLoader query="#notice-list-box #notice-list"/> : messages() 
         }
       </>
   );

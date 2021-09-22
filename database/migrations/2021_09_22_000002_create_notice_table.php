@@ -15,8 +15,8 @@ class CreateNoticeTable extends Migration
     {
         Schema::create('notice', function (Blueprint $table) {
             $table->unsignedBigInteger('id')->autoIncrement()->comment('ID');
-            $table->foreignId('to')->constrained('users')->comment('ReceiverID');
-            $table->unsignedBigInteger('from')->comment('SenderID');
+            $table->unsignedBigInteger('to')->comment('ReceiverID');
+            $table->foreignId('from')->constrained('users')->comment('SenderID');
             $table->text('msg', 4096)->comment('Message');
             $table->string('state', 20)->comment('State');
             $table->dateTime('created_at', $precision = 0)->nullable();

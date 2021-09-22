@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Account\ProfileController;
 use App\Http\Controllers\Dashboard\DashboardController;
+use App\Http\Controllers\Dashboard\NoticeController;
 
 
 /*
@@ -28,6 +29,9 @@ Route::middleware(['auth', 'verified'])->name('account.')->group(function () {
     Route::post('/profile/store/player', [ProfileController::class, 'store_player'])->name('profile.store.player');
     Route::post('/profile/store/parent', [ProfileController::class, 'store_parent'])->name('profile.store.parent');
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
+    Route::get('/api/msgs', [NoticeController::class, 'index'])->name('msgs.get');
+
 });
 
 

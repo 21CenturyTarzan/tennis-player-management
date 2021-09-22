@@ -18,7 +18,7 @@ export default function PlayerList() {
   const players = () => {
       return(
         <Scrollbar>
-          <div className="player-list pl-3 pr-3">
+          <div className="player-list pl-3 pr-3 pr-md-1">
             {
               FILTERLIST.length == 0 ? 
                 <p className="text-center">
@@ -34,7 +34,7 @@ export default function PlayerList() {
                         </div>
                         <div className="flex-grow-1">
                             <span className="text-dark fw-bolder text-hover-primary fs-6">{player.name}</span>
-                            <span className="text-muted d-block fw-bold">{convertDate(player.created_at)}</span>
+                            <span className="text-muted d-block">{convertDate(player.created_at)}</span>
                         </div>
                         <div>
                           <img src="/images/edit_star_1.svg" width="20" height="20"/>
@@ -61,7 +61,7 @@ export default function PlayerList() {
 
   const convertDate = (str_date) => {
         let date = new Date(str_date)
-        return ('' + date.getFullYear() + '-' + (date.getMonth()+1) + '-' + date.getDate());
+        return ('' + (date.getMonth()+1) + '/' + date.getDate() + '/' + date.getFullYear());
   }
 
   const handleChange = (e) => {

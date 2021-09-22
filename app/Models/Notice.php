@@ -22,4 +22,9 @@ class Notice extends Model
         'msg',
         'state'
     ];
+
+    public function account()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

@@ -177,7 +177,7 @@
                             <h3 class="mt-2 p-1 text-white bg-green text-center font-weight-bold">選手管理</h3>
                             <p class="w-50 w-md-75 p-1 pl-2 mb-2 bg-black-4 radius-r-20 text-white">近日予定の試合</p>
                             <div class="px-2 mb-2">
-                                <table class="table table-success table-striped mb-2">
+                                <table class="table table-bordered table-success mb-2">
                                     <thead>
                                         <tr>
                                             <th scope="col">日にち</th>
@@ -198,7 +198,7 @@
                                         </tr>
                                     </tbody>
                                 </table>
-                                <table class="table table-info mb-2">
+                                <table class="table table-bordered table-info mb-2">
                                     <tbody>
                                         <tr>
                                             <th>長期目標</th>
@@ -217,23 +217,16 @@
                             </div>
                             <p class="w-50 w-md-75 p-1 pl-2 mb-2 bg-black-4 radius-r-20 text-white">短期目標に向かっての課題</p>
                             <div class="px-2 mb-2">
-                                <table class="table mb-2">
+                                <table class="table table-bordered mb-2">
                                     <tbody>
-                                        <tr class="table-warning">
+                                        <tr class="table-success">
                                             <th><i class="fa-solid fa-head-side-brain"></i></th>
                                             <td>I will train harder and harder to win a gold medal.</td>
                                             <td>
                                                 <img src="/images/star5.svg" alt="">
                                             </td>
                                         </tr>
-                                        <tr class="table-warning">
-                                            <th><i class="fa-solid fa-head-side-brain"></i></th>
-                                            <td>I will train harder and harder to win a gold medal.</td>
-                                            <td>
-                                                <img src="/images/star4.svg" alt="">
-                                            </td>
-                                        </tr>
-                                        <tr class="table-warning">
+                                        <tr class="table-success">
                                             <th><i class="fa-solid fa-head-side-brain"></i></th>
                                             <td>I will train harder and harder to win a gold medal.</td>
                                             <td>
@@ -244,27 +237,6 @@
                                             <th><i class="fa-solid fa-head-side-brain"></i></th>
                                             <td>I will train harder and harder to win a gold medal.</td>
                                             <td>
-                                                <img src="/images/star3.svg" alt="">
-                                            </td>
-                                        </tr>
-                                        <tr class="table-success">
-                                            <th><i class="fa-solid fa-head-side-brain"></i></th>
-                                            <td>I will train harder and harder to win a gold medal.</td>
-                                            <td>
-                                                <img src="/images/star3.svg" alt="">
-                                            </td>
-                                        </tr>
-                                        <tr class="table-success">
-                                            <th><i class="fa-solid fa-head-side-brain"></i></th>
-                                            <td>I will train harder and harder to win a gold medal.</td>
-                                            <td>
-                                                <img src="/images/star3.svg" alt="">
-                                            </td>
-                                        </tr>
-                                        <tr class="table-danger">
-                                            <th><i class="fa-solid fa-head-side-brain"></i></th>
-                                            <td>I will train harder and harder to win a gold medal.</td>
-                                            <td>
                                                 <img src="/images/star4.svg" alt="">
                                             </td>
                                         </tr>
@@ -272,10 +244,38 @@
                                             <th><i class="fa-solid fa-head-side-brain"></i></th>
                                             <td>I will train harder and harder to win a gold medal.</td>
                                             <td>
-                                                <img src="/images/star4.svg" alt="">
+                                                <img src="/images/star3.svg" alt="">
                                             </td>
                                         </tr>
                                         <tr class="table-danger">
+                                            <th><i class="fa-solid fa-head-side-brain"></i></th>
+                                            <td>I will train harder and harder to win a gold medal.</td>
+                                            <td>
+                                                <img src="/images/star3.svg" alt="">
+                                            </td>
+                                        </tr>
+                                        <tr class="table-danger">
+                                            <th><i class="fa-solid fa-head-side-brain"></i></th>
+                                            <td>I will train harder and harder to win a gold medal.</td>
+                                            <td>
+                                                <img src="/images/star3.svg" alt="">
+                                            </td>
+                                        </tr>
+                                        <tr class="table-info">
+                                            <th><i class="fa-solid fa-head-side-brain"></i></th>
+                                            <td>I will train harder and harder to win a gold medal.</td>
+                                            <td>
+                                                <img src="/images/star4.svg" alt="">
+                                            </td>
+                                        </tr>
+                                        <tr class="table-info">
+                                            <th><i class="fa-solid fa-head-side-brain"></i></th>
+                                            <td>I will train harder and harder to win a gold medal.</td>
+                                            <td>
+                                                <img src="/images/star4.svg" alt="">
+                                            </td>
+                                        </tr>
+                                        <tr class="table-info">
                                             <th><i class="fa-solid fa-head-side-brain"></i></th>
                                             <td>I will train harder and harder to win a gold medal.</td>
                                             <td>
@@ -295,7 +295,7 @@
                             
                             <p class="w-50 w-md-75 p-1 pl-2 mb-2 bg-black-4 radius-r-20 text-white">大会情報</p>
                             <div class="px-2 mb-2">
-                                <table class="table table-info mb-2">
+                                <table class="table table-bordered table-info mb-2">
                                     <tbody>
                                         <tr>
                                             <td>大会名</td>

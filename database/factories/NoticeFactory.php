@@ -27,6 +27,7 @@ class NoticeFactory extends Factory
             'from' => rand(2, 20),
             'msg' => $this->faker->sentence(100),
             'state' => $this->getState(),
+            'created_at'=>$this->faker->dateTimeBetween($startDate = '-4 days', $endDate = 'now')
         ];
     }
 
