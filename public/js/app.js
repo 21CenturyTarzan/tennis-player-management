@@ -12975,11 +12975,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/Button/Button.js");
-/* harmony import */ var _material_ui_lab__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @material-ui/lab */ "./node_modules/@material-ui/lab/LoadingButton/LoadingButton.js");
-/* harmony import */ var _layouts_pageloader__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../layouts/pageloader */ "./resources/js/components/layouts/pageloader.js");
-/* harmony import */ var _layouts_scrollbar__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../layouts/scrollbar */ "./resources/js/components/layouts/scrollbar.js");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/Button/Button.js");
+/* harmony import */ var _material_ui_lab__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @material-ui/lab */ "./node_modules/@material-ui/lab/LoadingButton/LoadingButton.js");
+/* harmony import */ var _layouts_pageloader__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../layouts/pageloader */ "./resources/js/components/layouts/pageloader.js");
+/* harmony import */ var _layouts_scrollbar__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../layouts/scrollbar */ "./resources/js/components/layouts/scrollbar.js");
 
 
 
@@ -13008,39 +13010,40 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
 function MessageBox() {
-  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_4__.useState)([]),
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_5__.useState)([]),
       _useState2 = _slicedToArray(_useState, 2),
       MSGLIST = _useState2[0],
       setMsgList = _useState2[1];
 
-  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_4__.useState)(''),
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_5__.useState)(''),
       _useState4 = _slicedToArray(_useState3, 2),
       loadState = _useState4[0],
       setLoadState = _useState4[1];
 
-  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_4__.useState)(''),
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_5__.useState)(''),
       _useState6 = _slicedToArray(_useState5, 2),
       replyText = _useState6[0],
       setReplyText = _useState6[1];
 
-  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_4__.useState)(false),
+  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_5__.useState)(false),
       _useState8 = _slicedToArray(_useState7, 2),
       isSubmitting = _useState8[0],
       setSubmitFlag = _useState8[1];
 
-  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_4__.useState)(false),
+  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_5__.useState)(false),
       _useState10 = _slicedToArray(_useState9, 2),
       error = _useState10[0],
       setError = _useState10[1];
 
-  var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_4__.useState)(null),
+  var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_5__.useState)(null),
       _useState12 = _slicedToArray(_useState11, 2),
       currentMsg = _useState12[0],
       setCurrentMsg = _useState12[1];
 
   var messages = function messages() {
-    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_layouts_scrollbar__WEBPACK_IMPORTED_MODULE_6__.default, {
+    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_layouts_scrollbar__WEBPACK_IMPORTED_MODULE_7__.default, {
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
         className: "notice pl-3 pr-3",
         children: MSGLIST.map(function (msg, id) {
@@ -13081,6 +13084,14 @@ function MessageBox() {
         })
       })
     });
+  };
+
+  var setAlarm = function setAlarm() {
+    var filterlist = (0,lodash__WEBPACK_IMPORTED_MODULE_4__.filter)(MSGLIST, function (_msg) {
+      return _msg.state.indexOf('unread') !== -1;
+    });
+    document.querySelector('span.count').innerHTML = filterlist.length;
+    if (filterlist.length == 0) document.querySelector('span.count').style.display = 'none';else document.querySelector('span.count').style.display = 'inline-block';
   };
 
   var msg_modal = function msg_modal() {
@@ -13157,7 +13168,7 @@ function MessageBox() {
                 className: "row w-100",
                 children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
                   className: "col-6",
-                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_material_ui_lab__WEBPACK_IMPORTED_MODULE_7__.default, {
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_material_ui_lab__WEBPACK_IMPORTED_MODULE_8__.default, {
                     fullWidth: true,
                     type: "submit",
                     onClick: handleSubmit,
@@ -13167,7 +13178,7 @@ function MessageBox() {
                   })
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
                   className: "col-6",
-                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_8__.default, {
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_9__.default, {
                     fullWidth: true,
                     variant: "contained",
                     color: "secondary",
@@ -13204,7 +13215,7 @@ function MessageBox() {
     setError(false);
     setReplyText('');
   });
-  (0,react__WEBPACK_IMPORTED_MODULE_4__.useEffect)( /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
+  (0,react__WEBPACK_IMPORTED_MODULE_5__.useEffect)( /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
@@ -13249,7 +13260,7 @@ function MessageBox() {
   };
 
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.Fragment, {
-    children: [loadState == 'loading' && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_layouts_pageloader__WEBPACK_IMPORTED_MODULE_5__.default, {
+    children: [MSGLIST.length != 0 && setAlarm(), loadState == 'loading' && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_layouts_pageloader__WEBPACK_IMPORTED_MODULE_6__.default, {
       query: "#message-box"
     }), loadState == 'loading' && MSGLIST.length == 0 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("p", {
       className: "text-center mt-5",
@@ -13383,8 +13394,14 @@ function PlayerList() {
             setLoadState('loading');
             _context.next = 3;
             return axios__WEBPACK_IMPORTED_MODULE_4___default().get("/api/players").then(function (res) {
-              setPlayerList(res.data);
-              setFilterList(res.data);
+              if (res.data == 'failed') {
+                setPlayerList([]);
+                setFilterList([]);
+              } else {
+                setFilterList(res.data);
+                setPlayerList(res.data);
+              }
+
               setLoadState('loaded');
             });
 
@@ -13752,71 +13769,61 @@ var ParentProfileEdit = function ParentProfileEdit() {
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("form", {
     className: "needs-validation",
     onSubmit: handleSubmit,
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
       className: "avatar-editor-wrapper",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
         className: "img-wrap",
-        children: isEditFlag ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(react_image_crop_component__WEBPACK_IMPORTED_MODULE_5__.default, {
+        children: [isEditFlag ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(react_image_crop_component__WEBPACK_IMPORTED_MODULE_5__.default, {
           src: imgUri,
-          setWidth: 400,
-          setHeight: 350,
+          setWidth: 250,
+          setHeight: 250,
           square: false,
           resize: true,
-          border: "dashed #ffffff 2px",
           onCrop: onCropped
         }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("img", {
-          src: convertimgUri
-        })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-        className: "row",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
-          className: "col-2",
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("label", {
-            htmlFor: "upload",
+          src: convertimgUri,
+          className: "avatar"
+        }), !isEditFlag && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("label", {
+          htmlFor: "upload",
+          style: {
+            marginBottom: '0px'
+          },
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("img", {
+            src: "/images/icon-pencil.svg",
+            className: "upload-label"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("input", {
+            type: "file",
+            id: "upload",
+            name: "upload-avatar-file",
             style: {
-              marginBottom: '0px'
+              marginBottom: '7px',
+              display: 'none'
             },
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("img", {
-              src: "/images/icon-upload.png",
-              width: "50",
-              height: "42"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("input", {
-              type: "file",
-              id: "upload",
-              name: "upload-avatar-file",
-              style: {
-                marginBottom: '7px',
-                display: 'none'
-              },
-              accept: ".png, .jpg, .jpeg",
-              onChange: function onChange(e) {
-                return handleImageChange(e);
-              }
-            })]
-          })
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
-          className: "col-10",
-          children: isEditFlag ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_7__.default, {
-            fullWidth: true,
-            variant: "contained",
-            onClick: function onClick(e) {
-              e.preventDefault();
-              setEditFlag(false);
-            },
-            children: "save"
-          }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_7__.default, {
-            fullWidth: true,
-            variant: "contained",
-            onClick: function onClick(e) {
-              e.preventDefault();
-              setEditFlag(true);
-            },
-            children: "crop"
-          })
+            accept: ".png, .jpg, .jpeg",
+            onChange: function onChange(e) {
+              return handleImageChange(e);
+            }
+          })]
+        }), isEditFlag ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_7__.default, {
+          fullWidth: true,
+          variant: "contained",
+          onClick: function onClick(e) {
+            e.preventDefault();
+            setEditFlag(false);
+          },
+          children: "save"
+        }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_7__.default, {
+          fullWidth: true,
+          variant: "contained",
+          onClick: function onClick(e) {
+            e.preventDefault();
+            setEditFlag(true);
+          },
+          children: "crop"
         })]
-      })]
+      })
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-      className: "profile-edit-box",
+      className: "profile-edit-box mt-3",
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
         className: "form-group row",
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("label", {
@@ -13910,8 +13917,8 @@ var ParentProfileEdit = function ParentProfileEdit() {
   });
 };
 
-if (document.getElementById('parent-profile-modal-content')) {
-  react_dom__WEBPACK_IMPORTED_MODULE_1__.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(ParentProfileEdit, {}), document.getElementById('parent-profile-modal-content'));
+if (document.getElementById('parent-profile')) {
+  react_dom__WEBPACK_IMPORTED_MODULE_1__.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(ParentProfileEdit, {}), document.getElementById('parent-profile'));
 }
 
 /***/ }),
@@ -13961,6 +13968,148 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
  // ----------------------------------------------------------------------
 
+var preference = [{
+  value: '北海道',
+  label: '北海道'
+}, {
+  value: '青森県',
+  label: '青森県'
+}, {
+  value: '岩手県',
+  label: '岩手県'
+}, {
+  value: '宮城県',
+  label: '宮城県'
+}, {
+  value: '秋田県',
+  label: '秋田県'
+}, {
+  value: '山形県',
+  label: '山形県'
+}, {
+  value: '福島県',
+  label: '福島県'
+}, {
+  value: '茨城県',
+  label: '茨城県'
+}, {
+  value: '栃木県',
+  label: '栃木県'
+}, {
+  value: '群馬県',
+  label: '群馬県'
+}, {
+  value: '埼玉県',
+  label: '埼玉県'
+}, {
+  value: '千葉県',
+  label: '千葉県'
+}, {
+  value: '東京都',
+  label: '東京都'
+}, {
+  value: '神奈川県',
+  label: '神奈川県'
+}, {
+  value: '新潟県',
+  label: '新潟県'
+}, {
+  value: '富山県',
+  label: '富山県'
+}, {
+  value: '石川県',
+  label: '石川県'
+}, {
+  value: '福井県',
+  label: '福井県'
+}, {
+  value: '山梨県',
+  label: '山梨県'
+}, {
+  value: '長野県',
+  label: '長野県'
+}, {
+  value: '岐阜県',
+  label: '岐阜県'
+}, {
+  value: '静岡県',
+  label: '静岡県'
+}, {
+  value: '愛知県',
+  label: '愛知県'
+}, {
+  value: '三重県',
+  label: '三重県'
+}, {
+  value: '滋賀県',
+  label: '滋賀県'
+}, {
+  value: '京都府',
+  label: '京都府'
+}, {
+  value: '大阪府',
+  label: '大阪府'
+}, {
+  value: '兵庫県',
+  label: '兵庫県'
+}, {
+  value: '奈良県',
+  label: '奈良県'
+}, {
+  value: '和歌山県',
+  label: '和歌山県'
+}, {
+  value: '鳥取県',
+  label: '鳥取県'
+}, {
+  value: '島根県',
+  label: '島根県'
+}, {
+  value: '岡山県',
+  label: '岡山県'
+}, {
+  value: '広島県',
+  label: '広島県'
+}, {
+  value: '山口県',
+  label: '山口県'
+}, {
+  value: '徳島県',
+  label: '徳島県'
+}, {
+  value: '香川県',
+  label: '香川県'
+}, {
+  value: '愛媛県',
+  label: '愛媛県'
+}, {
+  value: '高知県',
+  label: '高知県'
+}, {
+  value: '福岡県',
+  label: '福岡県'
+}, {
+  value: '佐賀県',
+  label: '佐賀県'
+}, {
+  value: '長崎県',
+  label: '長崎県'
+}, {
+  value: '熊本県',
+  label: '熊本県'
+}, {
+  value: '大分県',
+  label: '大分県'
+}, {
+  value: '宮崎県',
+  label: '宮崎県'
+}, {
+  value: '鹿児島県',
+  label: '鹿児島県'
+}, {
+  value: '沖縄県',
+  label: '沖縄県'
+}];
 var gender_options = [{
   value: 'm',
   label: '男性'
@@ -14034,45 +14183,50 @@ var PlayerProfileEdit = function PlayerProfileEdit() {
       phone = _useState14[0],
       setPhone = _useState14[1];
 
-  var _useState15 = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(''),
+  var _useState15 = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(preference[0]),
       _useState16 = _slicedToArray(_useState15, 2),
-      address = _useState16[0],
-      setAddress = _useState16[1];
+      area = _useState16[0],
+      setArea = _useState16[1];
 
   var _useState17 = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(''),
       _useState18 = _slicedToArray(_useState17, 2),
-      lesson = _useState18[0],
-      setLesson = _useState18[1];
+      address = _useState18[0],
+      setAddress = _useState18[1];
 
   var _useState19 = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(''),
       _useState20 = _slicedToArray(_useState19, 2),
-      career = _useState20[0],
-      setCareer = _useState20[1];
+      lesson = _useState20[0],
+      setLesson = _useState20[1];
 
   var _useState21 = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(''),
       _useState22 = _slicedToArray(_useState21, 2),
-      height = _useState22[0],
-      setheight = _useState22[1];
+      career = _useState22[0],
+      setCareer = _useState22[1];
 
   var _useState23 = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(''),
       _useState24 = _slicedToArray(_useState23, 2),
-      weight = _useState24[0],
-      setWeight = _useState24[1];
+      height = _useState24[0],
+      setheight = _useState24[1];
 
-  var _useState25 = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)('/images/blank.png'),
+  var _useState25 = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(''),
       _useState26 = _slicedToArray(_useState25, 2),
-      imgUri = _useState26[0],
-      setImgUri = _useState26[1];
+      weight = _useState26[0],
+      setWeight = _useState26[1];
 
   var _useState27 = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)('/images/blank.png'),
       _useState28 = _slicedToArray(_useState27, 2),
-      convertimgUri = _useState28[0],
-      setConvertImgUri = _useState28[1];
+      imgUri = _useState28[0],
+      setImgUri = _useState28[1];
 
-  var _useState29 = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(false),
+  var _useState29 = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)('/images/blank.png'),
       _useState30 = _slicedToArray(_useState29, 2),
-      isSubmitting = _useState30[0],
-      setSubmit = _useState30[1];
+      convertimgUri = _useState30[0],
+      setConvertImgUri = _useState30[1];
+
+  var _useState31 = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(false),
+      _useState32 = _slicedToArray(_useState31, 2),
+      isSubmitting = _useState32[0],
+      setSubmit = _useState32[1];
 
   var handleSubmit = function handleSubmit(e) {
     e.preventDefault();
@@ -14084,7 +14238,7 @@ var PlayerProfileEdit = function PlayerProfileEdit() {
     formdata.append('school', JSON.stringify(school));
     formdata.append('grade', JSON.stringify(grade.value + ' ' + grade_year.value));
     formdata.append('phone', JSON.stringify(phone));
-    formdata.append('address', JSON.stringify(address));
+    formdata.append('address', JSON.stringify(area.value + ' ' + address));
     formdata.append('lesson', JSON.stringify(lesson));
     formdata.append('career', JSON.stringify(career));
     formdata.append('image', convertimgUri);
@@ -14149,71 +14303,61 @@ var PlayerProfileEdit = function PlayerProfileEdit() {
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("form", {
     className: "needs-validation",
     onSubmit: handleSubmit,
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
       className: "avatar-editor-wrapper",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
         className: "img-wrap",
-        children: isEditFlag ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(react_image_crop_component__WEBPACK_IMPORTED_MODULE_5__.default, {
+        children: [isEditFlag ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(react_image_crop_component__WEBPACK_IMPORTED_MODULE_5__.default, {
           src: imgUri,
-          setWidth: 400,
-          setHeight: 350,
+          setWidth: 250,
+          setHeight: 250,
           square: false,
           resize: true,
-          border: "dashed #ffffff 2px",
           onCrop: onCropped
         }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("img", {
-          src: convertimgUri
-        })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-        className: "row",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
-          className: "col-2",
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("label", {
-            htmlFor: "upload",
+          src: convertimgUri,
+          className: "avatar"
+        }), !isEditFlag && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("label", {
+          htmlFor: "upload",
+          style: {
+            marginBottom: '0px'
+          },
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("img", {
+            src: "/images/icon-pencil.svg",
+            className: "upload-label"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("input", {
+            type: "file",
+            id: "upload",
+            name: "upload-avatar-file",
             style: {
-              marginBottom: '0px'
+              marginBottom: '7px',
+              display: 'none'
             },
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("img", {
-              src: "/images/icon-upload.png",
-              width: "50",
-              height: "42"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("input", {
-              type: "file",
-              id: "upload",
-              name: "upload-avatar-file",
-              style: {
-                marginBottom: '7px',
-                display: 'none'
-              },
-              accept: ".png, .jpg, .jpeg",
-              onChange: function onChange(e) {
-                return handleImageChange(e);
-              }
-            })]
-          })
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
-          className: "col-10",
-          children: isEditFlag ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_7__.default, {
-            fullWidth: true,
-            variant: "contained",
-            onClick: function onClick(e) {
-              e.preventDefault();
-              setEditFlag(false);
-            },
-            children: "save"
-          }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_7__.default, {
-            fullWidth: true,
-            variant: "contained",
-            onClick: function onClick(e) {
-              e.preventDefault();
-              setEditFlag(true);
-            },
-            children: "crop"
-          })
+            accept: ".png, .jpg, .jpeg",
+            onChange: function onChange(e) {
+              return handleImageChange(e);
+            }
+          })]
+        }), isEditFlag ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_7__.default, {
+          fullWidth: true,
+          variant: "contained",
+          onClick: function onClick(e) {
+            e.preventDefault();
+            setEditFlag(false);
+          },
+          children: "save"
+        }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_7__.default, {
+          fullWidth: true,
+          variant: "contained",
+          onClick: function onClick(e) {
+            e.preventDefault();
+            setEditFlag(true);
+          },
+          children: "crop"
         })]
-      })]
+      })
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-      className: "profile-edit-box",
+      className: "profile-edit-box mt-3",
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
         className: "form-group row",
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("label", {
@@ -14381,16 +14525,32 @@ var PlayerProfileEdit = function PlayerProfileEdit() {
           children: "\u4F4F\u6240"
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
           className: "col-md-9",
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("input", {
-            id: "address",
-            name: "address",
-            type: "text",
-            className: "form-control",
-            value: address,
-            onChange: function onChange(e) {
-              setAddress(e.target.value);
-            },
-            required: true
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+            className: "row",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
+              className: "col-6",
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(react_select__WEBPACK_IMPORTED_MODULE_8__.default, {
+                id: "area",
+                options: preference,
+                value: area,
+                onChange: function onChange(opt) {
+                  return setArea(opt);
+                }
+              })
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
+              className: "col-6",
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("input", {
+                id: "address",
+                name: "address",
+                type: "text",
+                className: "form-control",
+                value: address,
+                onChange: function onChange(e) {
+                  setAddress(e.target.value);
+                },
+                required: true
+              })
+            })]
           })
         })]
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
@@ -14451,8 +14611,8 @@ var PlayerProfileEdit = function PlayerProfileEdit() {
   });
 };
 
-if (document.getElementById('player-profile-modal-content')) {
-  react_dom__WEBPACK_IMPORTED_MODULE_1__.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(PlayerProfileEdit, {}), document.getElementById('player-profile-modal-content'));
+if (document.querySelector('#player-profile')) {
+  react_dom__WEBPACK_IMPORTED_MODULE_1__.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(PlayerProfileEdit, {}), document.querySelector('#player-profile'));
 }
 
 /***/ }),

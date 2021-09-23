@@ -1,11 +1,9 @@
 <?php
 
-namespace App\Http\Controllers\Account;
+namespace App\Http\Controllers\Front\Player;
 
 use App\Http\Controllers\Controller;
 use App\Models\ProfilePlayer;
-use App\Models\ProfileParent;
-use App\Models\Children;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -19,19 +17,7 @@ class ProfileController extends Controller
      */
     public function index()
     {
-        if(strcmp(Auth::user()->type, 'parent') == 0){
-            $tmp = ProfileParent::where('account_id', Auth::user()->id)->count();
-            if($tmp == 0)
-                return view('profile.new');
-            else return redirect('/dashboard');
-        }
-        else if(strcmp(Auth::user()->type, 'player') == 0){
-            $tmp = ProfilePlayer::where('account_id', Auth::user()->id)->count();
-            if($tmp == 0)
-                return view('profile.new');
-            else return redirect('/dashboard');
-        }
-        else return redirect('/dashboard');
+        return view('player.profile');
     }
 
     /**
@@ -50,7 +36,7 @@ class ProfileController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store_player(Request $request)
+    public function store(Request $request)
     {
         //
         $gender = json_decode($request->get('gender'));
@@ -101,54 +87,6 @@ class ProfileController extends Controller
                 'img'=> $img_url
             ]);
             return 'success';
-        } catch (\Throwable $th) {
-            throw $th;
-        }
-    }
-
-    public function store_parent(Request $request){
-        $gender = json_decode($request->get('gender'));
-        $birth  =  json_decode($request->get('birth'));
-        $birth = date_create_from_format('Y-m-d', $birth);
-        $phone  = json_decode($request->get('phone'));
-        $child_email= json_decode($request->get('childEmail'));
-
-        $path = 'uploads/';
-        if (!file_exists(public_path($path))) {
-            mkdir(public_path($path), 0777, true);
-        }
-        if ($file = $request->get('image')) {
-            if(strcmp($file,'/images/avatar.jpg')==0){
-                $img_url = '/images/avatar.jpg';
-            }
-            else{
-
-                $img_name = time(). rand(1, 100) . '.' . explode('/', explode(':', substr($file, 0, strpos($file, ';')))[1])[1];
-                $replace = substr($file, 0, strpos($file, ',')+1); 
-                $image = str_replace($replace, '', $file); 
-                $image = str_replace(' ', '+', $image);     
-                \File::put(public_path($path). $img_name, base64_decode($image));
-                $img_url = '/'.$path.$img_name;
-            }
-        }
-        try {
-            ProfileParent::create([
-                'account_id' => Auth::user()->id,
-                'gender' => $gender,
-                'birth' => $birth,
-                'phone' => $phone
-            ]);
-            Children::create([
-                'parent_id' => Auth::user()->id,
-                'child_email' => $child_email
-            ]);
-
-            User::where(['id'=>Auth::id()])->first()->update([
-                'img'=> $img_url
-            ]);
-
-            return 'success';
-
         } catch (\Throwable $th) {
             throw $th;
         }

@@ -44,7 +44,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="nav ml-md-auto mb-2 mb-md-0">
                     <li class="nav-item" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-placement="bottom" title="選手リスト">                    
-                        <a class="nav-link btn btn-custom btn-icon active"  href="#players">
+                        <a class="nav-link btn btn-custom btn-icon active"  href="#info">
                             <!--begin::Svg Icon | path: icons/duotune/abstract/abs042.svg-->
                             <span class="svg-icon svg-icon-2x">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 24 24" fill="#ffffff">
@@ -99,6 +99,7 @@
                                     <path opacity="0.3" d="M20 15H4C2.9 15 2 14.1 2 13V7C2 6.4 2.4 6 3 6H21C21.6 6 22 6.4 22 7V13C22 14.1 21.1 15 20 15ZM13 12H11C10.5 12 10 12.4 10 13V16C10 16.5 10.4 17 11 17H13C13.6 17 14 16.6 14 16V13C14 12.4 13.6 12 13 12Z" fill="#ffffff" />
                                     <path d="M14 6V5H10V6H8V5C8 3.9 8.9 3 10 3H14C15.1 3 16 3.9 16 5V6H14ZM20 15H14V16C14 16.6 13.5 17 13 17H11C10.5 17 10 16.6 10 16V15H4C3.6 15 3.3 14.9 3 14.7V18C3 19.1 3.9 20 5 20H19C20.1 20 21 19.1 21 18V14.7C20.7 14.9 20.4 15 20 15Z" fill="#ffffff" />
                                 </svg>
+                                <span class="count">2</span>
                             </span>
                         </a>
                     </li>
@@ -123,29 +124,10 @@
     <main>
         <div class="container">
             <div class="row">
-
-                <div class="col-md-4">
-                    <div style="padding-top: 72px;" id="players">
-                        <div class="mt-3 pt-2 bg-white radius-15" id="player-list-box">
-                            <!-- react.component (PlayerList.js) -->
-                        </div>
-                    </div>
-                    @if ( strcmp(Auth::user()->type, 'parent') != 0 )
-                    <div style="padding-top: 72px;" id="notice">
-                        <div class="mt-3 pt-2 bg-white radius-15" id="message-box">
-                            <h3 class="mt-2 p-1 text-white bg-green text-center font-weight-bold">通知</h3>
-                            <div id="message-list">
-                                <!-- react.component (MessageBox.js) -->
-                            </div>
-                        </div>
-                    </div>
-                    @endif
-                </div>
-
-                <div class="col-md-8">
+                <div class="col-md-8 offset-md-2">
 
                     <div style="padding-top: 72px;" id="info">
-                        <div class="mt-3 pt-2 radius-t-15 text-white player-main-info">
+                        <div class="mt-3 pt-2 rounded-top-15 text-white player-main-info">
                             <div class="name pt-3 pt-md-5 ">
                                 <p class="text-center bg-red-4 font-weight-bold">
                                     浮田　愛未
@@ -165,31 +147,97 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="person-info mt-3 mt-md-5  bg-black-6">
-                                <div class="row">
-                                    <div class="col-4">
-                                        <p class="value">34<span>歳</span></p>
-                                    </div>
-                                    <div class="col-4">
-                                        <p class="value">170<span>cm</span></p>
-                                    </div>
-                                    <div class="col-4">
-                                        <p class="value">65.4<span>kg</span></p>
-                                    </div>
-                                </div>
+                            <div class="person-info mt-3 mt-md-5 bg-black-6 rounded-top-20 border-top border-white text-center">
+                                <table class="table m-0 p-1 text-white text-center">
+                                    <tbody>
+                                        <tr>
+                                            <td class="col-4 border-0"><p class="value">34<span>歳</span></p></td>
+                                            <td class="col-4 border-0"><p class="value">170<span>cm</span></p></td>
+                                            <td class="col-4 border-0"><p class="value">65.4<span>kg</span></p></td>
+                                        </tr>
+                                    </tbody>
+                                </table>    
                             </div>
                         </div>
+
+                        <div class="mt-3 p-2 shadow-lg bg-black-4">
+                            <h3 class="text-center text-white">RANK</h3>
+                            <table class="table table-bordered m-0 p-1 text-white text-center">
+                                <tbody>
+                                    <tr>
+                                        <th>JTAU18</th>
+                                        <td>1位</td>
+                                        <th>JTAU34</th>
+                                        <td>1位</td>
+                                    </tr>
+                                    <tr>
+                                        <th>関東U18</th>
+                                        <td>1位</td>
+                                        <th>関東U34</th>
+                                        <td>1位</td>
+                                    </tr>
+                                    <tr>
+                                        <th>埼玉U34</th>
+                                        <td>1位</td>
+                                        <th>School</th>
+                                        <td>1位</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                        <div class="mt-3 p-2 shadow-lg bg-black-4">
+                            <h3 class="text-center text-white">個人情報</h3>
+                            <table class="table table-bordered m-0 text-white">
+                                <tbody>
+                                    <tr>
+                                        <th>性別</th>
+                                        <td>女</td>
+                                        <th>生年月日</th>
+                                        <td>1月17日2002年</td>
+                                    </tr>
+                                    <tr>
+                                        <th>学校</th>
+                                        <td>Kansas States University</td>
+                                        <th>学年</th>
+                                        <td>大学1年</td>
+                                    </tr>
+                                    <tr>
+                                        <th>郵便番号</th>
+                                        <td>000-0000</td>
+                                        <th>住所</th>
+                                        <td>埼玉県所沢市</td>
+                                    </tr>
+                                    <tr>
+                                        <th>主な戦績</th>
+                                        <td colspan="3">
+                                            I have enough experience of playing tennis.<br>
+                                            I have been training tennis more than 7 years.<br>
+                                            Tennis is my favourite sport.<br>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>1set勝率</th>
+                                        <td>78%</td>
+                                        <th>3set勝率</th>
+                                        <td>70%</td>
+                                    </tr>
+                                    
+                                </tbody>
+                            </table>
+                        </div>
+
                     </div>
 
                     <div style="padding-top: 72px;" id="manage">
-                        <div class="mt-3 py-2 radius-15 bg-white shadow-lg">
-                            <h3 class="mt-2 p-1 text-white bg-green text-center font-weight-bold">
-                                選手管理
+                        <div class="mt-3 py-2 rounded-15 bg-white shadow-lg">
+                            <h3 class="mt-2 p-1  text-white bg-green text-center font-weight-bold">
+                                <span>選手管理<span>
                                 @if(strcmp(Auth::user()->type, 'player') ==0 )
                                     <a href="#" class="edit py-1" style="margin-top:-5px"><img src="/images/icon-pencil.svg" alt="icon-pencil.svg" width="30" height="30"></a>
                                 @endif
                             </h3>
-                            <p class="w-50 w-md-75 p-1 pl-2 mb-2 bg-black-4 radius-r-20 text-white">近日予定の試合</p>
+                            <p class="w-50 w-md-75 p-1 pl-2 mb-2 bg-black-4 rounded-right-20 text-white">近日予定の試合</p>
                             <div class="px-2 mb-2">
                                 <table class="table table-bordered table-success mb-2">
                                     <thead>
@@ -229,7 +277,7 @@
                                     </tbody>
                                 </table>
                             </div>
-                            <p class="w-50 w-md-75 p-1 pl-2 mb-2 bg-black-4 radius-r-20 text-white">短期目標に向かっての課題</p>
+                            <p class="w-50 w-md-75 p-1 pl-2 mb-2 bg-black-4 rounded-right-20 text-white">短期目標に向かっての課題</p>
                             <div class="px-2 mb-2">
                                 <table class="table table-bordered mb-2">
                                     <tbody>
@@ -304,7 +352,7 @@
                     </div>
 
                     <div style="padding-top: 72px;"  id="prepare">
-                        <div class="mt-3 py-2 radius-15 bg-white shadow-lg">
+                        <div class="mt-3 py-2 rounded-15 bg-white shadow-lg">
                             <h3 class="mt-2 p-1 text-white bg-green text-center font-weight-bold">
                                 試合前準備
                                 @if(strcmp(Auth::user()->type, 'player') ==0 )
@@ -312,7 +360,7 @@
                                 @endif
                             </h3>
                             
-                            <p class="w-50 w-md-75 p-1 pl-2 mb-2 bg-black-4 radius-r-20 text-white">大会情報</p>
+                            <p class="w-50 w-md-75 p-1 pl-2 mb-2 bg-black-4 rounded-right-20 text-white">大会情報</p>
                             <div class="px-2 mb-2">
                                 <table class="table table-bordered table-info mb-2">
                                     <tbody>
@@ -356,12 +404,12 @@
                                 </table>
                             </div>
 
-                            <p class="w-50 w-md-75 p-1 pl-2 mb-2 bg-black-4 radius-r-20 text-white">普段試合で起きることを書く</p>
+                            <p class="w-50 w-md-75 p-1 pl-2 mb-2 bg-black-4 rounded-right-20 text-white">自己分析</p>
                             <div class="px-2 mb-2">
                                 I dont know here exactly? Can you explain about this section?
                             </div>
 
-                            <p class="w-50 w-md-75 p-1 pl-2 mb-2 bg-black-4 radius-r-20 text-white">試合前の課題設定最低3つ</p>
+                            <p class="w-50 w-md-75 p-1 pl-2 mb-2 bg-black-4 rounded-right-20 text-white">試合前に心がける事</p>
                             <div class="px-2 mb-2">
                                 I dont know here exactly? Can you explain about this section?
                             </div>
@@ -372,7 +420,7 @@
                     </div>
 
                     <div style="padding-top: 72px;" id="reflect">
-                        <div class="mt-3 py-2 radius-15 bg-white shadow-lg">
+                        <div class="mt-3 py-2 rounded-15 bg-white shadow-lg">
                             <h3 class="mt-2 p-1 text-white bg-green text-center font-weight-bold">
                                 試合結果
                                 @if(strcmp(Auth::user()->type, 'player') ==0 )
@@ -380,13 +428,13 @@
                                 @endif    
                             </h3>
                             
-                            <p class="w-50 w-md-75 p-1 pl-2 mb-2 bg-black-4 radius-r-20 text-white"></p>
+                            <p class="w-50 w-md-75 p-1 pl-2 mb-2 bg-black-4 rounded-right-20 text-white"></p>
                             
 
-                            <p class="w-50 w-md-75 p-1 pl-2 mb-2 bg-black-4 radius-r-20 text-white"></p>
+                            <p class="w-50 w-md-75 p-1 pl-2 mb-2 bg-black-4 rounded-right-20 text-white"></p>
                             
 
-                            <p class="w-50 w-md-75 p-1 pl-2 mb-2 bg-black-4 radius-r-20 text-white"></p>
+                            <p class="w-50 w-md-75 p-1 pl-2 mb-2 bg-black-4 rounded-right-20 text-white"></p>
                             
 
 
@@ -395,7 +443,6 @@
                     </div>
 
                 </div>
-
             </div>
         </div>
     </main>
