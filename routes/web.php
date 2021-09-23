@@ -39,8 +39,10 @@ Route::middleware(['auth', 'verified'])->name('account.')->group(function () {
     Route::get('/api/msgs', [NoticeController::class, 'index'])->name('msgs.get');
     Route::put('/api/msgs/read/{id}', [NoticeController::class, 'read'])->name('message.read');
     Route::post('/api/msgs/reply/{id}', [NoticeController::class, 'saveReplyMsg'])->name('message.reply');
-
+    
     Route::get('/api/players', [PlayerController::class, 'index'])->name('players.get');
+
+    Route::get('/info/edit', [App\Http\Controllers\Front\Player\DashboardController::class, 'info'])->name('edit.info');
 
 });
 
