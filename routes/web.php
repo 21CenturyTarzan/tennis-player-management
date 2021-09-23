@@ -1,10 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Account\ProfileController;
-use App\Http\Controllers\Dashboard\DashboardController;
-use App\Http\Controllers\Dashboard\NoticeController;
-use App\Http\Controllers\Dashboard\PlayerController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Front\Admin\DashboardController;
+use App\Http\Controllers\Front\Admin\NoticeController;
+use App\Http\Controllers\Front\Admin\PlayerController;
 
 
 /*
@@ -25,11 +25,16 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::middleware(['auth', 'verified'])->name('account.')->group(function () {
+
+    Route::get('/home', [HomeController::class, 'index'])->name('home');
+
+    Route::get('/profile/edit/1', [App\Http\Controllers\Front\Player\ProfileController::class, 'index'])->name('player.profile.edit');
+    Route::get('/profile/edit/2', [App\Http\Controllers\Front\Parent\ProfileController::class, 'index'])->name('parent.profile.edit');
+    Route::post('/profile/store/player', [App\Http\Controllers\Front\Player\ProfileController::class, 'store'])->name('player.profile.store');
+    Route::post('/profile/store/parent', [App\Http\Controllers\Front\Parent\ProfileController::class, 'store'])->name('parent.profile.store');
     
-    Route::get('/profile/new', [ProfileController::class, 'index'])->name('profile.new');
-    Route::post('/profile/store/player', [ProfileController::class, 'store_player'])->name('profile.store.player');
-    Route::post('/profile/store/parent', [ProfileController::class, 'store_parent'])->name('profile.store.parent');
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/dashboard/player/{id}', [DashboardController::class, 'show'])->name('dashboard.player.show');
 
     Route::get('/api/msgs', [NoticeController::class, 'index'])->name('msgs.get');
     Route::put('/api/msgs/read/{id}', [NoticeController::class, 'read'])->name('message.read');

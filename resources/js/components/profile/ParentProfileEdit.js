@@ -76,31 +76,27 @@ const  ParentProfileEdit = () => {
         <form className="needs-validation"  onSubmit={handleSubmit} >
             <div className="avatar-editor-wrapper">
                 <div className="img-wrap">
-                {
-                    isEditFlag ?
-                        <ImageCrop src={imgUri} setWidth={400} setHeight={350} square={false} resize={true} border={"dashed #ffffff 2px"} onCrop={onCropped}/>
-                    : <img src={convertimgUri}/>
-                }
-                </div>
-
-                <div className="row">
-                    <div className="col-2">
-                        <label htmlFor="upload" style={{marginBottom: '0px'}}>
-                            <img src="/images/icon-upload.png" width="50" height="42"/>
-                            <input type="file" id="upload" name="upload-avatar-file" style={{marginBottom: '7px', display:'none'}}  accept=".png, .jpg, .jpeg" onChange={(e) => handleImageChange(e)} />
-                        </label>
-                    </div>
-                    <div className="col-10">
+                    {
+                        isEditFlag ?
+                            <ImageCrop src={imgUri} setWidth={250} setHeight={250} square={false} resize={true} onCrop={onCropped}/>
+                        : <img src={convertimgUri} className="avatar"/>
+                    }
+                    {
+                        !isEditFlag &&
+                            <label htmlFor="upload" style={{marginBottom: '0px'}}>
+                                <img src="/images/icon-pencil.svg" className="upload-label"/>
+                                <input type="file" id="upload" name="upload-avatar-file" style={{marginBottom: '7px', display:'none'}}  accept=".png, .jpg, .jpeg" onChange={(e) => handleImageChange(e)} />
+                            </label>
+                    }
                     {
                         isEditFlag ? 
                             <Button fullWidth variant="contained" onClick={(e)=>{ e.preventDefault(); setEditFlag(false)}}>save</Button> 
                             :<Button fullWidth variant="contained" onClick={(e)=>{ e.preventDefault(); setEditFlag(true)}}>crop</Button>                                
                     }    
-                    </div>
-                </div> 
+                </div>
             </div>
 
-            <div className="profile-edit-box">
+            <div className="profile-edit-box mt-3">
                 <div className="form-group row">
                     <label htmlFor="gender" className="col-md-3 col-form-label text-md-right">性別</label>
                     <div className="col-md-9">
@@ -142,10 +138,10 @@ const  ParentProfileEdit = () => {
     );
   }
 
-if(document.getElementById('parent-profile-modal-content')){
+if(document.getElementById('parent-profile')){
     ReactDOM.render(
         <ParentProfileEdit />,
-    document.getElementById('parent-profile-modal-content')
+    document.getElementById('parent-profile')
   );
 }
 

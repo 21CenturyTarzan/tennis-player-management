@@ -1,5 +1,7 @@
 import ReactDOM from 'react-dom';
 import axios from 'axios';
+import { filter } from 'lodash';
+
 import React, {useState, useEffect} from 'react'
 import { Button } from '@material-ui/core';
 import { LoadingButton } from '@material-ui/lab';
@@ -46,6 +48,13 @@ export default function MessageBox() {
           </div>      
         </Scrollbar>
       )      
+  }
+
+  const setAlarm = () => {
+      var filterlist = filter(MSGLIST, (_msg) => _msg.state.indexOf('unread') !== -1);
+      document.querySelector('span.count').innerHTML = filterlist.length;
+      if(filterlist.length == 0) document.querySelector('span.count').style.display = 'none';
+      else  document.querySelector('span.count').style.display = 'inline-block';
   }
 
   const msg_modal = () => {
@@ -158,6 +167,9 @@ export default function MessageBox() {
 
   return (
       <>
+        {
+           MSGLIST.length != 0 && setAlarm()
+        }
         {
           loadState == 'loading' && <PageLoader query="#message-box"/>
         }

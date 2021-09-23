@@ -15,7 +15,7 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
 </head>
-<body id="profile">
+<body style="background-image: url(/images/court.jpg)">
     <nav class="navbar navbar-expand-md navbar-light shadow-sm">
         <div class="container">
             <a class="nav-link btn btn-custom btn-icon" href="#">
@@ -37,38 +37,21 @@
         </div>
     </nav>
 
-    <div class="edit-modal-show">
-        <a class="btn" data-toggle="modal" data-target="#profileEditModal">プロフィールを編集する必要があります。</a>
-    </div>
-
-    <div class="modal fade" id="profileEditModal" tabindex="-1" role="dialog" aria-labelledby="profileEditModal" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <img src="/images/icon-edit.png" alt="" width="35px" height="35px"/>
-                    <h5 class="modal-title ml-2" id="registerModal">プロファイルの編集</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
+    <main>
+        <div class="container">
+            <div style="padding-top: 72px;" class="mx-0 mx-md-5">
+                <div class="mx-md-5 my-3 pt-2 bg-white shadow-lg rounded-lg">
+                    <h3 class="mt-2 p-1  text-white bg-green text-center font-weight-bold">
+                        <span>プロフィール編集<span>
+                    </h3>
+                    <div class="p-3">
+                        @yield('content')
+                    </div>
                 </div>
-                @if (strcmp(Auth::user()->type, 'player') == 0)
-                    <div class="modal-body" id="player-profile-modal-content"></div>
-                @elseif (strcmp(Auth::user()->type, 'parent') == 0)
-                    <div class="modal-body" id="parent-profile-modal-content"></div>
-                @endif
             </div>
         </div>
-    </div>
-
+    </main>
 </body>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="{{ asset('js/app.js') }}" defer></script>
-
-    <script>
-    $(function() {
-        $('#profileEditModal').modal({
-            show: true
-        });
-    });
-    </script>
 </html>

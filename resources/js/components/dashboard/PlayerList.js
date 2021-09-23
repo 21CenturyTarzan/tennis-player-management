@@ -47,9 +47,15 @@ export default function PlayerList() {
     setLoadState('loading');
     await axios.get("/api/players")
         .then( res => {
-          setPlayerList(res.data);
-          setFilterList(res.data);
-          setLoadState('loaded');
+          if(res.data == 'failed'){
+            setPlayerList([]);
+            setFilterList([]);
+          }
+          else{
+            setFilterList(res.data);
+            setPlayerList(res.data);
+          }
+            setLoadState('loaded');
         })
   }, [])
 
