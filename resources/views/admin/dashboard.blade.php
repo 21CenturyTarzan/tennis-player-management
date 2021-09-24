@@ -131,7 +131,7 @@
                             <!-- react.component (PlayerList.js) -->
                         </div>
                     </div>
-                    @if ( strcmp(Auth::user()->type, 'parent') != 0 )
+                    
                     <div style="padding-top: 72px;" id="notice">
                         <div class="mt-3 pt-2 bg-white rounded-15" id="message-box">
                             <h3 class="mt-2 p-1 text-white bg-green text-center font-weight-bold">通知</h3>
@@ -140,7 +140,7 @@
                             </div>
                         </div>
                     </div>
-                    @endif
+                   
                 </div>
 
                 <div class="col-md-8">
@@ -150,9 +150,6 @@
                             <div class="name pt-3 pt-md-5 ">
                                 <p class="text-center bg-red-4 font-weight-bold">
                                     浮田　愛未
-                                    @if(strcmp(Auth::user()->type, 'player')==0)
-                                        <a href="#" class="edit"><img src="/images/icon-pencil.svg" alt="icon-pencil.svg" width="30" height="30"></a>
-                                    @endif
                                 </p>
                             </div>
                             <div class="img-wrap mt-3 mt-md-5">
@@ -252,9 +249,6 @@
                         <div class="mt-3 py-2 rounded-15 bg-white shadow-lg">
                             <h3 class="mt-2 p-1  text-white bg-green text-center font-weight-bold">
                                 <span>選手管理<span>
-                                @if(strcmp(Auth::user()->type, 'player') ==0 )
-                                    <a href="#" class="edit py-1" style="margin-top:-5px"><img src="/images/icon-pencil.svg" alt="icon-pencil.svg" width="30" height="30"></a>
-                                @endif
                             </h3>
                             <p class="w-50 w-md-75 p-1 pl-2 mb-2 bg-black-4 rounded-right-20 text-white">近日予定の試合</p>
                             <div class="px-2 mb-2">
@@ -374,9 +368,6 @@
                         <div class="mt-3 py-2 rounded-15 bg-white shadow-lg">
                             <h3 class="mt-2 p-1 text-white bg-green text-center font-weight-bold">
                                 試合前準備
-                                @if(strcmp(Auth::user()->type, 'player') ==0 )
-                                    <a href="#" class="edit py-1" style="margin-top:-5px"><img src="/images/icon-pencil.svg" alt="icon-pencil.svg" width="30" height="30"></a>
-                                @endif
                             </h3>
                             
                             <p class="w-50 w-md-75 p-1 pl-2 mb-2 bg-black-4 rounded-right-20 text-white">大会情報</p>
@@ -441,10 +432,7 @@
                     <div style="padding-top: 72px;" id="reflect">
                         <div class="mt-3 py-2 rounded-15 bg-white shadow-lg">
                             <h3 class="mt-2 p-1 text-white bg-green text-center font-weight-bold">
-                                試合結果
-                                @if(strcmp(Auth::user()->type, 'player') ==0 )
-                                    <a href="#" class="edit py-1" style="margin-top:-5px"><img src="/images/icon-pencil.svg" alt="icon-pencil.svg" width="30" height="30"></a>
-                                @endif    
+                                試合結果  
                             </h3>
                             
                             <p class="w-50 w-md-75 p-1 pl-2 mb-2 bg-black-4 rounded-right-20 text-white"></p>

@@ -10004,6 +10004,19 @@ h3 {
     border-color: #dee2e6;
   }
 }
+.edit-box {
+  height: 100% !important;
+  color: white;
+  background-color: transparent;
+  text-align: center;
+  border-color: white;
+  border-width: 1px;
+}
+.edit-box:focus {
+  box-shadow: none;
+  border: none;
+}
+
 #home .topmv {
   position: relative;
   min-height: 700px;
@@ -10111,7 +10124,7 @@ h3 {
 
 input#height, input#weight {
   padding-right: 40px;
-  text-align: center;
+  text-align: right;
 }
 
 .form-control {
@@ -10500,4 +10513,16 @@ span.star {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
 }

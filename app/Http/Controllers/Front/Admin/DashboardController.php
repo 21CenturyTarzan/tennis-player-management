@@ -21,7 +21,8 @@ class DashboardController extends Controller
             return view('player.dashboard');
         else if(strcmp(Auth::user()->type, 'parent') == 0)
             return view('parent.dashboard');
-        // else return view('')
+        else response()->view('errors.' . '404', [], 404);
+
     }
 
     public function show(Request $request){
