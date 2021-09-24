@@ -19,7 +19,7 @@ const gender_options = [
   { value: 'w', label: '女性' }
 ]
 
-const  ParentProfileEdit = () => {
+const  ParentProfileEditor = () => {
 
     const [isEditFlag, setEditFlag] = useState(false);
     const [isSubmitting, setSubmit] = useState(false);
@@ -140,7 +140,7 @@ const  ParentProfileEdit = () => {
 
 if(document.getElementById('parent-profile')){
     ReactDOM.render(
-        <ParentProfileEdit />,
+        <ParentProfileEditor />,
     document.getElementById('parent-profile')
   );
 }

@@ -12904,13 +12904,15 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
  */
 
 
-__webpack_require__(/*! ./components/profile/PlayerProfileEdit */ "./resources/js/components/profile/PlayerProfileEdit.js");
+__webpack_require__(/*! ./components/profile/PlayerProfileEditor */ "./resources/js/components/profile/PlayerProfileEditor.js");
 
-__webpack_require__(/*! ./components/profile/ParentProfileEdit */ "./resources/js/components/profile/ParentProfileEdit.js");
+__webpack_require__(/*! ./components/profile/ParentProfileEditor */ "./resources/js/components/profile/ParentProfileEditor.js");
 
 __webpack_require__(/*! ./components/dashboard/PlayerList */ "./resources/js/components/dashboard/PlayerList.js");
 
 __webpack_require__(/*! ./components/dashboard/MessageBox */ "./resources/js/components/dashboard/MessageBox.js");
+
+__webpack_require__(/*! ./components/player/InfoEditor */ "./resources/js/components/player/InfoEditor.js");
 
 /***/ }),
 
@@ -13638,10 +13640,695 @@ function Scrollbar(_ref2) {
 
 /***/ }),
 
-/***/ "./resources/js/components/profile/ParentProfileEdit.js":
-/*!**************************************************************!*\
-  !*** ./resources/js/components/profile/ParentProfileEdit.js ***!
-  \**************************************************************/
+/***/ "./resources/js/components/player/InfoEditor.js":
+/*!******************************************************!*\
+  !*** ./resources/js/components/player/InfoEditor.js ***!
+  \******************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var react_date_picker__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-date-picker */ "./node_modules/react-date-picker/dist/entry.js");
+/* harmony import */ var react_image_crop_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-image-crop-component */ "./node_modules/react-image-crop-component/lib/index.min.js");
+/* harmony import */ var react_image_crop_component_style_css__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-image-crop-component/style.css */ "./node_modules/react-image-crop-component/style.css");
+
+
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+ // material
+
+
+
+
+
+
+
+ // ----------------------------------------------------------------------
+
+var preference = [{
+  value: '北海道',
+  label: '北海道'
+}, {
+  value: '青森県',
+  label: '青森県'
+}, {
+  value: '岩手県',
+  label: '岩手県'
+}, {
+  value: '宮城県',
+  label: '宮城県'
+}, {
+  value: '秋田県',
+  label: '秋田県'
+}, {
+  value: '山形県',
+  label: '山形県'
+}, {
+  value: '福島県',
+  label: '福島県'
+}, {
+  value: '茨城県',
+  label: '茨城県'
+}, {
+  value: '栃木県',
+  label: '栃木県'
+}, {
+  value: '群馬県',
+  label: '群馬県'
+}, {
+  value: '埼玉県',
+  label: '埼玉県'
+}, {
+  value: '千葉県',
+  label: '千葉県'
+}, {
+  value: '東京都',
+  label: '東京都'
+}, {
+  value: '神奈川県',
+  label: '神奈川県'
+}, {
+  value: '新潟県',
+  label: '新潟県'
+}, {
+  value: '富山県',
+  label: '富山県'
+}, {
+  value: '石川県',
+  label: '石川県'
+}, {
+  value: '福井県',
+  label: '福井県'
+}, {
+  value: '山梨県',
+  label: '山梨県'
+}, {
+  value: '長野県',
+  label: '長野県'
+}, {
+  value: '岐阜県',
+  label: '岐阜県'
+}, {
+  value: '静岡県',
+  label: '静岡県'
+}, {
+  value: '愛知県',
+  label: '愛知県'
+}, {
+  value: '三重県',
+  label: '三重県'
+}, {
+  value: '滋賀県',
+  label: '滋賀県'
+}, {
+  value: '京都府',
+  label: '京都府'
+}, {
+  value: '大阪府',
+  label: '大阪府'
+}, {
+  value: '兵庫県',
+  label: '兵庫県'
+}, {
+  value: '奈良県',
+  label: '奈良県'
+}, {
+  value: '和歌山県',
+  label: '和歌山県'
+}, {
+  value: '鳥取県',
+  label: '鳥取県'
+}, {
+  value: '島根県',
+  label: '島根県'
+}, {
+  value: '岡山県',
+  label: '岡山県'
+}, {
+  value: '広島県',
+  label: '広島県'
+}, {
+  value: '山口県',
+  label: '山口県'
+}, {
+  value: '徳島県',
+  label: '徳島県'
+}, {
+  value: '香川県',
+  label: '香川県'
+}, {
+  value: '愛媛県',
+  label: '愛媛県'
+}, {
+  value: '高知県',
+  label: '高知県'
+}, {
+  value: '福岡県',
+  label: '福岡県'
+}, {
+  value: '佐賀県',
+  label: '佐賀県'
+}, {
+  value: '長崎県',
+  label: '長崎県'
+}, {
+  value: '熊本県',
+  label: '熊本県'
+}, {
+  value: '大分県',
+  label: '大分県'
+}, {
+  value: '宮崎県',
+  label: '宮崎県'
+}, {
+  value: '鹿児島県',
+  label: '鹿児島県'
+}, {
+  value: '沖縄県',
+  label: '沖縄県'
+}];
+var gender_options = [{
+  value: 'm',
+  label: '男性'
+}, {
+  value: 'w',
+  label: '女性'
+}];
+var grade_options = [{
+  value: '小学',
+  label: '小学'
+}, {
+  value: '中学',
+  label: '中学'
+}, {
+  value: '高校',
+  label: '高校'
+}];
+var grade_year_options = [{
+  value: '1年',
+  label: '1年'
+}, {
+  value: '2年',
+  label: '2年'
+}, {
+  value: '3年',
+  label: '3年'
+}, {
+  value: '4年',
+  label: '4年'
+}, {
+  value: '5年',
+  label: '5年'
+}, {
+  value: '6年',
+  label: '6年'
+}];
+
+var InfoEditor = function InfoEditor() {
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(false),
+      _useState2 = _slicedToArray(_useState, 2),
+      isEditFlag = _useState2[0],
+      setEditFlag = _useState2[1];
+
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(new Date()),
+      _useState4 = _slicedToArray(_useState3, 2),
+      birth = _useState4[0],
+      setBirth = _useState4[1];
+
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(gender_options[0]),
+      _useState6 = _slicedToArray(_useState5, 2),
+      gender = _useState6[0],
+      setGender = _useState6[1];
+
+  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(''),
+      _useState8 = _slicedToArray(_useState7, 2),
+      school = _useState8[0],
+      setSchool = _useState8[1];
+
+  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(grade_options[0]),
+      _useState10 = _slicedToArray(_useState9, 2),
+      grade = _useState10[0],
+      setGrade = _useState10[1];
+
+  var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(grade_year_options[0]),
+      _useState12 = _slicedToArray(_useState11, 2),
+      grade_year = _useState12[0],
+      setGradeYear = _useState12[1];
+
+  var _useState13 = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(''),
+      _useState14 = _slicedToArray(_useState13, 2),
+      phone = _useState14[0],
+      setPhone = _useState14[1];
+
+  var _useState15 = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(preference[0]),
+      _useState16 = _slicedToArray(_useState15, 2),
+      area = _useState16[0],
+      setArea = _useState16[1];
+
+  var _useState17 = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(''),
+      _useState18 = _slicedToArray(_useState17, 2),
+      address = _useState18[0],
+      setAddress = _useState18[1];
+
+  var _useState19 = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(''),
+      _useState20 = _slicedToArray(_useState19, 2),
+      lesson = _useState20[0],
+      setLesson = _useState20[1];
+
+  var _useState21 = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(''),
+      _useState22 = _slicedToArray(_useState21, 2),
+      career = _useState22[0],
+      setCareer = _useState22[1];
+
+  var _useState23 = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(''),
+      _useState24 = _slicedToArray(_useState23, 2),
+      height = _useState24[0],
+      setheight = _useState24[1];
+
+  var _useState25 = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(''),
+      _useState26 = _slicedToArray(_useState25, 2),
+      weight = _useState26[0],
+      setWeight = _useState26[1];
+
+  var _useState27 = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)('/images/blank.png'),
+      _useState28 = _slicedToArray(_useState27, 2),
+      imgUri = _useState28[0],
+      setImgUri = _useState28[1];
+
+  var _useState29 = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)('/images/blank.png'),
+      _useState30 = _slicedToArray(_useState29, 2),
+      convertimgUri = _useState30[0],
+      setConvertImgUri = _useState30[1];
+
+  var _useState31 = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(false),
+      _useState32 = _slicedToArray(_useState31, 2),
+      isSubmitting = _useState32[0],
+      setSubmit = _useState32[1];
+
+  var handleSubmit = function handleSubmit(e) {
+    e.preventDefault();
+    var formdata = new FormData();
+    formdata.append('gender', JSON.stringify(gender.value));
+    formdata.append('birth', JSON.stringify(birth.getFullYear() + '-' + (birth.getMonth() + 1) + '-' + birth.getDate()));
+    formdata.append('height', JSON.stringify(height));
+    formdata.append('weight', JSON.stringify(weight));
+    formdata.append('school', JSON.stringify(school));
+    formdata.append('grade', JSON.stringify(grade.value + ' ' + grade_year.value));
+    formdata.append('phone', JSON.stringify(phone));
+    formdata.append('address', JSON.stringify(area.value + ' ' + address));
+    formdata.append('lesson', JSON.stringify(lesson));
+    formdata.append('career', JSON.stringify(career));
+    formdata.append('image', convertimgUri);
+    setSubmit(true);
+    axios__WEBPACK_IMPORTED_MODULE_3___default().post('/profile/store/player', formdata).then(function (response) {
+      if (response.data == 'success') {
+        window.location.href = '/dashboard';
+      }
+    });
+  };
+
+  var changeGrade = function changeGrade(opt) {
+    if (opt.value == '小学') grade_year_options = [{
+      value: '1年',
+      label: '1年'
+    }, {
+      value: '2年',
+      label: '2年'
+    }, {
+      value: '3年',
+      label: '3年'
+    }, {
+      value: '4年',
+      label: '4年'
+    }, {
+      value: '5年',
+      label: '5年'
+    }, {
+      value: '6年',
+      label: '6年'
+    }];else grade_year_options = [{
+      value: '1年',
+      label: '1年'
+    }, {
+      value: '2年',
+      label: '2年'
+    }, {
+      value: '3年',
+      label: '3年'
+    }];
+    setGrade(opt);
+  };
+
+  var onCropped = function onCropped(e) {
+    var image = e.image;
+    var image_data = e.data;
+    setConvertImgUri(e.image);
+  };
+
+  var handleImageChange = function handleImageChange(e) {
+    e.preventDefault();
+    var reader = new FileReader();
+    var _file = e.target.files[0];
+    reader.readAsDataURL(_file);
+
+    reader.onloadend = function () {
+      setImgUri(reader.result);
+      setConvertImgUri(reader.result);
+    };
+  };
+
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("form", {
+    action: "",
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+      className: "mt-3 pt-2 rounded-top-15 text-white player-main-info",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
+        className: "name pt-3 pt-md-5 ",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("p", {
+          className: "text-center bg-red-4 font-weight-bold",
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("input", {
+            type: "text",
+            name: "name",
+            className: "w-50 w-md-75 bg-none edit-box border-0",
+            value: "{{Auth::user()->name}}",
+            required: true
+          })
+        })
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
+        className: "img-wrap mt-3 mt-md-5",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+          className: "row",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
+            className: "col-md-4 text-center text-md-right",
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("label", {
+              htmlFor: "crop",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("img", {
+                src: "{{Auth::user()->img}}",
+                alt: "{{Auth::user()->img}}",
+                className: "avatar",
+                style: {
+                  cursor: 'pointer'
+                }
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("input", {
+                type: "file",
+                name: "image",
+                id: "crop",
+                className: "d-none"
+              })]
+            })
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+            className: "col-md-8",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("p", {
+              className: "text-center bg-black-4",
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("input", {
+                type: "text",
+                name: "title1",
+                className: "w-75 bg-none edit-box border-0",
+                value: "\u79C1\u306E\u76EE\u6A19\u306F\u25CB\u25CB\uFF01\uFF01",
+                required: true
+              })
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("p", {
+              className: "text-center bg-black-4",
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("input", {
+                type: "text",
+                name: "title2",
+                className: "w-75 bg-none edit-box border-0",
+                value: "\u8AB0\u3005\u306B\u52DD\u3061\u305F\u3044\uFF01\uFF01",
+                required: true
+              })
+            })]
+          })]
+        })
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
+        className: "person-info mt-3 mt-md-5 bg-black-6 rounded-top-20 border-top border-white text-center",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("table", {
+          className: "table m-0 p-1 text-white text-center",
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("tbody", {
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("tr", {
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("td", {
+                className: "col-4 border-0",
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("p", {
+                  className: "value",
+                  children: ["34", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", {
+                    children: "\u6B73"
+                  })]
+                })
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("td", {
+                className: "col-4 border-0",
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("p", {
+                  className: "value",
+                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("input", {
+                    type: "number",
+                    name: "height",
+                    className: "w-75 bg-none edit-box border-0",
+                    value: "170",
+                    required: true
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", {
+                    children: "cm"
+                  })]
+                })
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("td", {
+                className: "col-4 border-0",
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("p", {
+                  className: "value",
+                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("input", {
+                    type: "number",
+                    name: "weight",
+                    className: "w-75 bg-none edit-box border-0",
+                    value: "65.4",
+                    required: true
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", {
+                    children: "kg"
+                  })]
+                })
+              })]
+            })
+          })
+        })
+      })]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+      className: "mt-3 p-2 shadow-lg bg-black-4",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("h3", {
+        className: "text-center text-white",
+        children: "RANK"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("table", {
+        className: "table table-bordered m-0 p-1 text-white text-center",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("tbody", {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("tr", {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("th", {
+              children: "JTAU18"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("td", {
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("input", {
+                type: "number",
+                name: "jta-u-18",
+                className: "w-75 bg-none edit-box border-0",
+                value: "1",
+                required: true
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", {
+                children: "\u4F4D"
+              })]
+            })]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("tr", {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("th", {
+              children: "JTAU34"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("td", {
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("input", {
+                type: "number",
+                name: "jta-u-own",
+                className: "w-75 bg-none edit-box border-0",
+                value: "1",
+                required: true
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", {
+                children: "\u4F4D"
+              })]
+            })]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("tr", {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("th", {
+              children: "\u95A2\u6771U18"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("td", {
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("input", {
+                type: "number",
+                name: "gandong-u-18",
+                className: "w-75 bg-none edit-box border-0",
+                value: "1",
+                required: true
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", {
+                children: "\u4F4D"
+              })]
+            })]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("tr", {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("th", {
+              children: "\u95A2\u6771U34"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("td", {
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("input", {
+                type: "number",
+                name: "gandong-u-own",
+                className: "w-75 bg-none edit-box border-0",
+                value: "1",
+                required: true
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", {
+                children: "\u4F4D"
+              })]
+            })]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("tr", {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("th", {
+              children: "\u57FC\u7389U34"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("td", {
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("input", {
+                type: "number",
+                name: "saitama",
+                className: "w-75 bg-none edit-box border-0",
+                value: "1",
+                required: true
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", {
+                children: "\u4F4D"
+              })]
+            })]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("tr", {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("th", {
+              children: "School"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("td", {
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("input", {
+                type: "number",
+                name: "school",
+                className: "w-75 bg-none edit-box border-0",
+                value: "1",
+                required: true
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", {
+                children: "\u4F4D"
+              })]
+            })]
+          })]
+        })
+      })]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+      className: "mt-3 p-2 shadow-lg bg-black-4",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("h3", {
+        className: "text-center text-white",
+        children: "\u500B\u4EBA\u60C5\u5831"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("table", {
+        className: "table table-bordered m-0 text-white",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("tbody", {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("tr", {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("th", {
+              children: "\u6027\u5225"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("td", {
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("input", {
+                type: "text",
+                name: "gender",
+                className: "w-100 bg-none edit-box border-0",
+                value: "\u5973",
+                required: true
+              })
+            })]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("tr", {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("th", {
+              children: "\u751F\u5E74\u6708\u65E5"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("td", {
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("input", {
+                type: "date",
+                name: "birth",
+                className: "w-100 bg-none edit-box border-0",
+                value: "",
+                required: true
+              })
+            })]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("tr", {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("th", {
+              children: "\u5B66\u6821"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("td", {
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("input", {
+                type: "text",
+                name: "school",
+                className: "w-100 bg-none edit-box border-0",
+                value: "Kansas States University",
+                required: true
+              })
+            })]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("tr", {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("th", {
+              children: "\u5B66\u5E74"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("td", {
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("input", {
+                type: "text",
+                name: "grade",
+                className: "w-100 bg-none edit-box border-0",
+                value: "\u5927\u5B661\u5E74",
+                required: true
+              })
+            })]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("tr", {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("th", {
+              children: "\u90F5\u4FBF\u756A\u53F7"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("td", {
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("input", {
+                type: "text",
+                name: "phone",
+                className: "w-100 bg-none edit-box border-0",
+                value: "000-0000",
+                required: true
+              })
+            })]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("tr", {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("th", {
+              children: "\u4F4F\u6240"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("td", {
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("input", {
+                type: "text",
+                name: "address",
+                className: "w-100 bg-none edit-box border-0",
+                value: "\u57FC\u7389\u770C\u6240\u6CA2\u5E02",
+                required: true
+              })
+            })]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("tr", {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("th", {
+              children: "\u4E3B\u306A\u6226\u7E3E"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("td", {
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("textarea", {
+                name: "",
+                id: "career",
+                rows: "5",
+                className: "w-100 bg-none text-white border-0",
+                required: true
+              })
+            })]
+          })]
+        })
+      })]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("button", {
+      type: "submit",
+      children: "Submit"
+    })]
+  });
+};
+
+if (document.querySelector('#info-editor')) {
+  react_dom__WEBPACK_IMPORTED_MODULE_1__.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(InfoEditor, {}), document.querySelector('#info-editor'));
+}
+
+/***/ }),
+
+/***/ "./resources/js/components/profile/ParentProfileEditor.js":
+/*!****************************************************************!*\
+  !*** ./resources/js/components/profile/ParentProfileEditor.js ***!
+  \****************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -13691,7 +14378,7 @@ var gender_options = [{
   label: '女性'
 }];
 
-var ParentProfileEdit = function ParentProfileEdit() {
+var ParentProfileEditor = function ParentProfileEditor() {
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(false),
       _useState2 = _slicedToArray(_useState, 2),
       isEditFlag = _useState2[0],
@@ -13918,15 +14605,15 @@ var ParentProfileEdit = function ParentProfileEdit() {
 };
 
 if (document.getElementById('parent-profile')) {
-  react_dom__WEBPACK_IMPORTED_MODULE_1__.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(ParentProfileEdit, {}), document.getElementById('parent-profile'));
+  react_dom__WEBPACK_IMPORTED_MODULE_1__.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(ParentProfileEditor, {}), document.getElementById('parent-profile'));
 }
 
 /***/ }),
 
-/***/ "./resources/js/components/profile/PlayerProfileEdit.js":
-/*!**************************************************************!*\
-  !*** ./resources/js/components/profile/PlayerProfileEdit.js ***!
-  \**************************************************************/
+/***/ "./resources/js/components/profile/PlayerProfileEditor.js":
+/*!****************************************************************!*\
+  !*** ./resources/js/components/profile/PlayerProfileEditor.js ***!
+  \****************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -14147,7 +14834,7 @@ var grade_year_options = [{
   label: '6年'
 }];
 
-var PlayerProfileEdit = function PlayerProfileEdit() {
+var PlayerProfileEditor = function PlayerProfileEditor() {
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(false),
       _useState2 = _slicedToArray(_useState, 2),
       isEditFlag = _useState2[0],
@@ -14612,7 +15299,7 @@ var PlayerProfileEdit = function PlayerProfileEdit() {
 };
 
 if (document.querySelector('#player-profile')) {
-  react_dom__WEBPACK_IMPORTED_MODULE_1__.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(PlayerProfileEdit, {}), document.querySelector('#player-profile'));
+  react_dom__WEBPACK_IMPORTED_MODULE_1__.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(PlayerProfileEditor, {}), document.querySelector('#player-profile'));
 }
 
 /***/ }),

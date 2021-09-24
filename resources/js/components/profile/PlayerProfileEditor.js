@@ -84,7 +84,7 @@ var grade_year_options = [
   ]
 
 
-const  PlayerProfileEdit = () => {
+const  PlayerProfileEditor = () => {
 
     const [isEditFlag, setEditFlag] = useState(false);
     
@@ -298,7 +298,7 @@ const  PlayerProfileEdit = () => {
 
 if(document.querySelector('#player-profile')){
     ReactDOM.render(
-        <PlayerProfileEdit />,
+        <PlayerProfileEditor />,
     document.querySelector('#player-profile')
   );
 }

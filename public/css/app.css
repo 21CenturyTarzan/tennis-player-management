@@ -10172,12 +10172,14 @@ input#height, input#weight {
   -o-object-fit: contain;
      object-fit: contain;
 }
-.avatar-editor-wrapper .img-wrap img.upload-label {
+
+.upload-label {
   position: absolute;
   top: 30%;
   left: 40%;
+  cursor: pointer;
 }
-.avatar-editor-wrapper .img-wrap img.upload-label:hover {
+.upload-label:hover {
   transform: scale(1.1);
 }
 
