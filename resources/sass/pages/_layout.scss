@@ -27,6 +27,10 @@
     opacity: .6;
 }
 
+.bg-none{
+    background-color: transparent;
+}
+
 .shadow-lg{
     box-shadow: 0 0 8px #000 !important;
 }
@@ -75,7 +79,7 @@
 table, th, td{
     padding: 5px !important;
     @include media-breakpoint-down(md){
-        font-size: 15px !important;
+        font-size: 16px !important;
     }
 }
 
@@ -207,10 +211,11 @@ span.star{
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
-  margin: 0;
+  margin: 0;    
 }
 
 /* Firefox */
 input[type=number] {
   -moz-appearance: textfield;
 }
+
