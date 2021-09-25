@@ -64,8 +64,8 @@ const preference = [
 ]
 
 const gender_options = [
-  { value: 'm', label: '男性' },
-  { value: 'w', label: '女性' }
+  { value: '男', label: '男' },
+  { value: '女', label: '女' }
 ]
 
 const grade_options = [
@@ -84,7 +84,7 @@ var grade_year_options = [
   ]
 
 
-const  PlayerProfileEdit = () => {
+const  PlayerProfileEditor = () => {
 
     const [isEditFlag, setEditFlag] = useState(false);
     
@@ -298,7 +298,7 @@ const  PlayerProfileEdit = () => {
 
 if(document.querySelector('#player-profile')){
     ReactDOM.render(
-        <PlayerProfileEdit />,
+        <PlayerProfileEditor />,
     document.querySelector('#player-profile')
   );
 }

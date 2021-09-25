@@ -26,43 +26,130 @@
                 <table class="table m-0 p-1 text-white text-center">
                     <tbody>
                         <tr>
-                            <td class="col-4 border-0"><p class="value">34<span>歳</span></p></td>
-                            <td class="col-4 border-0"><p class="value">170<span>cm</span></p></td>
-                            <td class="col-4 border-0"><p class="value">65.4<span>kg</span></p></td>
+                            <td class="col-4 border-0">
+                                <p class="hint">1995.6.28</p>
+                                <p class="value">26<span>歳</span></p>
+                            </td>
+                            <td class="col-4 border-0">
+                                <p class="hint">Height</p>
+                                <p class="value">172<span>cm</span></p>
+                            </td>
+                            <td class="col-4 border-0">
+                                <p class="hint">Weight</p>
+                                <p class="value">56<span>kg</span></p>
+                            </td>
+                        </tr>
+                        <tr>    
+                            <td class="col-4 border-0">
+                                <p class="hint">U18</p>
+                                <p class="value">1<span>位</span></p>
+                            </td>
+                            <td class="col-4 border-0">
+                                <p class="hint">2021 W-L</p>
+                                <p class="value">40-4</p>
+                            </td>
+                            <td class="col-4 border-0">
+                                <p class="hint">勝率</p>
+                                <p class="value">64<span>%</span></p>
+                            </td>
                         </tr>
                     </tbody>
                 </table>    
             </div>
         </div>
 
-        <div class="mt-3 p-2 shadow-lg bg-black-4">
-            <h3 class="text-center text-white">RANK</h3>
-            <table class="table table-bordered m-0 p-1 text-white text-center">
-                <tbody>
-                    <tr>
-                        <th>JTAU18</th>
-                        <td>1位</td>
-                        <th>JTAU34</th>
-                        <td>1位</td>
-                    </tr>
-                    <tr>
-                        <th>関東U18</th>
-                        <td>1位</td>
-                        <th>関東U34</th>
-                        <td>1位</td>
-                    </tr>
-                    <tr>
-                        <th>埼玉U34</th>
-                        <td>1位</td>
-                        <th>School</th>
-                        <td>1位</td>
-                    </tr>
-                </tbody>
-            </table>
+        <div class="row mt-4">
+            <div class="col-md-6">
+                <div class="p-2 shadow-lg bg-black-4">
+                    <h4 class="text-center text-white">勝率</h4>
+                    <table class="table table-bordered m-0 p-1 text-white text-center">
+                        <thead>
+                            <tr>
+                                <td class="bg-white-2">区分</td>
+                                <td class="bg-white-2">W-L</td>
+                                <td class="bg-white-2">%</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1set</td>
+                                <td>10-5</td>
+                                <td>10</td>
+                            </tr>
+                            <tr>
+                                <td>3set</td>
+                                <td>90-10</td>
+                                <td>90</td>
+                            </tr>
+                            <tr>
+                                <td>オムニコート</td>
+                                <td>10-1</td>
+                                <td>90</td>
+                            </tr>
+                            <tr>
+                                <td>ハードコート</td>
+                                <td>10-10</td>
+                                <td>100</td>
+                            </tr>
+                            <tr>
+                                <td>クレーコート</td>
+                                <td>10-5</td>
+                                <td>50</td>
+                            </tr>
+                            <tr>
+                                <td>Total</td>
+                                <td>20-4</td>
+                                <td>33.3</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="col-md-6 mt-4 mt-md-0">
+                <div class="p-2 shadow-lg bg-black-4">
+                    <h4 class="text-center text-white">RANK</h4>
+                    <table class="table table-bordered m-0 p-1 text-white text-center">
+                        <thead>
+                            <tr>
+                                <td class="bg-white-2">区分</td>
+                                <td class="bg-white-2">位</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>ITF</td>
+                                <td>1</td>
+                            </tr>
+                            <tr>
+                                <td>JTAU18</td>
+                                <td>1</td>
+                            </tr>
+                            <tr>
+                                <td>JTAU34</td>
+                                <td>1</td>
+                            </tr>
+                            <tr>
+                                <td>関東U34</td>
+                                <td>1</td>
+                            </tr>
+                            <tr>
+                                <td>埼玉U34</td>
+                                <td>1</td>
+                            </tr>
+                            <tr>
+                                <td>School</td>
+                                <td>1</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
-        
-        <div class="mt-3 p-2 shadow-lg bg-black-4">
-            <h3 class="text-center text-white">個人情報</h3>
+
+    
+        <div class="mt-4 p-2 shadow-lg bg-black-4">
+            <h4 class="text-center text-white">個人情報</h4>
             <table class="table table-bordered m-0 text-white">
                 <tbody>
                     <tr>
@@ -84,20 +171,18 @@
                         <td>埼玉県所沢市</td>
                     </tr>
                     <tr>
+                        <th>受講回数</th>
+                        <td colspan="3">フリー<br>
+                        </td>
+                    </tr>      
+                    <tr>
                         <th>主な戦績</th>
                         <td colspan="3">
                             I have enough experience of playing tennis.<br>
                             I have been training tennis more than 7 years.<br>
                             Tennis is my favourite sport.<br>
                         </td>
-                    </tr>
-                    <tr>
-                        <th>1set勝率</th>
-                        <td>78%</td>
-                        <th>3set勝率</th>
-                        <td>70%</td>
-                    </tr>
-                    
+                    </tr>                   
                 </tbody>
             </table>
         </div>
@@ -317,3 +402,7 @@
         </div>
     </div>
 @endsection
+
+@push('js')
+<script src="{{ asset('js/app.js') }}"></script>
+@endpush

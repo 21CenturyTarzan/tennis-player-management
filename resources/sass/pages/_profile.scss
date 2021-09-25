@@ -50,15 +50,17 @@ input{
                 height: 250px;
                 object-fit: contain;
             }
-            &.upload-label{
-                position: absolute;
-                top: 30%;
-                left: 40%;
-                &:hover{
-                    transform: scale(1.1);
-                }
-            }
+           
         }
     }
 }
-            
+
+.upload-label{
+    position: absolute;
+    top: 30%;
+    left: 40%;
+    &:hover{
+        transform: scale(1.1);
+    }
+    cursor: pointer;
+}

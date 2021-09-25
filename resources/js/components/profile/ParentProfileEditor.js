@@ -15,11 +15,11 @@ import 'react-image-crop-component/style.css'
 // ----------------------------------------------------------------------
 
 const gender_options = [
-  { value: 'm', label: '男性' },
-  { value: 'w', label: '女性' }
+  { value: '男', label: '男' },
+  { value: '女', label: '女' }
 ]
 
-const  ParentProfileEdit = () => {
+const  ParentProfileEditor = () => {
 
     const [isEditFlag, setEditFlag] = useState(false);
     const [isSubmitting, setSubmit] = useState(false);
@@ -140,7 +140,7 @@ const  ParentProfileEdit = () => {
 
 if(document.getElementById('parent-profile')){
     ReactDOM.render(
-        <ParentProfileEdit />,
+        <ParentProfileEditor />,
     document.getElementById('parent-profile')
   );
 }

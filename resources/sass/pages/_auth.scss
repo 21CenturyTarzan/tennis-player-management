@@ -1,30 +1,32 @@
-    .modal-content{
-        border-radius: 0;
-    
-        .btn{
-            border-radius: 0;
-            width: 100%;
-        }
-        .form-control{
-            border-radius: 0;
-            &:focus{
-                border: 2px solid #3490dc;
-                box-shadow: none;
-            }
-        }
 
-        .modal-body{
-            padding: 20px 20px 30px 20px;
-        }
-    
-        @include media-breakpoint-down(md){
-            
-            
-        }
-        
-    }
 
     #registerModal, #loginModal{
+
+        .modal-content{
+            border-radius: 0;
+        
+            .btn{
+                border-radius: 0;
+                width: 100%;
+            }
+            .form-control{
+                border-radius: 0;
+                &:focus{
+                    border: 2px solid #3490dc;
+                    box-shadow: none;
+                }
+            }
+    
+            .modal-body{
+                padding: 20px 20px 30px 20px;
+            }
+        
+            @include media-breakpoint-down(md){
+                
+                
+            }
+            
+        }
 
         @include media-breakpoint-down(md){
             .form-group{

@@ -27,7 +27,8 @@ class ProfileTableSeeder extends Seeder
         foreach($players as $player){
 
            
-            $birth = $faker->dateTimeBetween($startDate = '-50 years', $endDate = 'now');
+            $birth = $faker->dateTimeBetween('-50 years', 'now');
+            $birth = $birth->format("Y-m-d");
 
 
             if(strcmp($player->type, 'player') == 0){
@@ -70,8 +71,8 @@ class ProfileTableSeeder extends Seeder
 
     public function gender(){
         if( rand(1, 90000) % 2 == 1 )
-            return 'w';
-        else return 'm';
+            return '女';
+        else return '男';
     }
 
     public function grade(){
