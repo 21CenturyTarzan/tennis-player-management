@@ -13736,50 +13736,50 @@ var InfoEditor = function InfoEditor(_ref) {
       phone = _useState16[0],
       setPhone = _useState16[1];
 
-  var _useState17 = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(info.area),
+  var _useState17 = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(info.address),
       _useState18 = _slicedToArray(_useState17, 2),
-      area = _useState18[0],
-      setArea = _useState18[1];
+      address = _useState18[0],
+      setAddress = _useState18[1];
 
-  var _useState19 = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(info.address),
+  var _useState19 = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(info.lesson),
       _useState20 = _slicedToArray(_useState19, 2),
-      address = _useState20[0],
-      setAddress = _useState20[1];
+      lesson = _useState20[0],
+      setLesson = _useState20[1];
 
-  var _useState21 = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(info.lesson),
+  var _useState21 = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(info.career),
       _useState22 = _slicedToArray(_useState21, 2),
-      lesson = _useState22[0],
-      setLesson = _useState22[1];
+      career = _useState22[0],
+      setCareer = _useState22[1];
 
-  var _useState23 = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(info.career),
+  var _useState23 = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(info.height),
       _useState24 = _slicedToArray(_useState23, 2),
-      career = _useState24[0],
-      setCareer = _useState24[1];
+      height = _useState24[0],
+      setHeight = _useState24[1];
 
-  var _useState25 = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(info.height),
+  var _useState25 = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(info.weight),
       _useState26 = _slicedToArray(_useState25, 2),
-      height = _useState26[0],
-      setHeight = _useState26[1];
+      weight = _useState26[0],
+      setWeight = _useState26[1];
 
-  var _useState27 = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(info.weight),
+  var _useState27 = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(info.account.img),
       _useState28 = _slicedToArray(_useState27, 2),
-      weight = _useState28[0],
-      setWeight = _useState28[1];
+      imgUri = _useState28[0],
+      setImgUri = _useState28[1];
 
   var _useState29 = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(info.account.img),
       _useState30 = _slicedToArray(_useState29, 2),
-      imgUri = _useState30[0],
-      setImgUri = _useState30[1];
+      convertimgUri = _useState30[0],
+      setConvertImgUri = _useState30[1];
 
   var _useState31 = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(info.account.img),
       _useState32 = _slicedToArray(_useState31, 2),
-      convertimgUri = _useState32[0],
-      setConvertImgUri = _useState32[1];
+      cropimgUri = _useState32[0],
+      setCropImgUri = _useState32[1];
 
-  var _useState33 = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(info.account.img),
+  var _useState33 = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(false),
       _useState34 = _slicedToArray(_useState33, 2),
-      cropimgUri = _useState34[0],
-      setCropImgUri = _useState34[1];
+      isSubmitting = _useState34[0],
+      setSubmit = _useState34[1];
 
   var _useState35 = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)("私の目標は○○！！"),
       _useState36 = _slicedToArray(_useState35, 2),
@@ -13791,28 +13791,44 @@ var InfoEditor = function InfoEditor(_ref) {
       title2 = _useState38[0],
       setTitle2 = _useState38[1];
 
-  var _useState39 = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)([]),
+  var _useState39 = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(1),
       _useState40 = _slicedToArray(_useState39, 2),
-      rankList = _useState40[0],
-      setRankList = _useState40[1];
+      jta_u_18 = _useState40[0],
+      setJTAU18 = _useState40[1];
+
+  var _useState41 = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(1),
+      _useState42 = _slicedToArray(_useState41, 2),
+      kanto_u_18 = _useState42[0],
+      setKantoU18 = _useState42[1];
+
+  var _useState43 = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)([]),
+      _useState44 = _slicedToArray(_useState43, 2),
+      rankList = _useState44[0],
+      setRankList = _useState44[1];
 
   var handleSubmit = function handleSubmit(e) {
     e.preventDefault();
     var formdata = new FormData();
-    formdata.append('gender', JSON.stringify(gender.value));
-    formdata.append('birth', JSON.stringify(birth.getFullYear() + '-' + (birth.getMonth() + 1) + '-' + birth.getDate()));
+    formdata.append('gender', JSON.stringify(gender));
+    formdata.append('birth', JSON.stringify(birth));
     formdata.append('height', JSON.stringify(height));
     formdata.append('weight', JSON.stringify(weight));
     formdata.append('school', JSON.stringify(school));
-    formdata.append('grade', JSON.stringify(grade.value + ' ' + grade_year.value));
+    formdata.append('grade', JSON.stringify(grade));
     formdata.append('phone', JSON.stringify(phone));
-    formdata.append('address', JSON.stringify(area.value + ' ' + address));
+    formdata.append('address', JSON.stringify(address));
     formdata.append('lesson', JSON.stringify(lesson));
     formdata.append('career', JSON.stringify(career));
     formdata.append('image', convertimgUri);
+    formdata.append('jta_u_18', JSON.stringify(jta_u_18));
+    formdata.append('kanto_u_18', JSON.stringify(kanto_u_18));
+    formdata.append('rankList', JSON.stringify(rankList));
+    formdata.append('title1', JSON.stringify(title1));
+    formdata.append('title2', JSON.stringify(title2));
     setSubmit(true);
-    axios__WEBPACK_IMPORTED_MODULE_3___default().post('/profile/store/player', formdata).then(function (response) {
+    axios__WEBPACK_IMPORTED_MODULE_3___default().post('/info/store', formdata).then(function (response) {
       if (response.data == 'success') {
+        setSubmit(false);
         window.location.href = '/dashboard';
       }
     });
@@ -13905,15 +13921,7 @@ var InfoEditor = function InfoEditor(_ref) {
       'rankValue': ''
     });
     arr.push({
-      'rankType': 'JTAU18',
-      'rankValue': ''
-    });
-    arr.push({
       'rankType': 'JTAU' + age,
-      'rankValue': ''
-    });
-    arr.push({
-      'rankType': '関東U18',
       'rankValue': ''
     });
     arr.push({
@@ -13933,7 +13941,8 @@ var InfoEditor = function InfoEditor(_ref) {
 
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("form", {
-      action: "",
+      className: "needs-validation",
+      onSubmit: handleSubmit,
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
         className: "mt-3 pt-2 rounded-top-15 text-white player-main-info",
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
@@ -14061,7 +14070,7 @@ var InfoEditor = function InfoEditor(_ref) {
                     children: "U18"
                   }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("p", {
                     className: "value",
-                    children: ["1", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", {
+                    children: [kanto_u_18, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", {
                       children: "\u4F4D"
                     })]
                   })]
@@ -14143,11 +14152,40 @@ var InfoEditor = function InfoEditor(_ref) {
                   })]
                 })
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("tbody", {
-                children: [rankList.length == 0 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("tr", {
-                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("td", {
-                    colSpan: "3",
-                    children: "Input Rank"
-                  })
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("tr", {
+                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("td", {
+                    children: "JTAU18"
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("td", {
+                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("input", {
+                      type: "number",
+                      min: "1",
+                      step: "1",
+                      name: "jta-u-18",
+                      className: "w-50 bg-none edit-box border-0",
+                      value: jta_u_18,
+                      onChange: function onChange(e) {
+                        return setJTAU18(e.target.value);
+                      },
+                      required: true
+                    })
+                  })]
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("tr", {
+                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("td", {
+                    children: "\u95A2\u6771U18"
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("td", {
+                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("input", {
+                      type: "number",
+                      min: "1",
+                      step: "1",
+                      name: "kanto-u-18",
+                      className: "w-50 bg-none edit-box border-0",
+                      value: kanto_u_18,
+                      onChange: function onChange(e) {
+                        return setKantoU18(e.target.value);
+                      },
+                      required: true
+                    })
+                  })]
                 }), rankList.length != 0 && rankList.map(function (x, i) {
                   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("tr", {
                     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("td", {

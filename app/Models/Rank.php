@@ -9,11 +9,12 @@ class Rank extends Model
 {
     use HasFactory;
 
-    protected $table = 'rank';
+    protected $table = 'ranks';
     protected $fillable = [
-        'from',
-        'to',
-        'msg',
-        'state'
+        'player_id',
+        'jta_u_18',
+        'kanto_u_18',
+        'title1',
+        'title2'
     ];
 }

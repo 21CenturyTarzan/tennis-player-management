@@ -28,7 +28,6 @@ const  InfoEditor = ({info}) => {
     const [school, setSchool] = useState(info.school);
     const [grade, setGrade] = useState(info.grade);
     const [phone, setPhone] = useState(info.phone);
-    const [area, setArea] = useState(info.area);
     const [address, setAddress] = useState(info.address);
     const [lesson, setLesson] = useState(info.lesson);
     const [career, setCareer] = useState(info.career);
@@ -39,32 +38,43 @@ const  InfoEditor = ({info}) => {
     const [convertimgUri, setConvertImgUri] = useState(info.account.img);
     const [cropimgUri, setCropImgUri] = useState(info.account.img);
 
+    const [isSubmitting, setSubmit] = useState(false);
+
     const [title1, setTitle1] = useState("私の目標は○○！！");
     const [title2, setTitle2] = useState("誰々に勝ちたい！！");
     
+    const [jta_u_18, setJTAU18] = useState(1);
+    const [kanto_u_18, setKantoU18] = useState(1);
     const [rankList, setRankList] = useState([]);
 
 
     const handleSubmit = (e) => {
         e.preventDefault();
         const formdata = new FormData();
-        formdata.append('gender', JSON.stringify(gender.value));
-        formdata.append('birth', JSON.stringify(birth.getFullYear()+'-'+(birth.getMonth()+1)+'-'+birth.getDate()));
+        formdata.append('gender', JSON.stringify(gender));
+        formdata.append('birth', JSON.stringify(birth));
         formdata.append('height', JSON.stringify(height));
         formdata.append('weight', JSON.stringify(weight));
         formdata.append('school', JSON.stringify(school));
-        formdata.append('grade', JSON.stringify(grade.value +' '+ grade_year.value));
+        formdata.append('grade', JSON.stringify(grade));
         formdata.append('phone', JSON.stringify(phone));
-        formdata.append('address', JSON.stringify(area.value+' '+address));
+        formdata.append('address', JSON.stringify(address));
         formdata.append('lesson', JSON.stringify(lesson));
         formdata.append('career', JSON.stringify(career));
         formdata.append('image', convertimgUri);
+        formdata.append('jta_u_18', JSON.stringify(jta_u_18));
+        formdata.append('kanto_u_18', JSON.stringify(kanto_u_18));
+        formdata.append('rankList', JSON.stringify(rankList));
+        formdata.append('title1', JSON.stringify(title1));
+        formdata.append('title2', JSON.stringify(title2));
 
         setSubmit(true)
 
-        axios.post('/profile/store/player', formdata)
+
+        axios.post('/info/store', formdata)
         .then(response => {
             if(response.data=='success'){
+                setSubmit(false)
                 window.location.href = '/dashboard';
             }
         })
@@ -151,9 +161,7 @@ const  InfoEditor = ({info}) => {
     const setDefaultRank = function(age){
         let arr = [];
         arr.push({'rankType': 'ITF', 'rankValue':''});
-        arr.push({'rankType': 'JTAU18', 'rankValue':''});
         arr.push({'rankType': 'JTAU'+age, 'rankValue':''});
-        arr.push({'rankType': '関東U18', 'rankValue':''});
         arr.push({'rankType': '関東U'+age, 'rankValue':''});
         arr.push({'rankType': '埼玉U'+age, 'rankValue':''});
         arr.push({'rankType': 'School', 'rankValue':''});
@@ -164,7 +172,7 @@ const  InfoEditor = ({info}) => {
   
     return (
     <>
-        <form action="">
+        <form  className="needs-validation"  onSubmit={handleSubmit} >
             <div className="mt-3 pt-2 rounded-top-15 text-white player-main-info">
                 <div className="name pt-3 pt-md-5 ">
                     <p className="text-center bg-red-4 font-weight-bold">
@@ -214,7 +222,7 @@ const  InfoEditor = ({info}) => {
                             <tr>
                                 <td className="col-4 border-0">
                                     <p className="hint">U18</p>
-                                    <p className="value">1<span>位</span></p>
+                                    <p className="value">{kanto_u_18}<span>位</span></p>
                                 </td>
                                 <td className="col-4 border-0">
                                     <p className="hint">{new Date().getFullYear()} W-L</p>
@@ -249,12 +257,18 @@ const  InfoEditor = ({info}) => {
                                 </tr>
                             </thead>
                             <tbody>
-                            {
-                                rankList.length == 0 && 
                                 <tr>
-                                    <td colSpan="3">Input Rank</td>
+                                    <td>JTAU18</td>
+                                    <td>
+                                        <input type="number" min='1' step='1' name="jta-u-18" className="w-50 bg-none edit-box border-0"  value={jta_u_18} onChange={e => setJTAU18(e.target.value)} required />
+                                    </td>
                                 </tr>
-                            }
+                                <tr>
+                                    <td>関東U18</td>
+                                    <td>
+                                        <input type="number" min='1' step='1' name="kanto-u-18" className="w-50 bg-none edit-box border-0"  value={kanto_u_18} onChange={e => setKantoU18(e.target.value)} required />
+                                    </td>
+                                </tr>
                             {
                                 rankList.length != 0 && 
                                 rankList.map((x, i)=>{

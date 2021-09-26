@@ -42,7 +42,8 @@ Route::middleware(['auth', 'verified'])->name('account.')->group(function () {
     
     Route::get('/api/players', [PlayerController::class, 'index'])->name('players.get');
 
-    Route::get('/info/edit', [App\Http\Controllers\Front\Player\DashboardController::class, 'info'])->name('edit.info');
+    Route::get('/info/edit', [App\Http\Controllers\Front\Player\InfoController::class, 'index'])->name('edit.info');
+    Route::post('/info/store', [App\Http\Controllers\Front\Player\InfoController::class, 'store'])->name('store.info');
 
 });
 
