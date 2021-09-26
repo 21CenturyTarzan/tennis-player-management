@@ -355,7 +355,7 @@ const  InfoEditor = ({info}) => {
                                 }
                                 {
                                     isEditFlag ? 
-                                        <Button fullWidth variant="contained" onClick={(e)=>{ e.preventDefault(); setEditFlag(false)}}>save</Button> 
+                                        <Button fullWidth variant="contained" onClick={(e)=>{ e.preventDefault(); setEditFlag(false)}}>preview</Button> 
                                         :<Button fullWidth variant="contained" onClick={(e)=>{ e.preventDefault(); setEditFlag(true)}}>crop</Button>                                
                                 }    
                             </div>

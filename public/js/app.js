@@ -14421,7 +14421,7 @@ var InfoEditor = function InfoEditor(_ref) {
                     e.preventDefault();
                     setEditFlag(false);
                   },
-                  children: "save"
+                  children: "preview"
                 }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_8__.default, {
                   fullWidth: true,
                   variant: "contained",

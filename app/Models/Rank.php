@@ -8,4 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Rank extends Model
 {
     use HasFactory;
+
+    protected $table = 'rank';
+    protected $fillable = [
+        'from',
+        'to',
+        'msg',
+        'state'
+    ];
 }
