@@ -15,8 +15,8 @@ import 'react-image-crop-component/style.css'
 // ----------------------------------------------------------------------
 
 const gender_options = [
-  { value: 'm', label: '男性' },
-  { value: 'w', label: '女性' }
+  { value: '男', label: '男' },
+  { value: '女', label: '女' }
 ]
 
 const  ParentProfileEditor = () => {

@@ -31,6 +31,10 @@
     background-color: transparent;
 }
 
+.bg-white-2{
+    background-color: rgb(255,255,255, .2) !important;
+}
+
 .shadow-lg{
     box-shadow: 0 0 8px #000 !important;
 }
@@ -217,5 +221,26 @@ input::-webkit-inner-spin-button {
 /* Firefox */
 input[type=number] {
   -moz-appearance: textfield;
+}
+
+
+
+::-webkit-scrollbar {
+    width: 20px;
+  }
+
+::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #d6dee1;
+    border-radius: 20px;
+    border: 6px solid transparent;
+    background-clip: content-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: #a8bbbf;
 }
 
