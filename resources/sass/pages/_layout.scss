@@ -117,6 +117,15 @@ span.star{
     font-size: 12px !important;
 }
 
+.ft-30{
+    font-size: 30px !important;
+}
+
+.ft-md-20{
+    @include media-breakpoint-down(md){
+        font-size: 20px !important;
+    }
+}
 
 .navbar{
     background-color: #10580c;

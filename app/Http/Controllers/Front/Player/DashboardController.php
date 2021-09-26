@@ -6,8 +6,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-use App\Models\ProfilePlayer;
 use App\Models\User;
+use App\Models\ProfilePlayer;
+use App\Models\Rank;
 
 
 class DashboardController extends Controller
@@ -15,12 +16,15 @@ class DashboardController extends Controller
     //
     public function index()
     {
-        return view('player.dashboard');
+        $res['rank'] = Rank::where('account_id', Auth::user()->id)->with('ranklist') -> orderBy('id', 'DESC') -> first();
+        if(strcmp(Auth::user()->type, 'player') == 0)
+            return view('player.dashboard', $res);
+        else return view('errors.404');
     }
 
     public function info()
     {
-        $res['profile'] = ProfilePlayer::where('account_id', Auth::user()->id)->with('account')->first();
-        return view('player.info', $res);
+        
     }
+
 }

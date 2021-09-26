@@ -3,42 +3,28 @@
 namespace App\Http\Controllers\Front\Player;
 
 use App\Http\Controllers\Controller;
-use App\Models\ProfilePlayer;
-use App\Models\User;
 use Illuminate\Http\Request;
+
 use Illuminate\Support\Facades\Auth;
 
-class ProfileController extends Controller
+use App\Models\ProfilePlayer;
+use App\Models\User;
+use App\Models\Rank;
+use App\Models\RankList;
+
+class InfoController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    //
     public function index()
     {
-        return view('player.profile');
+        # code...
+        $res['profile'] = ProfilePlayer::where('account_id', Auth::user()->id)->with('account')->first();
+        return view('player.info', $res);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
+        $name = json_decode($request->get('name'));
         $gender = json_decode($request->get('gender'));
         $birth  =  json_decode($request->get('birth'));
         $birth = date_create_from_format('Y-m-d', $birth);
@@ -50,14 +36,19 @@ class ProfileController extends Controller
         $address= json_decode($request->get('address'));
         $lesson = json_decode($request->get('lesson'));
         $career = json_decode($request->get('career'));
+        $jta_u_18 = (int)json_decode($request->get('jta_u_18'));
+        $kanto_u_18 = (int)json_decode($request->get('kanto_u_18'));
+        $rank_list = json_decode($request->get('rankList'));
+        $title1 = json_decode($request->get('title1'));
+        $title2 = json_decode($request->get('title2'));
 
         $path = 'uploads/avatar';
         if (!file_exists(public_path($path))) {
             mkdir(public_path($path), 0777, true);
         }
         if ($file = $request->get('image')) {
-            if(strcmp($file,'/images/avatar.jpg')==0){
-                $img_url = '/images/avatar.jpg';
+            if(str_contains($file,'/images') || str_contains($file,'/uploads')){
+                $img_url = $file;
             }
             else{
 
@@ -69,9 +60,29 @@ class ProfileController extends Controller
                 $img_url = '/'.$path.$img_name;
             }
         }
+
         try {
-            ProfilePlayer::create([
+            Rank::create([
                 'account_id' => Auth::user()->id,
+                'jta_u_18' => $jta_u_18,
+                'kanto_u_18' => $kanto_u_18,
+                'title1' => $title1,
+                'title2' => $title2
+            ]);
+
+            $rank_id = Rank::get()->count();
+            $index = 0;
+            foreach($rank_list as $rank){
+                $index ++;
+                RankList::create([
+                    'rank_id'=>$rank_id,
+                    'index'=>$index,
+                    'rank_type'=>$rank->rankType,
+                    'rank_value'=>(int)$rank->rankValue,
+                ]);
+            }
+
+            ProfilePlayer::where('account_id', Auth::id())->first()->update([
                 'gender' => $gender,
                 'birth' => $birth,
                 'height' => $height,
@@ -81,59 +92,19 @@ class ProfileController extends Controller
                 'phone' => $phone,
                 'address' => $address,
                 'lesson' => $lesson,
-                'career' => $career
+                'career' => $career,
+                'updated_at'=>now()
             ]);
-            User::where(['id'=>Auth::id()])->first()->update([
-                'img'=> $img_url
+
+            User::where('id', Auth::id())->first()->update([
+                'name'=>$name,
+                'img'=> $img_url,
+                'updated_at'=>now()
             ]);
             return 'success';
         } catch (\Throwable $th) {
             throw $th;
+            return 'failed';
         }
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Profile  $profile
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Profile $profile)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Profile  $profile
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Profile $profile)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Profile  $profile
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Profile $profile)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Profile  $profile
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Profile $profile)
-    {
-        //
     }
 }

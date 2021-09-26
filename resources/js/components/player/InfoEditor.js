@@ -4,31 +4,27 @@ import ReactDOM from 'react-dom';
 import React, {useState, useEffect} from 'react'
 
 // material
-import { Button, getImageListItemBarUtilityClass } from '@material-ui/core';
+import { Button } from '@material-ui/core';
 import { LoadingButton } from '@material-ui/lab';
 import axios from 'axios';
-import Select from 'react-select'
-import DatePicker from 'react-date-picker';
 
 import ImageCrop from 'react-image-crop-component';
 
-import 'react-image-crop-component/style.css'
+import 'react-image-crop-component/style.css';
+
+import SendIcon from '@mui/icons-material/Send';
 
 
 // ----------------------------------------------------------------------
 
 const  InfoEditor = ({info}) => {
 
-    const [isEditFlag, setEditFlag] = useState(false);
-    
     const [name, setName] = useState(info.account.name);
     const [birth, setBirth] = useState(new Date());
-    const [age, setAge] = useState(0);
     const [gender, setGender] = useState(info.gender);
     const [school, setSchool] = useState(info.school);
     const [grade, setGrade] = useState(info.grade);
     const [phone, setPhone] = useState(info.phone);
-    const [area, setArea] = useState(info.area);
     const [address, setAddress] = useState(info.address);
     const [lesson, setLesson] = useState(info.lesson);
     const [career, setCareer] = useState(info.career);
@@ -38,34 +34,47 @@ const  InfoEditor = ({info}) => {
     const [imgUri, setImgUri] = useState(info.account.img);
     const [convertimgUri, setConvertImgUri] = useState(info.account.img);
     const [cropimgUri, setCropImgUri] = useState(info.account.img);
-
+    
     const [title1, setTitle1] = useState("私の目標は○○！！");
     const [title2, setTitle2] = useState("誰々に勝ちたい！！");
     
+    const [jta_u_18, setJTAU18] = useState(1);
+    const [kanto_u_18, setKantoU18] = useState(1);
     const [rankList, setRankList] = useState([]);
-
-
+    
+    const [age, setAge] = useState(0);
+    const [isSubmitting, setSubmit] = useState(false);
+    const [isEditFlag, setEditFlag] = useState(false);
+    
     const handleSubmit = (e) => {
         e.preventDefault();
         const formdata = new FormData();
-        formdata.append('gender', JSON.stringify(gender.value));
-        formdata.append('birth', JSON.stringify(birth.getFullYear()+'-'+(birth.getMonth()+1)+'-'+birth.getDate()));
+        formdata.append('name', JSON.stringify(name));
+        formdata.append('gender', JSON.stringify(gender));
+        formdata.append('birth', JSON.stringify(birth));
         formdata.append('height', JSON.stringify(height));
         formdata.append('weight', JSON.stringify(weight));
         formdata.append('school', JSON.stringify(school));
-        formdata.append('grade', JSON.stringify(grade.value +' '+ grade_year.value));
+        formdata.append('grade', JSON.stringify(grade));
         formdata.append('phone', JSON.stringify(phone));
-        formdata.append('address', JSON.stringify(area.value+' '+address));
+        formdata.append('address', JSON.stringify(address));
         formdata.append('lesson', JSON.stringify(lesson));
         formdata.append('career', JSON.stringify(career));
         formdata.append('image', convertimgUri);
+        formdata.append('jta_u_18', JSON.stringify(jta_u_18));
+        formdata.append('kanto_u_18', JSON.stringify(kanto_u_18));
+        formdata.append('rankList', JSON.stringify(rankList));
+        formdata.append('title1', JSON.stringify(title1));
+        formdata.append('title2', JSON.stringify(title2));
 
         setSubmit(true)
 
-        axios.post('/profile/store/player', formdata)
+        document.getElementById('loader').style.display = 'block';
+        axios.post('/info/store', formdata)
         .then(response => {
             if(response.data=='success'){
-                window.location.href = '/dashboard';
+                setSubmit(false);
+                window.location.href = '/home';
             }
         })
     }
@@ -151,9 +160,7 @@ const  InfoEditor = ({info}) => {
     const setDefaultRank = function(age){
         let arr = [];
         arr.push({'rankType': 'ITF', 'rankValue':''});
-        arr.push({'rankType': 'JTAU18', 'rankValue':''});
         arr.push({'rankType': 'JTAU'+age, 'rankValue':''});
-        arr.push({'rankType': '関東U18', 'rankValue':''});
         arr.push({'rankType': '関東U'+age, 'rankValue':''});
         arr.push({'rankType': '埼玉U'+age, 'rankValue':''});
         arr.push({'rankType': 'School', 'rankValue':''});
@@ -164,7 +171,7 @@ const  InfoEditor = ({info}) => {
   
     return (
     <>
-        <form action="">
+        <form  className="needs-validation"  onSubmit={handleSubmit} >
             <div className="mt-3 pt-2 rounded-top-15 text-white player-main-info">
                 <div className="name pt-3 pt-md-5 ">
                     <p className="text-center bg-red-4 font-weight-bold">
@@ -175,19 +182,19 @@ const  InfoEditor = ({info}) => {
                 <div className="img-wrap mt-3 mt-md-5">
                     <div className="row">
                         <div className="col-md-4">
-                            <div style={{cursor:'pointer', height:'150px', width:'150px'}} className="m-auto ml-md-auto m-md-0 border-1">
+                            <div className="m-auto ml-md-auto m-md-0 border-1 avatar-wrapper">
                                 <a data-bs-toggle="modal" data-bs-target="#cropModal">
-                                    <img src={convertimgUri} style={{width: '100%', height: '100%', objectFit: 'contain', background:'white'}}/> 
+                                    <img src={convertimgUri} className="avatar"/> 
                                 </a>
                                 <input type="file" name="image" id="crop" className="d-none" onChange={handleImageChange}/>
                             </div>
                         </div>
                         <div className="col-md-8">
-                            <p className="text-center bg-black-4">
+                            <p className="text-center bg-black-4 ft-30 ft-md-20  m-1 m-md-0 my-md-3">
                                 {/* <!-- title1 --> */}
                                 <input type="text" name="title1" className="w-75 bg-none edit-box border-0" value={title1} onChange={e=>setTitle1(e.target.value)}  required />
                             </p>
-                            <p className="text-center bg-black-4">
+                            <p className="text-center bg-black-4 ft-30 ft-md-20  m-1 m-md-0 my-md-3">
                                 {/* <!-- title2 --> */}
                                 <input type="text" name="title2" className="w-75 bg-none edit-box border-0" value={title2} onChange={e=>setTitle2(e.target.value)}  required />
                             </p>
@@ -214,7 +221,7 @@ const  InfoEditor = ({info}) => {
                             <tr>
                                 <td className="col-4 border-0">
                                     <p className="hint">U18</p>
-                                    <p className="value">1<span>位</span></p>
+                                    <p className="value">{kanto_u_18}<span>位</span></p>
                                 </td>
                                 <td className="col-4 border-0">
                                     <p className="hint">{new Date().getFullYear()} W-L</p>
@@ -249,12 +256,18 @@ const  InfoEditor = ({info}) => {
                                 </tr>
                             </thead>
                             <tbody>
-                            {
-                                rankList.length == 0 && 
                                 <tr>
-                                    <td colSpan="3">Input Rank</td>
+                                    <td>JTAU18</td>
+                                    <td>
+                                        <input type="number" min='1' step='1' name="jta-u-18" className="w-50 bg-none edit-box border-0"  value={jta_u_18} onChange={e => setJTAU18(e.target.value)} required />
+                                    </td>
                                 </tr>
-                            }
+                                <tr>
+                                    <td>関東U18</td>
+                                    <td>
+                                        <input type="number" min='1' step='1' name="kanto-u-18" className="w-50 bg-none edit-box border-0"  value={kanto_u_18} onChange={e => setKantoU18(e.target.value)} required />
+                                    </td>
+                                </tr>
                             {
                                 rankList.length != 0 && 
                                 rankList.map((x, i)=>{
@@ -326,9 +339,16 @@ const  InfoEditor = ({info}) => {
             </div>
 
             <div className="mt-3">
-                <LoadingButton size="large" color="primary" type="submit" fullWidth  variant="contained">
-                    送信
-                </LoadingButton>
+                <div className="row">
+                    <div className="col-6">
+                        <Button size="large" color="primary" fullWidth variant="contained" style={{backgroundColor: 'transparent', border: '2px solid white'}}>キャンセル</Button>
+                    </div>
+                    <div className="col-6">
+                        <LoadingButton size="large" type="submit" color="primary" fullWidth  variant="contained" style={{backgroundColor: 'transparent', border: '2px solid white'}} endIcon={<SendIcon />}>
+                            送信
+                        </LoadingButton>
+                    </div>
+                </div>
             </div>
         </form>
 
@@ -355,7 +375,7 @@ const  InfoEditor = ({info}) => {
                                 }
                                 {
                                     isEditFlag ? 
-                                        <Button fullWidth variant="contained" onClick={(e)=>{ e.preventDefault(); setEditFlag(false)}}>save</Button> 
+                                        <Button fullWidth variant="contained" onClick={(e)=>{ e.preventDefault(); setEditFlag(false)}}>preview</Button> 
                                         :<Button fullWidth variant="contained" onClick={(e)=>{ e.preventDefault(); setEditFlag(true)}}>crop</Button>                                
                                 }    
                             </div>

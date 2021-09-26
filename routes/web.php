@@ -33,7 +33,9 @@ Route::middleware(['auth', 'verified'])->name('account.')->group(function () {
     Route::post('/profile/store/player', [App\Http\Controllers\Front\Player\ProfileController::class, 'store'])->name('player.profile.store');
     Route::post('/profile/store/parent', [App\Http\Controllers\Front\Parent\ProfileController::class, 'store'])->name('parent.profile.store');
     
-    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/dashboard/admin', [DashboardController::class, 'index'])->name('admin.dashboard');
+    Route::get('/dashboard/player', [App\Http\Controllers\Front\Player\DashboardController::class, 'index'])->name('player.dashboard');
+    Route::get('/dashboard/parent', [App\Http\Controllers\Front\Parent\DashboardController::class, 'index'])->name('parent.dashboard');
     Route::get('/dashboard/player/{id}', [DashboardController::class, 'show'])->name('dashboard.player.show');
 
     Route::get('/api/msgs', [NoticeController::class, 'index'])->name('msgs.get');
@@ -42,7 +44,8 @@ Route::middleware(['auth', 'verified'])->name('account.')->group(function () {
     
     Route::get('/api/players', [PlayerController::class, 'index'])->name('players.get');
 
-    Route::get('/info/edit', [App\Http\Controllers\Front\Player\DashboardController::class, 'info'])->name('edit.info');
+    Route::get('/info/edit', [App\Http\Controllers\Front\Player\InfoController::class, 'index'])->name('edit.info');
+    Route::post('/info/store', [App\Http\Controllers\Front\Player\InfoController::class, 'store'])->name('store.info');
 
 });
 

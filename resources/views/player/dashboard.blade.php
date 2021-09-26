@@ -11,14 +11,16 @@
                     <a href="{{route('account.edit.info')}}" class="edit"><img src="/images/icon-pencil.svg" alt="icon-pencil.svg" width="30" height="30"></a>
                 </p>
             </div>
-            <div class="img-wrap mt-3 mt-md-5">
+            <div class="mt-3 mt-md-5">
                 <div class="row">
                     <div class="col-md-4 text-center text-md-right">
-                        <img src="{{@Auth::user()->img}}" alt="{{@Auth::user()->img}}">
+                        <div class="m-auto ml-md-auto m-md-0 border-1 avatar-wrapper">
+                            <img src="{{@Auth::user()->img}}" alt="{{@Auth::user()->img}}" class="avatar">
+                        </div>
                     </div>
                     <div class="col-md-8">
-                        <p class="text-center bg-black-4">私の目標は○○！！</p>
-                        <p class="text-center bg-black-4">誰々に勝ちたい！！</p>
+                        <p class="text-center bg-black-4 ft-30 ft-md-20  m-1 m-md-0 my-md-3">{{$rank->title1}}</p>
+                        <p class="text-center bg-black-4 ft-30 ft-md-20  m-1 m-md-0 my-md-3">誰々に勝ちたい！！</p>
                     </div>
                 </div>
             </div>
