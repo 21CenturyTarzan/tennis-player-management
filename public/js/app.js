@@ -13850,11 +13850,14 @@ var InfoEditor = function InfoEditor(_ref) {
 
     setBirth(birth);
     var today = new Date();
-    calculateAge(new Date(birth), today);
+    var age = calculateAge(new Date(birth), today);
+    setDefaultRank(age);
   }, []);
 
   var calculateAge = function calculateAge(birth, today) {
-    setAge(today.getFullYear() - new Date(birth).getFullYear());
+    var age = today.getFullYear() - new Date(birth).getFullYear();
+    setAge(age);
+    return age;
   };
 
   var handleAddRank = function handleAddRank() {
@@ -13871,6 +13874,19 @@ var InfoEditor = function InfoEditor(_ref) {
     setRankList(list);
   };
 
+  var handleDeleteRank = function handleDeleteRank(e, index) {
+    console.log(index);
+
+    var list = _toConsumableArray(rankList);
+
+    list.splice(index, 1);
+    setRankList(list);
+  };
+
+  var handleReloadRank = function handleReloadRank() {
+    setDefaultRank(age);
+  };
+
   var handleInputRankChange = function handleInputRankChange(e, index) {
     var _e$target = e.target,
         name = _e$target.name,
@@ -13880,6 +13896,39 @@ var InfoEditor = function InfoEditor(_ref) {
 
     list[index][name] = value;
     setRankList(list);
+  };
+
+  var setDefaultRank = function setDefaultRank(age) {
+    var arr = [];
+    arr.push({
+      'rankType': 'ITF',
+      'rankValue': ''
+    });
+    arr.push({
+      'rankType': 'JTAU18',
+      'rankValue': ''
+    });
+    arr.push({
+      'rankType': 'JTAU' + age,
+      'rankValue': ''
+    });
+    arr.push({
+      'rankType': '関東U18',
+      'rankValue': ''
+    });
+    arr.push({
+      'rankType': '関東U' + age,
+      'rankValue': ''
+    });
+    arr.push({
+      'rankType': '埼玉U' + age,
+      'rankValue': ''
+    });
+    arr.push({
+      'rankType': 'School',
+      'rankValue': ''
+    });
+    setRankList(arr);
   };
 
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
@@ -13920,7 +13969,6 @@ var InfoEditor = function InfoEditor(_ref) {
                   "data-bs-target": "#cropModal",
                   children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("img", {
                     src: convertimgUri,
-                    alt: convertimgUri,
                     style: {
                       width: '100%',
                       height: '100%',
@@ -14051,22 +14099,22 @@ var InfoEditor = function InfoEditor(_ref) {
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("h4", {
               className: "text-center text-white",
               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("img", {
-                src: "/images/icon-minus.png",
+                src: "/images/icon-minus-white.svg",
                 width: "25",
                 style: {
                   position: 'absolute',
-                  left: '23px',
+                  left: '30px',
                   cursor: 'pointer'
                 },
                 onClick: handleRemoveRank
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", {
                 children: "RANK"
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("img", {
-                src: "/images/icon-plus.png",
+                src: "/images/icon-plus-white.svg",
                 width: "25",
                 style: {
                   position: 'absolute',
-                  right: '23px',
+                  right: '30px',
                   cursor: 'pointer'
                 },
                 onClick: handleAddRank
@@ -14078,16 +14126,27 @@ var InfoEditor = function InfoEditor(_ref) {
                   children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("td", {
                     className: "bg-white-2",
                     children: "\u533A\u5206"
-                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("td", {
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("td", {
                     className: "bg-white-2",
-                    children: "\u4F4D"
+                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", {
+                      children: "\u4F4D"
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("img", {
+                      src: "/images/icon-reload-white.svg",
+                      width: "25",
+                      style: {
+                        position: 'absolute',
+                        right: '30px',
+                        cursor: 'pointer'
+                      },
+                      onClick: handleReloadRank
+                    })]
                   })]
                 })
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("tbody", {
                 children: [rankList.length == 0 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("tr", {
                   children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("td", {
-                    colSpan: "2",
-                    children: "Rank Input"
+                    colSpan: "3",
+                    children: "Input Rank"
                   })
                 }), rankList.length != 0 && rankList.map(function (x, i) {
                   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("tr", {
@@ -14103,19 +14162,30 @@ var InfoEditor = function InfoEditor(_ref) {
                         },
                         required: true
                       })
-                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("td", {
-                      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("input", {
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("td", {
+                      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("input", {
                         type: "number",
                         min: "1",
                         step: "1",
                         name: "rankValue",
-                        className: "w-75 bg-none edit-box border-0",
+                        className: "w-50 bg-none edit-box border-0",
                         value: x.rankValue,
                         onChange: function onChange(e) {
                           return handleInputRankChange(e, i);
                         },
                         required: true
-                      })
+                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("img", {
+                        src: "/images/icon-close-white.svg",
+                        width: "25",
+                        style: {
+                          position: 'absolute',
+                          right: '30px',
+                          cursor: 'pointer'
+                        },
+                        onClick: function onClick(e) {
+                          return handleDeleteRank(e, i);
+                        }
+                      })]
                     })]
                   }, i);
                 })]

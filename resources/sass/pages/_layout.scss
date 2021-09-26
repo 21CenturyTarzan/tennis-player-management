@@ -244,3 +244,19 @@ input[type=number] {
     background-color: #a8bbbf;
 }
 
+
+input[type='checkbox']{
+    border-radius: 0px;
+    // background-color: white;
+    border-color: #707070;
+    
+    &:checked{
+        border-color: #707070;
+        background-image: url(/images/icon-checked.svg);
+        background-color: white;
+        background-size: 14px;
+    }
+    &:focus{
+        box-shadow: none;
+    }
+}

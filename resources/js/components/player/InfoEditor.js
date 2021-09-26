@@ -107,12 +107,15 @@ const  InfoEditor = ({info}) => {
         let birth = info.birth.split(' ')[0]; //string 1998-07-09
         setBirth(birth);
         let today = new Date();
-        calculateAge(new Date(birth), today);
-    
+        let age = calculateAge(new Date(birth), today);
+        setDefaultRank(age);
+
     }, []);
 
     const calculateAge = (birth, today) => {
-        setAge(today.getFullYear() - new Date(birth).getFullYear());
+        let age = today.getFullYear() - new Date(birth).getFullYear();
+        setAge(age);
+        return age;
     }
 
     const handleAddRank = () => {
@@ -125,13 +128,39 @@ const  InfoEditor = ({info}) => {
         setRankList(list);
     };
 
+    const handleDeleteRank = (e, index) => {
+        console.log(index);
+        const list = [...rankList];
+        list.splice(index, 1);
+        setRankList(list);
+    }
+
+    const handleReloadRank = () => {
+        setDefaultRank(age);
+    }
+    
     const handleInputRankChange = (e, index) => {
         const { name, value } = e.target;
         const list = [...rankList];
         list[index][name] = value;
         setRankList(list);
     };
+
      
+
+    const setDefaultRank = function(age){
+        let arr = [];
+        arr.push({'rankType': 'ITF', 'rankValue':''});
+        arr.push({'rankType': 'JTAU18', 'rankValue':''});
+        arr.push({'rankType': 'JTAU'+age, 'rankValue':''});
+        arr.push({'rankType': '関東U18', 'rankValue':''});
+        arr.push({'rankType': '関東U'+age, 'rankValue':''});
+        arr.push({'rankType': '埼玉U'+age, 'rankValue':''});
+        arr.push({'rankType': 'School', 'rankValue':''});
+        setRankList(arr);
+    }
+
+    
   
     return (
     <>
@@ -148,7 +177,7 @@ const  InfoEditor = ({info}) => {
                         <div className="col-md-4">
                             <div style={{cursor:'pointer', height:'150px', width:'150px'}} className="m-auto ml-md-auto m-md-0 border-1">
                                 <a data-bs-toggle="modal" data-bs-target="#cropModal">
-                                    <img src={convertimgUri} alt={convertimgUri} style={{width: '100%', height: '100%', objectFit: 'contain', background:'white'}}/> 
+                                    <img src={convertimgUri} style={{width: '100%', height: '100%', objectFit: 'contain', background:'white'}}/> 
                                 </a>
                                 <input type="file" name="image" id="crop" className="d-none" onChange={handleImageChange}/>
                             </div>
@@ -170,17 +199,14 @@ const  InfoEditor = ({info}) => {
                         <tbody>
                             <tr>
                                 <td className="col-4 border-0">
-                                    {/* Age */}
                                     <p className="hint">1995.6.28</p>
                                     <p className="value">{age}<span>歳</span></p>
                                 </td>
                                 <td className="col-4 border-0">
-                                    {/* <!-- height --> */}
                                     <p className="hint">Height</p>
                                     <p className="value">{height}<span>cm</span></p>
                                 </td>
                                 <td className="col-4 border-0">
-                                    {/* <!-- weight --> */}
                                     <p className="hint">Weight</p>
                                     <p className="value">{weight}<span>kg</span></p>
                                 </td>
@@ -208,22 +234,25 @@ const  InfoEditor = ({info}) => {
                 <div className="col-md-8 offset-md-2">
                     <div className="p-2 shadow-lg bg-black-4">
                         <h4 className="text-center text-white">
-                            <img src="/images/icon-minus.png" width="25" style={{position:'absolute', left:'23px', cursor:'pointer'}} onClick={handleRemoveRank}/>
+                            <img src="/images/icon-minus-white.svg" width="25" style={{position:'absolute', left:'30px', cursor:'pointer'}} onClick={handleRemoveRank}/>
                             <span>RANK</span>
-                            <img src="/images/icon-plus.png" width="25" style={{position:'absolute', right:'23px', cursor:'pointer'}} onClick={handleAddRank}/>
+                            <img src="/images/icon-plus-white.svg" width="25" style={{position:'absolute', right:'30px', cursor:'pointer'}} onClick={handleAddRank}/>
                         </h4>
                         <table className="table table-bordered m-0 p-1 text-white text-center">
                             <thead>
                                 <tr>
                                     <td className="bg-white-2">区分</td>
-                                    <td className="bg-white-2">位</td>
+                                    <td className="bg-white-2">
+                                        <span>位</span>
+                                        <img src="/images/icon-reload-white.svg" width="25" style={{position:'absolute', right:'30px', cursor:'pointer'}} onClick={handleReloadRank}/>
+                                    </td>
                                 </tr>
                             </thead>
                             <tbody>
                             {
                                 rankList.length == 0 && 
                                 <tr>
-                                    <td colSpan="2">Rank Input</td>
+                                    <td colSpan="3">Input Rank</td>
                                 </tr>
                             }
                             {
@@ -232,7 +261,10 @@ const  InfoEditor = ({info}) => {
                                     return(
                                         <tr key={i}>
                                             <td><input type="type" name="rankType" className="w-100 bg-none edit-box border-0" placeholder="ex: JTAU18" value={x.rankType} onChange={e => handleInputRankChange(e, i)} required/></td>
-                                            <td><input type="number" min='1' step='1' name="rankValue" className="w-75 bg-none edit-box border-0"  value={x.rankValue} onChange={e => handleInputRankChange(e, i)} required /></td>
+                                            <td>
+                                                <input type="number" min='1' step='1' name="rankValue" className="w-50 bg-none edit-box border-0"  value={x.rankValue} onChange={e => handleInputRankChange(e, i)} required />
+                                                <img src="/images/icon-close-white.svg" width="25" style={{position:'absolute', right:'30px', cursor:'pointer'}} onClick={(e)=>handleDeleteRank(e, i)}/>
+                                            </td>
                                         </tr>
                                     )
                                 })
