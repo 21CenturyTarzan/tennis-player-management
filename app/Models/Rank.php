@@ -11,10 +11,15 @@ class Rank extends Model
 
     protected $table = 'ranks';
     protected $fillable = [
-        'player_id',
+        'account_id',
         'jta_u_18',
         'kanto_u_18',
         'title1',
         'title2'
     ];
+
+    public function ranklist()
+    {
+        return $this->hasMany(RankList::class);
+    }
 }

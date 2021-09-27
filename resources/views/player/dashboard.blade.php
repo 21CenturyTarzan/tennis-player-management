@@ -19,7 +19,7 @@
                         </div>
                     </div>
                     <div class="col-md-8">
-                        <p class="text-center bg-black-4 ft-30 ft-md-20  m-1 m-md-0 my-md-3">私の目標は○○！！</p>
+                        <p class="text-center bg-black-4 ft-30 ft-md-20  m-1 m-md-0 my-md-3">{{$rank->title1}}</p>
                         <p class="text-center bg-black-4 ft-30 ft-md-20  m-1 m-md-0 my-md-3">誰々に勝ちたい！！</p>
                     </div>
                 </div>

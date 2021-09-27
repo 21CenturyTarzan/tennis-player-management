@@ -74,7 +74,7 @@ const  InfoEditor = ({info}) => {
         .then(response => {
             if(response.data=='success'){
                 setSubmit(false);
-                window.location.href = '/dashboard';
+                window.location.href = '/home';
             }
         })
     }

@@ -33,4 +33,5 @@ class ProfilePlayer extends Model
     {
         return $this->belongsTo(User::class, 'account_id');
     }
+
 }

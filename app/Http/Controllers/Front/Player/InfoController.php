@@ -61,11 +61,9 @@ class InfoController extends Controller
             }
         }
 
-        $player_id = ProfilePlayer::where('account_id', Auth::user()->id)->first()->id;
-
         try {
             Rank::create([
-                'player_id' => $player_id,
+                'account_id' => Auth::user()->id,
                 'jta_u_18' => $jta_u_18,
                 'kanto_u_18' => $kanto_u_18,
                 'title1' => $title1,
