@@ -19,8 +19,16 @@
                         </div>
                     </div>
                     <div class="col-md-8">
-                        <p class="text-center bg-black-4 ft-30 ft-md-20  m-1 m-md-0 my-md-3">{{$rank->title1}}</p>
-                        <p class="text-center bg-black-4 ft-30 ft-md-20  m-1 m-md-0 my-md-3">誰々に勝ちたい！！</p>
+                        <p class="text-center bg-black-4 ft-30 ft-md-20  m-1 m-md-0 my-md-3">
+                            @if($rank != null)  {{$rank->title1}}
+                            @else 私の目標は○○！！
+                            @endif
+                        </p>
+                        <p class="text-center bg-black-4 ft-30 ft-md-20  m-1 m-md-0 my-md-3">
+                            @if($rank != null)  {{$rank->title2}}
+                            @else 私の目標は○○！！
+                            @endif
+                        </p>
                     </div>
                 </div>
             </div>
@@ -29,22 +37,26 @@
                     <tbody>
                         <tr>
                             <td class="col-4 border-0">
-                                <p class="hint">1995.6.28</p>
-                                <p class="value">26<span>歳</span></p>
+                                <p class="hint">{{date('Y-m-d', strtotime($profile->birth))}}</p>
+                                <p class="value">{{\Carbon\Carbon::parse($profile->birth)->age}}<span>歳</span></p>
                             </td>
                             <td class="col-4 border-0">
                                 <p class="hint">Height</p>
-                                <p class="value">172<span>cm</span></p>
+                                <p class="value">{{$profile->height}}<span>cm</span></p>
                             </td>
                             <td class="col-4 border-0">
                                 <p class="hint">Weight</p>
-                                <p class="value">56<span>kg</span></p>
+                                <p class="value">{{$profile->weight}}<span>kg</span></p>
                             </td>
                         </tr>
                         <tr>    
                             <td class="col-4 border-0">
                                 <p class="hint">U18</p>
-                                <p class="value">1<span>位</span></p>
+                                <p class="value">
+                                @if($rank != null)  {{$rank->kanto_u_18}}<span>位</span>
+                                @else -
+                                @endif
+                                </p>
                             </td>
                             <td class="col-4 border-0">
                                 <p class="hint">2021 W-L</p>
@@ -120,29 +132,30 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td>ITF</td>
-                                <td>1</td>
-                            </tr>
-                            <tr>
                                 <td>JTAU18</td>
-                                <td>1</td>
+                                <td>
+                                    @if($rank != null)  {{$rank->jta_u_18}}
+                                    @else -
+                                    @endif
+                                </td>
                             </tr>
                             <tr>
-                                <td>JTAU34</td>
-                                <td>1</td>
+                                <td>関東U18</td>
+                                <td>
+                                    @if($rank != null)  {{$rank->kanto_u_18}}
+                                    @else -
+                                    @endif
+                                </td>
                             </tr>
-                            <tr>
-                                <td>関東U34</td>
-                                <td>1</td>
-                            </tr>
-                            <tr>
-                                <td>埼玉U34</td>
-                                <td>1</td>
-                            </tr>
-                            <tr>
-                                <td>School</td>
-                                <td>1</td>
-                            </tr>
+                            @if($rank != null)
+                                @forelse($rank->rank_list as $item)
+                                    <tr>
+                                        <td>{{$item->rank_type}}</td>
+                                        <td>{{$item->rank_value}}</td>
+                                    </tr>
+                                @empty
+                                @endforelse
+                            @endif
                         </tbody>
                     </table>
                 </div>
@@ -152,37 +165,41 @@
     
         <div class="mt-4 p-2 shadow-lg bg-black-4">
             <h4 class="text-center text-white">個人情報</h4>
-            <table class="table table-bordered m-0 text-white">
+            <table class="table table-bordered m-0 text-white text-center" id="person-info">
                 <tbody>
                     <tr>
                         <th>性別</th>
-                        <td>女</td>
+                        <td>{{$profile->gender}}</td>
+                    </tr>
+                    <tr>
                         <th>生年月日</th>
-                        <td>1月17日2002年</td>
+                        <td>{{date('m月d日Y年', strtotime($profile->birth))}}</td>
                     </tr>
                     <tr>
                         <th>学校</th>
-                        <td>Kansas States University</td>
+                        <td>{{$profile->school}}</td>
+                    </tr>
+                    <tr>
                         <th>学年</th>
-                        <td>大学1年</td>
+                        <td>{{$profile->grade}}</td>
                     </tr>
                     <tr>
                         <th>郵便番号</th>
-                        <td>000-0000</td>
+                        <td>{{$profile->phone}}</td>
+                    </tr>
+                    <tr>
                         <th>住所</th>
-                        <td>埼玉県所沢市</td>
+                        <td>{{$profile->address}}</td>
                     </tr>
                     <tr>
                         <th>受講回数</th>
-                        <td colspan="3">フリー<br>
+                        <td>{{$profile->lesson}}<br>
                         </td>
                     </tr>      
                     <tr>
                         <th>主な戦績</th>
-                        <td colspan="3">
-                            I have enough experience of playing tennis.<br>
-                            I have been training tennis more than 7 years.<br>
-                            Tennis is my favourite sport.<br>
+                        <td>
+                            <pre class="text-left">{{$profile->career}}</pre>
                         </td>
                     </tr>                   
                 </tbody>
@@ -191,12 +208,12 @@
 
     </div>
 
-    <div style="padding-top: 72px;" id="manage">
+    <div style="padding-top: 72px;" id="goal">
         <div class="mt-3 py-2 rounded-15 bg-white shadow-lg">
             <h3 class="mt-2 p-1  text-white bg-green text-center font-weight-bold">
-                <span>選手管理<span>
+                <span>選手管理</span>
                 @if(strcmp(Auth::user()->type, 'player') ==0 )
-                    <a href="#" class="edit py-1" style="margin-top:-5px"><img src="/images/icon-pencil.svg" alt="icon-pencil.svg" width="30" height="30"></a>
+                    <a href="{{route('account.edit.goal')}}" class="edit py-1" style="margin-top:-5px"><img src="/images/icon-pencil.svg" alt="icon-pencil.svg" width="30" height="30"></a>
                 @endif
             </h3>
             <p class="w-50 w-md-75 p-1 pl-2 mb-2 bg-black-4 rounded-right-20 text-white">近日予定の試合</p>
@@ -316,7 +333,7 @@
     <div style="padding-top: 72px;"  id="prepare">
         <div class="mt-3 py-2 rounded-15 bg-white shadow-lg">
             <h3 class="mt-2 p-1 text-white bg-green text-center font-weight-bold">
-                試合前準備
+                <span>試合前準備</span>
                 @if(strcmp(Auth::user()->type, 'player') ==0 )
                     <a href="#" class="edit py-1" style="margin-top:-5px"><img src="/images/icon-pencil.svg" alt="icon-pencil.svg" width="30" height="30"></a>
                 @endif

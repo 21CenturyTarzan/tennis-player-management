@@ -16961,6 +16961,8 @@ __webpack_require__(/*! ./components/dashboard/MessageBox */ "./resources/js/com
 
 __webpack_require__(/*! ./components/player/InfoEditor */ "./resources/js/components/player/InfoEditor.js");
 
+__webpack_require__(/*! ./components/player/goalEditor */ "./resources/js/components/player/goalEditor.js");
+
 /***/ }),
 
 /***/ "./resources/js/bootstrap.js":
@@ -17740,9 +17742,10 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 var InfoEditor = function InfoEditor(_ref) {
-  var info = _ref.info;
+  var profile = _ref.profile,
+      rank = _ref.rank;
 
-  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(info.account.name),
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(profile.account.name),
       _useState2 = _slicedToArray(_useState, 2),
       name = _useState2[0],
       setName = _useState2[1];
@@ -17752,82 +17755,82 @@ var InfoEditor = function InfoEditor(_ref) {
       birth = _useState4[0],
       setBirth = _useState4[1];
 
-  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(info.gender),
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(profile.gender),
       _useState6 = _slicedToArray(_useState5, 2),
       gender = _useState6[0],
       setGender = _useState6[1];
 
-  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(info.school),
+  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(profile.school),
       _useState8 = _slicedToArray(_useState7, 2),
       school = _useState8[0],
       setSchool = _useState8[1];
 
-  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(info.grade),
+  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(profile.grade),
       _useState10 = _slicedToArray(_useState9, 2),
       grade = _useState10[0],
       setGrade = _useState10[1];
 
-  var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(info.phone),
+  var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(profile.phone),
       _useState12 = _slicedToArray(_useState11, 2),
       phone = _useState12[0],
       setPhone = _useState12[1];
 
-  var _useState13 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(info.address),
+  var _useState13 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(profile.address),
       _useState14 = _slicedToArray(_useState13, 2),
       address = _useState14[0],
       setAddress = _useState14[1];
 
-  var _useState15 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(info.lesson),
+  var _useState15 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(profile.lesson),
       _useState16 = _slicedToArray(_useState15, 2),
       lesson = _useState16[0],
       setLesson = _useState16[1];
 
-  var _useState17 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(info.career),
+  var _useState17 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(profile.career),
       _useState18 = _slicedToArray(_useState17, 2),
       career = _useState18[0],
       setCareer = _useState18[1];
 
-  var _useState19 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(info.height),
+  var _useState19 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(profile.height),
       _useState20 = _slicedToArray(_useState19, 2),
       height = _useState20[0],
       setHeight = _useState20[1];
 
-  var _useState21 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(info.weight),
+  var _useState21 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(profile.weight),
       _useState22 = _slicedToArray(_useState21, 2),
       weight = _useState22[0],
       setWeight = _useState22[1];
 
-  var _useState23 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(info.account.img),
+  var _useState23 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(profile.account.img),
       _useState24 = _slicedToArray(_useState23, 2),
       imgUri = _useState24[0],
       setImgUri = _useState24[1];
 
-  var _useState25 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(info.account.img),
+  var _useState25 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(profile.account.img),
       _useState26 = _slicedToArray(_useState25, 2),
       convertimgUri = _useState26[0],
       setConvertImgUri = _useState26[1];
 
-  var _useState27 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(info.account.img),
+  var _useState27 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(profile.account.img),
       _useState28 = _slicedToArray(_useState27, 2),
       cropimgUri = _useState28[0],
       setCropImgUri = _useState28[1];
 
-  var _useState29 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)("私の目標は○○！！"),
+  var _useState29 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(""),
       _useState30 = _slicedToArray(_useState29, 2),
       title1 = _useState30[0],
       setTitle1 = _useState30[1];
 
-  var _useState31 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)("誰々に勝ちたい！！"),
+  var _useState31 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(""),
       _useState32 = _slicedToArray(_useState31, 2),
       title2 = _useState32[0],
       setTitle2 = _useState32[1];
 
-  var _useState33 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(1),
+  var _useState33 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(''),
       _useState34 = _slicedToArray(_useState33, 2),
       jta_u_18 = _useState34[0],
       setJTAU18 = _useState34[1];
 
-  var _useState35 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(1),
+  var _useState35 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(''),
       _useState36 = _slicedToArray(_useState35, 2),
       kanto_u_18 = _useState36[0],
       setKantoU18 = _useState36[1];
@@ -17851,6 +17854,68 @@ var InfoEditor = function InfoEditor(_ref) {
       _useState44 = _slicedToArray(_useState43, 2),
       isEditFlag = _useState44[0],
       setEditFlag = _useState44[1];
+
+  (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
+    var birth = profile.birth.split(' ')[0]; //string 1998-07-09
+
+    setBirth(birth);
+    var today = new Date();
+    var age = calculateAge(new Date(birth), today);
+
+    if (Object.keys(rank).length === 0) {
+      setTitle1("私の目標は○○！！");
+      setTitle2("誰々に勝ちたい！！");
+      setDefaultRank(age);
+      setJTAU18('-');
+      setKantoU18('-');
+    } else {
+      setTitle1(rank.title1);
+      setTitle2(rank.title2);
+      setJTAU18(rank.jta_u_18);
+      setKantoU18(rank.kanto_u_18);
+      var obj = [];
+
+      for (var i = 0; i < rank.rank_list.length; i++) {
+        obj.push({
+          'rankType': rank.rank_list[i].rank_type,
+          'rankValue': rank.rank_list[i].rank_value
+        });
+      }
+
+      setRankList(obj);
+    }
+  }, []);
+
+  var setDefaultRank = function setDefaultRank(age) {
+    var arr = [];
+    arr.push({
+      'rankType': 'ITF',
+      'rankValue': ''
+    });
+    arr.push({
+      'rankType': 'JTAU' + age,
+      'rankValue': ''
+    });
+    arr.push({
+      'rankType': '関東U' + age,
+      'rankValue': ''
+    });
+    arr.push({
+      'rankType': '埼玉U' + age,
+      'rankValue': ''
+    });
+    arr.push({
+      'rankType': 'School',
+      'rankValue': ''
+    });
+    setRankList(arr);
+  };
+
+  var calculateAge = function calculateAge(birth, today) {
+    var age = today.getFullYear() - new Date(birth).getFullYear();
+    setAge(age);
+    return age;
+  };
 
   var handleSubmit = function handleSubmit(e) {
     e.preventDefault();
@@ -17909,21 +17974,6 @@ var InfoEditor = function InfoEditor(_ref) {
     };
   };
 
-  (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
-    var birth = info.birth.split(' ')[0]; //string 1998-07-09
-
-    setBirth(birth);
-    var today = new Date();
-    var age = calculateAge(new Date(birth), today);
-    setDefaultRank(age);
-  }, []);
-
-  var calculateAge = function calculateAge(birth, today) {
-    var age = today.getFullYear() - new Date(birth).getFullYear();
-    setAge(age);
-    return age;
-  };
-
   var handleAddRank = function handleAddRank() {
     setRankList([].concat(_toConsumableArray(rankList), [{
       rankType: "",
@@ -17960,31 +18010,6 @@ var InfoEditor = function InfoEditor(_ref) {
 
     list[index][name] = value;
     setRankList(list);
-  };
-
-  var setDefaultRank = function setDefaultRank(age) {
-    var arr = [];
-    arr.push({
-      'rankType': 'ITF',
-      'rankValue': ''
-    });
-    arr.push({
-      'rankType': 'JTAU' + age,
-      'rankValue': ''
-    });
-    arr.push({
-      'rankType': '関東U' + age,
-      'rankValue': ''
-    });
-    arr.push({
-      'rankType': '埼玉U' + age,
-      'rankValue': ''
-    });
-    arr.push({
-      'rankType': 'School',
-      'rankValue': ''
-    });
-    setRankList(arr);
   };
 
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.Fragment, {
@@ -18450,6 +18475,9 @@ var InfoEditor = function InfoEditor(_ref) {
                 backgroundColor: 'transparent',
                 border: '2px solid white'
               },
+              onClick: function onClick(e) {
+                return window.location.href = '/home';
+              },
               children: "\u30AD\u30E3\u30F3\u30BB\u30EB"
             })
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
@@ -18559,10 +18587,453 @@ var element = document.querySelector('#info-editor');
 if (element) {
   var json = Object.assign({}, element.dataset);
   var profile = JSON.parse(json.profile || '{}');
-  console.log(profile);
+  var rank = JSON.parse(json.rank || '{}');
+  console.log(profile, rank);
   react_dom__WEBPACK_IMPORTED_MODULE_0__.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(InfoEditor, {
-    info: profile
+    profile: profile,
+    rank: rank
   }), element);
+}
+
+/***/ }),
+
+/***/ "./resources/js/components/player/goalEditor.js":
+/*!******************************************************!*\
+  !*** ./resources/js/components/player/goalEditor.js ***!
+  \******************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/Button/Button.js");
+/* harmony import */ var _material_ui_lab__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @material-ui/lab */ "./node_modules/@material-ui/lab/LoadingButton/LoadingButton.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var react_image_crop_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-image-crop-component */ "./node_modules/react-image-crop-component/lib/index.min.js");
+/* harmony import */ var react_image_crop_component_style_css__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-image-crop-component/style.css */ "./node_modules/react-image-crop-component/style.css");
+/* harmony import */ var _mui_icons_material_Send__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @mui/icons-material/Send */ "./node_modules/@mui/icons-material/Send.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+
+ // material
+
+
+
+
+
+
+ // ----------------------------------------------------------------------
+
+
+
+
+
+var GoalEditor = function GoalEditor() {
+  (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {}, []);
+
+  var setDefaultRank = function setDefaultRank(age) {
+    var arr = [];
+    arr.push({
+      'rankType': 'ITF',
+      'rankValue': ''
+    });
+    arr.push({
+      'rankType': 'JTAU' + age,
+      'rankValue': ''
+    });
+    arr.push({
+      'rankType': '関東U' + age,
+      'rankValue': ''
+    });
+    arr.push({
+      'rankType': '埼玉U' + age,
+      'rankValue': ''
+    });
+    arr.push({
+      'rankType': 'School',
+      'rankValue': ''
+    });
+    setRankList(arr);
+  };
+
+  var handleSubmit = function handleSubmit(e) {
+    e.preventDefault();
+    var formdata = new FormData();
+    formdata.append('name', JSON.stringify(name));
+    formdata.append('gender', JSON.stringify(gender));
+    formdata.append('birth', JSON.stringify(birth));
+    formdata.append('height', JSON.stringify(height));
+    formdata.append('weight', JSON.stringify(weight));
+    formdata.append('school', JSON.stringify(school));
+    formdata.append('grade', JSON.stringify(grade));
+    formdata.append('phone', JSON.stringify(phone));
+    formdata.append('address', JSON.stringify(address));
+    formdata.append('lesson', JSON.stringify(lesson));
+    formdata.append('career', JSON.stringify(career));
+    formdata.append('image', convertimgUri);
+    formdata.append('jta_u_18', JSON.stringify(jta_u_18));
+    formdata.append('kanto_u_18', JSON.stringify(kanto_u_18));
+    formdata.append('rankList', JSON.stringify(rankList));
+    formdata.append('title1', JSON.stringify(title1));
+    formdata.append('title2', JSON.stringify(title2));
+    setSubmit(true);
+    document.getElementById('loader').style.display = 'block';
+    axios__WEBPACK_IMPORTED_MODULE_2___default().post('/info/store', formdata).then(function (response) {
+      if (response.data == 'success') {
+        setSubmit(false);
+        window.location.href = '/home';
+      }
+    });
+  };
+
+  var handleAddRank = function handleAddRank() {
+    setRankList([].concat(_toConsumableArray(rankList), [{
+      rankType: "",
+      rankValue: ""
+    }]));
+  };
+
+  var handleRemoveRank = function handleRemoveRank(index) {
+    var list = _toConsumableArray(rankList);
+
+    list.pop();
+    setRankList(list);
+  };
+
+  var handleDeleteRank = function handleDeleteRank(e, index) {
+    console.log(index);
+
+    var list = _toConsumableArray(rankList);
+
+    list.splice(index, 1);
+    setRankList(list);
+  };
+
+  var handleReloadRank = function handleReloadRank() {
+    setDefaultRank(age);
+  };
+
+  var handleInputRankChange = function handleInputRankChange(e, index) {
+    var _e$target = e.target,
+        name = _e$target.name,
+        value = _e$target.value;
+
+    var list = _toConsumableArray(rankList);
+
+    list[index][name] = value;
+    setRankList(list);
+  };
+
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.Fragment, {
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("form", {
+      className: "needs-validation",
+      onSubmit: handleSubmit,
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+        "class": "mt-3 py-2 rounded-15 bg-white shadow-lg",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("h3", {
+          "class": "mt-2 p-1  text-white bg-green text-center font-weight-bold",
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
+            children: "\u9078\u624B\u7BA1\u7406"
+          })
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("p", {
+          "class": "w-50 w-md-75 p-1 pl-2 mb-2 bg-black-4 rounded-right-20 text-white",
+          children: "\u8FD1\u65E5\u4E88\u5B9A\u306E\u8A66\u5408"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+          "class": "px-2 mb-2",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("table", {
+            "class": "table table-bordered table-success mb-2",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("thead", {
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("tr", {
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("th", {
+                  scope: "col",
+                  children: "\u65E5\u306B\u3061"
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("th", {
+                  scope: "col",
+                  children: "\u8A66\u5408\u540D"
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("th", {
+                  scope: "col",
+                  children: "\u76EE\u6A19"
+                })]
+              })
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("tbody", {
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("tr", {
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("th", {
+                  children: "2018-10-29"
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("td", {
+                  children: "Olymipic"
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("td", {
+                  children: "1\u4F4D"
+                })]
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("tr", {
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("th", {
+                  children: "2018-10-29"
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("td", {
+                  children: "Olymipic"
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("td", {
+                  children: "1\u4F4D"
+                })]
+              })]
+            })]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("table", {
+            "class": "table table-bordered table-info mb-2",
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("tbody", {
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("tr", {
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("th", {
+                  children: "\u9577\u671F\u76EE\u6A19"
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("td", {
+                  children: "2\u4F4D"
+                })]
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("tr", {
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("th", {
+                  children: "\u4E2D\u671F\u76EE\u6A19"
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("td", {
+                  children: "2\u4F4D"
+                })]
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("tr", {
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("th", {
+                  children: "\u77ED\u671F\u76EE\u6A19"
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("td", {
+                  children: "2\u4F4D"
+                })]
+              })]
+            })
+          })]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("p", {
+          "class": "w-50 w-md-75 p-1 pl-2 mb-2 bg-black-4 rounded-right-20 text-white",
+          children: "\u77ED\u671F\u76EE\u6A19\u306B\u5411\u304B\u3063\u3066\u306E\u8AB2\u984C"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+          "class": "px-2 mb-2",
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("table", {
+            "class": "table table-bordered mb-2",
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("tbody", {
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("tr", {
+                "class": "table-success",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("th", {
+                  "class": "text-center",
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("img", {
+                    src: "/images/icon-tech.png",
+                    width: "30",
+                    height: "30"
+                  })
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("td", {
+                  children: "I will train harder and harder to win a gold medal."
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("td", {
+                  "class": "text-center",
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("img", {
+                    src: "/images/star5.svg",
+                    alt: ""
+                  })
+                })]
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("tr", {
+                "class": "table-success",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("th", {
+                  "class": "text-center",
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("img", {
+                    src: "/images/icon-tech.png",
+                    width: "30",
+                    height: "30"
+                  })
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("td", {
+                  children: "I will train harder and harder to win a gold medal."
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("td", {
+                  "class": "text-center",
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("img", {
+                    src: "/images/star4.svg",
+                    alt: ""
+                  })
+                })]
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("tr", {
+                "class": "table-success",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("th", {
+                  "class": "text-center",
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("img", {
+                    src: "/images/icon-tech.png",
+                    width: "30",
+                    height: "30"
+                  })
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("td", {
+                  children: "I will train harder and harder to win a gold medal."
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("td", {
+                  "class": "text-center",
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("img", {
+                    src: "/images/star4.svg",
+                    alt: ""
+                  })
+                })]
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("tr", {
+                "class": "table-danger",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("th", {
+                  "class": "text-center",
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("img", {
+                    src: "/images/icon-physics.png",
+                    width: "30",
+                    height: "30"
+                  })
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("td", {
+                  children: "I will train harder and harder to win a gold medal."
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("td", {
+                  "class": "text-center",
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("img", {
+                    src: "/images/star3.svg",
+                    alt: ""
+                  })
+                })]
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("tr", {
+                "class": "table-danger",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("th", {
+                  "class": "text-center",
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("img", {
+                    src: "/images/icon-physics.png",
+                    width: "30",
+                    height: "30"
+                  })
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("td", {
+                  children: "I will train harder and harder to win a gold medal."
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("td", {
+                  "class": "text-center",
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("img", {
+                    src: "/images/star3.svg",
+                    alt: ""
+                  })
+                })]
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("tr", {
+                "class": "table-danger",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("th", {
+                  "class": "text-center",
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("img", {
+                    src: "/images/icon-physics.png",
+                    width: "30",
+                    height: "30"
+                  })
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("td", {
+                  children: "I will train harder and harder to win a gold medal."
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("td", {
+                  "class": "text-center",
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("img", {
+                    src: "/images/star3.svg",
+                    alt: ""
+                  })
+                })]
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("tr", {
+                "class": "table-info",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("th", {
+                  "class": "text-center",
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("img", {
+                    src: "/images/icon-mental.png",
+                    width: "30",
+                    height: "30"
+                  })
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("td", {
+                  children: "I will train harder and harder to win a gold medal."
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("td", {
+                  "class": "text-center",
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("img", {
+                    src: "/images/star4.svg",
+                    alt: ""
+                  })
+                })]
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("tr", {
+                "class": "table-info",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("th", {
+                  "class": "text-center",
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("img", {
+                    src: "/images/icon-mental.png",
+                    width: "30",
+                    height: "30"
+                  })
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("td", {
+                  children: "I will train harder and harder to win a gold medal."
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("td", {
+                  "class": "text-center",
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("img", {
+                    src: "/images/star4.svg",
+                    alt: ""
+                  })
+                })]
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("tr", {
+                "class": "table-info",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("th", {
+                  "class": "text-center",
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("img", {
+                    src: "/images/icon-mental.png",
+                    width: "30",
+                    height: "30"
+                  })
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("td", {
+                  children: "I will train harder and harder to win a gold medal."
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("td", {
+                  "class": "text-center",
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("img", {
+                    src: "/images/star4.svg",
+                    alt: "/images/star4.svg"
+                  })
+                })]
+              })]
+            })
+          })
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("p", {
+          "class": "w-100 p-1 pl-2 mb-2 bg-black-4 text-white text-right",
+          children: "\u6700\u65B0\u306E\u66F4\u65B0\u65E5 : 2019/3/20 19:40"
+        })]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+        className: "mt-3",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+          className: "row",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+            className: "col-6",
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_6__["default"], {
+              size: "large",
+              color: "primary",
+              fullWidth: true,
+              variant: "contained",
+              style: {
+                backgroundColor: 'transparent',
+                border: '2px solid white'
+              },
+              onClick: function onClick(e) {
+                return window.location.href = '/home';
+              },
+              children: "\u30AD\u30E3\u30F3\u30BB\u30EB"
+            })
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+            className: "col-6",
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_material_ui_lab__WEBPACK_IMPORTED_MODULE_7__["default"], {
+              size: "large",
+              type: "submit",
+              color: "primary",
+              fullWidth: true,
+              variant: "contained",
+              style: {
+                backgroundColor: 'transparent',
+                border: '2px solid white'
+              },
+              endIcon: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_mui_icons_material_Send__WEBPACK_IMPORTED_MODULE_8__["default"], {}),
+              children: "\u9001\u4FE1"
+            })
+          })]
+        })
+      })]
+    })
+  });
+};
+
+var element = document.querySelector('#goal-editor');
+
+if (element) {
+  react_dom__WEBPACK_IMPORTED_MODULE_0__.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(GoalEditor, {}), element);
 }
 
 /***/ }),

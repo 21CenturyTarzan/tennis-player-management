@@ -39,7 +39,7 @@ class ProfileTableSeeder extends Seeder
                     'birth' => $birth,
                     'height' => rand(1500, 1800)/10,
                     'weight' => rand(400, 800)/10,
-                    'school' => $faker->sentence(20),
+                    'school' => 'Tokyo University',
                     'grade' => $this->grade(),
                     'phone' => $this->phone(),
                     'address' => $this->address(),

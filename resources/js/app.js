@@ -16,3 +16,4 @@ require('./components/profile/ParentProfileEditor');
 require('./components/dashboard/PlayerList');
 require('./components/dashboard/MessageBox');
 require('./components/player/InfoEditor');
+require('./components/player/goalEditor');

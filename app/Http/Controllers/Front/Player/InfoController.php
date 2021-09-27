@@ -18,7 +18,8 @@ class InfoController extends Controller
     public function index()
     {
         # code...
-        $res['profile'] = ProfilePlayer::where('account_id', Auth::user()->id)->with('account')->first();
+        $res['rank'] = Rank::where('account_id', Auth::user()->id)->with('rank_list') -> orderBy('id', 'DESC') -> first();
+        $res['profile'] = ProfilePlayer::where('account_id', Auth::user()->id)->with('account')->with('rank')->first();
         return view('player.info', $res);
     }
 

@@ -10315,6 +10315,14 @@ p.hint {
   border-radius: 10px;
 }
 
+table#person-info th {
+  width: 100px;
+}
+table#person-info pre {
+  color: white;
+  font-size: 18px;
+}
+
 .bg-red-4 {
   background-color: rgba(255, 0, 0, 0.4);
 }
@@ -10486,7 +10494,7 @@ span.star {
   display: none;
 }
 
-.pre {
+pre {
   font-family: inherit;
   white-space: pre-wrap;
   word-break: break-word;
