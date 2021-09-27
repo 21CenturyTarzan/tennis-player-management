@@ -24,6 +24,7 @@ class InfoController extends Controller
 
     public function store(Request $request)
     {
+        $name = json_decode($request->get('name'));
         $gender = json_decode($request->get('gender'));
         $birth  =  json_decode($request->get('birth'));
         $birth = date_create_from_format('Y-m-d', $birth);
@@ -41,12 +42,12 @@ class InfoController extends Controller
         $title1 = json_decode($request->get('title1'));
         $title2 = json_decode($request->get('title2'));
 
-        $path = 'uploads/';
+        $path = 'uploads/avatar';
         if (!file_exists(public_path($path))) {
             mkdir(public_path($path), 0777, true);
         }
         if ($file = $request->get('image')) {
-            if(str_contains($file,'/images')){
+            if(str_contains($file,'/images') || str_contains($file,'/uploads')){
                 $img_url = $file;
             }
             else{
@@ -98,12 +99,14 @@ class InfoController extends Controller
             ]);
 
             User::where('id', Auth::id())->first()->update([
+                'name'=>$name,
                 'img'=> $img_url,
                 'updated_at'=>now()
             ]);
             return 'success';
         } catch (\Throwable $th) {
             throw $th;
+            return 'failed';
         }
     }
 }

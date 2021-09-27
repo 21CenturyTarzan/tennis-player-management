@@ -7,7 +7,7 @@
 </div> -->
 
 
-<div class="loader1-wrap">
+<div class="loader1-wrap" id="loader">
     <div class="ring">loading
         <span id="loading"></span>
     </div>

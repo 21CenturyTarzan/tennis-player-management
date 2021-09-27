@@ -4,26 +4,23 @@ import ReactDOM from 'react-dom';
 import React, {useState, useEffect} from 'react'
 
 // material
-import { Button, getImageListItemBarUtilityClass } from '@material-ui/core';
+import { Button } from '@material-ui/core';
 import { LoadingButton } from '@material-ui/lab';
 import axios from 'axios';
-import Select from 'react-select'
-import DatePicker from 'react-date-picker';
 
 import ImageCrop from 'react-image-crop-component';
 
-import 'react-image-crop-component/style.css'
+import 'react-image-crop-component/style.css';
+
+import SendIcon from '@mui/icons-material/Send';
 
 
 // ----------------------------------------------------------------------
 
 const  InfoEditor = ({info}) => {
 
-    const [isEditFlag, setEditFlag] = useState(false);
-    
     const [name, setName] = useState(info.account.name);
     const [birth, setBirth] = useState(new Date());
-    const [age, setAge] = useState(0);
     const [gender, setGender] = useState(info.gender);
     const [school, setSchool] = useState(info.school);
     const [grade, setGrade] = useState(info.grade);
@@ -37,20 +34,22 @@ const  InfoEditor = ({info}) => {
     const [imgUri, setImgUri] = useState(info.account.img);
     const [convertimgUri, setConvertImgUri] = useState(info.account.img);
     const [cropimgUri, setCropImgUri] = useState(info.account.img);
-
-    const [isSubmitting, setSubmit] = useState(false);
-
+    
     const [title1, setTitle1] = useState("私の目標は○○！！");
     const [title2, setTitle2] = useState("誰々に勝ちたい！！");
     
     const [jta_u_18, setJTAU18] = useState(1);
     const [kanto_u_18, setKantoU18] = useState(1);
     const [rankList, setRankList] = useState([]);
-
-
+    
+    const [age, setAge] = useState(0);
+    const [isSubmitting, setSubmit] = useState(false);
+    const [isEditFlag, setEditFlag] = useState(false);
+    
     const handleSubmit = (e) => {
         e.preventDefault();
         const formdata = new FormData();
+        formdata.append('name', JSON.stringify(name));
         formdata.append('gender', JSON.stringify(gender));
         formdata.append('birth', JSON.stringify(birth));
         formdata.append('height', JSON.stringify(height));
@@ -70,11 +69,11 @@ const  InfoEditor = ({info}) => {
 
         setSubmit(true)
 
-
+        document.getElementById('loader').style.display = 'block';
         axios.post('/info/store', formdata)
         .then(response => {
             if(response.data=='success'){
-                setSubmit(false)
+                setSubmit(false);
                 window.location.href = '/dashboard';
             }
         })
@@ -183,19 +182,19 @@ const  InfoEditor = ({info}) => {
                 <div className="img-wrap mt-3 mt-md-5">
                     <div className="row">
                         <div className="col-md-4">
-                            <div style={{cursor:'pointer', height:'150px', width:'150px'}} className="m-auto ml-md-auto m-md-0 border-1">
+                            <div className="m-auto ml-md-auto m-md-0 border-1 avatar-wrapper">
                                 <a data-bs-toggle="modal" data-bs-target="#cropModal">
-                                    <img src={convertimgUri} style={{width: '100%', height: '100%', objectFit: 'contain', background:'white'}}/> 
+                                    <img src={convertimgUri} className="avatar"/> 
                                 </a>
                                 <input type="file" name="image" id="crop" className="d-none" onChange={handleImageChange}/>
                             </div>
                         </div>
                         <div className="col-md-8">
-                            <p className="text-center bg-black-4">
+                            <p className="text-center bg-black-4 ft-30 ft-md-20  m-1 m-md-0 my-md-3">
                                 {/* <!-- title1 --> */}
                                 <input type="text" name="title1" className="w-75 bg-none edit-box border-0" value={title1} onChange={e=>setTitle1(e.target.value)}  required />
                             </p>
-                            <p className="text-center bg-black-4">
+                            <p className="text-center bg-black-4 ft-30 ft-md-20  m-1 m-md-0 my-md-3">
                                 {/* <!-- title2 --> */}
                                 <input type="text" name="title2" className="w-75 bg-none edit-box border-0" value={title2} onChange={e=>setTitle2(e.target.value)}  required />
                             </p>
@@ -340,9 +339,16 @@ const  InfoEditor = ({info}) => {
             </div>
 
             <div className="mt-3">
-                <LoadingButton size="large" color="primary" type="submit" fullWidth  variant="contained">
-                    送信
-                </LoadingButton>
+                <div className="row">
+                    <div className="col-6">
+                        <Button size="large" color="primary" fullWidth variant="contained" style={{backgroundColor: 'transparent', border: '2px solid white'}}>キャンセル</Button>
+                    </div>
+                    <div className="col-6">
+                        <LoadingButton size="large" type="submit" color="primary" fullWidth  variant="contained" style={{backgroundColor: 'transparent', border: '2px solid white'}} endIcon={<SendIcon />}>
+                            送信
+                        </LoadingButton>
+                    </div>
+                </div>
             </div>
         </form>
 

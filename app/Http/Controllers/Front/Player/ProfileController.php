@@ -51,7 +51,7 @@ class ProfileController extends Controller
         $lesson = json_decode($request->get('lesson'));
         $career = json_decode($request->get('career'));
 
-        $path = 'uploads/';
+        $path = 'uploads/avatar';
         if (!file_exists(public_path($path))) {
             mkdir(public_path($path), 0777, true);
         }

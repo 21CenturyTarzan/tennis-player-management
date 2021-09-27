@@ -46,7 +46,7 @@ class ProfileController extends Controller
         $phone  = json_decode($request->get('phone'));
         $child_email= json_decode($request->get('childEmail'));
 
-        $path = 'uploads/';
+        $path = 'uploads/avatar';
         if (!file_exists(public_path($path))) {
             mkdir(public_path($path), 0777, true);
         }

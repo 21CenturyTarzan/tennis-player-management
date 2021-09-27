@@ -20,6 +20,7 @@
         "@material-ui/lab": "^5.0.0-alpha.40",
         "@material-ui/styles": "^5.0.0-beta.1",
         "@material-ui/utils": "^5.0.0-beta.0",
+        "@mui/icons-material": "^5.0.1",
         "@testing-library/jest-dom": "^5.14.1",
         "apexcharts": "^3.27.3",
         "change-case": "^4.1.2",
@@ -71,7 +72,7 @@
         "postcss": "^8.1.14",
         "prettier": "^2.3.1",
         "resolve-url-loader": "^3.1.2",
-        "sass": "^1.15.2",
+        "sass": "^1.42.1",
         "sass-loader": "^8.0.0"
     }
 }
