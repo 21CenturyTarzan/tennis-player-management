@@ -18,7 +18,7 @@ class Rank extends Model
         'title2'
     ];
 
-    public function ranklist()
+    public function rank_list()
     {
         return $this->hasMany(RankList::class);
     }

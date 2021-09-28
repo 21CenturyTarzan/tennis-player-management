@@ -17,35 +17,81 @@ import SendIcon from '@mui/icons-material/Send';
 
 // ----------------------------------------------------------------------
 
-const  InfoEditor = ({info}) => {
+const  InfoEditor = ({profile, rank}) => {
 
-    const [name, setName] = useState(info.account.name);
+    const [name, setName] = useState(profile.account.name);
     const [birth, setBirth] = useState(new Date());
-    const [gender, setGender] = useState(info.gender);
-    const [school, setSchool] = useState(info.school);
-    const [grade, setGrade] = useState(info.grade);
-    const [phone, setPhone] = useState(info.phone);
-    const [address, setAddress] = useState(info.address);
-    const [lesson, setLesson] = useState(info.lesson);
-    const [career, setCareer] = useState(info.career);
-    const [height, setHeight] = useState(info.height);
-    const [weight, setWeight] = useState(info.weight);
+    const [gender, setGender] = useState(profile.gender);
+    const [school, setSchool] = useState(profile.school);
+    const [grade, setGrade] = useState(profile.grade);
+    const [phone, setPhone] = useState(profile.phone);
+    const [address, setAddress] = useState(profile.address);
+    const [lesson, setLesson] = useState(profile.lesson);
+    const [career, setCareer] = useState(profile.career);
+    const [height, setHeight] = useState(profile.height);
+    const [weight, setWeight] = useState(profile.weight);
     
-    const [imgUri, setImgUri] = useState(info.account.img);
-    const [convertimgUri, setConvertImgUri] = useState(info.account.img);
-    const [cropimgUri, setCropImgUri] = useState(info.account.img);
+    const [imgUri, setImgUri] = useState(profile.account.img);
+    const [convertimgUri, setConvertImgUri] = useState(profile.account.img);
+    const [cropimgUri, setCropImgUri] = useState(profile.account.img);
     
-    const [title1, setTitle1] = useState("私の目標は○○！！");
-    const [title2, setTitle2] = useState("誰々に勝ちたい！！");
+    const [title1, setTitle1] = useState("");
+    const [title2, setTitle2] = useState("");
     
-    const [jta_u_18, setJTAU18] = useState(1);
-    const [kanto_u_18, setKantoU18] = useState(1);
+    const [jta_u_18, setJTAU18] = useState('');
+    const [kanto_u_18, setKantoU18] = useState('');
     const [rankList, setRankList] = useState([]);
     
     const [age, setAge] = useState(0);
     const [isSubmitting, setSubmit] = useState(false);
     const [isEditFlag, setEditFlag] = useState(false);
+
+
     
+    useEffect(() => {
+
+        let birth = profile.birth.split(' ')[0]; //string 1998-07-09
+        setBirth(birth);
+        let today = new Date();
+        let age = calculateAge(new Date(birth), today);
+
+        if(Object.keys(rank).length === 0){
+            setTitle1("私の目標は○○！！");
+            setTitle2("誰々に勝ちたい！！");
+            setDefaultRank(age);
+            setJTAU18('-');
+            setKantoU18('-');
+        }
+        else{
+            setTitle1(rank.title1);
+            setTitle2(rank.title2);
+            setJTAU18(rank.jta_u_18);
+            setKantoU18(rank.kanto_u_18);
+            var obj = [];
+            for(var i = 0; i < rank.rank_list.length; i++)                
+                obj.push({'rankType': rank.rank_list[i].rank_type, 'rankValue': rank.rank_list[i].rank_value});
+
+            setRankList(obj);
+        }
+
+    }, []);
+
+    const setDefaultRank = function(age){
+        let arr = [];
+        arr.push({'rankType': 'ITF', 'rankValue':''});
+        arr.push({'rankType': 'JTAU'+age, 'rankValue':''});
+        arr.push({'rankType': '関東U'+age, 'rankValue':''});
+        arr.push({'rankType': '埼玉U'+age, 'rankValue':''});
+        arr.push({'rankType': 'School', 'rankValue':''});
+        setRankList(arr);
+    }
+
+    const calculateAge = (birth, today) => {
+        let age = today.getFullYear() - new Date(birth).getFullYear();
+        setAge(age);
+        return age;
+    }
+  
     const handleSubmit = (e) => {
         e.preventDefault();
         const formdata = new FormData();
@@ -79,8 +125,6 @@ const  InfoEditor = ({info}) => {
         })
     }
 
-    
-
     const onCropped = function (e) {
         let image = e.image
         let image_data = e.data
@@ -111,21 +155,6 @@ const  InfoEditor = ({info}) => {
         };
     };
 
-    useEffect(() => {
-
-        let birth = info.birth.split(' ')[0]; //string 1998-07-09
-        setBirth(birth);
-        let today = new Date();
-        let age = calculateAge(new Date(birth), today);
-        setDefaultRank(age);
-
-    }, []);
-
-    const calculateAge = (birth, today) => {
-        let age = today.getFullYear() - new Date(birth).getFullYear();
-        setAge(age);
-        return age;
-    }
 
     const handleAddRank = () => {
         setRankList([...rankList, { rankType: "", rankValue: "" }]);
@@ -157,18 +186,6 @@ const  InfoEditor = ({info}) => {
 
      
 
-    const setDefaultRank = function(age){
-        let arr = [];
-        arr.push({'rankType': 'ITF', 'rankValue':''});
-        arr.push({'rankType': 'JTAU'+age, 'rankValue':''});
-        arr.push({'rankType': '関東U'+age, 'rankValue':''});
-        arr.push({'rankType': '埼玉U'+age, 'rankValue':''});
-        arr.push({'rankType': 'School', 'rankValue':''});
-        setRankList(arr);
-    }
-
-    
-  
     return (
     <>
         <form  className="needs-validation"  onSubmit={handleSubmit} >
@@ -341,7 +358,7 @@ const  InfoEditor = ({info}) => {
             <div className="mt-3">
                 <div className="row">
                     <div className="col-6">
-                        <Button size="large" color="primary" fullWidth variant="contained" style={{backgroundColor: 'transparent', border: '2px solid white'}}>キャンセル</Button>
+                        <Button size="large" color="primary" fullWidth variant="contained" style={{backgroundColor: 'transparent', border: '2px solid white'}} onClick={(e)=>window.location.href = '/home'}>キャンセル</Button>
                     </div>
                     <div className="col-6">
                         <LoadingButton size="large" type="submit" color="primary" fullWidth  variant="contained" style={{backgroundColor: 'transparent', border: '2px solid white'}} endIcon={<SendIcon />}>
@@ -397,8 +414,9 @@ if(element){
 
     var json= Object.assign({}, element.dataset);
     const profile = JSON.parse(json.profile|| '{}');
-    console.log(profile)
+    const rank = JSON.parse(json.rank|| '{}');
+    console.log(profile, rank)
 
-    ReactDOM.render(<InfoEditor info={profile}/>, element);
+    ReactDOM.render(<InfoEditor profile={profile} rank={rank}/>, element);
 }
 

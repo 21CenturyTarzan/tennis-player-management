@@ -17740,9 +17740,10 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 var InfoEditor = function InfoEditor(_ref) {
-  var info = _ref.info;
+  var profile = _ref.profile,
+      rank = _ref.rank;
 
-  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(info.account.name),
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(profile.account.name),
       _useState2 = _slicedToArray(_useState, 2),
       name = _useState2[0],
       setName = _useState2[1];
@@ -17752,82 +17753,82 @@ var InfoEditor = function InfoEditor(_ref) {
       birth = _useState4[0],
       setBirth = _useState4[1];
 
-  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(info.gender),
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(profile.gender),
       _useState6 = _slicedToArray(_useState5, 2),
       gender = _useState6[0],
       setGender = _useState6[1];
 
-  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(info.school),
+  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(profile.school),
       _useState8 = _slicedToArray(_useState7, 2),
       school = _useState8[0],
       setSchool = _useState8[1];
 
-  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(info.grade),
+  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(profile.grade),
       _useState10 = _slicedToArray(_useState9, 2),
       grade = _useState10[0],
       setGrade = _useState10[1];
 
-  var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(info.phone),
+  var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(profile.phone),
       _useState12 = _slicedToArray(_useState11, 2),
       phone = _useState12[0],
       setPhone = _useState12[1];
 
-  var _useState13 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(info.address),
+  var _useState13 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(profile.address),
       _useState14 = _slicedToArray(_useState13, 2),
       address = _useState14[0],
       setAddress = _useState14[1];
 
-  var _useState15 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(info.lesson),
+  var _useState15 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(profile.lesson),
       _useState16 = _slicedToArray(_useState15, 2),
       lesson = _useState16[0],
       setLesson = _useState16[1];
 
-  var _useState17 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(info.career),
+  var _useState17 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(profile.career),
       _useState18 = _slicedToArray(_useState17, 2),
       career = _useState18[0],
       setCareer = _useState18[1];
 
-  var _useState19 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(info.height),
+  var _useState19 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(profile.height),
       _useState20 = _slicedToArray(_useState19, 2),
       height = _useState20[0],
       setHeight = _useState20[1];
 
-  var _useState21 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(info.weight),
+  var _useState21 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(profile.weight),
       _useState22 = _slicedToArray(_useState21, 2),
       weight = _useState22[0],
       setWeight = _useState22[1];
 
-  var _useState23 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(info.account.img),
+  var _useState23 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(profile.account.img),
       _useState24 = _slicedToArray(_useState23, 2),
       imgUri = _useState24[0],
       setImgUri = _useState24[1];
 
-  var _useState25 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(info.account.img),
+  var _useState25 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(profile.account.img),
       _useState26 = _slicedToArray(_useState25, 2),
       convertimgUri = _useState26[0],
       setConvertImgUri = _useState26[1];
 
-  var _useState27 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(info.account.img),
+  var _useState27 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(profile.account.img),
       _useState28 = _slicedToArray(_useState27, 2),
       cropimgUri = _useState28[0],
       setCropImgUri = _useState28[1];
 
-  var _useState29 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)("私の目標は○○！！"),
+  var _useState29 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(""),
       _useState30 = _slicedToArray(_useState29, 2),
       title1 = _useState30[0],
       setTitle1 = _useState30[1];
 
-  var _useState31 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)("誰々に勝ちたい！！"),
+  var _useState31 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(""),
       _useState32 = _slicedToArray(_useState31, 2),
       title2 = _useState32[0],
       setTitle2 = _useState32[1];
 
-  var _useState33 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(1),
+  var _useState33 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(''),
       _useState34 = _slicedToArray(_useState33, 2),
       jta_u_18 = _useState34[0],
       setJTAU18 = _useState34[1];
 
-  var _useState35 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(1),
+  var _useState35 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(''),
       _useState36 = _slicedToArray(_useState35, 2),
       kanto_u_18 = _useState36[0],
       setKantoU18 = _useState36[1];
@@ -17851,6 +17852,68 @@ var InfoEditor = function InfoEditor(_ref) {
       _useState44 = _slicedToArray(_useState43, 2),
       isEditFlag = _useState44[0],
       setEditFlag = _useState44[1];
+
+  (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
+    var birth = profile.birth.split(' ')[0]; //string 1998-07-09
+
+    setBirth(birth);
+    var today = new Date();
+    var age = calculateAge(new Date(birth), today);
+
+    if (Object.keys(rank).length === 0) {
+      setTitle1("私の目標は○○！！");
+      setTitle2("誰々に勝ちたい！！");
+      setDefaultRank(age);
+      setJTAU18('-');
+      setKantoU18('-');
+    } else {
+      setTitle1(rank.title1);
+      setTitle2(rank.title2);
+      setJTAU18(rank.jta_u_18);
+      setKantoU18(rank.kanto_u_18);
+      var obj = [];
+
+      for (var i = 0; i < rank.rank_list.length; i++) {
+        obj.push({
+          'rankType': rank.rank_list[i].rank_type,
+          'rankValue': rank.rank_list[i].rank_value
+        });
+      }
+
+      setRankList(obj);
+    }
+  }, []);
+
+  var setDefaultRank = function setDefaultRank(age) {
+    var arr = [];
+    arr.push({
+      'rankType': 'ITF',
+      'rankValue': ''
+    });
+    arr.push({
+      'rankType': 'JTAU' + age,
+      'rankValue': ''
+    });
+    arr.push({
+      'rankType': '関東U' + age,
+      'rankValue': ''
+    });
+    arr.push({
+      'rankType': '埼玉U' + age,
+      'rankValue': ''
+    });
+    arr.push({
+      'rankType': 'School',
+      'rankValue': ''
+    });
+    setRankList(arr);
+  };
+
+  var calculateAge = function calculateAge(birth, today) {
+    var age = today.getFullYear() - new Date(birth).getFullYear();
+    setAge(age);
+    return age;
+  };
 
   var handleSubmit = function handleSubmit(e) {
     e.preventDefault();
@@ -17909,21 +17972,6 @@ var InfoEditor = function InfoEditor(_ref) {
     };
   };
 
-  (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
-    var birth = info.birth.split(' ')[0]; //string 1998-07-09
-
-    setBirth(birth);
-    var today = new Date();
-    var age = calculateAge(new Date(birth), today);
-    setDefaultRank(age);
-  }, []);
-
-  var calculateAge = function calculateAge(birth, today) {
-    var age = today.getFullYear() - new Date(birth).getFullYear();
-    setAge(age);
-    return age;
-  };
-
   var handleAddRank = function handleAddRank() {
     setRankList([].concat(_toConsumableArray(rankList), [{
       rankType: "",
@@ -17960,31 +18008,6 @@ var InfoEditor = function InfoEditor(_ref) {
 
     list[index][name] = value;
     setRankList(list);
-  };
-
-  var setDefaultRank = function setDefaultRank(age) {
-    var arr = [];
-    arr.push({
-      'rankType': 'ITF',
-      'rankValue': ''
-    });
-    arr.push({
-      'rankType': 'JTAU' + age,
-      'rankValue': ''
-    });
-    arr.push({
-      'rankType': '関東U' + age,
-      'rankValue': ''
-    });
-    arr.push({
-      'rankType': '埼玉U' + age,
-      'rankValue': ''
-    });
-    arr.push({
-      'rankType': 'School',
-      'rankValue': ''
-    });
-    setRankList(arr);
   };
 
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.Fragment, {
@@ -18450,6 +18473,9 @@ var InfoEditor = function InfoEditor(_ref) {
                 backgroundColor: 'transparent',
                 border: '2px solid white'
               },
+              onClick: function onClick(e) {
+                return window.location.href = '/home';
+              },
               children: "\u30AD\u30E3\u30F3\u30BB\u30EB"
             })
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
@@ -18559,9 +18585,11 @@ var element = document.querySelector('#info-editor');
 if (element) {
   var json = Object.assign({}, element.dataset);
   var profile = JSON.parse(json.profile || '{}');
-  console.log(profile);
+  var rank = JSON.parse(json.rank || '{}');
+  console.log(profile, rank);
   react_dom__WEBPACK_IMPORTED_MODULE_0__.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(InfoEditor, {
-    info: profile
+    profile: profile,
+    rank: rank
   }), element);
 }
 
