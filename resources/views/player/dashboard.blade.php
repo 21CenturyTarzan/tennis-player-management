@@ -208,12 +208,12 @@
 
     </div>
 
-    <div style="padding-top: 72px;" id="manage">
+    <div style="padding-top: 72px;" id="goal">
         <div class="mt-3 py-2 rounded-15 bg-white shadow-lg">
             <h3 class="mt-2 p-1  text-white bg-green text-center font-weight-bold">
-                <span>選手管理<span>
+                <span>選手管理</span>
                 @if(strcmp(Auth::user()->type, 'player') ==0 )
-                    <a href="#" class="edit py-1" style="margin-top:-5px"><img src="/images/icon-pencil.svg" alt="icon-pencil.svg" width="30" height="30"></a>
+                    <a href="{{route('account.edit.goal')}}" class="edit py-1" style="margin-top:-5px"><img src="/images/icon-pencil.svg" alt="icon-pencil.svg" width="30" height="30"></a>
                 @endif
             </h3>
             <p class="w-50 w-md-75 p-1 pl-2 mb-2 bg-black-4 rounded-right-20 text-white">近日予定の試合</p>
@@ -333,7 +333,7 @@
     <div style="padding-top: 72px;"  id="prepare">
         <div class="mt-3 py-2 rounded-15 bg-white shadow-lg">
             <h3 class="mt-2 p-1 text-white bg-green text-center font-weight-bold">
-                試合前準備
+                <span>試合前準備</span>
                 @if(strcmp(Auth::user()->type, 'player') ==0 )
                     <a href="#" class="edit py-1" style="margin-top:-5px"><img src="/images/icon-pencil.svg" alt="icon-pencil.svg" width="30" height="30"></a>
                 @endif

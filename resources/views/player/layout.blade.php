@@ -57,7 +57,7 @@
                     </li>
                     
                     <li class="nav-item" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-placement="bottom" title="選手管理">
-                        <a class="nav-link btn btn-custom btn-icon"  href="#manage">
+                        <a class="nav-link btn btn-custom btn-icon"  href="#goal">
                             <span class="svg-icon svg-icon-2x">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 24 24" fill="#ffffff">
                                     <rect x="2" y="2" width="9" height="9" rx="2" fill="#ffffff" />

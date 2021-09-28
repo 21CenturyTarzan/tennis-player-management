@@ -47,6 +47,9 @@ Route::middleware(['auth', 'verified'])->name('account.')->group(function () {
     Route::get('/info/edit', [App\Http\Controllers\Front\Player\InfoController::class, 'index'])->name('edit.info');
     Route::post('/info/store', [App\Http\Controllers\Front\Player\InfoController::class, 'store'])->name('store.info');
 
+    Route::get('/goal/edit', [App\Http\Controllers\Front\Player\GoalManageController::class, 'index'])->name('edit.goal');
+    Route::post('/goal/store', [App\Http\Controllers\Front\Player\GoalManageController::class, 'store'])->name('store.goal');
+
 });
 
 
