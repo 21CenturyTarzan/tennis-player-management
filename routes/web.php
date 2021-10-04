@@ -50,6 +50,12 @@ Route::middleware(['auth', 'verified'])->name('account.')->group(function () {
     Route::get('/goal/edit', [App\Http\Controllers\Front\Player\GoalManageController::class, 'index'])->name('edit.goal');
     Route::post('/goal/store', [App\Http\Controllers\Front\Player\GoalManageController::class, 'store'])->name('store.goal');
 
+    Route::get('/match/edit', [App\Http\Controllers\Front\Player\MatchController::class, 'index'])->name('edit.match');
+    Route::post('/match/store', [App\Http\Controllers\Front\Player\MatchController::class, 'store'])->name('store.match');
+
+    Route::get('/result/edit', [App\Http\Controllers\Front\Player\ResultController::class, 'index'])->name('edit.result');
+    Route::post('/result/store', [App\Http\Controllers\Front\Player\ResultController::class, 'store'])->name('store.result');
+
 });
 
 

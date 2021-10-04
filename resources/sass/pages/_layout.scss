@@ -269,3 +269,13 @@ input[type='checkbox']{
         box-shadow: none;
     }
 }
+
+
+input[type="date"].hide-calender{
+
+    &::-webkit-inner-spin-button,&::-webkit-calendar-picker-indicator{
+       display: none;
+       -webkit-appearance: none;
+   }
+    
+}

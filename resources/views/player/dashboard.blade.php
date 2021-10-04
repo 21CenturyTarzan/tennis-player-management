@@ -335,7 +335,7 @@
             <h3 class="mt-2 p-1 text-white bg-green text-center font-weight-bold">
                 <span>試合前準備</span>
                 @if(strcmp(Auth::user()->type, 'player') ==0 )
-                    <a href="#" class="edit py-1" style="margin-top:-5px"><img src="/images/icon-pencil.svg" alt="icon-pencil.svg" width="30" height="30"></a>
+                    <a href="{{route('account.edit.match')}}" class="edit py-1" style="margin-top:-5px"><img src="/images/icon-pencil.svg" alt="icon-pencil.svg" width="30" height="30"></a>
                 @endif
             </h3>
             
@@ -403,7 +403,7 @@
             <h3 class="mt-2 p-1 text-white bg-green text-center font-weight-bold">
                 試合結果
                 @if(strcmp(Auth::user()->type, 'player') ==0 )
-                    <a href="#" class="edit py-1" style="margin-top:-5px"><img src="/images/icon-pencil.svg" alt="icon-pencil.svg" width="30" height="30"></a>
+                    <a href="{{route('account.edit.result')}}" class="edit py-1" style="margin-top:-5px"><img src="/images/icon-pencil.svg" alt="icon-pencil.svg" width="30" height="30"></a>
                 @endif    
             </h3>
             

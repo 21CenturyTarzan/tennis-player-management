@@ -17,3 +17,5 @@ require('./components/dashboard/PlayerList');
 require('./components/dashboard/MessageBox');
 require('./components/player/InfoEditor');
 require('./components/player/goalEditor');
+require('./components/player/matchEditor');
+require('./components/player/resultEditor');

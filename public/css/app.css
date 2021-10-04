@@ -10002,18 +10002,6 @@ h3 {
     border-color: #dee2e6;
   }
 }
-.edit-box {
-  height: 100% !important;
-  color: white;
-  text-align: center;
-  border-color: white;
-  border-width: 1px;
-}
-.edit-box:focus {
-  box-shadow: none;
-  border: none;
-}
-
 #home .topmv {
   position: relative;
   min-height: 700px;
@@ -10585,6 +10573,11 @@ input[type=checkbox]:checked {
 }
 input[type=checkbox]:focus {
   box-shadow: none;
+}
+
+input[type=date].hide-calender::-webkit-inner-spin-button, input[type=date].hide-calender::-webkit-calendar-picker-indicator {
+  display: none;
+  -webkit-appearance: none;
 }
 
 .loader2-wrap {

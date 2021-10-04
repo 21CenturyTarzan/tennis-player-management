@@ -156,34 +156,33 @@ const  InfoEditor = ({profile, rank}) => {
     };
 
 
-    const handleAddRank = () => {
+    const addRank = () => {
         setRankList([...rankList, { rankType: "", rankValue: "" }]);
     };
 
-    const handleRemoveRank = index => {
+    const removeListItem = () => {
         const list = [...rankList];
         list.pop();
         setRankList(list);
     };
 
-    const handleDeleteRank = (e, index) => {
-        console.log(index);
+    const deleteListItem = (e, index) => {
         const list = [...rankList];
         list.splice(index, 1);
         setRankList(list);
     }
-
-    const handleReloadRank = () => {
-        setDefaultRank(age);
-    }
     
-    const handleInputRankChange = (e, index) => {
+    const changeListItem = (e, index) => {
         const { name, value } = e.target;
         const list = [...rankList];
         list[index][name] = value;
         setRankList(list);
     };
-
+    
+    
+    const reloadRankList = () => {
+        setDefaultRank(age);
+    }
      
 
     return (
@@ -193,7 +192,7 @@ const  InfoEditor = ({profile, rank}) => {
                 <div className="name pt-3 pt-md-5 ">
                     <p className="text-center bg-red-4 font-weight-bold">
                         {/* <!-- name --> */}
-                        <input type="text" name="name" className="w-50 w-md-75 bg-none edit-box border-0" value={name} onChange={(e)=>setName(e.target.value)} required />
+                        <input type="text" name="name" className="w-50 w-md-75 bg-none text-center text-white border-0" value={name} onChange={(e)=>setName(e.target.value)} required />
                     </p>
                 </div>
                 <div className="img-wrap mt-3 mt-md-5">
@@ -209,11 +208,11 @@ const  InfoEditor = ({profile, rank}) => {
                         <div className="col-md-8">
                             <p className="text-center bg-black-4 ft-30 ft-md-20  m-1 m-md-0 my-md-3">
                                 {/* <!-- title1 --> */}
-                                <input type="text" name="title1" className="w-75 bg-none edit-box border-0" value={title1} onChange={e=>setTitle1(e.target.value)}  required />
+                                <input type="text" name="title1" className="w-75 bg-none text-center text-white border-0" value={title1} onChange={e=>setTitle1(e.target.value)}  required />
                             </p>
                             <p className="text-center bg-black-4 ft-30 ft-md-20  m-1 m-md-0 my-md-3">
                                 {/* <!-- title2 --> */}
-                                <input type="text" name="title2" className="w-75 bg-none edit-box border-0" value={title2} onChange={e=>setTitle2(e.target.value)}  required />
+                                <input type="text" name="title2" className="w-75 bg-none text-center text-white border-0" value={title2} onChange={e=>setTitle2(e.target.value)}  required />
                             </p>
                         </div>
                     </div>
@@ -258,9 +257,9 @@ const  InfoEditor = ({profile, rank}) => {
                 <div className="col-md-8 offset-md-2">
                     <div className="p-2 shadow-lg bg-black-4">
                         <h4 className="text-center text-white">
-                            <img src="/images/icon-minus-white.svg" width="25" style={{position:'absolute', left:'30px', cursor:'pointer'}} onClick={handleRemoveRank}/>
+                            <img src="/images/icon-minus-white.svg" width="25" style={{position:'absolute', left:'30px', cursor:'pointer'}} onClick={removeListItem}/>
                             <span>RANK</span>
-                            <img src="/images/icon-plus-white.svg" width="25" style={{position:'absolute', right:'30px', cursor:'pointer'}} onClick={handleAddRank}/>
+                            <img src="/images/icon-plus-white.svg" width="25" style={{position:'absolute', right:'30px', cursor:'pointer'}} onClick={addRank}/>
                         </h4>
                         <table className="table table-bordered m-0 p-1 text-white text-center">
                             <thead>
@@ -268,7 +267,7 @@ const  InfoEditor = ({profile, rank}) => {
                                     <td className="bg-white-2">区分</td>
                                     <td className="bg-white-2">
                                         <span>位</span>
-                                        <img src="/images/icon-reload-white.svg" width="25" style={{position:'absolute', right:'30px', cursor:'pointer'}} onClick={handleReloadRank}/>
+                                        <img src="/images/icon-reload-white.svg" width="25" style={{position:'absolute', right:'30px', cursor:'pointer'}} onClick={reloadRankList}/>
                                     </td>
                                 </tr>
                             </thead>
@@ -276,29 +275,29 @@ const  InfoEditor = ({profile, rank}) => {
                                 <tr>
                                     <td>JTAU18</td>
                                     <td>
-                                        <input type="number" min='1' step='1' name="jta-u-18" className="w-50 bg-none edit-box border-0"  value={jta_u_18} onChange={e => setJTAU18(e.target.value)} required />
+                                        <input type="number" min='1' step='1' name="jta-u-18" className="w-50 bg-none text-center text-white border-0"  value={jta_u_18} onChange={e => setJTAU18(e.target.value)} required />
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>関東U18</td>
                                     <td>
-                                        <input type="number" min='1' step='1' name="kanto-u-18" className="w-50 bg-none edit-box border-0"  value={kanto_u_18} onChange={e => setKantoU18(e.target.value)} required />
+                                        <input type="number" min='1' step='1' name="kanto-u-18" className="w-50 bg-none text-center text-white border-0"  value={kanto_u_18} onChange={e => setKantoU18(e.target.value)} required />
                                     </td>
                                 </tr>
-                            {
-                                rankList.length != 0 && 
-                                rankList.map((x, i)=>{
-                                    return(
-                                        <tr key={i}>
-                                            <td><input type="type" name="rankType" className="w-100 bg-none edit-box border-0" placeholder="ex: JTAU18" value={x.rankType} onChange={e => handleInputRankChange(e, i)} required/></td>
-                                            <td>
-                                                <input type="number" min='1' step='1' name="rankValue" className="w-50 bg-none edit-box border-0"  value={x.rankValue} onChange={e => handleInputRankChange(e, i)} required />
-                                                <img src="/images/icon-close-white.svg" width="25" style={{position:'absolute', right:'30px', cursor:'pointer'}} onClick={(e)=>handleDeleteRank(e, i)}/>
-                                            </td>
-                                        </tr>
-                                    )
-                                })
-                            }
+                                {
+                                    rankList.length != 0 && 
+                                    rankList.map((x, i)=>{
+                                        return(
+                                            <tr key={i}>
+                                                <td><input type="type" name="rankType" className="w-100 bg-none text-center text-white border-0" placeholder="ex: JTAU18" value={x.rankType} onChange={e => changeListItem(e, i)} required/></td>
+                                                <td>
+                                                    <input type="number" min='1' step='1' name="rankValue" className="w-50 bg-none text-center text-white border-0"  value={x.rankValue} onChange={e => changeListItem(e, i)} required />
+                                                    <img src="/images/icon-close-white.svg" width="25" style={{position:'absolute', right:'30px', cursor:'pointer'}} onClick={(e)=>deleteListItem(e, i)}/>
+                                                </td>
+                                            </tr>
+                                        )
+                                    })
+                                }
                             </tbody>
                         </table>
                     </div>
@@ -312,39 +311,39 @@ const  InfoEditor = ({profile, rank}) => {
                     <tbody>
                         <tr>
                             <th>性別</th>
-                            <td><input type="text" name="gender" className="w-100 bg-none edit-box border-0" value={gender} onChange={(e)=>setGender(e.target.value)}  required /></td>
+                            <td><input type="text" name="gender" className="w-100 bg-none text-center text-white border-0" value={gender} onChange={(e)=>setGender(e.target.value)}  required /></td>
                         </tr>
                         <tr>
                             <th>生年月日</th>
-                            <td><input type="date" name="birth" className="w-100 bg-none edit-box border-0" value={birth} onChange={(e)=>{setBirth(e.target.value); calculateAge(e.target.value, new Date());} }  required /></td>
+                            <td><input type="date" name="birth" className="w-100 bg-none text-center text-white border-0" value={birth} onChange={(e)=>{setBirth(e.target.value); calculateAge(e.target.value, new Date());} }  required /></td>
                         </tr>
                         <tr>
                             <th>キー(cm)</th>
-                            <td><input type="number" name="height" min="100" step="0.1" className="w-100 bg-none edit-box border-0" value={height} onChange={(e)=>{setHeight(e.target.value);} }  required/></td>
+                            <td><input type="number" name="height" min="100" step="0.1" className="w-100 bg-none text-center text-white border-0" value={height} onChange={(e)=>{setHeight(e.target.value);} }  required/></td>
                         </tr>
                         <tr>
                             <th>体重(kg)</th>
-                            <td><input type="number" name="weight" min="30" step="0.1" className="w-100 bg-none edit-box border-0" value={weight} onChange={(e)=>{setWeight(e.target.value);} }  required /></td>
+                            <td><input type="number" name="weight" min="30" step="0.1" className="w-100 bg-none text-center text-white border-0" value={weight} onChange={(e)=>{setWeight(e.target.value);} }  required /></td>
                         </tr>
                         <tr>
                             <th>学校</th>
-                            <td><input type="text" name="school" className="w-100 bg-none edit-box border-0" value={school} onChange={(e)=>setSchool(e.target.value)}  required/></td>
+                            <td><input type="text" name="school" className="w-100 bg-none text-center text-white border-0" value={school} onChange={(e)=>setSchool(e.target.value)}  required/></td>
                         </tr>
                         <tr>
                             <th>学年</th>
-                            <td><input type="text" name="grade" className="w-100 bg-none edit-box border-0" value={grade} onChange={(e)=>setGrade(e.target.value)} /></td>
+                            <td><input type="text" name="grade" className="w-100 bg-none text-center text-white border-0" value={grade} onChange={(e)=>setGrade(e.target.value)} /></td>
                         </tr>
                         <tr>
                             <th>郵便番号</th>
-                            <td><input type="tel" name="phone" className="w-100 bg-none edit-box border-0" value={phone} onChange={(e)=>setPhone(e.target.value)}  required /></td>
+                            <td><input type="tel" name="phone" className="w-100 bg-none text-center text-white border-0" value={phone} onChange={(e)=>setPhone(e.target.value)}  required /></td>
                         </tr>
                         <tr>
                             <th>住所</th>
-                            <td><input type="text" name="address" className="w-100 bg-none edit-box border-0" value={address} onChange={(e)=>setAddress(e.target.value)}  required /></td>
+                            <td><input type="text" name="address" className="w-100 bg-none text-center text-white border-0" value={address} onChange={(e)=>setAddress(e.target.value)}  required /></td>
                         </tr>
                         <tr>
                             <th>受講回数</th>
-                            <td><input type="text" name="lesson" className="w-100 bg-none edit-box border-0" value={lesson} onChange={(e)=>setLesson(e.target.value)}  required /></td>
+                            <td><input type="text" name="lesson" className="w-100 bg-none text-center text-white border-0" value={lesson} onChange={(e)=>setLesson(e.target.value)}  required /></td>
                         </tr>
                         <tr>
                             <th>主な戦績</th>
