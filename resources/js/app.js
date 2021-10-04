@@ -11,9 +11,17 @@ require('./bootstrap');
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
-require('./components/profile/PlayerProfileEditor');
-require('./components/profile/ParentProfileEditor');
-require('./components/dashboard/PlayerList');
-require('./components/dashboard/MessageBox');
-require('./components/player/InfoEditor');
-require('./components/player/goalEditor');
+require('./components/MessageBox')
+require('./components/pageloader')
+require('./components/scrollbar')
+require('./components/notification')
+
+require('./player/infoEditor');
+require('./player/goalEditor');
+require('./player/matchEditor');
+require('./player/resultEditor');
+require('./player/profileEditor');
+
+require('./admin/playerList')
+
+require('./parent/profileEditor')

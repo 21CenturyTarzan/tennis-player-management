@@ -9,10 +9,31 @@
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
-@import './pages/edit';
+@import './base/layout';
+@import './base/loader';
+@import './base/color';
+@import './base/font';
+@import './base/typography';
+@import './base/cursor';
+@import './base/transform';
+@import './base/alert';
+@import './base/input';
+
+
+@import './custom/global';
+@import './custom/color';
+@import './custom/breakpoint';
+@import './custom/sp';
+@import './custom/pc';
+@import './custom/main';
+@import './custom/content';
+@import './custom/side';
+@import './custom/notification';
+
+
 @import './pages/home';
 @import './pages/auth';
 @import './pages/profile';
-@import './pages/dashboard';
+@import './pages/info';
 @import './pages/layout';
 @import './pages/loader';

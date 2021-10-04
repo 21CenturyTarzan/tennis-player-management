@@ -1,0 +1,190 @@
+
+#dashboard{
+    background-image: url(/images/court.jpg);
+
+    .container{
+        max-width: 90%;
+        @include media-breakpoint-down(md){
+            margin-left: 0;
+            margin-right: 0;
+            max-width: 100%;
+        }
+    }
+
+    .symbol{
+        display: inline-block;
+        flex-shrink: 0;
+        position: relative;
+        border-radius: 0.475rem;
+
+        img{
+            width: 60px;
+            height: 60px;
+            border-radius: 10%;
+        }
+    }
+    .text-dark{
+        font-size: 15px !important;
+    }
+    .text-muted{
+        font-size: 15px !important;
+    }
+    
+    .me-5 {
+        margin-right: 1.25rem !important;
+    }
+
+    .w-100{
+        width: 100%;
+    }
+
+  
+    #player-list-box{
+        width: 100%;
+        height: 580px;
+        box-shadow: 0 0 8px #000 !important;
+        position: relative;
+
+        .form-control{
+            border-radius: 0;
+            &:focus{
+                border: 2px solid #3490dc;
+                box-shadow: none;
+            }
+        }
+
+        .player-list{
+            height: 465px;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            .d-flex {
+                cursor: pointer;
+                &:hover{
+                    background-color: rgb(231, 231, 231);
+                }
+                &:focus{
+                    background-color: rgb(231, 231, 231);
+                }
+            }
+        }
+    }
+
+    #message-box{
+        height: 580px;
+        box-shadow: 0 0 8px #000 !important;
+        position: relative;
+
+        #message-list{
+            height: 500px;
+            .notice{
+                height: 490px;
+                .d-flex {
+                    cursor: pointer;
+                    &:hover{
+                        background-color: rgb(231, 231, 231);
+                    }
+                    &:focus{
+                        background-color: rgb(231, 231, 231);
+                    }
+                }
+            }
+        }
+
+    }
+        
+    .player-main-info{
+
+        background-image: url(/images/info_back.jpg);
+        background-size: 100% 100%;
+        box-shadow: 0 0 8px #000 !important;
+
+        .name{
+            p{
+                padding: 0;
+                font-size: 30px;
+                margin: 0;
+            }
+        }
+        
+    }
+
+    textarea{
+        width: 100%;
+        height: 100%;
+        font-size: 15px;
+        &:focus{
+            border: 2px solid #0e1113 !important;
+            box-shadow: none !important;
+        }
+    }
+    
+}
+
+
+
+p{
+    &.value{
+        margin: 0px;
+        font-size: 40px;
+        span{
+            font-size: 15px;
+            padding-left: 5px;
+        }
+        @include media-breakpoint-down(sm){
+            font-size: 30px;
+        }
+    }
+    &.hint{
+        margin:0px;
+        text-align: center;
+        color: #9fa1a3;
+    }
+}
+    
+.avatar-wrapper{
+    cursor:pointer;
+    height:150px;
+    width: 150px;
+    img.avatar{
+        width: 100%;
+        height: 100%;
+        background: white;
+        border-radius: 10px;
+    }
+}
+
+
+
+table#person-info{
+    th{
+        width: 100px;
+    }
+    pre{
+        color: white;
+        font-size: 18px;
+    }
+}
+
+
+
+.player-main-info{
+
+    background-image: url(/images/info_back.jpg);
+    background-size: 100% 100%;
+    box-shadow: 0 0 8px #000 !important;
+
+    .name{
+        p{
+            position: relative;
+            padding: 0;
+            font-size: 30px;
+            margin: 0;
+        }
+    }
+    
+}
+
+
+textarea{
+    resize: none;
+  }

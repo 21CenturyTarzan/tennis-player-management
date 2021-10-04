@@ -11,6 +11,12 @@ class GoalManageController extends Controller
     public function index()
     {
         # code...
-        return view('player.goal');
+        return view('account.player.goal.index');
+    }
+
+    public function edit()
+    {
+        # code...
+        return view('account.player.goal.edit');
     }
 }
