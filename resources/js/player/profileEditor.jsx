@@ -124,7 +124,7 @@ const  PlayerProfileEditor = () => {
 
         setSubmit(true)
 
-        axios.post('/profile/store/player', formdata)
+        axios.post('/player/profile/store', formdata)
         .then(response => {
             if(response.data=='success'){
                 window.location.href = '/home';

@@ -70,7 +70,7 @@ const  ResultEditor = () => {
         setSubmit(true)
 
         document.getElementById('loader').style.display = 'block';
-        axios.post('/info/store', formdata)
+        axios.post('/player/result/store', formdata)
         .then(response => {
             if(response.data=='success'){
                 setSubmit(false);

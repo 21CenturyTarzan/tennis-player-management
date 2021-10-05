@@ -19,7 +19,12 @@ class ProfileController extends Controller
      */
     public function index()
     {
-        return view('parent.profile');
+        // return view('account.parent.profile');
+    }
+
+    public function edit()
+    {
+        return view('account.parent.profile.edit');
     }
 
     /**
@@ -94,17 +99,6 @@ class ProfileController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show(Profile $profile)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Profile  $profile
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Profile $profile)
     {
         //
     }

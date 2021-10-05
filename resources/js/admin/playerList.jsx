@@ -3,9 +3,9 @@ import { filter } from 'lodash';
 import axios from 'axios';
 import React, {useState, useEffect} from 'react'
 
-import PageLoader from '../layouts/pageloader';
+import PageLoader from '../components/pageloader';
 
-import Scrollbar from '../layouts/scrollbar';
+import Scrollbar from '../components/scrollbar';
 
 
 export default function PlayerList() {

@@ -92,7 +92,7 @@ const  GoalEditor = () => {
         setSubmit(true)
 
         document.getElementById('loader').style.display = 'block';
-        axios.post('/info/store', formdata)
+        axios.post('/player/goal/store', formdata)
         .then(response => {
             if(response.data=='success'){
                 setSubmit(false);

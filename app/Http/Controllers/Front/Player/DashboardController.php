@@ -19,7 +19,7 @@ class DashboardController extends Controller
         $res['rank'] = Rank::where('account_id', Auth::user()->id)->with('rank_list') -> orderBy('id', 'DESC') -> first();
         $res['profile'] = ProfilePlayer::where('account_id', Auth::user()->id)->first();
         if(strcmp(Auth::user()->type, 'player') == 0)
-            return view('player.dashboard', $res);
+            return view('account.player.dashboard', $res);
         else return view('errors.404');
     }
 

@@ -116,7 +116,7 @@ const  InfoEditor = ({profile, rank}) => {
         setSubmit(true)
 
         document.getElementById('loader').style.display = 'block';
-        axios.post('/info/store', formdata)
+        axios.post('/player/info/store', formdata)
         .then(response => {
             if(response.data=='success'){
                 setSubmit(false);

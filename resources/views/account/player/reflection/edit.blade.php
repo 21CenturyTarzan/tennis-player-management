@@ -1,4 +1,4 @@
-@extends('player.layout')
+@extends('account.player.layout')
 
 @section('title','Edit')
 

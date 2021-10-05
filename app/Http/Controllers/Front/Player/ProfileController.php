@@ -17,8 +17,14 @@ class ProfileController extends Controller
      */
     public function index()
     {
-        return view('player.profile');
+        return view('account.player.profile.edit');
     }
+
+    public function edit()
+    {
+        return view('account.player.profile.edit');
+    }
+
 
     /**
      * Show the form for creating a new resource.
@@ -103,16 +109,6 @@ class ProfileController extends Controller
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Profile  $profile
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Profile $profile)
-    {
-        //
-    }
 
     /**
      * Update the specified resource in storage.

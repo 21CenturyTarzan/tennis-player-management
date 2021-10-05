@@ -43,7 +43,7 @@ const  ParentProfileEditor = () => {
 
         setSubmit(true)
 
-        axios.post('/profile/store/parent', formdata)
+        axios.post('/parent/profile/store', formdata)
         .then(response => {
             if(response.data=='success'){
                 window.location.href = '/home';

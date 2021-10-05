@@ -48,7 +48,7 @@ const  MatchEditor = () => {
         setSubmit(true)
 
         document.getElementById('loader').style.display = 'block';
-        axios.post('/info/store', formdata)
+        axios.post('player/match/store', formdata)
         .then(response => {
             if(response.data=='success'){
                 setSubmit(false);

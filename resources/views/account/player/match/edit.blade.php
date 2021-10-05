@@ -1,9 +1,9 @@
-@extends('player.layout')
+@extends('account.player.layout')
 
 @section('title','Edit')
 
 @section('player.content')
-    <div style="padding-top: 72px; padding-bottom: 20px" id="goal-editor"></div>
+    <div style="padding-top: 72px; padding-bottom: 20px" id="match-editor"></div>
 @endsection
 
 @push('js')
