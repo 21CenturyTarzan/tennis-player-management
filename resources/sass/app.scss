@@ -15,3 +15,22 @@
 @import './pages/dashboard';
 @import './pages/layout';
 @import './pages/loader';
+
+@import './custom/global';
+@import './custom/color';
+@import './custom/breakpoint';
+@import './custom/sp';
+@import './custom/pc';
+@import './custom/main';
+@import './custom/content';
+@import './custom/side';
+
+@import './base/layout';
+@import './base/loader';
+@import './base/color';
+@import './base/font';
+@import './base/typography';
+@import './base/cursor';
+@import './base/transform';
+@import './base/alert';
+@import './base/input';
