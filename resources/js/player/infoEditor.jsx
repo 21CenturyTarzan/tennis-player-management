@@ -120,7 +120,7 @@ const  InfoEditor = ({profile, rank}) => {
         .then(response => {
             if(response.data=='success'){
                 setSubmit(false);
-                window.location.href = '/home';
+                window.location.href = '/player/info';
             }
         })
     }

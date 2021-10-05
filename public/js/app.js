@@ -17142,6 +17142,8 @@ __webpack_require__(/*! ./components/pageloader */ "./resources/js/components/pa
 
 __webpack_require__(/*! ./components/scrollbar */ "./resources/js/components/scrollbar.jsx");
 
+__webpack_require__(/*! ./components/notification */ "./resources/js/components/notification.jsx");
+
 __webpack_require__(/*! ./player/infoEditor */ "./resources/js/player/infoEditor.jsx");
 
 __webpack_require__(/*! ./player/goalEditor */ "./resources/js/player/goalEditor.jsx");
@@ -17518,6 +17520,81 @@ function MessageBox() {
 
 if (document.querySelector('#message-box #message-list')) {
   react_dom__WEBPACK_IMPORTED_MODULE_1__.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(MessageBox, {}), document.querySelector('#message-box #message-list'));
+}
+
+/***/ }),
+
+/***/ "./resources/js/components/notification.jsx":
+/*!**************************************************!*\
+  !*** ./resources/js/components/notification.jsx ***!
+  \**************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
+
+
+
+var Notification = function Notification() {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+    className: "l-content__ttl",
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+      className: "p-notification",
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+        className: "p-notification-icon",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+          className: "p-notification-icon-wrap",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+            className: "count",
+            children: "1"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+            className: "p-notification-icon-bg"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("svg", {
+            xmlns: "http://www.w3.org/2000/svg",
+            viewBox: "0 0 22.742 19.855",
+            className: "icon svg-icon svg-fill svg-y50",
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("g", {
+              fill: "none",
+              stroke: "#080808",
+              strokeLinecap: "round",
+              strokeLinejoin: "round",
+              strokeWidth: "1.5",
+              "data-name": "Icon feather-alert-triangle",
+              transform: "translate(0.777 0.75)",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("path", {
+                d: "M11.188,5.322,2.6,19.659A2.028,2.028,0,0,0,4.334,22.7H21.51a2.028,2.028,0,0,0,1.734-3.042L14.656,5.322a2.028,2.028,0,0,0-3.468,0Z",
+                "data-name": "\u30D1\u30B9 3",
+                transform: "translate(-2.328 -4.346)"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("path", {
+                d: "M18,13.5v6.91",
+                "data-name": "\u30D1\u30B9 4",
+                transform: "translate(-7.406 -8.547)"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("path", {
+                d: "M18,25.5h0",
+                "data-name": "\u30D1\u30B9 5",
+                transform: "translate(-7.406 -11.2)"
+              })]
+            })
+          })]
+        })
+      })
+    })
+  });
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Notification);
+var element = document.querySelector('#notification');
+
+if (element) {
+  react_dom__WEBPACK_IMPORTED_MODULE_1__.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(Notification, {}), element);
 }
 
 /***/ }),
@@ -18767,7 +18844,7 @@ var InfoEditor = function InfoEditor(_ref) {
     axios__WEBPACK_IMPORTED_MODULE_2___default().post('/player/info/store', formdata).then(function (response) {
       if (response.data == 'success') {
         setSubmit(false);
-        window.location.href = '/home';
+        window.location.href = '/player/info';
       }
     });
   };

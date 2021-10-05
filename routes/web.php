@@ -46,9 +46,11 @@ Route::middleware(['auth', 'verified'])->name('account.')->group(function () {
     Route::get('/player/profile/edit', [App\Http\Controllers\Front\Player\ProfileController::class, 'edit'])->name('player.profile.edit');
     Route::post('/player/profile/store', [App\Http\Controllers\Front\Player\ProfileController::class, 'store'])->name('player.profile.store');
 
+    Route::get('/player/info', [App\Http\Controllers\Front\Player\InfoController::class, 'index'])->name('player.info');
     Route::get('/player/info/edit', [App\Http\Controllers\Front\Player\InfoController::class, 'edit'])->name('player.edit.info');
     Route::post('/player/info/store', [App\Http\Controllers\Front\Player\InfoController::class, 'store'])->name('player.store.info');
 
+    Route::get('/player/goal', [App\Http\Controllers\Front\Player\GoalManageController::class, 'index'])->name('player.goal');
     Route::get('/player/goal/edit', [App\Http\Controllers\Front\Player\GoalManageController::class, 'edit'])->name('player.edit.goal');
     Route::post('/player/goal/store', [App\Http\Controllers\Front\Player\GoalManageController::class, 'store'])->name('player.store.goal');
 

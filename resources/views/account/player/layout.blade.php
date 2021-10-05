@@ -43,35 +43,40 @@
     <body>
         <main class="l-container meeting-consent">
             <div class="l-content">
-                @yield('player.content')
+
+                <div id="notification"></div>
+                
+                <div>
+                    @yield('player.content')
+                </div>
             </div>
 
             <div class="l-side">
                 <div class="l-side-logo">
                     <a href="">
-                        <img src="{{ asset('assets/img/common/logo.svg') }}" alt="ロゴ" />    
+                        <img src="{{ asset('images/top_mv_logo.svg') }}" width="200px" height="200px" alt="ロゴ" />    
                     </a>
                 </div>
                 <nav class="mypage-nav">
                     <ul class="mypage-nav-list">
                         <li class="mypage-nav-list__item -meeting nav-active">
-                            <a href="/c-account/meeting" class="mypage-nav-list__link">
-                                <i class="icon meeting"></i><span>ミーティング</span>
+                            <a href="/player/info" class="mypage-nav-list__link">
+                                <i class="icon meeting"></i><span>個人情報</span>
                             </a>
                         </li>
                         <li class="mypage-nav-list__item -search">
-                            <a href="/c-account/search" class="mypage-nav-list__link">
-                                <i class="icon search"></i><span>検索</span>
+                            <a href="/player/goal" class="mypage-nav-list__link">
+                                <i class="icon search"></i><span>選手管理</span>
                             </a>
                         </li>
                         <li class="mypage-nav-list__item -childinfo">
-                            <a href="/c-account/parent" class="mypage-nav-list__link">
-                                <i class="icon parents"></i><span>親情報</span>
+                            <a href="" class="mypage-nav-list__link">
+                                <i class="icon parents"></i><span>試合前準備</span>
                             </a>
                         </li>
                         <li class="mypage-nav-list__item -profile">
-                            <a href="/c-account/profile" class="user-icon mypage-nav-list__link">
-                                <figure>
+                            <a href="" class="user-icon mypage-nav-list__link">
+                                <figure class="mb-0">
                                     <div class="prof-wrap">
                                         <img src="{{ asset('assets/img/avatar/avatar-sample01@2x.png') }}" alt="" />
                                     </div>
@@ -87,8 +92,12 @@
                     </ul>
                 </nav>
             </div>
+
+            @extends('layouts.loader1')
         </main>
     </body>
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <script src="{{ asset('js/app.js') }}"></script>
 </html>

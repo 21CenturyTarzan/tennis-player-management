@@ -3,7 +3,7 @@
 @section('title', 'Dashboard')
 
 @section('player.content')
-    <div style="padding-top: 72px;" id="info">
+    <div id="info">
         <div class="mt-3 pt-2 rounded-top-15 text-white player-main-info">
             <div class="name pt-3 pt-md-5 ">
                 <p class="text-center bg-red-4 font-weight-bold">

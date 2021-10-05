@@ -38,7 +38,7 @@ class HomeController extends Controller
             $tmp = ProfilePlayer::where('account_id', Auth::user()->id)->count();
             if($tmp == 0)
                 return redirect('/player/profile/edit');
-            else return redirect('/player/dashboard');
+            else return redirect('/player/info');
         }
         else return redirect('/admin/dashboard');
     }

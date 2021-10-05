@@ -164,3 +164,27 @@ table#person-info{
         font-size: 18px;
     }
 }
+
+
+
+.player-main-info{
+
+    background-image: url(/images/info_back.jpg);
+    background-size: 100% 100%;
+    box-shadow: 0 0 8px #000 !important;
+
+    .name{
+        p{
+            position: relative;
+            padding: 0;
+            font-size: 30px;
+            margin: 0;
+        }
+    }
+    
+}
+
+
+textarea{
+    resize: none;
+  }

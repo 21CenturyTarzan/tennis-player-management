@@ -5,7 +5,7 @@
     padding: 0 20px;
     @include pc{
       margin: 25px 0 0 240px;
-      padding: 0 32px;
+      padding: 0 100px 50px 100px;
     }
     @include sp{
       padding-bottom: 130px;
@@ -13,7 +13,7 @@
       box-sizing: border-box;
     }
     @include sp02{
-      padding-bottom: 110px;
+      padding-bottom: 100px;
     }
     &-wrap{
       margin: 0 auto;
@@ -35,11 +35,11 @@
       margin: 0 auto 35px;
       @include pc{
         max-width: 1064px;
-        justify-content: space-between;
+        justify-content: right;
         margin: 0 auto 25px;
       }
       @include sp02{
-        margin: 0 auto 30px
+        margin: 0 auto 50px
       }
       &__left{
         display: flex;

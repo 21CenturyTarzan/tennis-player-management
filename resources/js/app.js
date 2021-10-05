@@ -14,6 +14,7 @@ require('./bootstrap');
 require('./components/MessageBox')
 require('./components/pageloader')
 require('./components/scrollbar')
+require('./components/notification')
 
 require('./player/infoEditor');
 require('./player/goalEditor');

@@ -41,9 +41,7 @@ categories: [layout]
     flex-flow: row-reverse;
     background: #fff;
     justify-content: flex-end;
-    @include pc{
-      background: $_color-bg02;
-    }
+    background-image: url(/images/court.jpg);
   }
   .l-single {
     &-main{
