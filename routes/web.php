@@ -54,9 +54,11 @@ Route::middleware(['auth', 'verified'])->name('account.')->group(function () {
     Route::get('/player/goal/edit', [App\Http\Controllers\Front\Player\GoalManageController::class, 'edit'])->name('player.edit.goal');
     Route::post('/player/goal/store', [App\Http\Controllers\Front\Player\GoalManageController::class, 'store'])->name('player.store.goal');
 
+    Route::get('/player/match', [App\Http\Controllers\Front\Player\MatchController::class, 'index'])->name('player.match');
     Route::get('/player/match/edit', [App\Http\Controllers\Front\Player\MatchController::class, 'edit'])->name('player.edit.match');
     Route::post('/player/match/store', [App\Http\Controllers\Front\Player\MatchController::class, 'store'])->name('player.store.match');
 
+    Route::get('/player/result', [App\Http\Controllers\Front\Player\ResultController::class, 'index'])->name('player.result');
     Route::get('/player/result/edit', [App\Http\Controllers\Front\Player\ResultController::class, 'edit'])->name('player.edit.result');
     Route::post('/player/result/store', [App\Http\Controllers\Front\Player\ResultController::class, 'store'])->name('player.store.result');
 

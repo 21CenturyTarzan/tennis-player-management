@@ -11,7 +11,7 @@ class MatchController extends Controller
     public function index()
     {
         # code...
-        return view('account.player.match');
+        return view('account.player.match.index');
     }
 
     public function edit()

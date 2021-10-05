@@ -1,9 +1,10 @@
 @extends('account.player.layout')
+@extends('account.player.side')
 
-@section('title','Edit')
+@section('title','試合結果編集')
 
 @section('player.content')
-    <div style="padding-top: 72px; padding-bottom: 20px" id="result-editor"></div>
+    <div id="result-editor"></div>
 @endsection
 
 @push('js')

@@ -18,7 +18,7 @@ categories: [project]
     padding: 6px 6px 0 0;
     display: block;
     @include sp{
-      position: absolute;
+      position: fixed;
       right: 18px;
       top: 18px;
       z-index: 5;

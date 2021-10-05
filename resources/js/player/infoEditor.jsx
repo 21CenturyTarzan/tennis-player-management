@@ -192,7 +192,7 @@ const  InfoEditor = ({profile, rank}) => {
                 <div className="name pt-3 pt-md-5 ">
                     <p className="text-center bg-red-4 font-weight-bold">
                         {/* <!-- name --> */}
-                        <input type="text" name="name" className="w-50 w-md-75 bg-none text-center text-white border-0" value={name} onChange={(e)=>setName(e.target.value)} required />
+                        <input type="text" name="name" className="w-50 w-md-75 bg-none text-center text-white border-0" value={name} onChange={(e)=>setName(e.target.value)} required autoFocus/>
                     </p>
                 </div>
                 <div className="img-wrap mt-3 mt-md-5">
@@ -357,7 +357,7 @@ const  InfoEditor = ({profile, rank}) => {
             <div className="mt-3">
                 <div className="row">
                     <div className="col-6">
-                        <Button size="large" color="primary" fullWidth variant="contained" style={{backgroundColor: 'transparent', border: '2px solid white'}} onClick={(e)=>window.location.href = '/home'}>キャンセル</Button>
+                        <Button size="large" color="primary" fullWidth variant="contained" style={{backgroundColor: 'transparent', border: '2px solid white'}} onClick={e=>window.location.href = '/player/info'}>キャンセル</Button>
                     </div>
                     <div className="col-6">
                         <LoadingButton size="large" type="submit" color="primary" fullWidth  variant="contained" style={{backgroundColor: 'transparent', border: '2px solid white'}} endIcon={<SendIcon />}>

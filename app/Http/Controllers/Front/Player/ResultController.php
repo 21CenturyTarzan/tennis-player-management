@@ -11,7 +11,7 @@ class ResultController extends Controller
     public function index()
     {
         # code...
-        return view('account.player.result');
+        return view('account.player.result.index');
     }
 
     public function edit()

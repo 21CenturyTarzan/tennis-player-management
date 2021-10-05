@@ -17556,32 +17556,16 @@ var Notification = function Notification() {
             className: "count",
             children: "1"
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-            className: "p-notification-icon-bg"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("svg", {
-            xmlns: "http://www.w3.org/2000/svg",
-            viewBox: "0 0 22.742 19.855",
-            className: "icon svg-icon svg-fill svg-y50",
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("g", {
-              fill: "none",
-              stroke: "#080808",
-              strokeLinecap: "round",
-              strokeLinejoin: "round",
-              strokeWidth: "1.5",
-              "data-name": "Icon feather-alert-triangle",
-              transform: "translate(0.777 0.75)",
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("path", {
-                d: "M11.188,5.322,2.6,19.659A2.028,2.028,0,0,0,4.334,22.7H21.51a2.028,2.028,0,0,0,1.734-3.042L14.656,5.322a2.028,2.028,0,0,0-3.468,0Z",
-                "data-name": "\u30D1\u30B9 3",
-                transform: "translate(-2.328 -4.346)"
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("path", {
-                d: "M18,13.5v6.91",
-                "data-name": "\u30D1\u30B9 4",
-                transform: "translate(-7.406 -8.547)"
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("path", {
-                d: "M18,25.5h0",
-                "data-name": "\u30D1\u30B9 5",
-                transform: "translate(-7.406 -11.2)"
-              })]
+            className: "p-notification-icon-bg",
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("img", {
+              src: "/images/notification.svg",
+              style: {
+                width: '70%',
+                height: '70%',
+                position: 'absolute',
+                left: '14%',
+                top: '12%'
+              }
             })
           })]
         })
@@ -18306,7 +18290,7 @@ var GoalEditor = function GoalEditor() {
     axios__WEBPACK_IMPORTED_MODULE_2___default().post('/player/goal/store', formdata).then(function (response) {
       if (response.data == 'success') {
         setSubmit(false);
-        window.location.href = '/home';
+        window.location.href = '/player/goal';
       }
     });
   };
@@ -18353,32 +18337,27 @@ var GoalEditor = function GoalEditor() {
           children: "\u8FD1\u65E5\u4E88\u5B9A\u306E\u8A66\u5408"
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
           className: "px-2 mb-2",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("table", {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+            className: "text-center mb-1",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("img", {
+              src: "/images/icon-minus-black.svg",
+              width: "25",
+              className: "pointer mr-1",
+              onClick: removeMatchItem
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("img", {
+              src: "/images/icon-plus-black.svg",
+              width: "25",
+              className: "pointer",
+              onClick: addMatchItem
+            })]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("table", {
             className: "table table-bordered table-success mb-2 text-center",
             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("tbody", {
               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("tr", {
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("th", {
-                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("img", {
-                    src: "/images/icon-minus-black.svg",
-                    width: "25",
-                    style: {
-                      position: 'absolute',
-                      left: '30px',
-                      cursor: 'pointer'
-                    },
-                    onClick: removeMatchItem
-                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("th", {
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
                     children: "\u65E5\u306B\u3061"
-                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("img", {
-                    src: "/images/icon-plus-black.svg",
-                    width: "25",
-                    style: {
-                      position: 'absolute',
-                      right: '30px',
-                      cursor: 'pointer'
-                    },
-                    onClick: addMatchItem
-                  })]
+                  })
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("th", {
                   children: "\u8A66\u5408\u540D"
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("th", {
@@ -18415,7 +18394,7 @@ var GoalEditor = function GoalEditor() {
                     })
                   }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("td", {
                     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("select", {
-                      className: "bg-none w-100 text-center",
+                      className: "bg-none w-100 text-center border-0",
                       id: "match_goal",
                       value: x.match_goal,
                       onChange: function onChange(e) {
@@ -18557,7 +18536,7 @@ var GoalEditor = function GoalEditor() {
                 border: '2px solid white'
               },
               onClick: function onClick(e) {
-                return window.location.href = '/home';
+                return window.location.href = '/player/goal';
               },
               children: "\u30AD\u30E3\u30F3\u30BB\u30EB"
             })
@@ -18930,7 +18909,8 @@ var InfoEditor = function InfoEditor(_ref) {
               onChange: function onChange(e) {
                 return setName(e.target.value);
               },
-              required: true
+              required: true,
+              autoFocus: true
             })
           })
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
@@ -19376,7 +19356,7 @@ var InfoEditor = function InfoEditor(_ref) {
                 border: '2px solid white'
               },
               onClick: function onClick(e) {
-                return window.location.href = '/home';
+                return window.location.href = '/player/info';
               },
               children: "\u30AD\u30E3\u30F3\u30BB\u30EB"
             })
@@ -19721,7 +19701,7 @@ var MatchEditor = function MatchEditor() {
                 border: '2px solid white'
               },
               onClick: function onClick(e) {
-                return window.location.href = '/home';
+                return window.location.href = '/player/match';
               },
               children: "\u30AD\u30E3\u30F3\u30BB\u30EB"
             })
@@ -20658,7 +20638,7 @@ var ResultEditor = function ResultEditor() {
                 border: '2px solid white'
               },
               onClick: function onClick(e) {
-                return window.location.href = '/home';
+                return window.location.href = '/player/result';
               },
               children: "\u30AD\u30E3\u30F3\u30BB\u30EB"
             })

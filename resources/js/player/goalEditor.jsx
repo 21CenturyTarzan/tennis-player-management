@@ -96,7 +96,7 @@ const  GoalEditor = () => {
         .then(response => {
             if(response.data=='success'){
                 setSubmit(false);
-                window.location.href = '/home';
+                window.location.href = '/player/goal';
             }
         })
     }
@@ -129,13 +129,15 @@ const  GoalEditor = () => {
             </h3>
             <p className="w-50 w-md-75 p-1 pl-2 mb-2 bg-black-4 rounded-right-20 text-white">近日予定の試合</p>
             <div className="px-2 mb-2">
+                <div className="text-center mb-1">
+                    <img src="/images/icon-minus-black.svg" width="25" className="pointer mr-1" onClick={removeMatchItem}/>
+                    <img src="/images/icon-plus-black.svg" width="25" className="pointer" onClick={addMatchItem}/>
+                </div>
                 <table className="table table-bordered table-success mb-2 text-center">
                     <tbody>
                         <tr>
                             <th>
-                                <img src="/images/icon-minus-black.svg" width="25" style={{position:'absolute', left:'30px', cursor:'pointer'}} onClick={removeMatchItem}/>
                                 <span>日にち</span>
-                                <img src="/images/icon-plus-black.svg" width="25" style={{position:'absolute', right:'30px', cursor:'pointer'}} onClick={addMatchItem}/>
                             </th>
                             <th>試合名</th>
                             <th style={{width:'100px'}}>
@@ -149,7 +151,7 @@ const  GoalEditor = () => {
                                         <td><input type="date" id="match_date" className="w-100 bg-none border-0 text-center hide-calender"  value={x.match_date} onChange={e => changeMatchItem(e, i)} required/></td>
                                         <td><input type="text" id="match_name" className="w-100 bg-none border-0 text-center"  value={x.match_name} onChange={e => changeMatchItem(e, i)} required/></td>
                                         <td>
-                                            <select className="bg-none w-100 text-center" id="match_goal" value={x.match_goal} onChange={e => changeMatchItem(e, i)} required>
+                                            <select className="bg-none w-100 text-center border-0" id="match_goal" value={x.match_goal} onChange={e => changeMatchItem(e, i)} required>
                                                 <option value="勝つ">勝つ</option>
                                                 <option value="優勝">優勝</option>
                                                 <option value="準優勝">準優勝</option>
@@ -208,7 +210,7 @@ const  GoalEditor = () => {
         <div className="mt-3">
             <div className="row">
                 <div className="col-6">
-                    <Button size="large" color="primary" fullWidth variant="contained" style={{backgroundColor: 'transparent', border: '2px solid white'}} onClick={(e)=>window.location.href = '/home'}>キャンセル</Button>
+                    <Button size="large" color="primary" fullWidth variant="contained" style={{backgroundColor: 'transparent', border: '2px solid white'}} onClick={(e)=>window.location.href = '/player/goal'}>キャンセル</Button>
                 </div>
                 <div className="col-6">
                     <LoadingButton size="large" type="submit" color="primary" fullWidth  variant="contained" style={{backgroundColor: 'transparent', border: '2px solid white'}} endIcon={<SendIcon />}>

@@ -1,11 +1,8 @@
 @extends('account.player.layout')
+@extends('account.player.side')
 
-@section('title','Edit')
+@section('title','試合前準備編集')
 
 @section('player.content')
-    <div style="padding-top: 72px; padding-bottom: 20px" id="match-editor"></div>
+    <div id="match-editor"></div>
 @endsection
-
-@push('js')
-    <script src="{{ asset('js/app.js') }}"></script>
-@endpush

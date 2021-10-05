@@ -25,6 +25,7 @@
     <meta name="msapplication-config" content="/config/browserconfig.xml" />
 
     <title> HYS | @yield('title')</title>
+    <link rel="shortcut icon" href="{{asset('ball.png')}}">
 
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel = "stylesheet">
@@ -51,53 +52,14 @@
                 </div>
             </div>
 
-            <div class="l-side">
-                <div class="l-side-logo">
-                    <a href="">
-                        <img src="{{ asset('images/top_mv_logo.svg') }}" width="200px" height="200px" alt="ロゴ" />    
-                    </a>
-                </div>
-                <nav class="mypage-nav">
-                    <ul class="mypage-nav-list">
-                        <li class="mypage-nav-list__item -meeting nav-active">
-                            <a href="/player/info" class="mypage-nav-list__link">
-                                <i class="icon meeting"></i><span>個人情報</span>
-                            </a>
-                        </li>
-                        <li class="mypage-nav-list__item -search">
-                            <a href="/player/goal" class="mypage-nav-list__link">
-                                <i class="icon search"></i><span>選手管理</span>
-                            </a>
-                        </li>
-                        <li class="mypage-nav-list__item -childinfo">
-                            <a href="" class="mypage-nav-list__link">
-                                <i class="icon parents"></i><span>試合前準備</span>
-                            </a>
-                        </li>
-                        <li class="mypage-nav-list__item -profile">
-                            <a href="" class="user-icon mypage-nav-list__link">
-                                <figure class="mb-0">
-                                    <div class="prof-wrap">
-                                        <img src="{{ asset('assets/img/avatar/avatar-sample01@2x.png') }}" alt="" />
-                                    </div>
-                                </figure>
-                                <span>プロフィール</span>
-                            </a>
-                        </li>
-                        <li class="mypage-nav-list__item -logout">
-                            <a class="mypage-nav-list__link">
-                                <i class="icon log-out"></i><span>ログアウト</span>
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
+            @yield('player.side')
 
             @extends('layouts.loader1')
         </main>
     </body>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    @stack('js')
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <script src="{{ asset('js/app.js') }}"></script>
 </html>

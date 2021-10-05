@@ -12062,6 +12062,7 @@ categories: [layout]
 
 .l-content {
   width: 100%;
+  min-height: 100vh;
   margin: 30px auto 0;
   padding: 0 20px;
 }
@@ -12268,6 +12269,22 @@ categories: [layout]
     background-image: url(/images/log-out-black.svg?84c65984fe1dc8214afbb0e6e42873c0);
   }
 }
+.mypage-nav-list__item.nav-active .icon.match:before {
+  background-image: url(/images/match-yellow.svg?d3c384baabcc4511611a82bab8dc2e25);
+}
+@media screen and (min-width: 1068px) {
+  .mypage-nav-list__item.nav-active .icon.match:before {
+    background-image: url(/images/match-black.svg?0362e8bc5d88eb659a99227aacdb8277);
+  }
+}
+.mypage-nav-list__item.nav-active .icon.info:before {
+  background-image: url(/images/info-yellow.svg?74be6206a36693484208e9f6531cf614);
+}
+@media screen and (min-width: 1068px) {
+  .mypage-nav-list__item.nav-active .icon.info:before {
+    background-image: url(/images/info-black.svg?6b1f890ac0502b9d4383b543ac9bf6f8);
+  }
+}
 @media screen and (max-width: 1067px) {
   .mypage-nav-list__item {
     width: 20%;
@@ -12353,6 +12370,12 @@ categories: [layout]
 .mypage-nav-list__item .icon.log-out:before {
   background-image: url(/images/log-out-gray.svg?861c1a3bffcbc6494ae12c18598d3b42);
 }
+.mypage-nav-list__item .icon.match:before {
+  background-image: url(/images/match-grey.svg?25c0a6da8b79e67bf429d0a20d732333);
+}
+.mypage-nav-list__item .icon.info:before {
+  background-image: url(/images/info-grey.svg?ceb91651e9248cedbf344b7b64b784e9);
+}
 .mypage-nav-list__link {
   cursor: pointer;
 }
@@ -12388,7 +12411,6 @@ categories: [layout]
 .mypage-nav-list__link:focus {
   background-color: #084405;
   box-shadow: none;
-  border-bottom: 1px solid #F0DE00;
 }
 
 /* #Notification
@@ -12411,7 +12433,7 @@ categories: [project]
 }
 @media screen and (max-width: 1067px) {
   .p-notification {
-    position: absolute;
+    position: fixed;
     right: 18px;
     top: 18px;
     z-index: 5;
@@ -12646,6 +12668,10 @@ input#height, input#weight {
 }
 .upload-label:hover {
   transform: scale(1.1);
+}
+
+.container {
+  max-width: 800px !important;
 }
 
 #dashboard {

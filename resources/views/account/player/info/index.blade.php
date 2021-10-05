@@ -1,4 +1,5 @@
 @extends('account.player.layout')
+@extends('account.player.side')
 
 @section('title','個人情報')
 
@@ -210,5 +211,11 @@
 @endsection
 
 @push('js')
-    <script src="{{ asset('js/app.js') }}"></script>
+<script>
+    $('.-info').addClass('nav-active');
+    $('.-goal').removeClass('nav-active');
+    $('.-match').removeClass('nav-active');
+    $('.-result').removeClass('nav-active');
+    $('.-logout').removeClass('nav-active');
+</script>
 @endpush

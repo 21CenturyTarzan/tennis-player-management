@@ -1,4 +1,4 @@
-@extends('account.layouts.profile_edit')
+@extends('layouts.profile_edit')
 
 @section('content')
 <div id="player-profile"></div>

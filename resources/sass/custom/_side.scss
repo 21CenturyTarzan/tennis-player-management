@@ -112,6 +112,22 @@
               }
             }
           }
+          &.match{
+            &:before{
+              background-image: url(../assets/img/icon/match-yellow.svg);
+              @include pc{
+                background-image: url(../assets/img/icon/match-black.svg);
+              }
+            }
+          }
+          &.info{
+            &:before{
+              background-image: url(../assets/img/icon/info-yellow.svg);
+              @include pc{
+                background-image: url(../assets/img/icon/info-black.svg);
+              }
+            }
+          }
         }
       }
       @include sp{
@@ -200,6 +216,16 @@
             background-image: url(../assets/img/icon/log-out-gray.svg);
           }
         }
+        &.match{
+          &:before{
+            background-image: url(../assets/img/icon/match-grey.svg);
+          }
+        }
+        &.info{
+          &:before{
+            background-image: url(../assets/img/icon/info-grey.svg);
+          }
+        }
       }
     }
     &__link{
@@ -234,7 +260,6 @@
         &:focus{
             background-color: #084405;
             box-shadow: none;
-            border-bottom: 1px solid #F0DE00;
         }
     }
   }

@@ -1,11 +1,8 @@
 @extends('account.player.layout')
+@extends('account.player.side')
 
-@section('title','Edit')
+@section('title','選手管理編集')
 
 @section('player.content')
-    <div style="padding-top: 72px; padding-bottom: 20px" id="goal-editor"></div>
+    <div id="goal-editor"></div>
 @endsection
-
-@push('js')
-    <script src="{{ asset('js/app.js') }}"></script>
-@endpush

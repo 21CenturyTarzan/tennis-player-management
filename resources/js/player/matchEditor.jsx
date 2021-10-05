@@ -155,7 +155,7 @@ const  MatchEditor = () => {
         <div className="mt-3">
             <div className="row">
                 <div className="col-6">
-                    <Button size="large" color="primary" fullWidth variant="contained" style={{backgroundColor: 'transparent', border: '2px solid white'}} onClick={(e)=>window.location.href = '/home'}>キャンセル</Button>
+                    <Button size="large" color="primary" fullWidth variant="contained" style={{backgroundColor: 'transparent', border: '2px solid white'}} onClick={e=>window.location.href = '/player/match'}>キャンセル</Button>
                 </div>
                 <div className="col-6">
                     <LoadingButton size="large" type="submit" color="primary" fullWidth  variant="contained" style={{backgroundColor: 'transparent', border: '2px solid white'}} endIcon={<SendIcon />}>

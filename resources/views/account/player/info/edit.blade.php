@@ -1,6 +1,7 @@
 @extends('account.player.layout')
+@extends('account.player.side')
 
-@section('title','Edit')
+@section('title','個人情報編集')
 
 @section('player.content')
     <div id="info-editor"
@@ -9,7 +10,3 @@
     >
     </div>
 @endsection
-
-@push('js')
-    <script src="{{ asset('js/app.js') }}"></script>
-@endpush
