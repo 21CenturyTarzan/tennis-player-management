@@ -3,8 +3,8 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use App\Models\ProfilePlayer;
-use App\Models\ProfileParent;
+use App\Models\Player;
+use App\Models\Father;
 use App\Models\Children;
 use App\Models\User;
 use Illuminate\Support\Str;
@@ -33,7 +33,7 @@ class ProfileTableSeeder extends Seeder
 
             if(strcmp($player->type, 'player') == 0){
 
-                ProfilePlayer::create([
+                Player::create([
                     'account_id' => $player->id,
                     'gender' => $this->gender(),
                     'birth' => $birth,
@@ -50,7 +50,7 @@ class ProfileTableSeeder extends Seeder
             }
             else if(strcmp($player->type, 'parent') == 0){
                 
-                ProfileParent::create([
+                Father::create([
                     'account_id' => $player->id,
                     'gender' => $this->gender(),
                     'birth' => $birth,

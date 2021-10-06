@@ -69,7 +69,7 @@ const  GoalEditor = () => {
         e.preventDefault();
         const formdata = new FormData();
      
-
+        formdata.append('task_list', JSON.parse())
         // setSubmit(true)
 
         // document.getElementById('loader').style.display = 'block';

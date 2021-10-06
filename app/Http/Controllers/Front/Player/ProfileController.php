@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Front\Player;
 
 use App\Http\Controllers\Controller;
-use App\Models\ProfilePlayer;
+use App\Models\Player;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -76,7 +76,7 @@ class ProfileController extends Controller
             }
         }
         try {
-            ProfilePlayer::create([
+            Player::create([
                 'account_id' => Auth::user()->id,
                 'gender' => $gender,
                 'birth' => $birth,

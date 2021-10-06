@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\Auth;
 
-use App\Models\ProfilePlayer;
+use App\Models\Player;
 use App\Models\User;
 use App\Models\Rank;
 use App\Models\RankList;
@@ -18,7 +18,7 @@ class InfoController extends Controller
     public function index()
     {
         $res['rank'] = Rank::where('account_id', Auth::user()->id)->with('rank_list') -> orderBy('id', 'DESC') -> first();
-        $res['profile'] = ProfilePlayer::where('account_id', Auth::user()->id)->first();
+        $res['profile'] = Player::where('account_id', Auth::user()->id)->first();
         if(strcmp(Auth::user()->type, 'player') == 0)
             return view('account.player.info.index', $res);
         else return view('errors.404');
@@ -28,7 +28,7 @@ class InfoController extends Controller
     {
         # code...
         $res['rank'] = Rank::where('account_id', Auth::user()->id)->with('rank_list') -> orderBy('id', 'DESC') -> first();
-        $res['profile'] = ProfilePlayer::where('account_id', Auth::user()->id)->with('account')->with('rank')->first();
+        $res['profile'] = Player::where('account_id', Auth::user()->id)->with('account')->with('rank')->first();
         return view('account.player.info.edit', $res);
     }
 
@@ -92,7 +92,7 @@ class InfoController extends Controller
                 ]);
             }
 
-            ProfilePlayer::where('account_id', Auth::id())->first()->update([
+            Player::where('account_id', Auth::id())->first()->update([
                 'gender' => $gender,
                 'birth' => $birth,
                 'height' => $height,

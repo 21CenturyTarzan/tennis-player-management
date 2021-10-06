@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Front\Parent;
 
 
 use App\Http\Controllers\Controller;
-use App\Models\ProfileParent;
+use App\Models\Father;
 use App\Models\Children;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -70,7 +70,7 @@ class ProfileController extends Controller
             }
         }
         try {
-            ProfileParent::create([
+            Father::create([
                 'account_id' => Auth::user()->id,
                 'gender' => $gender,
                 'birth' => $birth,
