@@ -30,6 +30,6 @@ class Notice extends Model
 
     public function profile()
     {
-        return $this->belongsTo(ProfilePlayer::class, 'from');
+        return $this->belongsTo(Player::class, 'from');
     }
 }

@@ -43,7 +43,7 @@ const  InfoEditor = ({profile, rank}) => {
     const [rankList, setRankList] = useState([]);
     
     const [age, setAge] = useState(0);
-    const [isSubmitting, setSubmit] = useState(false);
+    const [loading, setLoading] = useState(false);
     const [isEditFlag, setEditFlag] = useState(false);
 
 
@@ -113,13 +113,12 @@ const  InfoEditor = ({profile, rank}) => {
         formdata.append('title1', JSON.stringify(title1));
         formdata.append('title2', JSON.stringify(title2));
 
-        setSubmit(true)
+        setLoading(true)
 
-        document.getElementById('loader').style.display = 'block';
         axios.post('/player/info/store', formdata)
         .then(response => {
             if(response.data=='success'){
-                setSubmit(false);
+                setLoading(false);
                 window.location.href = '/player/info';
             }
         })
@@ -360,7 +359,7 @@ const  InfoEditor = ({profile, rank}) => {
                         <Button size="large" color="primary" fullWidth variant="contained" style={{backgroundColor: 'transparent', border: '2px solid white'}} onClick={e=>window.location.href = '/player/info'}>キャンセル</Button>
                     </div>
                     <div className="col-6">
-                        <LoadingButton size="large" type="submit" color="primary" fullWidth  variant="contained" style={{backgroundColor: 'transparent', border: '2px solid white'}} endIcon={<SendIcon />}>
+                        <LoadingButton size="large" type="submit" loading={loading} color="primary" fullWidth  variant="contained" style={{backgroundColor: 'transparent', border: '2px solid white'}} endIcon={<SendIcon />}>
                             送信
                         </LoadingButton>
                     </div>

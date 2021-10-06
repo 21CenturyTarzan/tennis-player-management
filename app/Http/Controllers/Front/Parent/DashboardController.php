@@ -4,8 +4,8 @@ namespace App\Http\Controllers\front\parent;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\ProfilePlayer;
-use App\Models\ProfileParent;
+use App\Models\Player;
+use App\Models\Father;
 
 use Illuminate\Support\Facades\Auth;
 

@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Front\Parent;
 
 
 use App\Http\Controllers\Controller;
-use App\Models\ProfileParent;
+use App\Models\Father;
 use App\Models\Children;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -56,8 +56,8 @@ class ProfileController extends Controller
             mkdir(public_path($path), 0777, true);
         }
         if ($file = $request->get('image')) {
-            if(strcmp($file,'/images/avatar.jpg')==0){
-                $img_url = '/images/avatar.jpg';
+            if(strcmp($file,'/images/blank.png')==0){
+                $img_url = '/images/blank.png';
             }
             else{
 
@@ -70,7 +70,7 @@ class ProfileController extends Controller
             }
         }
         try {
-            ProfileParent::create([
+            Father::create([
                 'account_id' => Auth::user()->id,
                 'gender' => $gender,
                 'birth' => $birth,

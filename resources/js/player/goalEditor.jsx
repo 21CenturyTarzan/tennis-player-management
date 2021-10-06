@@ -11,6 +11,7 @@ import axios from 'axios';
 import SendIcon from '@mui/icons-material/Send';
 
 import { Rating, RatingView } from 'react-simple-star-rating'
+import { time } from 'faker';
 
 
 // ----------------------------------------------------------------------
@@ -23,47 +24,43 @@ const  GoalEditor = () => {
 
     const [match_list,  setMatchList] = useState([]);
     const [task_list, setTaskList] = useState([]);
-    const [train_list, setTrainList] = useState([]);
+    //-----------------------------------------------------------------
+    const [study_start_time, setStudyStartTime] = useState(new Date());
+    const [study_end_time, setStudyEndTime] = useState(new Date());
 
+    const [sleep_start_time, setSleepStartTime] = useState(new Date());
+    const [sleep_end_time, setSleepEndTime] = useState(new Date());
 
-    const [rating, setRating] = useState(0)
+    const [push_up, setPushUp] = useState(0);
+    const [muscle, setMuscle] = useState(0);
+    const [spine, setSpine] = useState(0);
+    
+    const [stretch_time, setStretchTime] = useState(new Date());
 
-    const handleRating = (rate) => {
-        setRating(rate)
-        // Some logic
-      }
+    const [rate_breakfast, setRateBreakfast] = useState(0)
+    const [rate_lunch, setRateLunch] = useState(0)
+    const [rate_dinner, setRateDinner] = useState(0)
+    //-------------------------------------------------------------------
+   
     
     useEffect(() => {
 
         var obj1 = [
-            {icon:'/images/icon-mental.svg', content:'',        detail:'技術的な課題1',       value:0,   type:'star5'},
-            {icon:'/images/icon-mental.svg', content:'',        detail:'技術的な課題2',       value:0,   type:'star5'},
-            {icon:'/images/icon-mental.svg', content:'',        detail:'技術的な課題3',       value:0,   type:'star5'},
-            {icon:'/images/icon-mental.svg', content:'',        detail:'フィジカル的な課題1', value:0,   type:'star5' },
-            {icon:'/images/icon-mental.svg', content:'',        detail:'フィジカル的な課題2', value:0,   type:'star5' },
-            {icon:'/images/icon-mental.svg', content:'',        detail:'フィジカル的な課題3', value:0,   type:'star5' },
-            {icon:'/images/icon-mental.svg', content:'',        detail:'メンタル的な課題1',   value:0,   type:'star5' },
-            {icon:'/images/icon-mental.svg', content:'',        detail:'メンタル的な課題2',   value:0,   type:'star5' },
-            {icon:'/images/icon-mental.svg', content:'',        detail:'メンタル的な課題3',   value:0,   type:'star5' },
-            {icon:'/images/icon-mental.svg', content:'',        detail:'戦術的な課題1',       value:0,   type:'star5' },
-            {icon:'/images/icon-mental.svg', content:'',        detail:'戦術的な課題2',       value:0,   type:'star5' },
-            {icon:'/images/icon-mental.svg', content:'',        detail:'戦術的な課題3',       value:0,   type:'star5' }
+            {icon:'/images/icons/icon-ball.svg', content:'',        detail:'技術的な課題1',       rates:0,   type:'star5'},
+            {icon:'/images/icons/icon-ball.svg', content:'',        detail:'技術的な課題2',       rates:0,   type:'star5'},
+            {icon:'/images/icons/icon-ball.svg', content:'',        detail:'技術的な課題3',       rates:0,   type:'star5'},
+            {icon:'/images/icons/icon-dumbbell.svg', content:'',        detail:'フィジカル的な課題1', rates:0,   type:'star5' },
+            {icon:'/images/icons/icon-dumbbell.svg', content:'',        detail:'フィジカル的な課題2', rates:0,   type:'star5' },
+            {icon:'/images/icons/icon-dumbbell.svg', content:'',        detail:'フィジカル的な課題3', rates:0,   type:'star5' },
+            {icon:'/images/icons/icon-mental.svg', content:'',        detail:'メンタル的な課題1',   rates:0,   type:'star5' },
+            {icon:'/images/icons/icon-mental.svg', content:'',        detail:'メンタル的な課題2',   rates:0,   type:'star5' },
+            {icon:'/images/icons/icon-mental.svg', content:'',        detail:'メンタル的な課題3',   rates:0,   type:'star5' },
+            {icon:'/images/icons/icon-strategy.svg', content:'',        detail:'戦術的な課題1',       rates:0,   type:'star5' },
+            {icon:'/images/icons/icon-strategy.svg', content:'',        detail:'戦術的な課題2',       rates:0,   type:'star5' },
+            {icon:'/images/icons/icon-strategy.svg', content:'',        detail:'戦術的な課題3',       rates:0,   type:'star5' }
             ];
 
-        var obj2 = [
-            {icon:'/images/icon-mental.svg', content:'勉強時間', detail:'勉強時間',           value:0,   type:'interval' },
-            {icon:'/images/icon-mental.svg', content:'腕立て',   detail:'腕立て',            value:0 ,   type:'number' },
-            {icon:'/images/icon-mental.svg', content:'腹筋',     detail:'腹筋',              value:0 ,   type:'number' },
-            {icon:'/images/icon-mental.svg', content:'背筋',     detail:'背筋',              value:0 ,   type:'number'  },
-            {icon:'/images/icon-mental.svg', content:'ストレッチ',detail:'ストレッチ',       value:0,      type:'time'   },
-            {icon:'/images/icon-mental.svg', content:'朝食',      detail:'朝食',              value:0 ,   type:'star3'  },
-            {icon:'/images/icon-mental.svg', content:'昼食',      detail:'昼食',              value:0 ,   type:'star3'  },
-            {icon:'/images/icon-mental.svg', content:'夕食',      detail:'夕食',              value:0 ,   type:'star3'  },
-            {icon:'/images/icon-mental.svg', content:'睡眠時間',  detail:'睡眠時間',          value:0,   type:'interval'   }
-        
-        ]
         setTaskList(obj1);
-        setTrainList(obj2);
 
     }, []);
 
@@ -71,34 +68,18 @@ const  GoalEditor = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         const formdata = new FormData();
-        formdata.append('name', JSON.stringify(name));
-        formdata.append('gender', JSON.stringify(gender));
-        formdata.append('birth', JSON.stringify(birth));
-        formdata.append('height', JSON.stringify(height));
-        formdata.append('weight', JSON.stringify(weight));
-        formdata.append('school', JSON.stringify(school));
-        formdata.append('grade', JSON.stringify(grade));
-        formdata.append('phone', JSON.stringify(phone));
-        formdata.append('address', JSON.stringify(address));
-        formdata.append('lesson', JSON.stringify(lesson));
-        formdata.append('career', JSON.stringify(career));
-        formdata.append('image', convertimgUri);
-        formdata.append('jta_u_18', JSON.stringify(jta_u_18));
-        formdata.append('kanto_u_18', JSON.stringify(kanto_u_18));
-        formdata.append('rankList', JSON.stringify(rankList));
-        formdata.append('title1', JSON.stringify(title1));
-        formdata.append('title2', JSON.stringify(title2));
+     
+        formdata.append('task_list', JSON.parse())
+        // setSubmit(true)
 
-        setSubmit(true)
-
-        document.getElementById('loader').style.display = 'block';
-        axios.post('/player/goal/store', formdata)
-        .then(response => {
-            if(response.data=='success'){
-                setSubmit(false);
-                window.location.href = '/player/goal';
-            }
-        })
+        // document.getElementById('loader').style.display = 'block';
+        // axios.post('/player/goal/store', formdata)
+        // .then(response => {
+        //     if(response.data=='success'){
+        //         setSubmit(false);
+        //         window.location.href = '/player/goal';
+        //     }
+        // })
     }
 
     const addMatchItem = () => {
@@ -118,7 +99,18 @@ const  GoalEditor = () => {
         setMatchList(list);
     };
 
-     
+    const changeTaskItem = (e, index) => {
+        const { id, value } = e.target;
+        const list = [...task_list];
+        list[index][id] = value;
+        setTaskList(list);
+    }
+
+    const changeTaskItemRate = (rate, index) => {
+        const list = [...task_list];
+        list[index]['rates'] = rate;
+        setTaskList(list);
+    }
 
     return (
     <>
@@ -186,26 +178,107 @@ const  GoalEditor = () => {
                 </table>
             </div>
             <p className="w-50 w-md-75 p-1 pl-2 mb-2 bg-black-4 rounded-right-20 text-white">短期目標に向かっての課題</p>
-            <div className="px-2 mb-2">
-                <table className="table table-bordered mb-2">
-                    <tbody>
-                        {
-                            task_list.map((x, i)=>{
-                                return(
-                                    <tr className="table-success" key={i}>
-                                        <th className="text-center"><img src="/images/icon-tech.svg" width="30" height="30" /></th>
-                                        <td className="text-center">
-                                            <input type="text" name="name" className="w-100 bg-none border-0 text-center" placeholder={x.detail} value={x.content} onChange={(e)=>SetMediumTermGoal(e.target.value)} required />
-                                            <Rating onClick={handleRating} ratingValue={rating} stars={5}/>
-                                        </td>
-                                    </tr>
-                                )
-                            })
-                        }
-                    </tbody>
-                </table>
+            <div className="px-2 mb-2 d-block d-sm-flex">
+                <div className="w-50 w-sm-100 mb-3 mb-sm-0">
+                    {
+                        task_list.map((x, i)=>{
+                            return(
+                                <div className="p-1 d-flex justify-content-center border-1" key={i}>
+                                    <div className="text-center"><img src={x.icon} width="30" height="30" /></div>
+                                    <div className="text-center">
+                                        <input type="text" name="content" id="content" className="w-100 bg-none border-0 text-center" placeholder={x.detail} value={x.content} onChange={(e)=>changeTaskItem(e, i)} required />
+                                        <Rating onClick={(rate)=>changeTaskItemRate(rate, i)} ratingValue={x.rates} stars={5}/>
+                                    </div>
+                                </div>
+                            )
+                        })
+                    }
+                </div>
+                <div className="w-50 w-sm-100">
+                    <table className="table table-bordered mb-2 text-center ft-16">
+                        <tbody>
+                            <tr>
+                                <td><img src="/images/icons/icon-book.svg" width="30" height="30" /></td>
+                                <td><p className="mb-0 text-center">勉強時間</p></td>
+                                <td>
+                                    <span className="mr-3">開始:</span>
+                                        <input type="time" className="border-0 mb-1" 
+                                            value={study_start_time} onChange={e=>setStudyStartTime(e.target.value)} required/>
+                                            
+                                    <br/>
+
+                                    <span className="mr-3">終了:</span>
+                                        <input type="time" className="border-0" 
+                                            value={study_end_time} onChange={e=>setStudyEndTime(e.target.value)} required/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><img src="/images/icons/icon-pushups.svg" width="30" height="30" /></td>
+                                <td><p className="mb-0 text-center">腕立て</p></td>
+                                <td>
+                                    <input type="number" min="0" step="1" className="border-0 text-center" 
+                                        value={push_up} onChange={e=>setPushUp(e.target.value)} required/> 
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><img src="/images/icons/icon-pilates.svg" width="30" height="30" /></td>
+                                <td><p className="mb-0 text-center">腹筋</p></td>
+                                <td>
+                                    <input type="number" min="0" step="1" className="border-0 text-center" 
+                                        value={muscle} onChange={e=>setMuscle(e.target.value)} required/> 
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><img src="/images/icons/icon-gymnastics.svg" width="30" height="30" /></td>
+                                <td><p className="mb-0 text-center">背筋</p></td>
+                                <td>
+                                    <input type="number" min="0" step="1" className="border-0 text-center" 
+                                        value={spine} onChange={e=>setSpine(e.target.value)} required/> 
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><img src="/images/icons/icon-stretching.svg" width="30" height="30" /></td>
+                                <td><p className="mb-0 text-center">ストレッチ</p></td>
+                                <td>
+                                    <input type="time" className="border-0 text-center" 
+                                        value={stretch_time} onChange={e=>setStretchTime(e.target.value)} required/> 
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><img src="/images/icons/icon-food.svg" width="30" height="30" /></td>
+                                <td><p className="mb-0 text-center">朝食</p></td>
+                                <td>
+                                    <Rating stars={3} ratingValue={rate_breakfast} onClick={rate=>setRateBreakfast(rate)}/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><img src="/images/icons/icon-food.svg" width="30" height="30" /></td>
+                                <td><p className="mb-0 text-center">昼食</p></td>
+                                <td>
+                                    <Rating stars={3} ratingValue={rate_lunch} onClick={rate=>setRateLunch(rate)}/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><img src="/images/icons/icon-food.svg" width="30" height="30" /></td>
+                                <td><p className="mb-0 text-center">夕食</p></td>
+                                <td>
+                                    <Rating stars={3} ratingValue={rate_dinner} onClick={rate=>setRateDinner(rate)}/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><img src="/images/icons/icon-bed.svg" width="30" height="30" /></td>
+                                <td><p className="mb-0 text-center">睡眠時間</p></td>
+                                <td>
+                                    <span className="mr-3">開始:</span><input type="time" className="border-0 mb-1" value={sleep_start_time} onChange={e=>setSleepStartTime(e.target.value)} required/><br/>
+                                    <span className="mr-3">終了:</span><input type="time" className="border-0" value={sleep_end_time} onChange={e=>setSleepEndTime(e.target.value)} required/>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
+
 
         <div className="mt-3">
             <div className="row">

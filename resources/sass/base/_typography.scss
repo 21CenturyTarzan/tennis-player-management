@@ -6,6 +6,12 @@
 .w-md-25{   @include media-breakpoint-down(md){ width: 25% !important; }  }
 .w-md-50{   @include media-breakpoint-down(md){ width: 50% !important; }  }
 .w-md-75{   @include media-breakpoint-down(md){ width: 75% !important; }  }
+.w-md-100{   @include media-breakpoint-down(md){ width: 100% !important; }  }
+
+.w-sm-25{   @include media-breakpoint-down(sm){ width: 25% !important; }  }
+.w-sm-50{   @include media-breakpoint-down(sm){ width: 50% !important; }  }
+.w-sm-75{   @include media-breakpoint-down(sm){ width: 75% !important; }  }
+.w-sm-100{   @include media-breakpoint-down(sm){ width: 100% !important; }  }
 
 .rounded-right-20{
     border-top-right-radius: 20px;
