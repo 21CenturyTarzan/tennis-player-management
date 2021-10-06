@@ -22,4 +22,20 @@ class Player extends Model
         'lesson',
         'career',
     ];
+
+    public function account()
+    {
+        return $this->belongsTo(User::class, 'account_id');
+    }
+
+    public function rank()
+    {
+        return $this->belongsTo(Rank::class, 'account_id');
+    }
+
+    public function ranklist()
+    {
+        return $this->hasMany(RankList::class, 'account_id');
+    }
+
 }
