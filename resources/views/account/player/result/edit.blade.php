@@ -10,3 +10,13 @@
 @push('js')
     <script src="{{ asset('js/app.js') }}"></script>
 @endpush
+
+@push('js')
+<script>
+    $('.-info').removeClass('nav-active');
+    $('.-goal').removeClass('nav-active');
+    $('.-match').removeClass('nav-active');
+    $('.-result').addClass('nav-active');
+    $('.-logout').removeClass('nav-active');
+</script>
+@endpush

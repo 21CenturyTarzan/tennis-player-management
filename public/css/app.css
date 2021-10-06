@@ -10986,9 +10986,10 @@ input[type=date].hide-calender::-webkit-inner-spin-button, input[type=date].hide
   display: none;
   width: 100vw;
   height: 100vh;
-  background-color: rgba(0, 0, 0, 0.6);
+  background-color: black;
   top: 0px;
   position: fixed;
+  z-index: 100;
 }
 .loader2-wrap .loading {
   position: fixed;
@@ -10999,6 +11000,14 @@ input[type=date].hide-calender::-webkit-inner-spin-button, input[type=date].hide
   perspective: 800px;
   top: calc(50vh - 2rem);
   left: calc(50vw - 2rem);
+}
+@media (max-width: 575.98px) {
+  .loader2-wrap .loading {
+    width: 3rem;
+    height: 3rem;
+    top: calc(50vh - 1.5rem);
+    left: calc(50vw - 1.5rem);
+  }
 }
 .loader2-wrap .loading .arc {
   position: absolute;
@@ -11090,6 +11099,7 @@ input[type=date].hide-calender::-webkit-inner-spin-button, input[type=date].hide
   top: 0;
   width: 100vw;
   height: 100vh;
+  z-index: 100;
 }
 .loader1-wrap .ring {
   position: absolute;
@@ -11451,6 +11461,36 @@ input[type=date].hide-calender::-webkit-inner-spin-button, input[type=date].hide
 @media (max-width: 991.98px) {
   .w-md-75 {
     width: 75% !important;
+  }
+}
+
+@media (max-width: 991.98px) {
+  .w-md-100 {
+    width: 100% !important;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .w-sm-25 {
+    width: 25% !important;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .w-sm-50 {
+    width: 50% !important;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .w-sm-75 {
+    width: 75% !important;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .w-sm-100 {
+    width: 100% !important;
   }
 }
 
@@ -11942,6 +11982,15 @@ input:-internal-autofill-selected {
   background-color: transparent;
 }
 
+input:focus, textarea:focus {
+  outline-offset: 0px !important;
+  outline: none !important;
+  border: 1px solid green !important;
+  box-shadow: 0 0 3px green !important;
+  -moz-box-shadow: 0 0 3px green !important;
+  -webkit-box-shadow: 0 0 3px green !important;
+}
+
 /* #Main
   -------------------------------------------------------------------------- */
 /*doc
@@ -12278,7 +12327,7 @@ categories: [layout]
   }
 }
 .mypage-nav-list__item.nav-active .icon.info:before {
-  background-image: url(/images/info-yellow.svg?74be6206a36693484208e9f6531cf614);
+  background-image: url(/images/info-yellow.svg?a9109b23ec194513c9d05a0044ce5c04);
 }
 @media screen and (min-width: 1068px) {
   .mypage-nav-list__item.nav-active .icon.info:before {
@@ -12374,7 +12423,7 @@ categories: [layout]
   background-image: url(/images/match-grey.svg?25c0a6da8b79e67bf429d0a20d732333);
 }
 .mypage-nav-list__item .icon.info:before {
-  background-image: url(/images/info-grey.svg?ceb91651e9248cedbf344b7b64b784e9);
+  background-image: url(/images/info-grey.svg?bbef2605d8c8b41ced898e1e9387a3d8);
 }
 .mypage-nav-list__link {
   cursor: pointer;
@@ -12837,7 +12886,7 @@ table, th, td {
 }
 @media (max-width: 991.98px) {
   table, th, td {
-    font-size: 16px !important;
+    font-size: 15px;
   }
 }
 
@@ -12967,163 +13016,4 @@ input[type=checkbox]:focus {
 input[type=date].hide-calender::-webkit-inner-spin-button, input[type=date].hide-calender::-webkit-calendar-picker-indicator {
   display: none;
   -webkit-appearance: none;
-}
-
-.loader2-wrap {
-  display: none;
-  width: 100vw;
-  height: 100vh;
-  background-color: rgba(0, 0, 0, 0.6);
-  top: 0px;
-  position: fixed;
-}
-.loader2-wrap .loading {
-  position: fixed;
-  margin: auto;
-  width: 4rem;
-  height: 4rem;
-  transform-style: preserve-3d;
-  perspective: 800px;
-  top: calc(50vh - 2rem);
-  left: calc(50vw - 2rem);
-}
-.loader2-wrap .loading .arc {
-  position: absolute;
-  content: "";
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  border-bottom: 5px solid white;
-}
-.loader2-wrap .loading .arc:nth-child(1) {
-  -webkit-animation: rotate1 1.15s linear infinite;
-          animation: rotate1 1.15s linear infinite;
-}
-.loader2-wrap .loading .arc:nth-child(2) {
-  -webkit-animation: rotate2 1.15s linear infinite;
-          animation: rotate2 1.15s linear infinite;
-}
-.loader2-wrap .loading .arc:nth-child(3) {
-  -webkit-animation: rotate3 1.15s linear infinite;
-          animation: rotate3 1.15s linear infinite;
-}
-.loader2-wrap .loading .arc:nth-child(1) {
-  -webkit-animation-delay: -0.8s;
-          animation-delay: -0.8s;
-}
-.loader2-wrap .loading .arc:nth-child(2) {
-  -webkit-animation-delay: -0.4s;
-          animation-delay: -0.4s;
-}
-.loader2-wrap .loading .arc:nth-child(3) {
-  -webkit-animation-delay: 0s;
-          animation-delay: 0s;
-}
-@keyframes rotate1 {
-  from {
-    transform: rotateX(35deg) rotateY(-45deg) rotateZ(0);
-  }
-  to {
-    transform: rotateX(35deg) rotateY(-45deg) rotateZ(1turn);
-  }
-}
-@keyframes rotate2 {
-  from {
-    transform: rotateX(50deg) rotateY(10deg) rotateZ(0);
-  }
-  to {
-    transform: rotateX(50deg) rotateY(10deg) rotateZ(1turn);
-  }
-}
-@keyframes rotate3 {
-  from {
-    transform: rotateX(35deg) rotateY(55deg) rotateZ(0);
-  }
-  to {
-    transform: rotateX(35deg) rotateY(55deg) rotateZ(1turn);
-  }
-}
-
-.loader1-wrap {
-  display: none;
-  background-color: rgba(0, 0, 0, 0.4);
-  position: fixed;
-  top: 0;
-  width: 100vw;
-  height: 100vh;
-}
-.loader1-wrap .ring {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 150px;
-  height: 150px;
-  background: #262626;
-  border: 3px solid #3c3c3c;
-  border-radius: 50%;
-  text-align: center;
-  line-height: 150px;
-  font-family: sans-serif;
-  font-size: 20px;
-  color: #fff000;
-  letter-spacing: 4px;
-  text-transform: uppercase;
-  text-shadow: 0 0 10px #fff000;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-}
-.loader1-wrap .ring:before {
-  content: "";
-  position: absolute;
-  top: -3px;
-  left: -3px;
-  width: 150px;
-  height: 150px;
-  border: 3px solid transparent;
-  border-top: 3px solid #fff000;
-  border-right: 3px solid #fff000;
-  border-radius: 50%;
-  -webkit-animation: animateC 2s linear infinite;
-          animation: animateC 2s linear infinite;
-}
-.loader1-wrap #loading {
-  display: block;
-  position: absolute;
-  top: calc(50% - 2px);
-  left: 50%;
-  width: 50%;
-  height: 4px;
-  background: transparent;
-  transform-origin: left;
-  -webkit-animation: animate 2s linear infinite;
-          animation: animate 2s linear infinite;
-}
-.loader1-wrap #loading:before {
-  content: "";
-  position: absolute;
-  width: 16px;
-  height: 16px;
-  border-radius: 50%;
-  background: #fff000;
-  top: -6px;
-  right: -8px;
-  box-shadow: 0 0 20px #fff000;
-}
-@keyframes animateC {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
-@keyframes animate {
-  0% {
-    transform: rotate(45deg);
-  }
-  100% {
-    transform: rotate(405deg);
-  }
 }

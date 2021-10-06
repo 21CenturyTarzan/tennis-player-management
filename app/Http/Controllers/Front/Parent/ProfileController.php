@@ -56,8 +56,8 @@ class ProfileController extends Controller
             mkdir(public_path($path), 0777, true);
         }
         if ($file = $request->get('image')) {
-            if(strcmp($file,'/images/avatar.jpg')==0){
-                $img_url = '/images/avatar.jpg';
+            if(strcmp($file,'/images/blank.png')==0){
+                $img_url = '/images/blank.png';
             }
             else{
 

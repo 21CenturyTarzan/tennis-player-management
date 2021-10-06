@@ -10,3 +10,13 @@
     >
     </div>
 @endsection
+
+@push('js')
+<script>
+    $('.-info').addClass('nav-active');
+    $('.-goal').removeClass('nav-active');
+    $('.-match').removeClass('nav-active');
+    $('.-result').removeClass('nav-active');
+    $('.-logout').removeClass('nav-active');
+</script>
+@endpush
