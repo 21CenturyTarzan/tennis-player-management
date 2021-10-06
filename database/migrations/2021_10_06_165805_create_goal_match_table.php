@@ -14,7 +14,11 @@ class CreateGoalMatchTable extends Migration
     public function up()
     {
         Schema::create('goal_match', function (Blueprint $table) {
-            $table->id();
+            $table->unsignedBigInteger('id')->autoIncrement()->comment('ID');
+            $table->foreignId('goal_id')->constrained('goals')->comment('GoalID');
+            $table->string('match_name');
+            $table->date('match_date');
+            
             $table->timestamps();
         });
     }
