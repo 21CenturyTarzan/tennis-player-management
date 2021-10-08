@@ -18,7 +18,7 @@ class CreateGoalStageTable extends Migration
             $table->foreignId('goal_id')->constrained('goals')->comment('GoalID');
             $table->string('stage_type');
             $table->string('stage_detail');
-            $table->integer('stage_result')->nullable();
+            $table->string('stage_result')->nullable();
 
             $table->timestamps();
         });

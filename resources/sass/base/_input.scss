@@ -172,3 +172,7 @@ input:focus, textarea:focus {
     -moz-box-shadow: 0 0 3px green !important;
     -webkit-box-shadow: 0 0 3px green !important;
     }
+
+select:focus{
+    outline: none !important;
+}

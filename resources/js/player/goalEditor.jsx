@@ -18,10 +18,7 @@ import { time } from 'faker';
 
 const  GoalEditor = () => {
 
-    const [long_term_goal,   SetLongTermGoal] = useState('');
-    const [medium_term_goal, SetMediumTermGoal] = useState('');
-    const [short_term_goal,  SetShortTermGoal] = useState('');
-
+    const [goal_list, setGoalList] = useState([]);
     const [match_list,  setMatchList] = useState([]);
     const [task_list, setTaskList] = useState([]);
     //-----------------------------------------------------------------
@@ -60,7 +57,20 @@ const  GoalEditor = () => {
             {icon:'/images/icons/icon-strategy.svg', content:'',        detail:'戦術的な課題3',       rates:0,   type:'star5' }
             ];
 
+        var obj2 = [
+            {type:'長期',  name:'', goal:'', result:''},
+            {type:'長期',  name:'', goal:'', result:''},
+            {type:'長期',  name:'', goal:'', result:''},
+            {type:'中期',  name:'', goal:'', result:''},
+            {type:'中期',  name:'', goal:'', result:''},
+            {type:'中期',  name:'', goal:'', result:''},
+            {type:'短期',  name:'', goal:'', result:''},
+            {type:'短期',  name:'', goal:'', result:''},
+            {type:'短期',  name:'', goal:'', result:''},
+        ];
+
         setTaskList(obj1);
+        setGoalList(obj2);
 
     }, []);
 
@@ -112,6 +122,13 @@ const  GoalEditor = () => {
         setTaskList(list);
     }
 
+    const changeGoalItem = (e, index) => {
+        const { id, value } = e.target;
+        const list = [...goal_list];
+        list[index][id] = value;
+        setGoalList(list);
+    }
+
     return (
     <>
     <form  className="needs-validation"  onSubmit={handleSubmit} >
@@ -143,7 +160,7 @@ const  GoalEditor = () => {
                                         <td><input type="date" id="match_date" className="w-100 bg-none border-0 text-center hide-calender"  value={x.match_date} onChange={e => changeMatchItem(e, i)} required/></td>
                                         <td><input type="text" id="match_name" className="w-100 bg-none border-0 text-center"  value={x.match_name} onChange={e => changeMatchItem(e, i)} required/></td>
                                         <td>
-                                            <select className="bg-none w-100 text-center border-0" id="match_goal" value={x.match_goal} onChange={e => changeMatchItem(e, i)} required>
+                                            <select className="bg-none w-100 text-center border-0" id="match_goal" value={x.match_goal} onChange={e => changeMatchItem(e, i)}>
                                                 <option value="勝つ">勝つ</option>
                                                 <option value="優勝">優勝</option>
                                                 <option value="準優勝">準優勝</option>
@@ -160,20 +177,35 @@ const  GoalEditor = () => {
                         
                     </tbody>
                 </table>
+                <p className="w-25 w-md-50 p-1 pl-2 mb-2 bg-black-4 rounded-right-20 text-white ft-16 ft-xs-14">長期目標</p>
                 <table className="table table-bordered table-info mb-2 text-center">
                     <tbody>
                         <tr>
-                            <th>長期目標</th>
-                            <td><input type="text" name="name" className="w-100 bg-none border-0 text-center" value={long_term_goal} onChange={(e)=>SetLongTermGoal(e.target.value)} required /></td>
+                            <th className="w-100-px w-xs-60-px"></th>
+                            <th>試合</th>
+                            <th className="w-100-px w-xs-75-px">目標</th>
+                            <th className="w-100-px w-xs-50-px">結果</th>
                         </tr>
-                        <tr>
-                            <th>中期目標</th>
-                            <td><input type="text" name="name" className="w-100 bg-none border-0 text-center" value={medium_term_goal} onChange={(e)=>SetMediumTermGoal(e.target.value)} required /></td>
-                        </tr>
-                        <tr>
-                            <th>短期目標</th>
-                            <td><input type="text" name="name" className="w-100 bg-none border-0 text-center" value={short_term_goal} onChange={(e)=>SetShortTermGoal(e.target.value)} required /></td>
-                        </tr>
+                        {
+                            goal_list.map((x, i)=>
+                                <tr key={i}>
+                                    <td>{x.type}</td>
+                                    <td><input type="text" name="name" id="name" className="w-100 bg-none border-0 text-center" value={x.name} onChange={e =>changeGoalItem(e, i)} required /></td>
+                                    <td>
+                                        <select className="w-100 bg-none text-center border-0" id="goal" value={x.goal} onChange={e => changeGoalItem(e, i)} >
+                                            <option value="勝つ">勝つ</option>
+                                            <option value="優勝">優勝</option>
+                                            <option value="準優勝">準優勝</option>
+                                            <option value="Best4">Best4</option>
+                                            <option value="Best8">Best8</option>
+                                            <option value="Best16">Best16</option>
+                                            <option value="Best32">Best32</option>
+                                        </select>
+                                    </td>
+                                    <td><input type="text" name="result" id="result" className="w-100 bg-none border-0 text-center" value={x.value} onChange={e => changeGoalItem(e, i)} required /></td>
+                                </tr>
+                            )
+                        }
                     </tbody>
                 </table>
             </div>
