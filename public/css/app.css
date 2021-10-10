@@ -12127,6 +12127,34 @@ select:focus {
   outline: none !important;
 }
 
+#react-select-1-input {
+  display: none;
+}
+
+#react-select-2-input {
+  display: none;
+}
+
+#react-select-3-input {
+  display: none;
+}
+
+#react-select-4-input {
+  display: none;
+}
+
+#react-select-5-input {
+  display: none;
+}
+
+#react-select-6-input {
+  display: none;
+}
+
+#react-select-7-input {
+  display: none;
+}
+
 /* #Main
   -------------------------------------------------------------------------- */
 /*doc

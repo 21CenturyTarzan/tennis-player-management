@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Front\Parent;
 
 use App\Http\Controllers\Controller;
 use App\Models\Father;
-use App\Models\Children;
+use App\Models\FatherRelation;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -76,7 +76,7 @@ class ProfileController extends Controller
                 'birth' => $birth,
                 'phone' => $phone
             ]);
-            Children::create([
+            FatherRelation::create([
                 'parent_id' => Auth::user()->id,
                 'child_email' => $child_email
             ]);

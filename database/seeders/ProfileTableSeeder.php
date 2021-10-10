@@ -5,7 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use App\Models\Player;
 use App\Models\Father;
-use App\Models\Children;
+use App\Models\FatherRelation;
 use App\Models\User;
 use Illuminate\Support\Str;
 use Faker\Factory as Faker;
@@ -24,7 +24,7 @@ class ProfileTableSeeder extends Seeder
         
         $players = User::get();
 
-        foreach($players as $player){
+        foreach($players as $player){ 
 
            
             $birth = $faker->dateTimeBetween('-50 years', 'now');
@@ -61,7 +61,7 @@ class ProfileTableSeeder extends Seeder
                 $users = User::get();
                 $n = rand(0, $cnt-1);
                 $child_email = $users[$n] -> email;
-                Children::create([
+                FatherRelation::create([
                     'parent_id' => $player->id,
                     'child_email' => $child_email
                 ]);

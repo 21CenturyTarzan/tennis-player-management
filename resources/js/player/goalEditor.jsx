@@ -18,6 +18,8 @@ import { time } from 'faker';
 
 const  GoalEditor = () => {
 
+    const [submit, setSubmit] = useState(false);
+    //-----------------------------------------------------
     const [goal_list, setGoalList] = useState([]);
     const [match_list,  setMatchList] = useState([]);
     const [task_list, setTaskList] = useState([]);
@@ -28,11 +30,11 @@ const  GoalEditor = () => {
     const [sleep_start_time, setSleepStartTime] = useState(new Date());
     const [sleep_end_time, setSleepEndTime] = useState(new Date());
 
-    const [push_up, setPushUp] = useState(0);
-    const [muscle, setMuscle] = useState(0);
-    const [spine, setSpine] = useState(0);
+    const [pushups, setPushups] = useState(0);
+    const [pilates, setPilates] = useState(0);
+    const [gymnastics, setGymnastics] = useState(0);
     
-    const [stretch_time, setStretchTime] = useState(new Date());
+    const [stretching_time, setStretchTime] = useState(new Date());
 
     const [rate_breakfast, setRateBreakfast] = useState(0)
     const [rate_lunch, setRateLunch] = useState(0)
@@ -78,18 +80,32 @@ const  GoalEditor = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         const formdata = new FormData();
-     
-        formdata.append('task_list', JSON.parse())
-        // setSubmit(true)
 
-        // document.getElementById('loader').style.display = 'block';
-        // axios.post('/player/goal/store', formdata)
-        // .then(response => {
-        //     if(response.data=='success'){
-        //         setSubmit(false);
-        //         window.location.href = '/player/goal';
-        //     }
-        // })
+        formdata.append('goal_list',  goal_list);
+        formdata.append('match_list', match_list);
+        formdata.append('task_list',  task_list);
+        formdata.append('study_start_time', study_start_time);
+        formdata.append('study_end_time', study_end_time );
+        formdata.append('sleep_start_time', sleep_start_time );
+        formdata.append('sleep_end_time', sleep_end_time );
+        formdata.append('pushups', pushups);
+        formdata.append('pilates', pilates);
+        formdata.append('pilates', pilates );
+        formdata.append('gymnastics', gymnastics );
+        formdata.append('stretching_time', stretching_time);
+        formdata.append('breakfast', rate_breakfast);
+        formdata.append('lunch', rate_lunch);
+        formdata.append('dinner', rate_dinner);
+
+        setSubmit(true)
+
+        axios.post('/player/goal/store', formdata)
+        .then(response => {
+            if(response.data=='success'){
+                setSubmit(false);
+                window.location.href = '/player/goal';
+            }
+        })
     }
 
     const addMatchItem = () => {
@@ -249,7 +265,7 @@ const  GoalEditor = () => {
                                 <td><p className="mb-0 text-center">腕立て</p></td>
                                 <td>
                                     <input type="number" min="0" step="1" className="border-0 text-center" 
-                                        value={push_up} onChange={e=>setPushUp(e.target.value)} required/> 
+                                        value={pushups} onChange={e=>setPushups(e.target.value)} required/> 
                                 </td>
                             </tr>
                             <tr>
@@ -257,7 +273,7 @@ const  GoalEditor = () => {
                                 <td><p className="mb-0 text-center">腹筋</p></td>
                                 <td>
                                     <input type="number" min="0" step="1" className="border-0 text-center" 
-                                        value={muscle} onChange={e=>setMuscle(e.target.value)} required/> 
+                                        value={pilates} onChange={e=>setPilates(e.target.value)} required/> 
                                 </td>
                             </tr>
                             <tr>
@@ -265,7 +281,7 @@ const  GoalEditor = () => {
                                 <td><p className="mb-0 text-center">背筋</p></td>
                                 <td>
                                     <input type="number" min="0" step="1" className="border-0 text-center" 
-                                        value={spine} onChange={e=>setSpine(e.target.value)} required/> 
+                                        value={gymnastics} onChange={e=>setGymnastics(e.target.value)} required/> 
                                 </td>
                             </tr>
                             <tr>
@@ -273,7 +289,7 @@ const  GoalEditor = () => {
                                 <td><p className="mb-0 text-center">ストレッチ</p></td>
                                 <td>
                                     <input type="time" className="border-0 text-center" 
-                                        value={stretch_time} onChange={e=>setStretchTime(e.target.value)} required/> 
+                                        value={stretching_time} onChange={e=>setStretchTime(e.target.value)} required/> 
                                 </td>
                             </tr>
                             <tr>
@@ -309,21 +325,34 @@ const  GoalEditor = () => {
                     </table>
                 </div>
             </div>
-        </div>
-
-
-        <div className="mt-3">
-            <div className="row">
-                <div className="col-6">
-                    <Button size="large" color="primary" fullWidth variant="contained" style={{backgroundColor: 'transparent', border: '2px solid white'}} onClick={(e)=>window.location.href = '/player/goal'}>キャンセル</Button>
-                </div>
-                <div className="col-6">
-                    <LoadingButton size="large" type="submit" color="primary" fullWidth  variant="contained" style={{backgroundColor: 'transparent', border: '2px solid white'}} endIcon={<SendIcon />}>
-                        送信
-                    </LoadingButton>
+            <div className="mt-4 mb-3 px-4">
+                <div className="row">
+                    <div className="col-12 col-sm-6 mb-2">
+                        <Button size="large" color="primary" 
+                            fullWidth variant="contained" 
+                            style={{backgroundColor: 'transparent', border: '1px solid green', color:'green'}} 
+                            onClick={e =>window.location.href = '/player/goal'}
+                        >
+                            キャンセル
+                        </Button>
+                    </div>
+                    <div className="col-12 col-sm-6">
+                        <LoadingButton size="large" type="submit" 
+                            color="primary" fullWidth  
+                            variant="contained" 
+                            endIcon={<SendIcon />}
+                            style={{backgroundColor: 'green'}}
+                            loading={submit}
+                        >
+                            送信
+                        </LoadingButton>
+                    </div>
                 </div>
             </div>
+
         </div>
+
+
     </form>
     </>
     );
