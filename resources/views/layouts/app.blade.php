@@ -42,10 +42,16 @@
     @include('layouts.modal_login')
     @include('layouts.modal_register')
     
+    @include('layouts.loader2')
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        document.querySelector('.loader2-wrap').style.display="block";
+        $(window).on('load', ()=>{
+            document.querySelector('.loader2-wrap').style.display="none";
+        })
+    </script>
     <script src="{{ asset('js/app.js') }}" defer></script>
-
     @yield('scripts')
 </body>
     

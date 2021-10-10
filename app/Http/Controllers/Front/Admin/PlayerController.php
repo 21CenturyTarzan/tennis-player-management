@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Auth;
 
 use App\Models\Player;
 use App\Models\Father;
-use App\Models\Children;
+use App\Models\FatherRelation;
 use App\Models\User;
 
 
@@ -18,7 +18,7 @@ class PlayerController extends Controller
     public function index(){
         if( strcmp(Auth::user()->type, 'parent')== 0) 
         {
-            $child_email = Children::select('child_email')->where('parent_id', Auth::user()->id)->first()->child_email;
+            $child_email = FatherRelation::select('child_email')->where('parent_id', Auth::user()->id)->first()->child_email;
             $child_id = User::select('id')->where('email', $child_email)-> first();
             if($child_id)
                 return Player::where('account_id', $child_id) -> orderBy('created_at')->with('account')->get();
