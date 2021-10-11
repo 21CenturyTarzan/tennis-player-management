@@ -11,7 +11,7 @@ class Rank extends Model
 
     protected $table = 'ranks';
     protected $fillable = [
-        'account_id',
+        'player_id',
         'jta_u_18',
         'kanto_u_18',
         'title1',

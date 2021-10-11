@@ -11,7 +11,7 @@
   height: 54px;
   @include pc{
     height: 100vh;
-    width: 240px;
+    width: 300px;
   }
   @include sp{
     display: flex;
@@ -155,7 +155,7 @@
         transition: all .25s ease-out;
         text-decoration: none;
         @include pc{
-          padding: 13px 1.2em;
+          padding: 13px 3.2em;
           &:hover{
             opacity: 0.6;
           }

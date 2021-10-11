@@ -15,7 +15,7 @@ class CreateRanksTable extends Migration
     {
         Schema::create('ranks', function (Blueprint $table) {
             $table->unsignedBigInteger('id')->autoIncrement()->comment('ID');
-            $table->foreignId('account_id')->constrained('users')->comment('PlayerID');
+            $table->foreignId('player_id')->constrained('players')->comment('PlayerID');
             $table->unsignedBigInteger('jta_u_18')->comment('JTAU18 Rank');
             $table->unsignedBigInteger('kanto_u_18')->comment('KantoU18 Rank');
 
