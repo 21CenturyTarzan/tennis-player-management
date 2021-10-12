@@ -18,6 +18,7 @@ class CreateGoalMatchTable extends Migration
             $table->foreignId('goal_id')->constrained('goals')->comment('GoalID');
             $table->string('match_name');
             $table->date('match_date');
+            $table->string('match_goal');
             
             $table->timestamps();
         });

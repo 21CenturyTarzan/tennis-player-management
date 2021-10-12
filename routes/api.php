@@ -25,5 +25,6 @@ Route::middleware(['throttle:seventy'])->group(function() {
     Route::apiResource('players', PlayerController::class)->only(['index', 'show']);
     
     Route::get('player/info', 'App\Http\Controllers\Api\PlayerController@info');
+    Route::get('player/goal', 'App\Http\Controllers\Api\PlayerController@goal');
     
 });

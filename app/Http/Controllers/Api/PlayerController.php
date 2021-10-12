@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Player;
 use App\Models\Rank;
+use App\Models\Goal;
 
 class PlayerController extends Controller
 {
@@ -24,5 +25,14 @@ class PlayerController extends Controller
         $res['profile'] = Player::where('id', $player_id)->with('account')->first();
 
         return ['status_code' => 200, 'params' => $res];
+    }
+
+    public function goal(Request $r)
+    {
+        $player_id = (int)$r->get('player_id');
+
+        $res = Goal::where('player_id', $player_id)->with('goal_match')->with('goal_task')->with('goal_stage') -> orderBy('id', 'DESC') -> first();
+
+        return ['status_code'=>200, 'params'=>$res];
     }
 }
