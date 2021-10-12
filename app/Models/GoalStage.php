@@ -13,7 +13,8 @@ class GoalStage extends Model
     protected $fillable = [
         'goal_id',
         'stage_type',            //長期目標  中期目標  短期目標
-        'stage_detail',
+        'stage_match',
+        'stage_goal',
         'stage_result'
     ];
 }

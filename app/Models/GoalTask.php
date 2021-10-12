@@ -12,6 +12,7 @@ class GoalTask extends Model
     protected $table = 'goal_task';
     protected $fillable = [
         'goal_id',
+        'icon',
         'task_type',            //技術的な課題  フィジカル的な課題 メンタル的な課題 戦術的な課題
         'task_detail',
         'task_rate',

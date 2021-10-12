@@ -21,7 +21,9 @@ use App\Http\Controllers\Api\PlayerController;
 // });
 
 Route::middleware(['throttle:seventy'])->group(function() {
-
+    
     Route::apiResource('players', PlayerController::class)->only(['index', 'show']);
+    
+    Route::get('player/info', 'App\Http\Controllers\Api\PlayerController@info');
     
 });

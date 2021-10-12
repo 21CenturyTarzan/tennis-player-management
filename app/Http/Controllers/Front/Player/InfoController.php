@@ -17,19 +17,22 @@ class InfoController extends Controller
     //
     public function index()
     {
-        $res['rank'] = Rank::where('account_id', Auth::user()->id)->with('rank_list') -> orderBy('id', 'DESC') -> first();
-        $res['profile'] = Player::where('account_id', Auth::user()->id)->first();
         if(strcmp(Auth::user()->type, 'player') == 0)
-            return view('account.player.info.index', $res);
+        {
+            $res['player_id'] = Player::where('account_id', Auth::user()->id)->first()->id;
+            return view('account.player.index', $res);
+        }
         else return view('errors.404');
     }
 
     public function edit()
     {
-        # code...
-        $res['rank'] = Rank::where('account_id', Auth::user()->id)->with('rank_list') -> orderBy('id', 'DESC') -> first();
-        $res['profile'] = Player::where('account_id', Auth::user()->id)->with('account')->with('rank')->first();
-        return view('account.player.info.edit', $res);
+        if(strcmp(Auth::user()->type, 'player') == 0)
+        {
+            $res['player_id'] = Player::where('account_id', Auth::user()->id)->first()->id;
+            return view('account.player.index', $res);
+        }
+        else return view('errors.404');
     }
 
     public function store(Request $request)
@@ -71,9 +74,11 @@ class InfoController extends Controller
             }
         }
 
+        $player_id = Player::where('account_id', Auth::id())->first()->id;
+
         try {
             Rank::create([
-                'account_id' => Auth::user()->id,
+                'player_id' => $player_id,
                 'jta_u_18' => $jta_u_18,
                 'kanto_u_18' => $kanto_u_18,
                 'title1' => $title1,

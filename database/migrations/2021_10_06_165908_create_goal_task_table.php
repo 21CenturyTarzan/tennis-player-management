@@ -18,6 +18,7 @@ class CreateGoalTaskTable extends Migration
             $table->unsignedBigInteger('id')->autoIncrement()->comment('ID');
             $table->foreignId('goal_id')->constrained('goals')->comment('GoalID');
             $table->string('task_type');
+            $table->string('icon');
             $table->string('task_detail');
             $table->integer('task_rate');
 

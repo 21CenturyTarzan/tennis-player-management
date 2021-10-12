@@ -22,14 +22,14 @@ class ProfileController extends Controller
             $tmp = Father::where('account_id', Auth::user()->id)->count();
             if($tmp == 0)
                 return view('parent.profile');
-            else return redirect('/dashboard');
+            else return redirect('/parent/dashboard');
         }
         else if(strcmp(Auth::user()->type, 'player') == 0){
             $tmp = Player::where('account_id', Auth::user()->id)->count();
             if($tmp == 0)
                 return view('player.profile');
-            else return redirect('/dashboard');
+            else return redirect('/player/dashboard');
         }
-        else return redirect('/dashboard');
+        else return redirect('/admin/dashboard');
     }
 }

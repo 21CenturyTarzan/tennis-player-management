@@ -16,12 +16,9 @@ require('./components/pageloader')
 require('./components/scrollbar')
 require('./components/notification')
 
-require('./player/infoEditor');
-require('./player/goalEditor');
-require('./player/matchEditor');
-require('./player/resultEditor');
-require('./player/profileEditor');
+require('./player');
 
 require('./admin/playerList')
 
 require('./parent/profileEditor')
+require('./player/profileEditor')

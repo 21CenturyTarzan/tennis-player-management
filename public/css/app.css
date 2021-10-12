@@ -12281,7 +12281,7 @@ categories: [layout]
 }
 @media screen and (min-width: 1068px) {
   .l-content {
-    margin: 25px 0 0 240px;
+    margin: 25px 0 0 300px;
     padding: 0 100px 50px 100px;
   }
 }
@@ -12378,7 +12378,7 @@ categories: [layout]
 @media screen and (min-width: 1068px) {
   .l-side {
     height: 100vh;
-    width: 240px;
+    width: 300px;
   }
 }
 @media screen and (max-width: 1067px) {
@@ -12527,7 +12527,7 @@ categories: [layout]
 }
 @media screen and (min-width: 1068px) {
   .mypage-nav-list__item a {
-    padding: 13px 1.2em;
+    padding: 13px 3.2em;
   }
   .mypage-nav-list__item a:hover {
     opacity: 0.6;

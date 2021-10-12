@@ -9,7 +9,7 @@ class Goal extends Model
 {
     use HasFactory;
 
-    protected $table = 'goal';
+    protected $table = 'goals';
     protected $fillable = [
         'player_id',                
         'study_time_start',          //勉強時間

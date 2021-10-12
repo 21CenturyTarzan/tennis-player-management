@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
-        <title>@yield('title')</title>
+        <title>HYS | @yield('title')</title>
         <link rel="dns-prefetch" href="//fonts.gstatic.com">
         <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel = "stylesheet">
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -15,29 +15,18 @@
     </head>
 
     <body>
-        <main class="l-container meeting-consent">
-            <div class="l-content">
+        @yield('player.content')
 
-                <div id="notification"></div>
-                
-                <div>
-                    @yield('player.content')
-                </div>
-            </div>
-
-            @yield('player.side')
-
-        </main>
         @include('layouts.loader2')
     </body>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script>
+    <!-- <script>
         document.querySelector('.loader2-wrap').style.display="block";
         $(window).on('load', ()=>{
             document.querySelector('.loader2-wrap').style.display="none";
         })
-    </script>
+    </script> -->
     @stack('js')
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <script src="{{ asset('js/app.js') }}"></script>
