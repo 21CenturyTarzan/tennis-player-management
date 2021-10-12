@@ -106,7 +106,7 @@ function PlayerGoal() {
                                                         <td className="w-40-px"><img src={item.icon} width="25" height="25" /></td>
                                                         <td style={{maxWidth:'50px'}}><pre style={{whiteSpace:'nowrap'}}>{item.task_detail}</pre></td>
                                                         <td className="w-95-px">
-                                                            <Rating stars={5} size={15} ratingValue={item.task_rate}/>
+                                                            <RatingView stars={5} size={15} ratingValue={item.task_rate}/>
                                                         </td>
                                                         <td className="w-40-px pointer"><img src="/images/icons/icon-graph.svg" width="25" height="25" /></td>
                                                     </tr>
@@ -154,7 +154,7 @@ function PlayerGoal() {
                                                 <td><img src="/images/icons/icon-food.svg" width="25" height="25" /></td>
                                                 <td><p className="mb-0 text-center">朝食</p></td>
                                                 <td>
-                                                    <Rating stars={3} size={20} ratingValue={params.breakfast}/>
+                                                    <RatingView stars={3} size={20} ratingValue={params.breakfast}/>
                                                 </td>
                                                 <td className="w-40-px pointer"><img src="/images/icons/icon-graph.svg" width="25" height="25" /></td>
                                             </tr>
@@ -162,7 +162,7 @@ function PlayerGoal() {
                                                 <td><img src="/images/icons/icon-food.svg" width="25" height="25" /></td>
                                                 <td><p className="mb-0 text-center">昼食</p></td>
                                                 <td>
-                                                    <Rating stars={3} size={20} ratingValue={params.lunch}/>
+                                                    <RatingView stars={3} size={20} ratingValue={params.lunch}/>
                                                 </td>
                                                 <td className="w-40-px pointer"><img src="/images/icons/icon-graph.svg" width="25" height="25" /></td>
                                             </tr>
@@ -170,7 +170,7 @@ function PlayerGoal() {
                                                 <td><img src="/images/icons/icon-food.svg" width="25" height="25" /></td>
                                                 <td><p className="mb-0 text-center">夕食</p></td>
                                                 <td>
-                                                    <Rating stars={3} size={20} ratingValue={params.dinner}/>
+                                                    <RatingView stars={3} size={20} ratingValue={params.dinner}/>
                                                 </td>
                                                 <td className="w-40-px pointer"><img src="/images/icons/icon-graph.svg" width="25" height="25" /></td>
                                             </tr>

@@ -14,43 +14,53 @@ function PlayerMatch() {
             
             <p className="w-50 w-md-75 p-1 pl-2 mb-2 bg-black-4 rounded-right-20 text-white">大会情報</p>
             <div className="px-2 mb-2">
-                <table className="table table-bordered table-info mb-2">
+                <div className="d-block d-md-flex">
+                    <table className="table table-bordered text-center mb-2">
+                        <tbody>
+                            <tr className="table-success">
+                                <td>大会名</td>
+                                <td>Tokyo Olympic Games</td>
+                            </tr>
+                            <tr className="table-success">
+                                <td>大会日にち</td>
+                                <td>2021-2-19</td>
+                            </tr>
+                            <tr className="table-success">
+                                <td>対戦相手</td>
+                                <td>浮田　愛未</td>
+                            </tr>
+                            <tr className="table-success">
+                                <td>クラブ名</td>
+                                <td>Manchester</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table className="table table-bordered text-center mb-2">
+                        <tbody>
+                            <tr className="table-success">
+                                <td>サーフェス</td>
+                                <td>クレー/オムニ/ハード</td>
+                            </tr>
+                            <tr className="table-success">
+                                <td>ラウンド</td>
+                                <td>本戦/予選</td>
+                            </tr>
+                            <tr className="table-success">
+                                <td>天気</td>
+                                <td>晴/曇/雨</td>
+                            </tr>
+                            <tr className="table-success">
+                                <td>カテゴリー</td>
+                                <td>U34</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <table className="table table-bordered text-center mb-2">
                     <tbody>
-                        <tr>
-                            <td>大会名</td>
-                            <td>---------------</td>
-                        </tr>
-                        <tr>
-                            <td>トーナメント日にち</td>
-                            <td>2019-8-29</td>
-                        </tr>
-                        <tr>
-                            <td>対戦相手名前</td>
-                            <td>浮田　愛未</td>
-                        </tr>
-                        <tr>
-                            <td>クラブ名</td>
-                            <td>Manchester</td>
-                        </tr>
-                        <tr>
-                            <td>サーフェス</td>
-                            <td>クレー/オムニ/ハード</td>
-                        </tr>
-                        <tr>
-                            <td>ラウンド</td>
-                            <td>本戦/予選</td>
-                        </tr>
-                        <tr>
-                            <td>天気</td>
-                            <td>晴/曇/雨</td>
-                        </tr>
-                        <tr>
+                        <tr className="table-success">
                             <td>起きた時の体調や気分</td>
                             <td><img src="/images/star5.svg" alt=""/></td>
-                        </tr>
-                        <tr>
-                            <td>カテゴリー</td>
-                            <td>U34</td>
                         </tr>
                     </tbody>
                 </table>

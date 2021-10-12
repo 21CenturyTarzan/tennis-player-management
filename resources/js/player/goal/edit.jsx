@@ -11,8 +11,6 @@ import SendIcon from '@mui/icons-material/Send';
 
 import { Rating, RatingView } from 'react-simple-star-rating';
 
-import moment from 'moment';
-
 var g_StageObj = [
     {stage_type:'長期',  stage_match:'', stage_goal:'勝つ', stage_result:''},
     {stage_type:'長期',  stage_match:'', stage_goal:'勝つ', stage_result:''},
@@ -202,58 +200,26 @@ const  PlayerGoalEditor = () => {
                 load &&
                 <>
                     <p className="w-50 w-md-75 p-1 pl-2 mb-2 bg-black-4 rounded-right-20 text-white">近日予定の試合</p>
-                        <div className="px-2 mb-2">
-                            <div className="text-center mb-1">
-                                <img src="/images/icon-minus-black.svg" width="25" className="pointer mr-1" onClick={removeMatchItem}/>
-                                <img src="/images/icon-plus-black.svg" width="25" className="pointer" onClick={addMatchItem}/>
-                            </div>
-                            <table className="table table-bordered table-success mb-2 text-center">
-                                <tbody>
-                                    <tr>
-                                        <th>日にち</th>
-                                        <th>試合名</th>
-                                        <th style={{width:'100px'}}>目標</th>
-                                    </tr>
-                                    {
-                                        match_list.map((x, i)=>{
-                                            return(
-                                                <tr key={i}>
-                                                    <td><input type="date" id="match_date" className="w-100 bg-none border-0 text-center hide-calender"  value={x.match_date} onChange={e => changeMatchItem(e, i)} required/></td>
-                                                    <td><input type="text" id="match_name" className="w-100 bg-none border-0 text-center"  value={x.match_name} onChange={e => changeMatchItem(e, i)} required/></td>
-                                                    <td>
-                                                        <select className="bg-none w-100 text-center border-0" id="match_goal" onChange={e => changeMatchItem(e, i)}>
-                                                            <option value="勝つ" defaultValue>勝つ</option>
-                                                            <option value="優勝">優勝</option>
-                                                            <option value="準優勝">準優勝</option>
-                                                            <option value="Best4">Best4</option>
-                                                            <option value="Best8">Best8</option>
-                                                            <option value="Best16">Best16</option>
-                                                            <option value="Best32">Best32</option>
-                                                        </select>
-                                                    </td>
-                                                </tr>
-                                            )
-                                        })
-                                    }
-                                    
-                                </tbody>
-                            </table>
-                            <p className="w-25 w-md-50 p-1 pl-2 mb-2 bg-black-4 rounded-right-20 text-white ft-16 ft-xs-14">私の目標</p>
-                            <table className="table table-bordered table-info mb-2 text-center">
-                                <tbody>
-                                    <tr>
-                                        <th className="w-100-px w-xs-60-px"></th>
-                                        <th>試合</th>
-                                        <th className="w-100-px w-xs-75-px">目標</th>
-                                        <th className="w-100-px w-xs-50-px">結果</th>
-                                    </tr>
-                                    {
-                                        stage_list.map((x, i)=>
+                    <div className="px-2 mb-2">
+                        <div className="text-center mb-1">
+                            <img src="/images/icon-minus-black.svg" width="25" className="pointer mr-1" onClick={removeMatchItem}/>
+                            <img src="/images/icon-plus-black.svg" width="25" className="pointer" onClick={addMatchItem}/>
+                        </div>
+                        <table className="table table-bordered table-success mb-2 text-center">
+                            <tbody>
+                                <tr>
+                                    <th>日にち</th>
+                                    <th>試合名</th>
+                                    <th style={{width:'100px'}}>目標</th>
+                                </tr>
+                                {
+                                    match_list.map((x, i)=>{
+                                        return(
                                             <tr key={i}>
-                                                <td>{x.stage_type}</td>
-                                                <td><input type="text" name="stage_match" id="stage_match" className="w-100 bg-none border-0 text-center" value={x.stage_match} onChange={e =>changeGoalItem(e, i)} required /></td>
+                                                <td><input type="date" id="match_date" className="w-100 bg-none border-0 text-center hide-calender"  value={x.match_date} onChange={e => changeMatchItem(e, i)} required/></td>
+                                                <td><input type="text" id="match_name" className="w-100 bg-none border-0 text-center"  value={x.match_name} onChange={e => changeMatchItem(e, i)} required/></td>
                                                 <td>
-                                                    <select className="w-100 bg-none text-center border-0" id="stage_goal" onChange={e => changeGoalItem(e, i)} >
+                                                    <select className="bg-none w-100 text-center border-0" id="match_goal" onChange={e => changeMatchItem(e, i)}>
                                                         <option value="勝つ" defaultValue>勝つ</option>
                                                         <option value="優勝">優勝</option>
                                                         <option value="準優勝">準優勝</option>
@@ -263,141 +229,173 @@ const  PlayerGoalEditor = () => {
                                                         <option value="Best32">Best32</option>
                                                     </select>
                                                 </td>
-                                                <td><input type="text" name="stage_result" id="stage_result" className="w-100 bg-none border-0 text-center" value={x.stage_result} onChange={e => changeGoalItem(e, i)} /></td>
                                             </tr>
-                                        )
-                                    }
-                                </tbody>
-                            </table>
-                        </div>
-                        <p className="w-50 w-md-75 p-1 pl-2 mb-2 bg-black-4 rounded-right-20 text-white">短期目標に向かっての課題</p>
-                        <div className="px-2 mb-2 d-block d-sm-flex">
-                            <div className="w-50 w-sm-100 mb-3 mb-sm-0">
-                                {
-                                    task_list.map((x, i)=>{
-                                        return(
-                                            <div className="p-1 d-flex justify-content-center border-1" key={i}>
-                                                <div className="text-center"><img src={x.icon} width="25" height="25" /></div>
-                                                <div className="text-center">
-                                                    <input type="text" name="task_detail" id="task_detail" className="w-100 bg-none border-0 text-center" placeholder={x.task_type} value={x.task_detail} onChange={(e)=>changeTaskItem(e, i)} required />
-                                                    <Rating onClick={(rate)=>changeTaskItemRate(rate, i)} ratingValue={x.task_rate} stars={5}/>
-                                                </div>
-                                            </div>
                                         )
                                     })
                                 }
-                            </div>
-                            <div className="w-50 w-sm-100">
-                                <table className="table table-bordered mb-2 text-center ft-16">
-                                    <tbody>
-                                        <tr>
-                                            <td><img src="/images/icons/icon-book.svg" width="25" height="25" /></td>
-                                            <td><p className="mb-0 text-center">勉強時間</p></td>
+                                
+                            </tbody>
+                        </table>
+                        <p className="w-25 w-md-50 p-1 pl-2 mb-2 bg-black-4 rounded-right-20 text-white ft-16 ft-xs-14">私の目標</p>
+                        <table className="table table-bordered table-info mb-2 text-center">
+                            <tbody>
+                                <tr>
+                                    <th className="w-100-px w-xs-60-px"></th>
+                                    <th>試合</th>
+                                    <th className="w-100-px w-xs-75-px">目標</th>
+                                    <th className="w-100-px w-xs-50-px">結果</th>
+                                </tr>
+                                {
+                                    stage_list.map((x, i)=>
+                                        <tr key={i}>
+                                            <td>{x.stage_type}</td>
+                                            <td><input type="text" name="stage_match" id="stage_match" className="w-100 bg-none border-0 text-center" value={x.stage_match} onChange={e =>changeGoalItem(e, i)} required /></td>
                                             <td>
-                                                <span className="mr-3">開始:</span>
-                                                    <input type="time" className="border-0 mb-1" 
-                                                        value={study_start_time} onChange={e=>setStudyStartTime(e.target.value)} required/>
-                                                        
-                                                <br/>
+                                                <select className="w-100 bg-none text-center border-0" id="stage_goal" onChange={e => changeGoalItem(e, i)} >
+                                                    <option value="勝つ" defaultValue>勝つ</option>
+                                                    <option value="優勝">優勝</option>
+                                                    <option value="準優勝">準優勝</option>
+                                                    <option value="Best4">Best4</option>
+                                                    <option value="Best8">Best8</option>
+                                                    <option value="Best16">Best16</option>
+                                                    <option value="Best32">Best32</option>
+                                                </select>
+                                            </td>
+                                            <td><input type="text" name="stage_result" id="stage_result" className="w-100 bg-none border-0 text-center" value={x.stage_result} onChange={e => changeGoalItem(e, i)} /></td>
+                                        </tr>
+                                    )
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                    <p className="w-50 w-md-75 p-1 pl-2 mb-2 bg-black-4 rounded-right-20 text-white">短期目標に向かっての課題</p>
+                    <div className="px-2 mb-2 d-block d-sm-flex">
+                        <div className="w-50 w-sm-100 mb-3 mb-sm-0">
+                            {
+                                task_list.map((x, i)=>{
+                                    return(
+                                        <div className="p-1 d-flex justify-content-center border-1" key={i}>
+                                            <div className="text-center"><img src={x.icon} width="25" height="25" /></div>
+                                            <div className="text-center">
+                                                <input type="text" name="task_detail" id="task_detail" className="w-100 bg-none border-0 text-center" placeholder={x.task_type} value={x.task_detail} onChange={(e)=>changeTaskItem(e, i)} required />
+                                                <Rating onClick={(rate)=>changeTaskItemRate(rate, i)} ratingValue={x.task_rate} stars={5}/>
+                                            </div>
+                                        </div>
+                                    )
+                                })
+                            }
+                        </div>
+                        <div className="w-50 w-sm-100">
+                            <table className="table table-bordered mb-2 text-center ft-16">
+                                <tbody>
+                                    <tr>
+                                        <td><img src="/images/icons/icon-book.svg" width="25" height="25" /></td>
+                                        <td><p className="mb-0 text-center">勉強時間</p></td>
+                                        <td>
+                                            <span className="mr-3">開始:</span>
+                                                <input type="time" className="border-0 mb-1" 
+                                                    value={study_start_time} onChange={e=>setStudyStartTime(e.target.value)} required/>
+                                                    
+                                            <br/>
 
-                                                <span className="mr-3">終了:</span>
-                                                    <input type="time" className="border-0" 
-                                                        value={study_end_time} onChange={e=>setStudyEndTime(e.target.value)} required/>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td><img src="/images/icons/icon-pushups.svg" width="25" height="25" /></td>
-                                            <td><p className="mb-0 text-center">腕立て</p></td>
-                                            <td>
-                                                <input type="number" min="0" step="10" className="border-0 text-center" 
-                                                    value={pushups} onChange={e=>setPushups(e.target.value)} required/> 
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td><img src="/images/icons/icon-pilates.svg" width="25" height="25" /></td>
-                                            <td><p className="mb-0 text-center">腹筋</p></td>
-                                            <td>
-                                                <input type="number" min="0" step="10" className="border-0 text-center" 
-                                                    value={pilates} onChange={e=>setPilates(e.target.value)} required/> 
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td><img src="/images/icons/icon-gymnastics.svg" width="25" height="25" /></td>
-                                            <td><p className="mb-0 text-center">背筋</p></td>
-                                            <td>
-                                                <input type="number" min="0" step="10" className="border-0 text-center" 
-                                                    value={gymnastics} onChange={e=>setGymnastics(e.target.value)} required/> 
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td><img src="/images/icons/icon-stretching.svg" width="25" height="25" /></td>
-                                            <td><p className="mb-0 text-center">ストレッチ</p></td>
-                                            <td>
-                                                <input type="time" className="border-0 text-center" 
-                                                    value={stretching_time} onChange={e=>setStretchTime(e.target.value)} required/> 
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td><img src="/images/icons/icon-food.svg" width="25" height="25" /></td>
-                                            <td><p className="mb-0 text-center">朝食</p></td>
-                                            <td>
-                                                <Rating stars={3} ratingValue={rate_breakfast} onClick={rate=>setRateBreakfast(rate)}/>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td><img src="/images/icons/icon-food.svg" width="25" height="25" /></td>
-                                            <td><p className="mb-0 text-center">昼食</p></td>
-                                            <td>
-                                                <Rating stars={3} ratingValue={rate_lunch} onClick={rate=>setRateLunch(rate)}/>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td><img src="/images/icons/icon-food.svg" width="25" height="25" /></td>
-                                            <td><p className="mb-0 text-center">夕食</p></td>
-                                            <td>
-                                                <Rating stars={3} ratingValue={rate_dinner} onClick={rate=>setRateDinner(rate)}/>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td><img src="/images/icons/icon-bed.svg" width="25" height="25" /></td>
-                                            <td><p className="mb-0 text-center">睡眠時間</p></td>
-                                            <td>
-                                                <span className="mr-3">開始:</span><input type="time" className="border-0 mb-1" value={sleep_start_time} onChange={e=>setSleepStartTime(e.target.value)} required/><br/>
-                                                <span className="mr-3">終了:</span><input type="time" className="border-0" value={sleep_end_time} onChange={e=>setSleepEndTime(e.target.value)} required/>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                                            <span className="mr-3">終了:</span>
+                                                <input type="time" className="border-0" 
+                                                    value={study_end_time} onChange={e=>setStudyEndTime(e.target.value)} required/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><img src="/images/icons/icon-pushups.svg" width="25" height="25" /></td>
+                                        <td><p className="mb-0 text-center">腕立て</p></td>
+                                        <td>
+                                            <input type="number" min="0" step="10" className="border-0 text-center" 
+                                                value={pushups} onChange={e=>setPushups(e.target.value)} required/> 
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><img src="/images/icons/icon-pilates.svg" width="25" height="25" /></td>
+                                        <td><p className="mb-0 text-center">腹筋</p></td>
+                                        <td>
+                                            <input type="number" min="0" step="10" className="border-0 text-center" 
+                                                value={pilates} onChange={e=>setPilates(e.target.value)} required/> 
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><img src="/images/icons/icon-gymnastics.svg" width="25" height="25" /></td>
+                                        <td><p className="mb-0 text-center">背筋</p></td>
+                                        <td>
+                                            <input type="number" min="0" step="10" className="border-0 text-center" 
+                                                value={gymnastics} onChange={e=>setGymnastics(e.target.value)} required/> 
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><img src="/images/icons/icon-stretching.svg" width="25" height="25" /></td>
+                                        <td><p className="mb-0 text-center">ストレッチ</p></td>
+                                        <td>
+                                            <input type="time" className="border-0 text-center" 
+                                                value={stretching_time} onChange={e=>setStretchTime(e.target.value)} required/> 
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><img src="/images/icons/icon-food.svg" width="25" height="25" /></td>
+                                        <td><p className="mb-0 text-center">朝食</p></td>
+                                        <td>
+                                            <Rating stars={3} ratingValue={rate_breakfast} onClick={rate=>setRateBreakfast(rate)}/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><img src="/images/icons/icon-food.svg" width="25" height="25" /></td>
+                                        <td><p className="mb-0 text-center">昼食</p></td>
+                                        <td>
+                                            <Rating stars={3} ratingValue={rate_lunch} onClick={rate=>setRateLunch(rate)}/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><img src="/images/icons/icon-food.svg" width="25" height="25" /></td>
+                                        <td><p className="mb-0 text-center">夕食</p></td>
+                                        <td>
+                                            <Rating stars={3} ratingValue={rate_dinner} onClick={rate=>setRateDinner(rate)}/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><img src="/images/icons/icon-bed.svg" width="25" height="25" /></td>
+                                        <td><p className="mb-0 text-center">睡眠時間</p></td>
+                                        <td>
+                                            <span className="mr-3">開始:</span><input type="time" className="border-0 mb-1" value={sleep_start_time} onChange={e=>setSleepStartTime(e.target.value)} required/><br/>
+                                            <span className="mr-3">終了:</span><input type="time" className="border-0" value={sleep_end_time} onChange={e=>setSleepEndTime(e.target.value)} required/>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div className="mt-3 mb-2 px-4">
+                        <div className="row">
+                            <div className="col-12 col-sm-6 mb-2">
+                                <Button size="large" color="primary" 
+                                    fullWidth variant="contained" 
+                                    style={{backgroundColor: 'transparent', border: '1px solid green', color:'green'}} 
+                                    onClick={ e =>
+                                        history.push({
+                                            pathname: '/player/goal',
+                                            state: {}
+                                        })
+                                    }>
+                                    キャンセル
+                                </Button>
+                            </div>
+                            <div className="col-12 col-sm-6">
+                                <LoadingButton size="large" type="submit" 
+                                    color="primary" fullWidth  
+                                    variant="contained" 
+                                    endIcon={<SendIcon />}
+                                    style={{backgroundColor: 'green'}}
+                                    loading={submit}
+                                >
+                                    送信
+                                </LoadingButton>
                             </div>
                         </div>
-                        <div className="mt-3 mb-2 px-4">
-                            <div className="row">
-                                <div className="col-12 col-sm-6 mb-2">
-                                    <Button size="large" color="primary" 
-                                        fullWidth variant="contained" 
-                                        style={{backgroundColor: 'transparent', border: '1px solid green', color:'green'}} 
-                                        onClick={ e =>
-                                            history.push({
-                                                pathname: '/player/goal',
-                                                state: {}
-                                            })
-                                        }>
-                                        キャンセル
-                                    </Button>
-                                </div>
-                                <div className="col-12 col-sm-6">
-                                    <LoadingButton size="large" type="submit" 
-                                        color="primary" fullWidth  
-                                        variant="contained" 
-                                        endIcon={<SendIcon />}
-                                        style={{backgroundColor: 'green'}}
-                                        loading={submit}
-                                    >
-                                        送信
-                                    </LoadingButton>
-                                </div>
-                            </div>
-                        </div>
+                    </div>
                 </>
             }
         
