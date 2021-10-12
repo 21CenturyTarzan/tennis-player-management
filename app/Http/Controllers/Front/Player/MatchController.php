@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\front\player;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\Player;
-
 
 class MatchController extends Controller
 {
