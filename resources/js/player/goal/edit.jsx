@@ -82,8 +82,6 @@ const  PlayerGoalEditor = () => {
                 setLoad(true);
 
                 params = response.data.params;
-                
-                console.log(params);
 
                 if(params)
                 {
