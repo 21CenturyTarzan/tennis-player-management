@@ -24,4 +24,19 @@ class Goal extends Model
         'sleep_time_start',      //睡眠時間
         'sleep_time_end',     
     ];
+
+    public function goal_task()
+    {
+        return $this->hasMany(GoalTask::class);
+    }
+
+    public function goal_stage()
+    {
+        return $this->hasMany(GoalStage::class);
+    }
+
+    public function goal_match()
+    {
+        return $this->hasMany(GoalMatch::class);
+    }
 }

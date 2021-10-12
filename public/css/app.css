@@ -11889,6 +11889,10 @@ input[type=date].hide-calender::-webkit-inner-spin-button, input[type=date].hide
   width: 100px;
 }
 
+.w-135-px {
+  width: 135px;
+}
+
 .pointer:hover {
   cursor: pointer;
 }
@@ -13112,6 +13116,7 @@ span.star {
 
 pre {
   font-family: inherit;
+  font-size: 100%;
   white-space: pre-wrap;
   word-break: break-word;
   height: 100%;

@@ -1,129 +1,199 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
+import CircularProgress from '@material-ui/core/CircularProgress';
+import { Rating, RatingView } from 'react-simple-star-rating';
+
+import moment from 'moment';
+
 
 function PlayerGoal() {
-    const [selected, setSelected] = useState('');
+    
+    const [load, setLoad] = useState(false);
+    const [params, setParams] = useState(null);
 
+    useEffect( () => {
+
+        setLoad(false);
+        
+        var id = Number(document.getElementById('player_id').value);
+        axios.get('/api/player/goal', {params:{player_id: id}})
+        .then(async (response)=>{
+            if(response.data.status_code == 200){
+                // setParams(response.data.params);
+                setLoad(true);
+                setParams(response.data.params)
+                console.log(response.data.params)
+            }
+        })
+    }, []);
+
+    const getHHMM = (str) => {
+        return str.split(':')[0] +':'+ str.split(':')[1];
+    }
+    
     return (
         <div id="goal">
-        <div className="mt-3 py-2 rounded-15 bg-white shadow-lg">
-            <h3 className="mt-2 p-1 position-relative text-white bg-green text-center font-weight-bold">
-                <span>選手管理</span>
-                <Link to="/player/goal/edit" className="edit py-1" style={{marginTop:'-5px'}}><img src="/images/icon-pencil.svg" alt="icon-pencil.svg" width="30" height="30"/></Link>
-            </h3>
-            <p className="w-50 w-md-75 p-1 pl-2 mb-2 bg-black-4 rounded-right-20 text-white">近日予定の試合</p>
-            <div className="px-2 mb-2">
-                <table className="table table-bordered table-success mb-2">
-                    <thead>
-                        <tr>
-                            <th scope="col">日にち</th>
-                            <th scope="col">試合名</th>
-                            <th scope="col">目標</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <th>2018-10-29</th>
-                            <td>Olymipic</td>
-                            <td>1位</td>
-                        </tr>
-                        <tr>
-                            <th>2018-10-29</th>
-                            <td>Olymipic</td>
-                            <td>1位</td>
-                        </tr>
-                    </tbody>
-                </table>
-                <table className="table table-bordered table-info mb-2">
-                    <tbody>
-                        <tr>
-                            <th>長期目標</th>
-                            <td>2位</td>
-                        </tr>
-                        <tr>
-                            <th>中期目標</th>
-                            <td>2位</td>
-                        </tr>
-                        <tr>
-                            <th>短期目標</th>
-                            <td>2位</td>
-                        </tr>
-                    </tbody>
-                </table>
+            <div className="mt-3 py-2 rounded-15 bg-white shadow-lg" style={{minHeight:'500px'}}>
+                <h3 className="mt-2 p-1 position-relative text-white bg-green text-center font-weight-bold">
+                    <span>選手管理</span>
+                    <Link to="/player/goal/edit" className="edit py-1" style={{marginTop:'-5px'}}><img src="/images/icon-pencil.svg" alt="icon-pencil.svg" width="30" height="30"/></Link>
+                </h3>
+                {
+                    !load && <CircularProgress color="secondary" style={{top:'calc(40vh - 22px)', left:'calc(50% - 22px)', color:'green', position:'absolute'}}/>
+                }
+                {
+                    load && !params &&
+                        <h4 className="mt-5 text-center">登録された資料がありません。</h4>
+                }
+                {
+                    load && params &&
+                    <>
+                        <p className="w-50 w-md-75 p-1 pl-2 mb-2 bg-black-4 rounded-right-20 text-white">近日予定の試合</p>
+                        <div className="px-2 mb-2">
+                            <table className="table table-bordered table-success mb-2 text-center">
+                                <tbody>
+                                    <tr>
+                                        <th>日にち</th>
+                                        <th>試合名</th>
+                                        <th style={{width:'100px'}}>目標</th>
+                                    </tr>
+                                    {
+                                        params.goal_match.map((item, idx)=>
+                                            <tr key={idx}>
+                                                <td>{moment(item.match_date).format('YYYY-MM-DD')}</td>
+                                                <td>{item.match_name}</td>
+                                                <td>{item.match_goal}</td>
+                                            </tr>
+                                        )
+                                    }
+                                </tbody>
+                            </table>
+                            <p className="w-25 w-md-50 p-1 pl-2 mb-2 bg-black-4 rounded-right-20 text-white ft-16 ft-xs-14">私の目標</p>
+                            <table className="table table-bordered table-info mb-2 text-center">
+                                <tbody>
+                                    <tr>
+                                        <th className="w-100-px w-xs-60-px"></th>
+                                        <th>試合</th>
+                                        <th className="w-100-px w-xs-75-px">目標</th>
+                                        <th className="w-100-px w-xs-50-px">結果</th>
+                                    </tr>
+                                    {
+                                        params.goal_stage.map((item, idx)=>
+                                            <tr key={idx}>
+                                                <td>{item.stage_type}</td>
+                                                <td>{item.stage_match}</td>
+                                                <td>{item.stage_goal}</td>
+                                                <td>{item.stage_result}</td>
+                                            </tr>
+                                        )
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                        <p className="w-50 w-md-75 p-1 pl-2 mb-2 bg-black-4 rounded-right-20 text-white">短期目標に向かっての課題</p>
+                        <div className="px-2 mb-2">
+                            <nav className="mb-2 ft-15">
+                                <div className="nav nav-tabs justify-content-center" id="nav-tab" role="tablist">
+                                    <button className="nav-link active" id="nav-task-tab" data-bs-toggle="tab" data-bs-target="#nav-task" type="button" role="tab">中核的課題</button>
+                                    <button className="nav-link" id="nav-extra-tab" data-bs-toggle="tab" data-bs-target="#nav-extra" type="button" role="tab">その他の課題</button>
+                                </div>
+                            </nav>
+                            <div className="tab-content" id="nav-tabContent">
+                                <div className="tab-pane fade show active" id="nav-task" role="tabpanel" aria-labelledby="nav-task-tab">
+                                    <table className="table table-bordered text-center mb-2">
+                                        <tbody>
+                                            {
+                                                params.goal_task.map((item, idx)=>
+                                                    <tr className="table-success" key={idx}>
+                                                        <td className="w-40-px"><img src={item.icon} width="25" height="25" /></td>
+                                                        <td style={{maxWidth:'50px'}}><pre style={{whiteSpace:'nowrap'}}>{item.task_detail}</pre></td>
+                                                        <td className="w-95-px">
+                                                            <Rating stars={5} size={15} ratingValue={item.task_rate}/>
+                                                        </td>
+                                                        <td className="w-40-px"><img src="/images/icons/icon-graph.svg" width="25" height="25" /></td>
+                                                    </tr>
+                                                )
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div className="tab-pane fade" id="nav-extra" role="tabpanel" aria-labelledby="nav-extra-tab">
+                                    <table className="mb-2 table table-bordered text-center ft-16">
+                                        <tbody>
+                                            <tr className="table-success">
+                                                <td className="w-40-px"><img src="/images/icons/icon-book.svg" width="25" height="25" /></td>
+                                                <td><p className="mb-0 text-center">勉強時間</p></td>
+                                                <td className="w-135-px">
+                                                    {`${getHHMM(params.study_time_start)} ~ ${getHHMM(params.study_time_end)}`}
+                                                </td>
+                                                <td className="w-40-px"><img src="/images/icons/icon-graph.svg" width="25" height="25" /></td>
+                                            </tr>
+                                            <tr className="table-success">
+                                                <td><img src="/images/icons/icon-pushups.svg" width="25" height="25" /></td>
+                                                <td><p className="mb-0 text-center">腕立て</p></td>
+                                                <td>{`${params.pushups} 回`}</td>
+                                                <td className="w-40-px"><img src="/images/icons/icon-graph.svg" width="25" height="25" /></td>
+                                            </tr>
+                                            <tr className="table-success">
+                                                <td><img src="/images/icons/icon-pilates.svg" width="25" height="25" /></td>
+                                                <td><p className="mb-0 text-center">腹筋</p></td>
+                                                <td>{`${params.pilates} 回`}</td>
+                                                <td className="w-40-px"><img src="/images/icons/icon-graph.svg" width="25" height="25" /></td>
+                                            </tr>
+                                            <tr className="table-success">
+                                                <td><img src="/images/icons/icon-gymnastics.svg" width="25" height="25" /></td>
+                                                <td><p className="mb-0 text-center">背筋</p></td>
+                                                <td>{`${params.gymnastics} 回`}</td>
+                                                <td className="w-40-px"><img src="/images/icons/icon-graph.svg" width="25" height="25" /></td>
+                                            </tr>
+                                            <tr className="table-success">
+                                                <td><img src="/images/icons/icon-stretching.svg" width="25" height="25" /></td>
+                                                <td><p className="mb-0 text-center">ストレッチ</p></td>
+                                                <td>{`${params.stretching_time.split(':')[0]}時間  ${params.stretching_time.split(':')[1]}分`}</td>
+                                                <td className="w-40-px"><img src="/images/icons/icon-graph.svg" width="25" height="25" /></td>
+                                            </tr>
+                                            <tr className="table-success">
+                                                <td><img src="/images/icons/icon-food.svg" width="25" height="25" /></td>
+                                                <td><p className="mb-0 text-center">朝食</p></td>
+                                                <td>
+                                                    <Rating stars={3} size={20} ratingValue={params.breakfast}/>
+                                                </td>
+                                                <td className="w-40-px"><img src="/images/icons/icon-graph.svg" width="25" height="25" /></td>
+                                            </tr>
+                                            <tr className="table-success">
+                                                <td><img src="/images/icons/icon-food.svg" width="25" height="25" /></td>
+                                                <td><p className="mb-0 text-center">昼食</p></td>
+                                                <td>
+                                                    <Rating stars={3} size={20} ratingValue={params.lunch}/>
+                                                </td>
+                                                <td className="w-40-px"><img src="/images/icons/icon-graph.svg" width="25" height="25" /></td>
+                                            </tr>
+                                            <tr className="table-success">
+                                                <td><img src="/images/icons/icon-food.svg" width="25" height="25" /></td>
+                                                <td><p className="mb-0 text-center">夕食</p></td>
+                                                <td>
+                                                    <Rating stars={3} size={20} ratingValue={params.dinner}/>
+                                                </td>
+                                                <td className="w-40-px"><img src="/images/icons/icon-graph.svg" width="25" height="25" /></td>
+                                            </tr>
+                                            <tr className="table-success">
+                                                <td><img src="/images/icons/icon-bed.svg" width="25" height="25" /></td>
+                                                <td><p className="mb-0 text-center">睡眠時間</p></td>
+                                                <td>
+                                                    {`${getHHMM(params.sleep_time_start)} ~ ${getHHMM(params.sleep_time_end)}`}
+                                                </td>
+                                                <td className="w-40-px"><img src="/images/icons/icon-graph.svg" width="25" height="25" /></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <p className="w-100 p-1 pl-2 mb-2 bg-black-4 text-white text-right">最新の更新日 : {moment(params.updated_at).format('YYYY/MM/DD HH:mm')}</p>
+                    </>
+                }
             </div>
-            <p className="w-50 w-md-75 p-1 pl-2 mb-2 bg-black-4 rounded-right-20 text-white">短期目標に向かっての課題</p>
-            <div className="px-2 mb-2">
-                <table className="table table-bordered mb-2">
-                    <tbody>
-                        <tr className="table-success">
-                            <th className="text-center"><img src="/images/icon-tech.png" width="30" height="30" /></th>
-                            <td>I will train harder and harder to win a gold medal.</td>
-                            <td className="text-center">
-                                <img src="/images/star5.svg" alt=""/>
-                            </td>
-                        </tr>
-                        <tr className="table-success">
-                            <th className="text-center"><img src="/images/icon-tech.png" width="30" height="30" /></th>
-                            <td>I will train harder and harder to win a gold medal.</td>
-                            <td className="text-center">
-                                <img src="/images/star4.svg" alt=""/>
-                            </td>
-                        </tr>
-                        <tr className="table-success">
-                            <th className="text-center"><img src="/images/icon-tech.png" width="30" height="30" /></th>
-                            <td>I will train harder and harder to win a gold medal.</td>
-                            <td className="text-center">
-                                <img src="/images/star4.svg" alt=""/>
-                            </td>
-                        </tr>
-                        <tr className="table-danger">
-                            <th className="text-center"><img src="/images/icon-physics.png" width="30" height="30" /></th>
-                            <td>I will train harder and harder to win a gold medal.</td>
-                            <td className="text-center">
-                                <img src="/images/star3.svg" alt=""/>
-                            </td>
-                        </tr>
-                        <tr className="table-danger">
-                            <th className="text-center"><img src="/images/icon-physics.png" width="30" height="30" /></th>
-                            <td>I will train harder and harder to win a gold medal.</td>
-                            <td className="text-center">
-                                <img src="/images/star3.svg" alt=""/>
-                            </td>
-                        </tr>
-                        <tr className="table-danger">
-                            <th className="text-center"><img src="/images/icon-physics.png" width="30" height="30" /></th>
-                            <td>I will train harder and harder to win a gold medal.</td>
-                            <td className="text-center">
-                                <img src="/images/star3.svg" alt=""/>
-                            </td>
-                        </tr>
-                        <tr className="table-info">
-                            <th className="text-center"><img src="/images/icon-mental.png" width="30" height="30" /></th>
-                            <td>I will train harder and harder to win a gold medal.</td>
-                            <td className="text-center">
-                                <img src="/images/star4.svg" alt=""/>
-                            </td>
-                        </tr>
-                        <tr className="table-info">
-                            <th className="text-center"><img src="/images/icon-mental.png" width="30" height="30" /></th>
-                            <td>I will train harder and harder to win a gold medal.</td>
-                            <td className="text-center">
-                                <img src="/images/star4.svg" alt=""/>
-                            </td>
-                        </tr>
-                        <tr className="table-info">
-                            <th className="text-center"><img src="/images/icon-mental.png" width="30" height="30" /></th>
-                            <td>I will train harder and harder to win a gold medal.</td>
-                            <td className="text-center">
-                                <img src="/images/star4.svg" alt="/images/star4.svg"/>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            <p className="w-100 p-1 pl-2 mb-2 bg-black-4 text-white text-right">最新の更新日 : 2019/3/20 19:40</p>
         </div>
-    </div>
     );
 }
 

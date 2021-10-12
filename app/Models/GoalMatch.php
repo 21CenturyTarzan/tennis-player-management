@@ -14,5 +14,6 @@ class GoalMatch extends Model
         'goal_id',
         'match_name',            
         'match_date',
+        'match_goal'
     ];
 }

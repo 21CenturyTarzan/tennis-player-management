@@ -39,7 +39,7 @@ class GoalManageController extends Controller
     public function store(Request $request)
     {
         ///////////////////////////////////////////////////////
-        $goal_list  = json_decode($request->get('goal_list'));
+        $stage_list  = json_decode($request->get('stage_list'));
         $match_list  = json_decode($request->get('match_list'));
         $task_list  = json_decode($request->get('task_list'));
         $study_start_time  = $request->get('study_start_time');
@@ -54,8 +54,10 @@ class GoalManageController extends Controller
         $lunch  = (int)$request->get('lunch');
         $dinner  = (int)$request->get('dinner');
         /////////////////////////////////////////////////////
+        $player_id = Player::where('account_id', Auth::id())->first()->id;
+
         Goal::create([
-            'player_id'=>Auth::user()->id,                
+            'player_id'=>$player_id,                
             'study_time_start'=> $study_start_time,
             'study_time_end'=> $study_end_time,          
             'pushups' => $pushups,           //腕立て
@@ -76,26 +78,27 @@ class GoalManageController extends Controller
                 'goal_id' => $goal_id,
                 'match_name'=> $item->match_name,   
                 'match_date'=> $item->match_date,
+                'match_goal'=> $item->match_goal,
             ]);
         }
 
-        foreach($goal_list as $item){
+        foreach($stage_list as $item){
             GoalStage::create([
                 'goal_id' => $goal_id,
-                'stage_type' => $item->type,            //長期目標  中期目標  短期目標
-                'stage_match'=> $item->match,
-                'stage_goal'=> $item->goal,
-                'stage_result'=> $item->result
+                'stage_type' => $item->stage_type,            //長期目標  中期目標  短期目標
+                'stage_match'=> $item->stage_match,
+                'stage_goal'=> $item->stage_goal,
+                'stage_result'=> $item->stage_result
             ]);
         }
 
         foreach($task_list as $item){
             GoalTask::create([
                 'goal_id' => $goal_id,
-                'task_type' => $item->type,            //技術的な課題  フィジカル的な課題 メンタル的な課題 戦術的な課題
+                'task_type' => $item->task_type,            //技術的な課題  フィジカル的な課題 メンタル的な課題 戦術的な課題
                 'icon' => $item->icon,
-                'task_detail' => $item->detail,
-                'task_rate' => $item->rate
+                'task_detail' => $item->task_detail,
+                'task_rate' => $item->task_rate
             ]);
         }
         return ['status_code' => 200];
