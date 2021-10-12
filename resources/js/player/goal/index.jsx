@@ -108,7 +108,7 @@ function PlayerGoal() {
                                                         <td className="w-95-px">
                                                             <Rating stars={5} size={15} ratingValue={item.task_rate}/>
                                                         </td>
-                                                        <td className="w-40-px"><img src="/images/icons/icon-graph.svg" width="25" height="25" /></td>
+                                                        <td className="w-40-px pointer"><img src="/images/icons/icon-graph.svg" width="25" height="25" /></td>
                                                     </tr>
                                                 )
                                             }
@@ -124,31 +124,31 @@ function PlayerGoal() {
                                                 <td className="w-135-px">
                                                     {`${getHHMM(params.study_time_start)} ~ ${getHHMM(params.study_time_end)}`}
                                                 </td>
-                                                <td className="w-40-px"><img src="/images/icons/icon-graph.svg" width="25" height="25" /></td>
+                                                <td className="w-40-px pointer"><img src="/images/icons/icon-graph.svg" width="25" height="25" /></td>
                                             </tr>
                                             <tr className="table-success">
                                                 <td><img src="/images/icons/icon-pushups.svg" width="25" height="25" /></td>
                                                 <td><p className="mb-0 text-center">腕立て</p></td>
                                                 <td>{`${params.pushups} 回`}</td>
-                                                <td className="w-40-px"><img src="/images/icons/icon-graph.svg" width="25" height="25" /></td>
+                                                <td className="w-40-px pointer"><img src="/images/icons/icon-graph.svg" width="25" height="25" /></td>
                                             </tr>
                                             <tr className="table-success">
                                                 <td><img src="/images/icons/icon-pilates.svg" width="25" height="25" /></td>
                                                 <td><p className="mb-0 text-center">腹筋</p></td>
                                                 <td>{`${params.pilates} 回`}</td>
-                                                <td className="w-40-px"><img src="/images/icons/icon-graph.svg" width="25" height="25" /></td>
+                                                <td className="w-40-px pointer"><img src="/images/icons/icon-graph.svg" width="25" height="25" /></td>
                                             </tr>
                                             <tr className="table-success">
                                                 <td><img src="/images/icons/icon-gymnastics.svg" width="25" height="25" /></td>
                                                 <td><p className="mb-0 text-center">背筋</p></td>
                                                 <td>{`${params.gymnastics} 回`}</td>
-                                                <td className="w-40-px"><img src="/images/icons/icon-graph.svg" width="25" height="25" /></td>
+                                                <td className="w-40-px pointer"><img src="/images/icons/icon-graph.svg" width="25" height="25" /></td>
                                             </tr>
                                             <tr className="table-success">
                                                 <td><img src="/images/icons/icon-stretching.svg" width="25" height="25" /></td>
                                                 <td><p className="mb-0 text-center">ストレッチ</p></td>
                                                 <td>{`${params.stretching_time.split(':')[0]}時間  ${params.stretching_time.split(':')[1]}分`}</td>
-                                                <td className="w-40-px"><img src="/images/icons/icon-graph.svg" width="25" height="25" /></td>
+                                                <td className="w-40-px pointer"><img src="/images/icons/icon-graph.svg" width="25" height="25" /></td>
                                             </tr>
                                             <tr className="table-success">
                                                 <td><img src="/images/icons/icon-food.svg" width="25" height="25" /></td>
@@ -156,7 +156,7 @@ function PlayerGoal() {
                                                 <td>
                                                     <Rating stars={3} size={20} ratingValue={params.breakfast}/>
                                                 </td>
-                                                <td className="w-40-px"><img src="/images/icons/icon-graph.svg" width="25" height="25" /></td>
+                                                <td className="w-40-px pointer"><img src="/images/icons/icon-graph.svg" width="25" height="25" /></td>
                                             </tr>
                                             <tr className="table-success">
                                                 <td><img src="/images/icons/icon-food.svg" width="25" height="25" /></td>
@@ -164,7 +164,7 @@ function PlayerGoal() {
                                                 <td>
                                                     <Rating stars={3} size={20} ratingValue={params.lunch}/>
                                                 </td>
-                                                <td className="w-40-px"><img src="/images/icons/icon-graph.svg" width="25" height="25" /></td>
+                                                <td className="w-40-px pointer"><img src="/images/icons/icon-graph.svg" width="25" height="25" /></td>
                                             </tr>
                                             <tr className="table-success">
                                                 <td><img src="/images/icons/icon-food.svg" width="25" height="25" /></td>
@@ -172,7 +172,7 @@ function PlayerGoal() {
                                                 <td>
                                                     <Rating stars={3} size={20} ratingValue={params.dinner}/>
                                                 </td>
-                                                <td className="w-40-px"><img src="/images/icons/icon-graph.svg" width="25" height="25" /></td>
+                                                <td className="w-40-px pointer"><img src="/images/icons/icon-graph.svg" width="25" height="25" /></td>
                                             </tr>
                                             <tr className="table-success">
                                                 <td><img src="/images/icons/icon-bed.svg" width="25" height="25" /></td>
@@ -180,7 +180,7 @@ function PlayerGoal() {
                                                 <td>
                                                     {`${getHHMM(params.sleep_time_start)} ~ ${getHHMM(params.sleep_time_end)}`}
                                                 </td>
-                                                <td className="w-40-px"><img src="/images/icons/icon-graph.svg" width="25" height="25" /></td>
+                                                <td className="w-40-px pointer"><img src="/images/icons/icon-graph.svg" width="25" height="25" /></td>
                                             </tr>
                                         </tbody>
                                     </table>
