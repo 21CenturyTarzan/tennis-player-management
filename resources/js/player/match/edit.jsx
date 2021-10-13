@@ -5,7 +5,11 @@ import axios from 'axios';
 // material
 import { Button } from '@material-ui/core';
 import { LoadingButton } from '@material-ui/lab';
+import IconButton from '@mui/material/IconButton';
 import SendIcon from '@mui/icons-material/Send';
+import ClearIcon from '@mui/icons-material/Clear';
+import RemoveIcon from '@mui/icons-material/Remove';
+import AddIcon from '@mui/icons-material/Add';
 
 import { Rating, RatingView } from 'react-simple-star-rating'
 
@@ -19,15 +23,17 @@ const  PlayerMatchEditor = () => {
     const [tournament_date, setTournamentDate] = useState(new Date());
     const [opponent_name, setOpponentName] = useState('');
     const [opponent_club, setClub] = useState('');
-    const [surface, setSurface] = useState('');      //クレー/オムニ/ハード
-    const [round, setRound] = useState('');            //本戦/予選
-    const [weather, setWeather] = useState('');      //晴/曇/雨
+    const [surface, setSurface] = useState('クレー');      //クレー/オムニ/ハード
+    const [round, setRound] = useState('予選');            //予選/本戦
+    const [weather, setWeather] = useState('晴');      //晴/曇/雨
     const [category, setCategory] = useState('');    //U34
-    const [caution_list, setCautionList] = useState([]);
+    const [caution_list, setCautionList] = useState(['','','']);
 
    
     useEffect(() => {
-
+        var today = new Date();
+        var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+        setTournamentDate(date);
 
     }, []);
 
@@ -91,20 +97,26 @@ const  PlayerMatchEditor = () => {
                             <tr className="table-success">
                                 <td>大会名</td>
                                 <td>
-                                    <input type="text" value={tournament_name} onChange={e=>setTournamentName(e.target.value)}/>
+                                    <input type="text" className="w-100 bg-none border-0 text-center"  value={tournament_name} onChange={e => setTournamentName(e.target.value)} required/>
                                 </td>
                             </tr>
                             <tr className="table-success">
                                 <td>大会日にち</td>
-                                <td>2021-2-19</td>
+                                <td>
+                                    <input type="date" className="w-100 bg-none border-0 text-center"  value={tournament_date} onChange={e => setTournamentDate(e.target.value)} required/>
+                                </td>
                             </tr>
                             <tr className="table-success">
                                 <td>対戦相手</td>
-                                <td>浮田　愛未</td>
+                                <td>
+                                    <input type="text" className="w-100 bg-none border-0 text-center"  value={opponent_name} onChange={e => setOpponentName(e.target.value)} required/>
+                                </td>
                             </tr>
                             <tr className="table-success">
                                 <td>クラブ名</td>
-                                <td>Manchester</td>
+                                <td>
+                                    <input type="text" className="w-100 bg-none border-0 text-center"  value={opponent_club} onChange={e => setClub(e.target.value)} required/>
+                                </td>
                             </tr>
                         </tbody>
                     </table>
@@ -112,15 +124,32 @@ const  PlayerMatchEditor = () => {
                         <tbody>
                             <tr className="table-success">
                                 <td>サーフェス</td>
-                                <td>クレー/オムニ/ハード</td>
+                                <td>
+                                    <select className="bg-none w-100 text-center border-0" onChange={e => setSurface(e.target.value)}>
+                                        <option value="クレー">クレー</option>
+                                        <option value="オムニ">オムニ</option>
+                                        <option value="ハード">ハード</option>
+                                    </select>
+                                </td>
                             </tr>
                             <tr className="table-success">
                                 <td>ラウンド</td>
-                                <td>本戦/予選</td>
+                                <td>
+                                    <select className="bg-none w-100 text-center border-0" onChange={e => setRound(e.target.value)}>
+                                        <option value="予選">予選</option>
+                                        <option value="本戦">本戦</option>
+                                    </select>
+                                </td>
                             </tr>
                             <tr className="table-success">
                                 <td>天気</td>
-                                <td>晴/曇/雨</td>
+                                <td>
+                                    <select className="bg-none w-100 text-center border-0" onChange={e => setRound(e.target.value)}>
+                                        <option value="sunny">晴</option>
+                                        <option value="cloudy">曇</option>
+                                        <option value="rainny">雨</option>
+                                    </select>
+                                </td>
                             </tr>
                             <tr className="table-success">
                                 <td>カテゴリー</td>
@@ -133,7 +162,9 @@ const  PlayerMatchEditor = () => {
                     <tbody>
                         <tr className="table-success">
                             <td>起きた時の体調や気分</td>
-                            <td><img src="/images/star5.svg" alt=""/></td>
+                            <td>
+                                <Rating ratingValue={weather} stars={5} onClick={(rate)=>setWeather(rate)} />
+                            </td>
                         </tr>
                     </tbody>
                 </table>
@@ -141,19 +172,47 @@ const  PlayerMatchEditor = () => {
 
             <p className="w-50 w-md-75 p-1 pl-2 mb-2 bg-black-4 rounded-right-20 text-white">自己分析</p>
             <div className="px-2 mb-2">
-                I dont know here exactly? Can you explain about this section?
+                <ol>
+                    <li>You have to prepare clothes</li>
+                    <li>You have to prepare clothes</li>
+                    <li>You have to prepare clothes</li>
+                    <li>You have to prepare clothes</li>
+                </ol>
             </div>
 
-            <p className="w-50 w-md-75 p-1 pl-2 mb-2 bg-black-4 rounded-right-20 text-white">試合前に心がける事</p>
+            <p className="w-50 w-md-75 p-1 pl-2 mb-0 bg-black-4 rounded-right-20 text-white">試合前に心がける事</p>
             <div className="px-2 mb-2">
-                I dont know here exactly? Can you explain about this section?
+                <IconButton onClick={handleRemoveCaution}>
+                    <RemoveIcon fontSize="small"/>
+                </IconButton>
+                <IconButton className="float-right" onClick={handleAddCaution}>
+                    <AddIcon fontSize="small"/>
+                </IconButton>
+                <table className="table table-bordered table-success mb-2 text-center">
+                    <tbody>
+                        <tr>
+                            <th className="w-40-px"></th>
+                            <th>心がける事</th>
+                        </tr>
+                        {
+                            caution_list.map((x, i)=>
+                                <tr key={i}>
+                                    <td>{i+1}</td>
+                                    <td><input type="text" id="match_name" className="w-100 bg-none border-0 text-center"  value={x} onChange={e => handleChangeCaution(e, i)} required/></td>
+                                </tr>
+                            )
+                        }
+                        
+                    </tbody>
+                </table>
             </div>
 
             <div className="mt-3 mb-2 px-4">
                 <div className="row">
-                    <div className="col-12 col-sm-6 mb-2">
+                    <div className="col-6">
                         <Button size="large" color="primary" 
                             fullWidth variant="contained" 
+                            startIcon={<ClearIcon />}
                             style={{backgroundColor: 'transparent', border: '1px solid green', color:'green'}} 
                             onClick={ e =>
                                 history.push({
@@ -161,10 +220,10 @@ const  PlayerMatchEditor = () => {
                                     state: {}
                                 })
                             }>
-                            キャンセル
+                            <span className="d-none d-md-block">キャンセル</span>
                         </Button>
                     </div>
-                    <div className="col-12 col-sm-6">
+                    <div className="col-6">
                         <LoadingButton size="large" type="submit" 
                             color="primary" fullWidth  
                             variant="contained" 
@@ -172,7 +231,7 @@ const  PlayerMatchEditor = () => {
                             style={{backgroundColor: 'green'}}
                             // loading={submit}
                         >
-                            送信
+                            <span className="d-none d-md-block">送信</span>
                         </LoadingButton>
                     </div>
                 </div>

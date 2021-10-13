@@ -6,7 +6,11 @@ import axios from 'axios';
 import { Button } from '@material-ui/core';
 import { LoadingButton } from '@material-ui/lab';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import IconButton from '@mui/material/IconButton';
 import SendIcon from '@mui/icons-material/Send';
+import ClearIcon from '@mui/icons-material/Clear';
+import RemoveIcon from '@mui/icons-material/Remove';
+import AddIcon from '@mui/icons-material/Add';
 
 
 import { Rating, RatingView } from 'react-simple-star-rating';
@@ -199,18 +203,20 @@ const  PlayerGoalEditor = () => {
             {
                 load &&
                 <>
-                    <p className="w-50 w-md-75 p-1 pl-2 mb-2 bg-black-4 rounded-right-20 text-white">近日予定の試合</p>
+                    <p className="w-50 w-md-75 p-1 pl-2 mb-0 bg-black-4 rounded-right-20 text-white">近日予定の試合</p>
                     <div className="px-2 mb-2">
-                        <div className="text-center mb-1">
-                            <img src="/images/icon-minus-black.svg" width="25" className="pointer mr-1" onClick={removeMatchItem}/>
-                            <img src="/images/icon-plus-black.svg" width="25" className="pointer" onClick={addMatchItem}/>
-                        </div>
+                        <IconButton onClick={removeMatchItem}>
+                            <RemoveIcon fontSize="small"/>
+                        </IconButton>
+                        <IconButton className="float-right" onClick={addMatchItem}>
+                            <AddIcon fontSize="small"/>
+                        </IconButton>
                         <table className="table table-bordered table-success mb-2 text-center">
                             <tbody>
                                 <tr>
                                     <th>日にち</th>
                                     <th>試合名</th>
-                                    <th style={{width:'100px'}}>目標</th>
+                                    <th className="w-100-px">目標</th>
                                 </tr>
                                 {
                                     match_list.map((x, i)=>{
@@ -370,9 +376,10 @@ const  PlayerGoalEditor = () => {
                     </div>
                     <div className="mt-3 mb-2 px-4">
                         <div className="row">
-                            <div className="col-12 col-sm-6 mb-2">
+                            <div className="col-6">
                                 <Button size="large" color="primary" 
                                     fullWidth variant="contained" 
+                                    startIcon={<ClearIcon />}
                                     style={{backgroundColor: 'transparent', border: '1px solid green', color:'green'}} 
                                     onClick={ e =>
                                         history.push({
@@ -380,10 +387,10 @@ const  PlayerGoalEditor = () => {
                                             state: {}
                                         })
                                     }>
-                                    キャンセル
+                                    <span className="d-none d-md-block">キャンセル</span>
                                 </Button>
                             </div>
-                            <div className="col-12 col-sm-6">
+                            <div className="col-6">
                                 <LoadingButton size="large" type="submit" 
                                     color="primary" fullWidth  
                                     variant="contained" 
@@ -391,7 +398,7 @@ const  PlayerGoalEditor = () => {
                                     style={{backgroundColor: 'green'}}
                                     loading={submit}
                                 >
-                                    送信
+                                    <span className="d-none d-md-block">送信</span>
                                 </LoadingButton>
                             </div>
                         </div>
