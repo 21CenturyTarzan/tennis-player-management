@@ -22,4 +22,9 @@ class Tournament extends Model
         'weather',
         'mood',
     ];
+
+    public function caution()
+    {
+        return $this->hasMany(Caution::class);
+    }
 }

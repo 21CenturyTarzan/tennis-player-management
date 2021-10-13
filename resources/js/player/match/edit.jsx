@@ -29,7 +29,7 @@ const  PlayerMatchEditor = () => {
     const [surface, setSurface] = useState('クレー');      //クレー/オムニ/ハード
     const [round, setRound] = useState('予選');            //予選/本戦
     const [weather, setWeather] = useState('晴');      //晴/曇/雨
-    const [category, setCategory] = useState('');    //U34
+    const [category, setCategory] = useState('ITF');    //U34
     const [mood, setMood] = useState(0);
     const [caution_list, setCautionList] = useState(['','','']);
     const [ques_list, setQuesList] = useState([]);
@@ -40,11 +40,14 @@ const  PlayerMatchEditor = () => {
         var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
         setTournamentDate(date);
 
-        axios.get('/api/player/analysis')
+        var id = Number(document.getElementById('player_id').value);
+
+        axios.get('/api/player/match', {params:{player_id: id}})
         .then(res=>{
             if(res.data.status_code == 200)
             {
-                setQuesList(res.data.params);
+                console.log(res.data.params);
+                setQuesList(res.data.params.question_list);
             }
         })
     }, []);

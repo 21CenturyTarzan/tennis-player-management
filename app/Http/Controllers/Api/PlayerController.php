@@ -8,6 +8,7 @@ use App\Models\Player;
 use App\Models\Rank;
 use App\Models\Goal;
 use App\Models\Analysis;
+use App\Models\Tournament;
 
 class PlayerController extends Controller
 {
@@ -37,9 +38,14 @@ class PlayerController extends Controller
         return ['status_code'=>200, 'params'=>$res];
     }
 
-    public function analysis()
+    public function match(Request $r)
     {
-        $res = Analysis::get();
+        $res['question_list'] = Analysis::get();
+
+        $player_id = (int)$r->get('player_id');
+        $res['tournament'] = Tournament::where('player_id', $player_id)->with('caution')->orderBy('id', 'DESC')->first();
+
+
         return ['status_code'=>200, 'params'=>$res];
     }
 }
