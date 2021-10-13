@@ -19,7 +19,7 @@ class Tournament extends Model
         'opponent_club',
         'surface',
         'round',
-        'whether',
+        'weather',
         'mood',
     ];
 }

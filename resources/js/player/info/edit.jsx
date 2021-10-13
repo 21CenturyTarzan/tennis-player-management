@@ -150,7 +150,7 @@ const  PlayerInfoEditor = () => {
 
         axios.post('/player/info/store', formdata)
         .then(response => {
-            if(response.data=='success'){
+            if(response.data.status_code == 200){
                 setLoading(false);
                 history.push({
                     pathname: '/player/info',

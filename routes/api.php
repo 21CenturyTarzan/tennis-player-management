@@ -26,5 +26,6 @@ Route::middleware(['throttle:seventy'])->group(function() {
     
     Route::get('player/info', 'App\Http\Controllers\Api\PlayerController@info');
     Route::get('player/goal', 'App\Http\Controllers\Api\PlayerController@goal');
+    Route::get('player/analysis', 'App\Http\Controllers\Api\PlayerController@analysis');
     
 });

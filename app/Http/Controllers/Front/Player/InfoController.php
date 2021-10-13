@@ -116,10 +116,10 @@ class InfoController extends Controller
                 'img'=> $img_url,
                 'updated_at'=>now()
             ]);
-            return 'success';
+            return ['status_code' => 200];
         } catch (\Throwable $th) {
             throw $th;
-            return 'failed';
+            return ['status_code' => 400];
         }
     }
 }

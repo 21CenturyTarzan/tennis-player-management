@@ -3,6 +3,8 @@ import { useHistory } from 'react-router-dom'
 import axios from 'axios';
 
 // material
+import CircularProgress from '@material-ui/core/CircularProgress';
+
 import { Button } from '@material-ui/core';
 import { LoadingButton } from '@material-ui/lab';
 import IconButton from '@mui/material/IconButton';
@@ -17,6 +19,7 @@ import { Rating, RatingView } from 'react-simple-star-rating'
 const  PlayerMatchEditor = () => {
 
     const history = useHistory();
+    const [submit, setSubmit] = useState(false);
 
     ///////////////////////////////////////
     const [tournament_name, setTournamentName] = useState('');
@@ -27,7 +30,9 @@ const  PlayerMatchEditor = () => {
     const [round, setRound] = useState('予選');            //予選/本戦
     const [weather, setWeather] = useState('晴');      //晴/曇/雨
     const [category, setCategory] = useState('');    //U34
+    const [mood, setMood] = useState(0);
     const [caution_list, setCautionList] = useState(['','','']);
+    const [ques_list, setQuesList] = useState([]);
 
    
     useEffect(() => {
@@ -35,6 +40,13 @@ const  PlayerMatchEditor = () => {
         var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
         setTournamentDate(date);
 
+        axios.get('/api/player/analysis')
+        .then(res=>{
+            if(res.data.status_code == 200)
+            {
+                setQuesList(res.data.params);
+            }
+        })
     }, []);
 
   
@@ -49,18 +61,21 @@ const  PlayerMatchEditor = () => {
         formdata.append('round', round);
         formdata.append('weather', weather);
         formdata.append('category', category);
+        formdata.append('mood', mood);
         formdata.append('caution_list', JSON.stringify(caution_list));
        
-        // setSubmit(true)
+        setSubmit(true)
 
-        // document.getElementById('loader').style.display = 'block';
-        // axios.post('player/match/store', formdata)
-        // .then(response => {
-        //     if(response.data=='success'){
-        //         setSubmit(false);
-        //         window.location.href = '/home';
-        //     }
-        // })
+        axios.post('/player/match/store', formdata)
+        .then(response => {
+            if(response.data.status_code == 200){
+                setSubmit(false);
+                history.push({
+                    pathname: '/player/match',
+                    state: {}
+                });
+            }
+        })
     }
 
     const handleAddCaution = () => {
@@ -82,7 +97,6 @@ const  PlayerMatchEditor = () => {
      
 
     return (
-    <>
     <form  className="needs-validation"  onSubmit={handleSubmit} >
         <div className="mt-3 py-2 rounded-15 bg-white shadow-lg">
             <h3 className="mt-2 p-1 text-white bg-green text-center font-weight-bold">
@@ -144,7 +158,7 @@ const  PlayerMatchEditor = () => {
                             <tr className="table-success">
                                 <td>天気</td>
                                 <td>
-                                    <select className="bg-none w-100 text-center border-0" onChange={e => setRound(e.target.value)}>
+                                    <select className="bg-none w-100 text-center border-0" onChange={e => setWeather(e.target.value)}>
                                         <option value="sunny">晴</option>
                                         <option value="cloudy">曇</option>
                                         <option value="rainny">雨</option>
@@ -153,7 +167,16 @@ const  PlayerMatchEditor = () => {
                             </tr>
                             <tr className="table-success">
                                 <td>カテゴリー</td>
-                                <td>U34</td>
+                                <td>
+                                    <select className="bg-none w-100 text-center border-0" onChange={e => setCategory(e.target.value)}>
+                                        <option value="ITF">ITF</option>
+                                        <option value="JTAU18">JTAU18</option>
+                                        <option value="関東U18">関東U18</option>
+                                        <option value="JTAU24">JTAU24</option>
+                                        <option value="関東U24">関東U24</option>
+                                        <option value="埼玉U24">埼玉U24</option>
+                                    </select>
+                                </td>
                             </tr>
                         </tbody>
                     </table>
@@ -163,7 +186,7 @@ const  PlayerMatchEditor = () => {
                         <tr className="table-success">
                             <td>起きた時の体調や気分</td>
                             <td>
-                                <Rating ratingValue={weather} stars={5} onClick={(rate)=>setWeather(rate)} />
+                                <Rating ratingValue={mood} stars={5} onClick={(rate)=>setMood(rate)} />
                             </td>
                         </tr>
                     </tbody>
@@ -173,10 +196,13 @@ const  PlayerMatchEditor = () => {
             <p className="w-50 w-md-75 p-1 pl-2 mb-2 bg-black-4 rounded-right-20 text-white">自己分析</p>
             <div className="px-2 mb-2">
                 <ol>
-                    <li>You have to prepare clothes</li>
-                    <li>You have to prepare clothes</li>
-                    <li>You have to prepare clothes</li>
-                    <li>You have to prepare clothes</li>
+                {
+                    ques_list.length > 0 ? 
+                        ques_list.map((x, i)=>
+                            <li key={i}>{x.question}</li>
+                        )
+                    : <CircularProgress color="secondary" style={{top:'calc(50vh - 22px)', left:'calc(50% - 22px)', color:'green', position:'absolute'}}/>
+                }
                 </ol>
             </div>
 
@@ -229,7 +255,7 @@ const  PlayerMatchEditor = () => {
                             variant="contained" 
                             endIcon={<SendIcon />}
                             style={{backgroundColor: 'green'}}
-                            // loading={submit}
+                            loading={submit}
                         >
                             <span className="d-none d-md-block">送信</span>
                         </LoadingButton>
@@ -237,15 +263,9 @@ const  PlayerMatchEditor = () => {
                 </div>
             </div>
         </div>
-
     </form>
-    </>
     );
   }
 
-// var element = document.querySelector('#match-editor');
-// if(element){
-//     ReactDOM.render(<MatchEditor/>, element);
-// }
 
 export default PlayerMatchEditor;

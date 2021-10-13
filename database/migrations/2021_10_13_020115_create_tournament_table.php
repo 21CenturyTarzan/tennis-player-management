@@ -24,7 +24,7 @@ class CreateTournamentTable extends Migration
             $table->string('opponent_club', 2048);
             $table->string('surface', 255);
             $table->string('round', 255);
-            $table->string('whether', 255);
+            $table->string('weather', 255);
             $table->integer('mood');
 
             $table->timestamps();

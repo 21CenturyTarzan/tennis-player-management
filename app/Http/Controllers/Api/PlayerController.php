@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Player;
 use App\Models\Rank;
 use App\Models\Goal;
+use App\Models\Analysis;
 
 class PlayerController extends Controller
 {
@@ -33,6 +34,12 @@ class PlayerController extends Controller
 
         $res = Goal::where('player_id', $player_id)->with('goal_match')->with('goal_task')->with('goal_stage') -> orderBy('id', 'DESC') -> first();
 
+        return ['status_code'=>200, 'params'=>$res];
+    }
+
+    public function analysis()
+    {
+        $res = Analysis::get();
         return ['status_code'=>200, 'params'=>$res];
     }
 }
