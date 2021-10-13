@@ -10,11 +10,21 @@ import SendIcon from '@mui/icons-material/Send';
 import { Rating, RatingView } from 'react-simple-star-rating'
 
 
-// ----------------------------------------------------------------------
-
 const  PlayerMatchEditor = () => {
 
     const history = useHistory();
+
+    ///////////////////////////////////////
+    const [tournament_name, setTournamentName] = useState('');
+    const [tournament_date, setTournamentDate] = useState(new Date());
+    const [opponent_name, setOpponentName] = useState('');
+    const [opponent_club, setClub] = useState('');
+    const [surface, setSurface] = useState('');      //クレー/オムニ/ハード
+    const [round, setRound] = useState('');            //本戦/予選
+    const [weather, setWeather] = useState('');      //晴/曇/雨
+    const [category, setCategory] = useState('');    //U34
+    const [caution_list, setCautionList] = useState([]);
+
    
     useEffect(() => {
 
@@ -25,62 +35,42 @@ const  PlayerMatchEditor = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         const formdata = new FormData();
-        formdata.append('name', JSON.stringify(name));
-        formdata.append('gender', JSON.stringify(gender));
-        formdata.append('birth', JSON.stringify(birth));
-        formdata.append('height', JSON.stringify(height));
-        formdata.append('weight', JSON.stringify(weight));
-        formdata.append('school', JSON.stringify(school));
-        formdata.append('grade', JSON.stringify(grade));
-        formdata.append('phone', JSON.stringify(phone));
-        formdata.append('address', JSON.stringify(address));
-        formdata.append('lesson', JSON.stringify(lesson));
-        formdata.append('career', JSON.stringify(career));
-        formdata.append('image', convertimgUri);
-        formdata.append('jta_u_18', JSON.stringify(jta_u_18));
-        formdata.append('kanto_u_18', JSON.stringify(kanto_u_18));
-        formdata.append('rankList', JSON.stringify(rankList));
-        formdata.append('title1', JSON.stringify(title1));
-        formdata.append('title2', JSON.stringify(title2));
+        formdata.append('tournament_name', tournament_name);
+        formdata.append('tournament_date', tournament_date);
+        formdata.append('opponent_name', opponent_name);
+        formdata.append('opponent_club', opponent_club);
+        formdata.append('surface', surface);
+        formdata.append('round', round);
+        formdata.append('weather', weather);
+        formdata.append('category', category);
+        formdata.append('caution_list', JSON.stringify(caution_list));
+       
+        // setSubmit(true)
 
-        setSubmit(true)
-
-        document.getElementById('loader').style.display = 'block';
-        axios.post('player/match/store', formdata)
-        .then(response => {
-            if(response.data=='success'){
-                setSubmit(false);
-                window.location.href = '/home';
-            }
-        })
+        // document.getElementById('loader').style.display = 'block';
+        // axios.post('player/match/store', formdata)
+        // .then(response => {
+        //     if(response.data=='success'){
+        //         setSubmit(false);
+        //         window.location.href = '/home';
+        //     }
+        // })
     }
 
-    const handleAddRank = () => {
-        setRankList([...rankList, { rankType: "", rankValue: "" }]);
+    const handleAddCaution = () => {
+        setCautionList([...caution_list, ""]);
     };
 
-    const handleRemoveRank = index => {
-        const list = [...rankList];
+    const handleRemoveCaution = index => {
+        const list = [...caution_list];
         list.pop();
-        setRankList(list);
+        setCautionList(list);
     };
 
-    const handleDeleteRank = (e, index) => {
-        console.log(index);
-        const list = [...rankList];
-        list.splice(index, 1);
-        setRankList(list);
-    }
-
-    const handleReloadRank = () => {
-        setDefaultRank(age);
-    }
-    
-    const handleInputRankChange = (e, index) => {
-        const { name, value } = e.target;
-        const list = [...rankList];
-        list[index][name] = value;
-        setRankList(list);
+    const handleChangeCaution = (e, index) => {
+        const list = [...caution_list];
+        list[index] = e.target.value;
+        setCautionList(list);
     };
 
      
@@ -100,7 +90,9 @@ const  PlayerMatchEditor = () => {
                         <tbody>
                             <tr className="table-success">
                                 <td>大会名</td>
-                                <td>Tokyo Olympic Games</td>
+                                <td>
+                                    <input type="text" value={tournament_name} onChange={e=>setTournamentName(e.target.value)}/>
+                                </td>
                             </tr>
                             <tr className="table-success">
                                 <td>大会日にち</td>

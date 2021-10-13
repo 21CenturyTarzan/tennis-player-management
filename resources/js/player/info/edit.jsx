@@ -195,19 +195,19 @@ const  PlayerInfoEditor = () => {
         setRankList([...rankList, { rankType: "", rankValue: "" }]);
     };
 
-    const removeListItem = () => {
+    const removeRank = () => {
         const list = [...rankList];
         list.pop();
         setRankList(list);
     };
 
-    const deleteListItem = (e, index) => {
+    const deleteRank = (e, index) => {
         const list = [...rankList];
         list.splice(index, 1);
         setRankList(list);
     }
     
-    const changeListItem = (e, index) => {
+    const changeRank = (e, index) => {
         const { name, value } = e.target;
         const list = [...rankList];
         list[index][name] = value;
@@ -294,7 +294,7 @@ const  PlayerInfoEditor = () => {
                 <div className="col-md-8 offset-md-2">
                     <div className="p-2 shadow-lg bg-black-4">
                         <h4 className="text-center text-white">
-                            <img src="/images/icon-minus-white.svg" width="25" style={{position:'absolute', left:'30px', cursor:'pointer'}} onClick={removeListItem}/>
+                            <img src="/images/icon-minus-white.svg" width="25" style={{position:'absolute', left:'30px', cursor:'pointer'}} onClick={removeRank}/>
                             <span>RANK</span>
                             <img src="/images/icon-plus-white.svg" width="25" style={{position:'absolute', right:'30px', cursor:'pointer'}} onClick={addRank}/>
                         </h4>
@@ -326,10 +326,10 @@ const  PlayerInfoEditor = () => {
                                     rankList.map((x, i)=>{
                                         return(
                                             <tr key={i}>
-                                                <td><input type="type" name="rankType" className="w-100 bg-none text-center text-white border-0" placeholder="ex: JTAU18" value={x.rankType} onChange={e => changeListItem(e, i)} required/></td>
+                                                <td><input type="type" name="rankType" className="w-100 bg-none text-center text-white border-0" placeholder="ex: JTAU18" value={x.rankType} onChange={e => changeRank(e, i)} required/></td>
                                                 <td>
-                                                    <input type="number" min='1' step='1' name="rankValue" className="w-50 bg-none text-center text-white border-0"  value={x.rankValue} onChange={e => changeListItem(e, i)} required />
-                                                    <img src="/images/icon-close-white.svg" width="25" style={{position:'absolute', right:'30px', cursor:'pointer'}} onClick={(e)=>deleteListItem(e, i)}/>
+                                                    <input type="number" min='1' step='1' name="rankValue" className="w-50 bg-none text-center text-white border-0"  value={x.rankValue} onChange={e => changeRank(e, i)} required />
+                                                    <img src="/images/icon-close-white.svg" width="25" style={{position:'absolute', right:'30px', cursor:'pointer'}} onClick={(e)=>deleteRank(e, i)}/>
                                                 </td>
                                             </tr>
                                         )
