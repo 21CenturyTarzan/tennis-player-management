@@ -396,7 +396,7 @@ const  PlayerInfoEditor = () => {
                     <div className="col-6">
                         <Button size="large" color="primary" 
                             fullWidth variant="contained" 
-                            style={{backgroundColor: 'transparent', border: '2px solid white'}} 
+                            style={{backgroundColor: 'transparent', border: '2px solid white', fontSize:'16px'}} 
                             onClick={ e =>
                                 history.push({
                                     pathname: '/player/info',
@@ -410,7 +410,7 @@ const  PlayerInfoEditor = () => {
                         <LoadingButton size="large" type="submit" 
                             loading={loading} color="primary" 
                             fullWidth  variant="contained" 
-                            style={{backgroundColor: 'transparent', border: '2px solid white'}} 
+                            style={{backgroundColor: 'transparent', border: '2px solid white', fontSize:'16px'}} 
                             endIcon={<SendIcon />}>
                             送信
                         </LoadingButton>

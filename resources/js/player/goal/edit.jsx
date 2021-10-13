@@ -298,13 +298,13 @@ const  PlayerGoalEditor = () => {
                                         <td><p className="mb-0 text-center">勉強時間</p></td>
                                         <td>
                                             <span className="mr-3">開始:</span>
-                                                <input type="time" className="border-0 mb-1" 
+                                                <input type="time" className="border-0 mb-1 w-90-px" 
                                                     value={study_start_time} onChange={e=>setStudyStartTime(e.target.value)} required/>
                                                     
                                             <br/>
 
                                             <span className="mr-3">終了:</span>
-                                                <input type="time" className="border-0" 
+                                                <input type="time" className="border-0 w-90-px" 
                                                     value={study_end_time} onChange={e=>setStudyEndTime(e.target.value)} required/>
                                         </td>
                                     </tr>
@@ -336,7 +336,7 @@ const  PlayerGoalEditor = () => {
                                         <td><img src="/images/icons/icon-stretching.svg" width="25" height="25" /></td>
                                         <td><p className="mb-0 text-center">ストレッチ</p></td>
                                         <td>
-                                            <input type="time" className="border-0 text-center" 
+                                            <input type="time" className="border-0 text-center w-90-px" 
                                                 value={stretching_time} onChange={e=>setStretchTime(e.target.value)} required/> 
                                         </td>
                                     </tr>
@@ -365,28 +365,27 @@ const  PlayerGoalEditor = () => {
                                         <td><img src="/images/icons/icon-bed.svg" width="25" height="25" /></td>
                                         <td><p className="mb-0 text-center">睡眠時間</p></td>
                                         <td>
-                                            <span className="mr-3">開始:</span><input type="time" className="border-0 mb-1" value={sleep_start_time} onChange={e=>setSleepStartTime(e.target.value)} required/><br/>
-                                            <span className="mr-3">終了:</span><input type="time" className="border-0" value={sleep_end_time} onChange={e=>setSleepEndTime(e.target.value)} required/>
+                                            <span className="mr-3">開始:</span><input type="time" className="border-0 mb-1 w-90-px" value={sleep_start_time} onChange={e=>setSleepStartTime(e.target.value)} required/><br/>
+                                            <span className="mr-3">終了:</span><input type="time" className="border-0 w-90-px" value={sleep_end_time} onChange={e=>setSleepEndTime(e.target.value)} required/>
                                         </td>
                                     </tr>
                                 </tbody>
                             </table>
                         </div>
                     </div>
-                    <div className="mt-3 mb-2 px-4">
+                    <div className="mt-3 mb-2 px-2 px-md-4">
                         <div className="row">
                             <div className="col-6">
                                 <Button size="large" color="primary" 
                                     fullWidth variant="contained" 
-                                    startIcon={<ClearIcon />}
-                                    style={{backgroundColor: 'transparent', border: '1px solid green', color:'green'}} 
+                                    style={{backgroundColor: 'transparent', border: '1px solid green', color:'green', fontSize:'16px'}} 
                                     onClick={ e =>
                                         history.push({
                                             pathname: '/player/goal',
                                             state: {}
                                         })
                                     }>
-                                    <span className="d-none d-md-block">キャンセル</span>
+                                    <span>キャンセル</span>
                                 </Button>
                             </div>
                             <div className="col-6">
@@ -394,10 +393,10 @@ const  PlayerGoalEditor = () => {
                                     color="primary" fullWidth  
                                     variant="contained" 
                                     endIcon={<SendIcon />}
-                                    style={{backgroundColor: 'green'}}
+                                    style={{backgroundColor: 'green', fontSize:'16px'}}
                                     loading={submit}
                                 >
-                                    <span className="d-none d-md-block">送信</span>
+                                    <span>送信</span>
                                 </LoadingButton>
                             </div>
                         </div>
