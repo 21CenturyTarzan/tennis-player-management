@@ -25,16 +25,6 @@ class InfoController extends Controller
         else return view('errors.404');
     }
 
-    public function edit()
-    {
-        if(strcmp(Auth::user()->type, 'player') == 0)
-        {
-            $res['player_id'] = Player::where('account_id', Auth::user()->id)->first()->id;
-            return view('account.player.index', $res);
-        }
-        else return view('errors.404');
-    }
-
     public function store(Request $request)
     {
         $name = json_decode($request->get('name'));

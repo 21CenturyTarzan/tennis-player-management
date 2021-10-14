@@ -22,15 +22,6 @@ class MatchController extends Controller
         else return view('errors.404');
     }
 
-    public function edit()
-    {
-        if(strcmp(Auth::user()->type, 'player') == 0)
-        {
-            $res['player_id'] = Player::where('account_id', Auth::user()->id)->first()->id;
-            return view('account.player.index', $res);
-        }
-        else return view('errors.404');
-    }
 
     public function store(Request $r)
     {
@@ -67,6 +58,44 @@ class MatchController extends Controller
             Caution::create([
                 'tournament_id' => $tournament_id,
                 'caution' => $item,
+            ]);
+        }
+
+        return ['status_code' => 200];
+    }
+
+    public function update(Request $r)
+    {
+        //TODO
+        $tournament_id = (int)$r->get('tournament_id');
+
+        $tournament_name = $r->get('tournament_name');
+        $tournament_date = $r->get('tournament_date');
+        $opponent_name = $r->get('opponent_name');
+        $opponent_club = $r->get('opponent_club');
+        $surface = $r->get('surface');
+        $round = $r->get('round');
+        $weather = $r->get('weather');
+        $category = $r->get('category');
+        $mood = (int)$r->get('mood');
+        $caution_list = json_decode($r->get('caution_list'));
+
+        Tournament::where(['id' => $tournament_id])->first()->update([
+            'category' => $category,
+            'tournament_name' => $tournament_name,
+            'tournament_date' => $tournament_date,
+            'opponent_name' => $opponent_name,
+            'opponent_club' => $opponent_club,
+            'surface' => $surface,
+            'round' => $round,
+            'weather' => $weather,
+            'mood' => $mood,
+        ]);
+
+        foreach($caution_list as $item)
+        {
+            Caution::where(['id'=>$item->id])->first()->update([
+                'caution' => $item->caution
             ]);
         }
 

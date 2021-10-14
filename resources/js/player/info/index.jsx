@@ -34,7 +34,7 @@ function PlayerInfo() {
             <div className="name pt-3 pt-md-5 ">
                 <p className="text-center bg-red-4 font-weight-bold">
                     {params.profile.account.name}
-                    <Link to="/player/info/edit" className="edit"><img src="/images/icon-pencil.svg" alt="icon-pencil.svg" width="30" height="30"/></Link>
+                    <Link to="/player/info/edit" className="edit edit-right"><img src="/images/icon-pencil.svg" alt="icon-pencil.svg" width="30" height="30"/></Link>
                 </p>
             </div>
             <div className="mt-3 mt-md-5">

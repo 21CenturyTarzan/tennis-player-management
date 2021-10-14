@@ -17,12 +17,12 @@ class ProfileController extends Controller
      */
     public function index()
     {
-        return view('account.player.profile.edit');
+        return view('account.player.profile');
     }
 
     public function edit()
     {
-        return view('account.player.profile.edit');
+        return view('account.player.profile');
     }
 
 

@@ -194,7 +194,7 @@ const  PlayerGoalEditor = () => {
     <form  className="needs-validation"  onSubmit={handleSubmit}>
         <div className="mt-3 py-2 rounded-15 bg-white shadow-lg" style={{minHeight:'500px'}}>
             <h3 className="mt-2 p-1  text-white bg-green text-center font-weight-bold">
-                <span>選手管理</span>
+                <span className="ft-25">選手管理編集</span>
             </h3>
             {
                 !load && <CircularProgress color="secondary" style={{top:'calc(40vh - 22px)', left:'calc(50% - 22px)', color:'green', position:'absolute'}}/>
@@ -251,12 +251,12 @@ const  PlayerGoalEditor = () => {
                                     <th className="w-100-px w-xs-50-px">結果</th>
                                 </tr>
                                 {
-                                    stage_list.map((x, i)=>
-                                        <tr key={i}>
+                                    stage_list.map((x, idx)=>
+                                        <tr  className={`${idx>=0&&idx<3&&'table-success'} ${idx>=3&&idx<6&&'table-danger'} ${idx>=6&&idx<9&&'table-primary'} ${idx>=9&&idx<12&&'table-success'}`}  key={idx}>
                                             <td>{x.stage_type}</td>
-                                            <td><input type="text" name="stage_match" id="stage_match" className="w-100 bg-none border-0 text-center" value={x.stage_match} onChange={e =>changeGoalItem(e, i)} required /></td>
+                                            <td><input type="text" name="stage_match" id="stage_match" className="w-100 bg-none border-0 text-center" value={x.stage_match} onChange={e =>changeGoalItem(e, idx)} required /></td>
                                             <td>
-                                                <select className="w-100 bg-none text-center border-0" id="stage_goal" onChange={e => changeGoalItem(e, i)} >
+                                                <select className="w-100 bg-none text-center border-0" id="stage_goal" onChange={e => changeGoalItem(e, idx)} >
                                                     <option value="勝つ" defaultValue>勝つ</option>
                                                     <option value="優勝">優勝</option>
                                                     <option value="準優勝">準優勝</option>
@@ -266,7 +266,7 @@ const  PlayerGoalEditor = () => {
                                                     <option value="Best32">Best32</option>
                                                 </select>
                                             </td>
-                                            <td><input type="text" name="stage_result" id="stage_result" className="w-100 bg-none border-0 text-center" value={x.stage_result} onChange={e => changeGoalItem(e, i)} /></td>
+                                            <td><input type="text" name="stage_result" id="stage_result" className="w-100 bg-none border-0 text-center" value={x.stage_result} onChange={e => changeGoalItem(e, idx)} /></td>
                                         </tr>
                                     )
                                 }

@@ -33,15 +33,15 @@ function PlayerGoal() {
         <div id="goal">
             <div className="mt-3 py-2 rounded-15 bg-white shadow-lg" style={{minHeight:'500px'}}>
                 <h3 className="mt-2 p-1 position-relative text-white bg-green text-center font-weight-bold">
-                    <span>選手管理</span>
-                    <Link to="/player/goal/edit" className="edit py-1" style={{marginTop:'-5px'}}><img src="/images/icon-pencil.svg" alt="icon-pencil.svg" width="30" height="30"/></Link>
+                    <span className="ft-25">選手管理</span>
+                    <Link to="/player/goal/edit" className="edit edit-right py-1" style={{marginTop:'-5px'}}><img src="/images/icon-pencil.svg" alt="icon-pencil.svg" width="30" height="30"/></Link>
                 </h3>
                 {
                     !load && <CircularProgress color="secondary" style={{top:'calc(40vh - 22px)', left:'calc(50% - 22px)', color:'green', position:'absolute'}}/>
                 }
                 {
                     load && !params &&
-                        <h4 className="mt-5 text-center">登録された資料がありません。</h4>
+                        <p className="mt-5 text-center">登録された資料がありません。</p>
                 }
                 {
                     load && params &&
@@ -67,9 +67,9 @@ function PlayerGoal() {
                                 </tbody>
                             </table>
                             <p className="w-25 w-md-50 p-1 pl-2 mb-2 bg-black-4 rounded-right-20 text-white ft-16 ft-xs-14">私の目標</p>
-                            <table className="table table-bordered table-info mb-2 text-center">
+                            <table className="table table-bordered mb-2 text-center">
                                 <tbody>
-                                    <tr>
+                                    <tr className="table-secondary">
                                         <th className="w-100-px w-xs-60-px"></th>
                                         <th>試合</th>
                                         <th className="w-100-px w-xs-75-px">目標</th>
@@ -77,7 +77,7 @@ function PlayerGoal() {
                                     </tr>
                                     {
                                         params.goal_stage.map((item, idx)=>
-                                            <tr key={idx}>
+                                            <tr className={`${idx>=0&&idx<3&&'table-success'} ${idx>=3&&idx<6&&'table-danger'} ${idx>=6&&idx<9&&'table-primary'}`} key={idx}>
                                                 <td>{item.stage_type}</td>
                                                 <td>{item.stage_match}</td>
                                                 <td>{item.stage_goal}</td>
@@ -102,7 +102,14 @@ function PlayerGoal() {
                                         <tbody>
                                             {
                                                 params.goal_task.map((item, idx)=>
-                                                    <tr className="table-success" key={idx}>
+                                                    <tr 
+                                                        // className={`${idx>=0&&idx<3&&'table-success'} 
+                                                        //             ${idx>=3&&idx<6&&'table-danger'} 
+                                                        //             ${idx>=6&&idx<9&&'table-primary'} 
+                                                        //             ${idx>=9&&idx<12&&'table-success'}`} 
+                                                        className = "table-success"
+                                                        key={idx}
+                                                    >
                                                         <td className="w-40-px"><img src={item.icon} width="25" height="25" /></td>
                                                         <td style={{maxWidth:'50px'}}><pre style={{whiteSpace:'nowrap'}}>{item.task_detail}</pre></td>
                                                         <td className="w-95-px">
@@ -121,7 +128,7 @@ function PlayerGoal() {
                                             <tr className="table-success">
                                                 <td className="w-40-px"><img src="/images/icons/icon-book.svg" width="25" height="25" /></td>
                                                 <td><p className="mb-0 text-center">勉強時間</p></td>
-                                                <td className="w-135-px">
+                                                <td>
                                                     {`${getHHMM(params.study_time_start)} ~ ${getHHMM(params.study_time_end)}`}
                                                 </td>
                                                 <td className="w-40-px pointer"><img src="/images/icons/icon-graph.svg" width="25" height="25" /></td>

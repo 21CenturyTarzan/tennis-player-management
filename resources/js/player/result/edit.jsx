@@ -1,7 +1,5 @@
-
-
-import ReactDOM from 'react-dom';
 import React, {useState, useEffect} from 'react'
+import { Link } from 'react-router-dom'
 
 // material
 import { Button } from '@material-ui/core';
@@ -15,7 +13,7 @@ import { Rating, RatingView } from 'react-simple-star-rating'
 
 // ----------------------------------------------------------------------
 
-const  PlayerResultEditor = () => {
+const  PlayerResultEdit = () => {
 
     const [long_term_goal,   SetLongTermGoal] = useState('');
     const [medium_term_goal, SetMediumTermGoal] = useState('');
@@ -150,4 +148,4 @@ const  PlayerResultEditor = () => {
 //     ReactDOM.render(<ResultEditor/>, element);
 // }
 
-export default PlayerResultEditor;
+export default PlayerResultEdit;
