@@ -220,7 +220,7 @@ const  PlayerInfoEditor = () => {
     }
      
     if(initing) 
-        return( <CircularProgress color="secondary" style={{top:'calc(50vh - 22px)', left:'calc(50% - 22px)', color:'#F0DE00', position:'absolute'}}/> );
+        return( <CircularProgress color="secondary" style={{top:'calc(40vh - 22px)', left:'calc(50% - 22px)', color:'#F0DE00', position:'absolute'}}/> );
     else 
     return (
     <>
@@ -228,28 +228,45 @@ const  PlayerInfoEditor = () => {
             <div className="mt-3 pt-2 rounded-top-15 text-white player-main-info">
                 <div className="name pt-3 pt-md-5 ">
                     <p className="text-center bg-red-4 font-weight-bold">
-                        {/* <!-- name --> */}
-                        <input type="text" name="name" className="w-50 w-md-75 bg-none text-center text-white border-0" value={name} onChange={(e)=>setName(e.target.value)} required autoFocus/>
+                        <input type="text" name="name" 
+                            className="w-50 w-md-75 bg-none text-center text-white border-0" 
+                            value={name} 
+                            onChange={(e)=>setName(e.target.value)} 
+                            required autoFocus
+                        />
                     </p>
                 </div>
                 <div className="img-wrap mt-3 mt-md-5">
-                    <div className="row">
+                    <div className="row mx-0">
                         <div className="col-md-4">
                             <div className="m-auto ml-md-auto m-md-0 border-1 avatar-wrapper">
                                 <a data-bs-toggle="modal" data-bs-target="#cropModal">
                                     <img src={convertimgUri} className="avatar"/> 
                                 </a>
-                                <input type="file" name="image" id="crop" className="d-none" onChange={handleImageChange}/>
+                                <input type="file" name="image" 
+                                    id="crop" className="d-none" 
+                                    onChange={handleImageChange}
+                                />
                             </div>
                         </div>
                         <div className="col-md-8">
-                            <p className="text-center bg-black-4 ft-30 ft-md-20  m-1 m-md-0 my-md-3">
-                                {/* <!-- title1 --> */}
-                                <input type="text" name="title1" className="w-75 bg-none text-center text-white border-0" value={title1} onChange={e=>setTitle1(e.target.value)}  required />
+                            <p className="text-center bg-black-4 ft-30 ft-sm-20  m-1 mt-3 m-md-0 my-md-3">
+                                <input type="text" 
+                                    name="title1" 
+                                    className="w-75 bg-none text-center text-white border-0" 
+                                    value={title1} 
+                                    onChange={e=>setTitle1(e.target.value)}  
+                                    required 
+                                />
                             </p>
-                            <p className="text-center bg-black-4 ft-30 ft-md-20  m-1 m-md-0 my-md-3">
-                                {/* <!-- title2 --> */}
-                                <input type="text" name="title2" className="w-75 bg-none text-center text-white border-0" value={title2} onChange={e=>setTitle2(e.target.value)}  required />
+                            <p className="text-center bg-black-4 ft-30 ft-sm-20  m-1 m-md-0 my-md-3">
+                                <input type="text" 
+                                    name="title2" 
+                                    className="w-75 bg-none text-center text-white border-0" 
+                                    value={title2} 
+                                    onChange={e=>setTitle2(e.target.value)}  
+                                    required 
+                                />
                             </p>
                         </div>
                     </div>
@@ -290,13 +307,21 @@ const  PlayerInfoEditor = () => {
                 </div>
             </div>
 
-            <div className="row mt-3">
+            <div className="row mt-3 mx-0">
                 <div className="col-md-8 offset-md-2">
                     <div className="p-2 shadow-lg bg-black-4">
                         <h4 className="text-center text-white">
-                            <img src="/images/icon-minus-white.svg" width="25" style={{position:'absolute', left:'30px', cursor:'pointer'}} onClick={removeRank}/>
+                            <img src="/images/icon-minus-white.svg" 
+                                width="25" 
+                                style={{position:'absolute', left:'30px', cursor:'pointer'}} 
+                                onClick={removeRank}
+                            />
                             <span>RANK</span>
-                            <img src="/images/icon-plus-white.svg" width="25" style={{position:'absolute', right:'30px', cursor:'pointer'}} onClick={addRank}/>
+                            <img src="/images/icon-plus-white.svg" 
+                                width="25" 
+                                style={{position:'absolute', right:'30px', cursor:'pointer'}} 
+                                onClick={addRank}
+                            />
                         </h4>
                         <table className="table table-bordered m-0 p-1 text-white text-center">
                             <thead>
@@ -304,7 +329,11 @@ const  PlayerInfoEditor = () => {
                                     <td className="bg-white-2">区分</td>
                                     <td className="bg-white-2">
                                         <span>位</span>
-                                        <img src="/images/icon-reload-white.svg" width="25" style={{position:'absolute', right:'30px', cursor:'pointer'}} onClick={reloadRankList}/>
+                                        <img src="/images/icon-reload-white.svg" 
+                                            width="25" 
+                                            style={{position:'absolute', right:'30px', cursor:'pointer'}} 
+                                            onClick={reloadRankList}
+                                        />
                                     </td>
                                 </tr>
                             </thead>
@@ -312,13 +341,27 @@ const  PlayerInfoEditor = () => {
                                 <tr>
                                     <td>JTAU18</td>
                                     <td>
-                                        <input type="number" min='1' step='1' name="jta-u-18" className="w-50 bg-none text-center text-white border-0"  value={jta_u_18} onChange={e => setJTAU18(e.target.value)} required />
+                                        <input type="number" 
+                                            min='1' step='1' 
+                                            name="jta-u-18" 
+                                            className="w-50 bg-none text-center text-white border-0"  
+                                            value={jta_u_18} 
+                                            onChange={e => setJTAU18(e.target.value)} 
+                                            required 
+                                        />
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>関東U18</td>
                                     <td>
-                                        <input type="number" min='1' step='1' name="kanto-u-18" className="w-50 bg-none text-center text-white border-0"  value={kanto_u_18} onChange={e => setKantoU18(e.target.value)} required />
+                                        <input type="number" 
+                                            min='1' step='1' 
+                                            name="kanto-u-18" 
+                                            className="w-50 bg-none text-center text-white border-0"  
+                                            value={kanto_u_18} 
+                                            onChange={e => setKantoU18(e.target.value)} 
+                                            required 
+                                        />
                                     </td>
                                 </tr>
                                 {
@@ -326,10 +369,28 @@ const  PlayerInfoEditor = () => {
                                     rankList.map((x, i)=>{
                                         return(
                                             <tr key={i}>
-                                                <td><input type="type" name="rankType" className="w-100 bg-none text-center text-white border-0" placeholder="ex: JTAU18" value={x.rankType} onChange={e => changeRank(e, i)} required/></td>
                                                 <td>
-                                                    <input type="number" min='1' step='1' name="rankValue" className="w-50 bg-none text-center text-white border-0"  value={x.rankValue} onChange={e => changeRank(e, i)} required />
-                                                    <img src="/images/icon-close-white.svg" width="25" style={{position:'absolute', right:'30px', cursor:'pointer'}} onClick={(e)=>deleteRank(e, i)}/>
+                                                    <input type="type" name="rankType" 
+                                                        className="w-100 bg-none text-center text-white border-0" 
+                                                        placeholder="ex: JTAU18" 
+                                                        value={x.rankType} 
+                                                        onChange={e => changeRank(e, i)} 
+                                                        required
+                                                    />
+                                                </td>
+                                                <td>
+                                                    <input type="number" 
+                                                        min='1' step='1' name="rankValue" 
+                                                        className="w-50 bg-none text-center text-white border-0"  
+                                                        value={x.rankValue} 
+                                                        onChange={e => changeRank(e, i)} 
+                                                        required 
+                                                    />
+                                                    <img src="/images/icon-close-white.svg" 
+                                                        width="25" 
+                                                        style={{position:'absolute', right:'30px', cursor:'pointer'}} 
+                                                        onClick={(e)=>deleteRank(e, i)}
+                                                    />
                                                 </td>
                                             </tr>
                                         )
@@ -392,7 +453,7 @@ const  PlayerInfoEditor = () => {
             </div>
 
             <div className="mt-3">
-                <div className="row">
+                <div className="row mx-0">
                     <div className="col-6">
                         <Button size="large" color="primary" 
                             fullWidth variant="contained" 

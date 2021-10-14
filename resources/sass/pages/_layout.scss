@@ -1,7 +1,7 @@
 
 table, th, td{
     padding: 5px !important;
-    @include media-breakpoint-down(md){
+    @include media-breakpoint-down(sm){
         font-size: 15px;
     }
 }

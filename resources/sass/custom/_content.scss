@@ -9,6 +9,7 @@
       padding: 0 100px 50px 100px;
     }
     @include sp{
+      margin-top: 0px;
       padding-bottom: 130px;
       max-width: 700px;
       box-sizing: border-box;
@@ -40,7 +41,7 @@
         margin: 0 auto 25px;
       }
       @include sp02{
-        margin: 0 auto 50px
+        margin: 0 auto 0;
       }
       &__left{
         display: flex;

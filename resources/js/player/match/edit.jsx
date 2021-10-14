@@ -221,15 +221,26 @@ const  PlayerMatchEdit = (props) => {
                     </div>
 
                     <p className="w-50 w-md-75 p-1 pl-2 mb-2 bg-black-4 rounded-right-20 text-white">自己分析</p>
-                    <div className="px-2 mb-2">
-                        <ol>
+                    <div className="px-2 mb-2 pre-scrollable">
                         {
-                            question_list.length > 0 && 
-                                question_list.map((x, i)=>
-                                    <li key={i}>{x.question}</li>
-                                )
+                            question_list.length > 0 ? 
+                            <table className="table table-bordered text-center">
+                                <tbody>
+                                    {
+                                        question_list.map((x, i)=>
+                                        <tr key={i}>
+                                            <td className="w-40-px"><span>{i+1}</span></td>
+                                            <td>{x.question}</td>
+                                        </tr>
+                                        )
+                                    }
+                                </tbody>
+                            </table>
+                            :<CircularProgress color="secondary" 
+                                style={{top:'calc(50vh - 22px)', left:'calc(50% - 22px)', 
+                                color:'green', position:'absolute'}}
+                            />
                         }
-                        </ol>
                     </div>
 
                     <p className="w-50 w-md-75 p-1 pl-2 mb-0 bg-black-4 rounded-right-20 text-white">試合前に心がける事</p>

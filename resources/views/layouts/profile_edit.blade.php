@@ -41,8 +41,8 @@
         <div class="container">
             <div style="padding-top: 72px;" class="mx-0 mx-md-5">
                 <div class="mx-md-5 my-3 pt-2 bg-white shadow-lg rounded-lg">
-                    <h3 class="mt-2 p-1  text-white bg-green text-center font-weight-bold">
-                        <span>プロフィール編集<span>
+                    <h3 class="mt-2 p-1 text-white bg-green text-center font-weight-bold">
+                        <span class="ft-25">プロフィール編集<span>
                     </h3>
                     <div class="p-3">
                         @yield('content')

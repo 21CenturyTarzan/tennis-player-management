@@ -12,6 +12,8 @@
 
 .ft-25{ font-size: 25px; }
 .ft-30{ font-size: 30px; }
+.ft-35{ font-size: 35px; }
+.ft-40{ font-size: 40px; }
 
 
 .ft-md-12{  @include media-breakpoint-down(md){  font-size: 12px !important;  }  }
@@ -33,6 +35,11 @@
 .ft-sm-18{  @include media-breakpoint-down(sm){  font-size: 18px !important;  }  }
 .ft-sm-19{  @include media-breakpoint-down(sm){  font-size: 19px !important;  }  }
 .ft-sm-20{  @include media-breakpoint-down(sm){  font-size: 20px !important;  }  }
+.ft-sm-25{  @include media-breakpoint-down(sm){  font-size: 25px !important;  }  }
+.ft-sm-30{  @include media-breakpoint-down(sm){  font-size: 30px !important;  }  }
+.ft-sm-35{  @include media-breakpoint-down(sm){  font-size: 35px !important;  }  }
+.ft-sm-40{  @include media-breakpoint-down(sm){  font-size: 40px !important;  }  }
+
 
 .ft-xs-12{  @include media-breakpoint-down(xs){  font-size: 12px !important;  }  }
 .ft-xs-13{  @include media-breakpoint-down(xs){  font-size: 13px !important;  }  }
@@ -43,6 +50,10 @@
 .ft-xs-18{  @include media-breakpoint-down(xs){  font-size: 18px !important;  }  }
 .ft-xs-19{  @include media-breakpoint-down(xs){  font-size: 19px !important;  }  }
 .ft-xs-20{  @include media-breakpoint-down(xs){  font-size: 20px !important;  }  }
+.ft-xs-25{  @include media-breakpoint-down(xs){  font-size: 25px !important;  }  }
+.ft-xs-30{  @include media-breakpoint-down(xs){  font-size: 30px !important;  }  }
+.ft-xs-35{  @include media-breakpoint-down(xs){  font-size: 35px !important;  }  }
+.ft-xs-40{  @include media-breakpoint-down(xs){  font-size: 40px !important;  }  }
 
 
 .text-black{ color:black !important;}
