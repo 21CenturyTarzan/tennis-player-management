@@ -252,20 +252,19 @@ const  PlayerMatchEdit = (props) => {
                         </table>
                     </div>
 
-                    <div className="mt-3 mb-2 px-4">
+                    <div className="mt-3 mb-2 px-2 px-md-4">
                         <div className="row">
                             <div className="col-6">
                                 <Button size="large" color="primary" 
                                     fullWidth variant="contained" 
-                                    startIcon={<ClearIcon />}
-                                    style={{backgroundColor: 'transparent', border: '1px solid green', color:'green'}} 
+                                    style={{backgroundColor: 'transparent', border: '1px solid green', color:'green', fontSize:'16px'}} 
                                     onClick={ e =>
                                         history.push({
                                             pathname: '/player/match',
                                             state: {}
                                         })
                                     }>
-                                    <span className="d-none d-md-block">キャンセル</span>
+                                    <span>キャンセル</span>
                                 </Button>
                             </div>
                             <div className="col-6">
@@ -273,10 +272,10 @@ const  PlayerMatchEdit = (props) => {
                                     color="primary" fullWidth  
                                     variant="contained" 
                                     endIcon={<SendIcon />}
-                                    style={{backgroundColor: 'green'}}
+                                    style={{backgroundColor: 'green', fontSize:'16px'}}
                                     loading={submit}
                                 >
-                                    <span className="d-none d-md-block">送信</span>
+                                    <span>送信</span>
                                 </LoadingButton>
                             </div>
                         </div>
