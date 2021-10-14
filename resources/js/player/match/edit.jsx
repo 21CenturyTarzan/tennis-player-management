@@ -41,18 +41,15 @@ const  PlayerMatchEdit = (props) => {
         
         setLoad(false);
 
-        var id = Number(document.getElementById('player_id').value);
+        var id = Number(document.getElementById('player_id').value);      //get player id from input value
 
         axios.get(`/api/player/match`, {params:{player_id: id}})
         .then(res=>{
             if(res.data.status_code == 200)
             {
-                console.log(res.data.params);
                 setLoad(true);
-    
                 var tournament = res.data.params.tournament;
                 var question_list = res.data.params.question_list;
-
                 if(tournament){
                     setTournamentName(tournament.tournament_name);
                     setTournamentDate(tournament.tournament_date);
@@ -61,7 +58,7 @@ const  PlayerMatchEdit = (props) => {
                     setSurface(tournament.surface);                 //クレー/オムニ/ハード
                     setRound(tournament.round);                   //予選/本戦
                     setWeather(tournament.weather);                   //晴/曇/雨
-                    setCategory(tournament.category);    //U34
+                    setCategory(tournament.category);                  //U34
                     setMood(tournament.mood);
                     setCautionList(tournament.caution);
                     
