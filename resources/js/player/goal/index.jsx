@@ -72,7 +72,7 @@ function PlayerGoal() {
                             <table className="table table-bordered mb-2 text-center">
                                 <tbody>
                                     <tr className="table-secondary">
-                                        <th className="w-100-px w-xs-60-px"></th>
+                                        <th className="w-135-px w-xs-60-px"></th>
                                         <th>試合</th>
                                         <th className="w-100-px w-xs-75-px">目標</th>
                                         <th className="w-100-px w-xs-50-px">結果</th>
@@ -80,7 +80,7 @@ function PlayerGoal() {
                                     {
                                         params.goal_stage.map((item, idx)=>
                                             <tr className={`${idx>=0&&idx<3&&'table-success'} ${idx>=3&&idx<6&&'table-danger'} ${idx>=6&&idx<9&&'table-primary'}`} key={idx}>
-                                                <td>{item.stage_type}</td>
+                                                <th className={`${idx%3!=0 && 'd-none'} align-middle`} rowSpan="3">{item.stage_type}<br className="d-block d-sm-none"/>目標</th>
                                                 <td>{item.stage_match}</td>
                                                 <td>{item.stage_goal}</td>
                                                 <td>{item.stage_result}</td>

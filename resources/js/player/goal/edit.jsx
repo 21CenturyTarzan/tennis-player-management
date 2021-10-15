@@ -245,7 +245,7 @@ const  PlayerGoalEditor = () => {
                         <table className="table table-bordered table-info mb-2 text-center">
                             <tbody>
                                 <tr>
-                                    <th className="w-100-px w-xs-60-px"></th>
+                                    <th className="w-135-px w-xs-60-px"></th>
                                     <th>試合</th>
                                     <th className="w-100-px w-xs-75-px">目標</th>
                                     <th className="w-100-px w-xs-50-px">結果</th>
@@ -253,7 +253,7 @@ const  PlayerGoalEditor = () => {
                                 {
                                     stage_list.map((x, idx)=>
                                         <tr  className={`${idx>=0&&idx<3&&'table-success'} ${idx>=3&&idx<6&&'table-danger'} ${idx>=6&&idx<9&&'table-primary'} ${idx>=9&&idx<12&&'table-success'}`}  key={idx}>
-                                            <td>{x.stage_type}</td>
+                                            <th className={`${idx%3!=0 && 'd-none'} align-middle`} rowSpan="3">{x.stage_type}<br className="d-block d-sm-none"/>目標</th>
                                             <td><input type="text" name="stage_match" id="stage_match" className="w-100 bg-none border-0 text-center" value={x.stage_match} onChange={e =>changeGoalItem(e, idx)} required /></td>
                                             <td>
                                                 <select className="w-100 bg-none text-center border-0" id="stage_goal" onChange={e => changeGoalItem(e, idx)} >

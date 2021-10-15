@@ -63,7 +63,7 @@ function PlayerMatch() {
                             <table className="table table-bordered text-center mb-2">
                                 <tbody>
                                     <tr className="table-success">
-                                        <td rowSpan="2">大会</td>
+                                        <td rowSpan="2" className="align-middle">大会</td>
                                         <td>{tournament.tournament_name}</td>
                                     </tr>
                                     <tr className="table-success">

@@ -98,7 +98,7 @@ function PlayerInfo() {
         <div className="row mt-4 mx-0">
             <div className="col-md-6">
                 <div className="p-2 shadow-lg bg-black-4">
-                    <h4 className="text-center text-white">勝率</h4>
+                    <h5 className="text-center text-white">勝率</h5>
                     <table className="table table-bordered m-0 p-1 text-white text-center">
                         <thead>
                             <tr>
@@ -145,7 +145,7 @@ function PlayerInfo() {
 
             <div className="col-md-6 mt-4 mt-md-0">
                 <div className="p-2 shadow-lg bg-black-4">
-                    <h4 className="text-center text-white">RANK</h4>
+                    <h5 className="text-center text-white">RANK</h5>
                     <table className="table table-bordered m-0 p-1 text-white text-center">
                         <thead>
                             <tr>
@@ -191,7 +191,7 @@ function PlayerInfo() {
 
     
         <div className="mt-4 p-2 shadow-lg bg-black-4">
-            <h4 className="text-center text-white">個人情報</h4>
+            <h5 className="text-center text-white">個人情報</h5>
             <table className="table table-bordered m-0 text-white text-center" id="person-info">
                 <tbody>
                     <tr>

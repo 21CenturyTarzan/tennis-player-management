@@ -113,9 +113,9 @@ const  PlayerMatchNew = () => {
                     <table className="table table-bordered text-center mb-2">
                         <tbody>
                             <tr className="table-success">
-                                <td rowSpan="2">大会</td>
+                                <td rowSpan="2" className="align-middle">大会</td>
                                 <td>
-                                    <input type="text" className="w-100 bg-none border-0 text-center"  value={tournament_name} onChange={e => setTournamentName(e.target.value)} required/>
+                                    <input type="text" className="w-100 bg-none border-0 text-center" placeholder="大会名"  value={tournament_name} onChange={e => setTournamentName(e.target.value)} required/>
                                 </td>
                             </tr>
                             <tr className="table-success">
