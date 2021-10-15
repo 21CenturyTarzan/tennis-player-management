@@ -136,7 +136,7 @@ const  PlayerMatchEdit = (props) => {
                             <table className="table table-bordered text-center mb-2">
                                 <tbody>
                                     <tr className="table-success">
-                                        <td rowSpan="2" className="align-middle">大会</td>
+                                        <th rowSpan="2" className="align-middle w-135-px">大会</th>
                                         <td>
                                             <input type="text" className="w-100 bg-none border-0 text-center" placeholder="大会名" value={tournament_name} onChange={e => setTournamentName(e.target.value)} required/>
                                         </td>
@@ -147,13 +147,13 @@ const  PlayerMatchEdit = (props) => {
                                         </td>
                                     </tr>
                                     <tr className="table-success">
-                                        <td>対戦相手</td>
+                                        <th>対戦相手</th>
                                         <td>
                                             <input type="text" className="w-100 bg-none border-0 text-center"  value={opponent_name} onChange={e => setOpponentName(e.target.value)} required/>
                                         </td>
                                     </tr>
                                     <tr className="table-success">
-                                        <td>クラブ名</td>
+                                        <th>クラブ名</th>
                                         <td>
                                             <input type="text" className="w-100 bg-none border-0 text-center"  value={opponent_club} onChange={e => setClub(e.target.value)} required/>
                                         </td>
@@ -163,7 +163,7 @@ const  PlayerMatchEdit = (props) => {
                             <table className="table table-bordered text-center mb-2">
                                 <tbody>
                                     <tr className="table-success">
-                                        <td>サーフェス</td>
+                                        <th className="w-135-px">サーフェス</th>
                                         <td>
                                             <select className="bg-none w-100 text-center border-0" value={surface} onChange={e => setSurface(e.target.value)}>
                                                 <option value="クレー">クレー</option>
@@ -173,7 +173,7 @@ const  PlayerMatchEdit = (props) => {
                                         </td>
                                     </tr>
                                     <tr className="table-success">
-                                        <td>ラウンド</td>
+                                        <th>ラウンド</th>
                                         <td>
                                             <select className="bg-none w-100 text-center border-0" value={round} onChange={e => setRound(e.target.value)}>
                                                 <option value="予選">予選</option>
@@ -182,7 +182,7 @@ const  PlayerMatchEdit = (props) => {
                                         </td>
                                     </tr>
                                     <tr className="table-success">
-                                        <td>天気</td>
+                                        <th>天気</th>
                                         <td>
                                             <select className="bg-none w-100 text-center border-0" value={weather} onChange={e => setWeather(e.target.value)}>
                                                 <option value="sunny">晴</option>
@@ -192,7 +192,7 @@ const  PlayerMatchEdit = (props) => {
                                         </td>
                                     </tr>
                                     <tr className="table-success">
-                                        <td>カテゴリー</td>
+                                        <th>カテゴリー</th>
                                         <td>
                                             <select className="bg-none w-100 text-center border-0" value={category} onChange={e => setCategory(e.target.value)}>
                                                 <option value="ITF">ITF</option>

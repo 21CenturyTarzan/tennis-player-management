@@ -63,18 +63,18 @@ function PlayerMatch() {
                             <table className="table table-bordered text-center mb-2">
                                 <tbody>
                                     <tr className="table-success">
-                                        <td rowSpan="2" className="align-middle">大会</td>
+                                        <th rowSpan="2" className="align-middle w-135-px">大会</th>
                                         <td>{tournament.tournament_name}</td>
                                     </tr>
                                     <tr className="table-success">
                                         <td>{moment(tournament.tournament_date).format('YYYY-MM-DD')}</td>
                                     </tr>
                                     <tr className="table-success">
-                                        <td>対戦相手</td>
+                                        <th>対戦相手</th>
                                         <td>{tournament.opponent_name}</td>
                                     </tr>
                                     <tr className="table-success">
-                                        <td>クラブ名</td>
+                                        <th>クラブ名</th>
                                         <td>{tournament.opponent_club}</td>
                                     </tr>
                                 </tbody>
@@ -82,15 +82,15 @@ function PlayerMatch() {
                             <table className="table table-bordered text-center mb-2">
                                 <tbody>
                                     <tr className="table-success">
-                                        <td>サーフェス</td>
+                                        <th className="w-135-px">サーフェス</th>
                                         <td>{tournament.surface}</td>
                                     </tr>
                                     <tr className="table-success">
-                                        <td>ラウンド</td>
+                                        <th>ラウンド</th>
                                         <td>{tournament.round}</td>
                                     </tr>
                                     <tr className="table-success">
-                                        <td>天気</td>
+                                        <th>天気</th>
                                         <td>
                                             <img src={`/images/icons/icon-${tournament.weather}.svg`} 
                                                 alt="weather" 
@@ -100,7 +100,7 @@ function PlayerMatch() {
                                         </td>
                                     </tr>
                                     <tr className="table-success">
-                                        <td>カテゴリー</td>
+                                        <th>カテゴリー</th>
                                         <td>{tournament.category}</td>
                                     </tr>
                                 </tbody>
@@ -116,29 +116,6 @@ function PlayerMatch() {
                                 </tr>
                             </tbody>
                         </table>
-                    </div>
-
-                    <p className="w-50 w-md-75 p-1 pl-2 mb-2 bg-black-4 rounded-right-20 text-white">自己分析</p>
-                    <div className="px-2 mb-2 pre-scrollable">
-                        {
-                            question_list ? 
-                            <table className="table table-bordered text-center">
-                                <tbody>
-                                    {
-                                        question_list.map((x, i)=>
-                                        <tr key={i}>
-                                            <td className="w-40-px"><span>{i+1}</span></td>
-                                            <td>{x.question}</td>
-                                        </tr>
-                                        )
-                                    }
-                                </tbody>
-                            </table>
-                            :<CircularProgress color="secondary" 
-                                style={{top:'calc(50vh - 22px)', left:'calc(50% - 22px)', 
-                                color:'green', position:'absolute'}}
-                            />
-                        }
                     </div>
 
                     <p className="w-50 w-md-75 p-1 pl-2 mb-2 bg-black-4 rounded-right-20 text-white">試合前に心がける事</p>

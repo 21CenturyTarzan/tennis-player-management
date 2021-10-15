@@ -13,5 +13,6 @@ class Caution extends Model
     protected $fillable = [
         'tournament_id',
         'caution',
+        'rate'
     ];
 }

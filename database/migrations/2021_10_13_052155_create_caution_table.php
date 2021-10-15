@@ -17,6 +17,7 @@ class CreateCautionTable extends Migration
             $table->unsignedBigInteger('id')->autoIncrement()->comment('ID');
             $table->foreignId('tournament_id')->constrained('tournament')->comment('Tournament ID');
             $table->string('caution', 1024);
+            $table->integer('rate')->nullable();
 
             $table->timestamps();
         });
