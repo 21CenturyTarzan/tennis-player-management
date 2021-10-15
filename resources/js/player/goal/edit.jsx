@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import { useHistory } from 'react-router-dom'
+import { useHistory, Link } from 'react-router-dom'
 import axios from 'axios';
 
 // material
@@ -376,21 +376,16 @@ const  PlayerGoalEditor = () => {
                     <div className="mt-3 mb-2 px-2 px-md-4">
                         <div className="row">
                             <div className="col-6">
-                                <Button size="large" color="primary" 
-                                    fullWidth variant="contained" 
-                                    style={{backgroundColor: 'transparent', border: '1px solid green', color:'green', fontSize:'16px'}} 
-                                    onClick={ e =>
-                                        history.push({
-                                            pathname: '/player/goal',
-                                            state: {}
-                                        })
-                                    }>
-                                    <span>キャンセル</span>
-                                </Button>
+                                <Link to="/player/goal" style={{textDecoration:'none'}}>
+                                    <Button size="large" fullWidth variant="contained" style={{backgroundColor: 'transparent', border: '1px solid green', color:'green', fontSize:'16px'}} >
+                                        <span>キャンセル</span>
+                                    </Button>
+                                </Link>
                             </div>
                             <div className="col-6">
-                                <LoadingButton size="large" type="submit" 
-                                    color="primary" fullWidth  
+                                <LoadingButton  type="submit" 
+                                    fullWidth  
+                                    size="large"
                                     variant="contained" 
                                     endIcon={<SendIcon />}
                                     style={{backgroundColor: 'green', fontSize:'16px'}}

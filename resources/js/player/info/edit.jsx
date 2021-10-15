@@ -2,7 +2,7 @@
 
 import ReactDOM from 'react-dom';
 import React, {useState, useEffect} from 'react'
-import { useHistory } from 'react-router-dom'
+import { useHistory, Link } from 'react-router-dom'
 import axios from 'axios';
 
 // material
@@ -455,21 +455,15 @@ const  PlayerInfoEditor = () => {
             <div className="mt-3">
                 <div className="row mx-0">
                     <div className="col-6">
-                        <Button size="large" color="primary" 
-                            fullWidth variant="contained" 
-                            style={{backgroundColor: 'transparent', border: '2px solid white', fontSize:'16px'}} 
-                            onClick={ e =>
-                                history.push({
-                                    pathname: '/player/info',
-                                    state: {}
-                                })
-                            }>
-                            キャンセル
-                        </Button>
+                        <Link to="/player/info" style={{textDecoration:'none'}}>
+                            <Button size="large" fullWidth variant="contained" style={{backgroundColor: 'transparent', border: '2px solid white', fontSize:'16px'}}  >
+                                <span>キャンセル</span>
+                            </Button>
+                        </Link>
                     </div>
                     <div className="col-6">
                         <LoadingButton size="large" type="submit" 
-                            loading={loading} color="primary" 
+                            loading={loading}
                             fullWidth  variant="contained" 
                             style={{backgroundColor: 'transparent', border: '2px solid white', fontSize:'16px'}} 
                             endIcon={<SendIcon />}>
