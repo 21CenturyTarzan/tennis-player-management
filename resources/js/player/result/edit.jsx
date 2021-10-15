@@ -50,7 +50,10 @@ function PlayerResultEdit() {
     const changeScore = (e, iy, ix) => {
         const list = [...scores];
         list[iy]['scores'][ix] = Number(e.target.value);
-        list[iy]['total'] += Number(e.target.value);
+        var sum = 0;
+        for(let i=0; i<list[iy]['scores'].length; i++)
+            sum += list[iy]['scores'][i];
+        list[iy]['total'] = sum;
         setScores(list);
     }
 
