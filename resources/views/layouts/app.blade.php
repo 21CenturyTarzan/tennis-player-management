@@ -28,10 +28,10 @@
         </div>
         <div class="logo-wrapper">
             <picture>
-                <source media="(max-width: 767px)" srcset="{{asset('images/top_mv_logo.svg')}}" width="350" height="300">
-                <img src="{{asset('images/top_mv_logo.svg')}}" alt="logo.svg" >
+                <source media="(max-width: 767px)" srcset="{{asset('images/top_mv_logo.svg')}}" width="300" height="250">
+                <img src="{{asset('images/top_mv_logo.svg')}}" alt="logo.svg" width="450" height="350">
             </picture>
-            <p class="mt-1 mt-md-4">HYS TENNIS PLAYER MANAGEMENT</p>
+            <p class="mt-1 mt-md-4 ft-sm-25">HYS TENNIS PLAYER MANAGEMENT</p>
 
             <div class="btn-bar mt-1 mt-md-5">
                 @yield('auth-btn')
@@ -46,10 +46,10 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script>
-        document.querySelector('.loader2-wrap').style.display="block";
-        $(window).on('load', ()=>{
-            document.querySelector('.loader2-wrap').style.display="none";
-        })
+        // document.querySelector('.loader2-wrap').style.display="block";
+        // $(window).on('load', ()=>{
+        //     document.querySelector('.loader2-wrap').style.display="none";
+        // })
     </script>
     <script src="{{ asset('js/app.js') }}" defer></script>
     @yield('scripts')

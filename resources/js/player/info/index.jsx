@@ -27,28 +27,34 @@ function PlayerInfo() {
         return age;
     }
 
-    if(!params) return(<CircularProgress color="secondary" style={{top:'calc(50vh - 22px)', left:'calc(50% - 22px)', color:'#F0DE00', position:'absolute'}}/>);
+    if(!params) return(<CircularProgress color="secondary" style={{top:'calc(40vh - 22px)', left:'calc(50% - 22px)', color:'#F0DE00', position:'absolute'}}/>);
     return (
     <div id="info">
         <div className="mt-3 pt-2 rounded-top-15 text-white player-main-info">
             <div className="name pt-3 pt-md-5 ">
                 <p className="text-center bg-red-4 font-weight-bold">
-                    {params.profile.account.name}
-                    <Link to="/player/info/edit" className="edit edit-right"><img src="/images/icon-pencil.svg" alt="icon-pencil.svg" width="30" height="30"/></Link>
+                    { params.profile.account.name }
+                    <Link to="/player/info/edit" className="edit edit-right">
+                        <img src="/images/icon-pencil.svg" 
+                            alt="icon-pencil.svg" 
+                            width="30" height="30"
+                            title="Edit"
+                        />
+                    </Link>
                 </p>
             </div>
             <div className="mt-3 mt-md-5">
-                <div className="row">
+                <div className="row mx-0">
                     <div className="col-md-4 text-center text-md-right">
                         <div className="m-auto ml-md-auto m-md-0 border-1 avatar-wrapper">
                             <img src={params.profile.account.img} alt="avatar" className="avatar"/>
                         </div>
                     </div>
                     <div className="col-md-8">
-                        <p className="text-center bg-black-4 ft-30 ft-xs-20  m-1 m-md-0 my-md-3">
+                        <p className="text-center bg-black-4 ft-30 ft-sm-20 m-1 mt-3 m-md-0 my-md-3" style={{overflowX:'hidden'}}>
                             { params.rank ? params.rank.title1 : <span>私の目標は○○！！</span> }  
                         </p>
-                        <p className="text-center bg-black-4 ft-30 ft-xs-20  m-1 m-md-0 my-md-3">
+                        <p className="text-center bg-black-4 ft-30 ft-sm-20  m-1 m-md-0 my-md-3" style={{overflowX:'hidden'}}>
                             { params.rank ? params.rank.title2 : <span>私の目標は○○！！</span> } 
                         </p>
                     </div>
@@ -93,7 +99,7 @@ function PlayerInfo() {
             </div>
         </div>
 
-        <div className="row mt-4">
+        <div className="row mt-4 mx-0">
             <div className="col-md-6">
                 <div className="p-2 shadow-lg bg-black-4">
                     <h4 className="text-center text-white">勝率</h4>
@@ -223,7 +229,7 @@ function PlayerInfo() {
                     <tr>
                         <th>主な戦績</th>
                         <td>
-                            <pre className="text-left">{params.profile.career}</pre>
+                            <pre className="text-left pre-scrollable ft-sm-15">{params.profile.career}</pre>
                         </td>
                     </tr>                   
                 </tbody>
