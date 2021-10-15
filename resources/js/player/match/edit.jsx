@@ -13,7 +13,7 @@ import ClearIcon from '@mui/icons-material/Clear';
 import RemoveIcon from '@mui/icons-material/Remove';
 import AddIcon from '@mui/icons-material/Add';
 
-import { Rating, RatingView } from 'react-simple-star-rating'
+import { Rating, RatingView } from 'react-simple-star-rating';
 
 
 const  PlayerMatchEdit = (props) => {
@@ -110,9 +110,9 @@ const  PlayerMatchEdit = (props) => {
 
     return (
     <form  className="needs-validation"  onSubmit={handleSubmit} >
-        <div className="mt-3 py-2 rounded-15 bg-white shadow-lg" style={{minHeight:'500px'}}>
-            <h3 className="mt-2 p-1 text-white bg-green text-center font-weight-bold position-relative">
-                <span className="ft-25">試合前準備編集</span>
+        <div className="mt-3 py-2 rounded-15 bg-white shadow-lg" style={{minHeight:'700px'}}>
+            <h3 className="mt-2 p-1 text-white bg-green text-center font-weight-bold">
+                <span>試合前準備編集</span>
             </h3>
             {
                 !load && 
@@ -136,25 +136,24 @@ const  PlayerMatchEdit = (props) => {
                             <table className="table table-bordered text-center mb-2">
                                 <tbody>
                                     <tr className="table-success">
-                                        <td>大会名</td>
+                                        <th rowSpan="2" className="align-middle w-135-px">大会</th>
                                         <td>
-                                            <input type="text" className="w-100 bg-none border-0 text-center"  value={tournament_name} onChange={e => setTournamentName(e.target.value)} required/>
+                                            <input type="text" className="w-100 bg-none border-0 text-center" placeholder="大会名" value={tournament_name} onChange={e => setTournamentName(e.target.value)} required/>
                                         </td>
                                     </tr>
                                     <tr className="table-success">
-                                        <td>大会日にち</td>
                                         <td>
                                             <input type="date" className="w-100 bg-none border-0 text-center"  value={tournament_date} onChange={e => setTournamentDate(e.target.value)} required/>
                                         </td>
                                     </tr>
                                     <tr className="table-success">
-                                        <td>対戦相手</td>
+                                        <th>対戦相手</th>
                                         <td>
                                             <input type="text" className="w-100 bg-none border-0 text-center"  value={opponent_name} onChange={e => setOpponentName(e.target.value)} required/>
                                         </td>
                                     </tr>
                                     <tr className="table-success">
-                                        <td>クラブ名</td>
+                                        <th>クラブ名</th>
                                         <td>
                                             <input type="text" className="w-100 bg-none border-0 text-center"  value={opponent_club} onChange={e => setClub(e.target.value)} required/>
                                         </td>
@@ -164,7 +163,7 @@ const  PlayerMatchEdit = (props) => {
                             <table className="table table-bordered text-center mb-2">
                                 <tbody>
                                     <tr className="table-success">
-                                        <td>サーフェス</td>
+                                        <th className="w-135-px">サーフェス</th>
                                         <td>
                                             <select className="bg-none w-100 text-center border-0" value={surface} onChange={e => setSurface(e.target.value)}>
                                                 <option value="クレー">クレー</option>
@@ -174,7 +173,7 @@ const  PlayerMatchEdit = (props) => {
                                         </td>
                                     </tr>
                                     <tr className="table-success">
-                                        <td>ラウンド</td>
+                                        <th>ラウンド</th>
                                         <td>
                                             <select className="bg-none w-100 text-center border-0" value={round} onChange={e => setRound(e.target.value)}>
                                                 <option value="予選">予選</option>
@@ -183,7 +182,7 @@ const  PlayerMatchEdit = (props) => {
                                         </td>
                                     </tr>
                                     <tr className="table-success">
-                                        <td>天気</td>
+                                        <th>天気</th>
                                         <td>
                                             <select className="bg-none w-100 text-center border-0" value={weather} onChange={e => setWeather(e.target.value)}>
                                                 <option value="sunny">晴</option>
@@ -193,7 +192,7 @@ const  PlayerMatchEdit = (props) => {
                                         </td>
                                     </tr>
                                     <tr className="table-success">
-                                        <td>カテゴリー</td>
+                                        <th>カテゴリー</th>
                                         <td>
                                             <select className="bg-none w-100 text-center border-0" value={category} onChange={e => setCategory(e.target.value)}>
                                                 <option value="ITF">ITF</option>
@@ -266,21 +265,15 @@ const  PlayerMatchEdit = (props) => {
                     <div className="mt-3 mb-2 px-2 px-md-4">
                         <div className="row">
                             <div className="col-6">
-                                <Button size="large" color="primary" 
-                                    fullWidth variant="contained" 
-                                    style={{backgroundColor: 'transparent', border: '1px solid green', color:'green', fontSize:'16px'}} 
-                                    onClick={ e =>
-                                        history.push({
-                                            pathname: '/player/match',
-                                            state: {}
-                                        })
-                                    }>
-                                    <span>キャンセル</span>
-                                </Button>
+                                <Link to="/player/match" style={{textDecoration:'none'}}>
+                                    <Button size="large" fullWidth variant="contained" style={{backgroundColor: 'transparent', border: '1px solid green', color:'green', fontSize:'16px'}} >
+                                        <span>キャンセル</span>
+                                    </Button>
+                                </Link>
                             </div>
                             <div className="col-6">
                                 <LoadingButton size="large" type="submit" 
-                                    color="primary" fullWidth  
+                                    fullWidth  
                                     variant="contained" 
                                     endIcon={<SendIcon />}
                                     style={{backgroundColor: 'green', fontSize:'16px'}}

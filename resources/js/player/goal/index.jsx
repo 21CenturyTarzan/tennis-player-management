@@ -31,17 +31,11 @@ function PlayerGoal() {
     
     return (
         <div id="goal">
-            <div className="mt-3 py-2 rounded-15 bg-white shadow-lg" style={{minHeight:'500px'}}>
+            <div className="mt-3 py-2 rounded-15 bg-white shadow-lg" style={{minHeight:'700px'}}>
                 <h3 className="mt-2 p-1 position-relative text-white bg-green text-center font-weight-bold">
-                    <span className="ft-25">選手管理</span>
-                    <Link to="/player/goal/edit" 
-                        className="edit edit-right py-1" 
-                        style={{marginTop:'-5px'}}
-                    >
-                        <img src="/images/icon-pencil.svg" 
-                            alt="icon-pencil.svg" 
-                            width="30" height="30"
-                            title="Add"/>
+                    <span>選手管理</span>
+                    <Link to="/player/goal/edit" className="edit edit-right py-1" style={{marginTop:'-5px'}}>
+                        <img src="/images/icon-pencil.svg" alt="icon-pencil.svg" width="30" height="30" title="Add"/>
                     </Link>
                 </h3>
                 {
@@ -74,11 +68,11 @@ function PlayerGoal() {
                                     }
                                 </tbody>
                             </table>
-                            <p className="w-25 w-md-50 p-1 pl-2 mb-2 bg-black-4 rounded-right-20 text-white ft-16 ft-xs-14">私の目標</p>
+                            <p className="w-25 w-md-50 p-1 pl-2 mb-2 bg-black-4 rounded-right-20 text-white">私の目標</p>
                             <table className="table table-bordered mb-2 text-center">
                                 <tbody>
                                     <tr className="table-secondary">
-                                        <th className="w-100-px w-xs-60-px"></th>
+                                        <th className="w-135-px w-xs-60-px"></th>
                                         <th>試合</th>
                                         <th className="w-100-px w-xs-75-px">目標</th>
                                         <th className="w-100-px w-xs-50-px">結果</th>
@@ -86,7 +80,7 @@ function PlayerGoal() {
                                     {
                                         params.goal_stage.map((item, idx)=>
                                             <tr className={`${idx>=0&&idx<3&&'table-success'} ${idx>=3&&idx<6&&'table-danger'} ${idx>=6&&idx<9&&'table-primary'}`} key={idx}>
-                                                <td>{item.stage_type}</td>
+                                                <th className={`${idx%3!=0 && 'd-none'} align-middle`} rowSpan="3">{item.stage_type}<br className="d-block d-sm-none"/>目標</th>
                                                 <td>{item.stage_match}</td>
                                                 <td>{item.stage_goal}</td>
                                                 <td>{item.stage_result}</td>
@@ -98,7 +92,7 @@ function PlayerGoal() {
                         </div>
                         <p className="w-50 w-md-75 p-1 pl-2 mb-2 bg-black-4 rounded-right-20 text-white">短期目標に向かっての課題</p>
                         <div className="px-2 mb-2">
-                            <nav className="mb-2 ft-15">
+                            <nav className="mb-2">
                                 <div className="nav nav-tabs justify-content-center" id="nav-tab" role="tablist">
                                     <button className="nav-link active" id="nav-task-tab" data-bs-toggle="tab" data-bs-target="#nav-task" type="button" role="tab">中核的課題</button>
                                     <button className="nav-link" id="nav-extra-tab" data-bs-toggle="tab" data-bs-target="#nav-extra" type="button" role="tab">その他の課題</button>
@@ -131,7 +125,7 @@ function PlayerGoal() {
                                     </table>
                                 </div>
                                 <div className="tab-pane fade" id="nav-extra" role="tabpanel" aria-labelledby="nav-extra-tab">
-                                    <table className="mb-2 table table-bordered text-center ft-16">
+                                    <table className="mb-2 table table-bordered text-center">
                                         <tbody>
                                             <tr className="table-success">
                                                 <td className="w-40-px"><img src="/images/icons/icon-book.svg" width="25" height="25" /></td>

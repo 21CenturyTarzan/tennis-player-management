@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import { useHistory } from 'react-router-dom'
+import { useHistory, Link } from 'react-router-dom'
 import axios from 'axios';
 
 // material
@@ -104,7 +104,7 @@ const  PlayerMatchNew = () => {
     <form  className="needs-validation"  onSubmit={handleSubmit} >
         <div className="mt-3 py-2 rounded-15 bg-white shadow-lg">
             <h3 className="mt-2 p-1 text-white bg-green text-center font-weight-bold">
-                <span className="ft-25">試合前準備追加</span>
+                <span>試合前準備追加</span>
             </h3>
             
             <p className="w-50 w-md-75 p-1 pl-2 mb-2 bg-black-4 rounded-right-20 text-white">大会情報</p>
@@ -113,25 +113,24 @@ const  PlayerMatchNew = () => {
                     <table className="table table-bordered text-center mb-2">
                         <tbody>
                             <tr className="table-success">
-                                <td>大会名</td>
+                                <th rowSpan="2" className="align-middle w-135-px">大会</th>
                                 <td>
-                                    <input type="text" className="w-100 bg-none border-0 text-center"  value={tournament_name} onChange={e => setTournamentName(e.target.value)} required/>
+                                    <input type="text" className="w-100 bg-none border-0 text-center" placeholder="大会名"  value={tournament_name} onChange={e => setTournamentName(e.target.value)} required/>
                                 </td>
                             </tr>
                             <tr className="table-success">
-                                <td>大会日にち</td>
                                 <td>
                                     <input type="date" className="w-100 bg-none border-0 text-center"  value={tournament_date} onChange={e => setTournamentDate(e.target.value)} required/>
                                 </td>
                             </tr>
                             <tr className="table-success">
-                                <td>対戦相手</td>
+                                <th>対戦相手</th>
                                 <td>
                                     <input type="text" className="w-100 bg-none border-0 text-center"  value={opponent_name} onChange={e => setOpponentName(e.target.value)} required/>
                                 </td>
                             </tr>
                             <tr className="table-success">
-                                <td>クラブ名</td>
+                                <th>クラブ名</th>
                                 <td>
                                     <input type="text" className="w-100 bg-none border-0 text-center"  value={opponent_club} onChange={e => setClub(e.target.value)} required/>
                                 </td>
@@ -141,7 +140,7 @@ const  PlayerMatchNew = () => {
                     <table className="table table-bordered text-center mb-2">
                         <tbody>
                             <tr className="table-success">
-                                <td>サーフェス</td>
+                                <th className="w-135-px">サーフェス</th>
                                 <td>
                                     <select className="bg-none w-100 text-center border-0" onChange={e => setSurface(e.target.value)}>
                                         <option value="クレー">クレー</option>
@@ -151,7 +150,7 @@ const  PlayerMatchNew = () => {
                                 </td>
                             </tr>
                             <tr className="table-success">
-                                <td>ラウンド</td>
+                                <th>ラウンド</th>
                                 <td>
                                     <select className="bg-none w-100 text-center border-0" onChange={e => setRound(e.target.value)}>
                                         <option value="予選">予選</option>
@@ -160,7 +159,7 @@ const  PlayerMatchNew = () => {
                                 </td>
                             </tr>
                             <tr className="table-success">
-                                <td>天気</td>
+                                <th>天気</th>
                                 <td>
                                     <select className="bg-none w-100 text-center border-0" onChange={e => setWeather(e.target.value)}>
                                         <option value="sunny">晴</option>
@@ -170,7 +169,7 @@ const  PlayerMatchNew = () => {
                                 </td>
                             </tr>
                             <tr className="table-success">
-                                <td>カテゴリー</td>
+                                <th>カテゴリー</th>
                                 <td>
                                     <select className="bg-none w-100 text-center border-0" onChange={e => setCategory(e.target.value)}>
                                         <option value="ITF">ITF</option>
@@ -250,17 +249,11 @@ const  PlayerMatchNew = () => {
             <div className="mt-3 mb-2 px-2 px-md-4">
                 <div className="row">
                     <div className="col-6">
-                        <Button size="large" color="primary" 
-                            fullWidth variant="contained" 
-                            style={{backgroundColor: 'transparent', border: '1px solid green', color:'green', fontSize:'16px'}} 
-                            onClick={ e =>
-                                history.push({
-                                    pathname: '/player/match',
-                                    state: {}
-                                })
-                            }>
-                            <span>キャンセル</span>
-                        </Button>
+                        <Link to="/player/match" style={{textDecoration:'none'}}>
+                            <Button size="large" fullWidth variant="contained" style={{backgroundColor: 'transparent', border: '1px solid green', color:'green', fontSize:'16px'}} >
+                                <span>キャンセル</span>
+                            </Button>
+                        </Link>
                     </div>
                     <div className="col-6">
                         <LoadingButton size="large" type="submit" 

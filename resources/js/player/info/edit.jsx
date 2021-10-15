@@ -2,7 +2,7 @@
 
 import ReactDOM from 'react-dom';
 import React, {useState, useEffect} from 'react'
-import { useHistory } from 'react-router-dom'
+import { useHistory, Link } from 'react-router-dom'
 import axios from 'axios';
 
 // material
@@ -310,7 +310,7 @@ const  PlayerInfoEditor = () => {
             <div className="row mt-3 mx-0">
                 <div className="col-md-8 offset-md-2">
                     <div className="p-2 shadow-lg bg-black-4">
-                        <h4 className="text-center text-white">
+                        <h5 className="text-center text-white">
                             <img src="/images/icon-minus-white.svg" 
                                 width="25" 
                                 style={{position:'absolute', left:'30px', cursor:'pointer'}} 
@@ -322,7 +322,7 @@ const  PlayerInfoEditor = () => {
                                 style={{position:'absolute', right:'30px', cursor:'pointer'}} 
                                 onClick={addRank}
                             />
-                        </h4>
+                        </h5>
                         <table className="table table-bordered m-0 p-1 text-white text-center">
                             <thead>
                                 <tr>
@@ -404,7 +404,7 @@ const  PlayerInfoEditor = () => {
 
 
             <div className="mt-3 p-2 shadow-lg bg-black-4">
-                <h4 className="text-center text-white">個人情報</h4>
+                <h5 className="text-center text-white">個人情報</h5>
                 <table className="table table-bordered m-0 text-white">
                     <tbody>
                         <tr>
@@ -455,21 +455,15 @@ const  PlayerInfoEditor = () => {
             <div className="mt-3">
                 <div className="row mx-0">
                     <div className="col-6">
-                        <Button size="large" color="primary" 
-                            fullWidth variant="contained" 
-                            style={{backgroundColor: 'transparent', border: '2px solid white', fontSize:'16px'}} 
-                            onClick={ e =>
-                                history.push({
-                                    pathname: '/player/info',
-                                    state: {}
-                                })
-                            }>
-                            キャンセル
-                        </Button>
+                        <Link to="/player/info" style={{textDecoration:'none'}}>
+                            <Button size="large" fullWidth variant="contained" style={{backgroundColor: 'transparent', border: '2px solid white', fontSize:'16px'}}  >
+                                <span>キャンセル</span>
+                            </Button>
+                        </Link>
                     </div>
                     <div className="col-6">
                         <LoadingButton size="large" type="submit" 
-                            loading={loading} color="primary" 
+                            loading={loading}
                             fullWidth  variant="contained" 
                             style={{backgroundColor: 'transparent', border: '2px solid white', fontSize:'16px'}} 
                             endIcon={<SendIcon />}>

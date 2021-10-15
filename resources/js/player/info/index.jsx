@@ -35,11 +35,7 @@ function PlayerInfo() {
                 <p className="text-center bg-red-4 font-weight-bold">
                     { params.profile.account.name }
                     <Link to="/player/info/edit" className="edit edit-right">
-                        <img src="/images/icon-pencil.svg" 
-                            alt="icon-pencil.svg" 
-                            width="30" height="30"
-                            title="Edit"
-                        />
+                        <img src="/images/icon-pencil.svg" alt="icon-pencil.svg" width="30" height="30" title="Edit"/>
                     </Link>
                 </p>
             </div>
@@ -102,7 +98,7 @@ function PlayerInfo() {
         <div className="row mt-4 mx-0">
             <div className="col-md-6">
                 <div className="p-2 shadow-lg bg-black-4">
-                    <h4 className="text-center text-white">勝率</h4>
+                    <h5 className="text-center text-white">勝率</h5>
                     <table className="table table-bordered m-0 p-1 text-white text-center">
                         <thead>
                             <tr>
@@ -149,7 +145,7 @@ function PlayerInfo() {
 
             <div className="col-md-6 mt-4 mt-md-0">
                 <div className="p-2 shadow-lg bg-black-4">
-                    <h4 className="text-center text-white">RANK</h4>
+                    <h5 className="text-center text-white">RANK</h5>
                     <table className="table table-bordered m-0 p-1 text-white text-center">
                         <thead>
                             <tr>
@@ -195,7 +191,7 @@ function PlayerInfo() {
 
     
         <div className="mt-4 p-2 shadow-lg bg-black-4">
-            <h4 className="text-center text-white">個人情報</h4>
+            <h5 className="text-center text-white">個人情報</h5>
             <table className="table table-bordered m-0 text-white text-center" id="person-info">
                 <tbody>
                     <tr>
@@ -229,7 +225,7 @@ function PlayerInfo() {
                     <tr>
                         <th>主な戦績</th>
                         <td>
-                            <pre className="text-left pre-scrollable ft-sm-15">{params.profile.career}</pre>
+                            <pre className="text-left pre-scrollable">{params.profile.career}</pre>
                         </td>
                     </tr>                   
                 </tbody>
