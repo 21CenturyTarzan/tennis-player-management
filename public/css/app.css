@@ -13103,10 +13103,11 @@ textarea {
 table, th, td {
   padding: 5px !important;
 }
-@media (max-width: 767.98px) {
-  table, th, td {
-    font-size: 15px;
-  }
+table#result-table {
+  min-width: 650px;
+}
+table#result-table td {
+  background-color: white;
 }
 
 .reviewRateStar {

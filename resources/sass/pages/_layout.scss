@@ -2,7 +2,16 @@
 table, th, td{
     padding: 5px !important;
     @include media-breakpoint-down(sm){
-        font-size: 15px;
+        // font-size: 1rem;
+    }
+}
+
+table{
+    &#result-table{
+        min-width: 650px;
+        td{
+            background-color: white;
+        }
     }
 }
 

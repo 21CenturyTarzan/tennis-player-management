@@ -36,12 +36,12 @@ function PlayerResult() {
 
     return (
     <div id="result">
-        <div className="mt-3 py-2 rounded-15 bg-white shadow-lg" style={{minHeight:'500px'}}>
+        <div className="mt-3 py-2 rounded-15 bg-white shadow-lg" style={{minHeight:'700px'}}>
             <h3 className="mt-2 p-1 text-white bg-green text-center font-weight-bold position-relative">
                 <Link to="/player/result/edit" className="edit edit-left py-1" style={{marginTop:'-5px'}}>
                     <img src="/images/icon-pencil.svg" alt="icon-pencil.svg" width="30" height="30" title="Edit"/>
                 </Link>
-                <span  className="ft-25">試合結果</span>
+                <span>試合結果</span>
                 <Link to="/player/result/new" className="edit edit-right py-1" style={{marginTop:'-5px'}}>
                     <img src="/images/icon-add.svg" alt="icon-add.svg" width="30" height="30"title="Add"/>
                 </Link>
@@ -62,12 +62,12 @@ function PlayerResult() {
                     <div className="px-2 mb-2">
                         {
                             tournament.caution &&
-                            <table className="table table-bordered text-center">
+                            <table className="table table-bordered text-center mb-2">
                                 <tbody>
                                     {
                                         tournament.caution.map((x, i)=>
                                         <tr key={i}>
-                                            <td className="w-40-px"><span>{i+1}</span></td>
+                                            <td className="w-40-px align-middle"><span>{i+1}</span></td>
                                             <td>{x.caution}<br/>
                                              <RatingView stars={10} ratingValue={5}/></td>
                                         </tr>
@@ -76,20 +76,63 @@ function PlayerResult() {
                                 </tbody>
                             </table>
                         } 
-                    </div>
-                    <div className="px-2 mb-2">
-                        <table className="table table-bordered text-center">
+                        <p className="w-25 w-md-50 p-1 pl-2 mb-2 bg-black-4 rounded-right-20 text-white">自己評価</p>
+                        <table className="table table-bordered text-center mb-2">
                             <tbody>
-                                <tr className="table-success">
+                                <tr>
                                     <td>努力・闘志の評価</td>
                                     <td style={{width: '165px'}}><RatingView stars={10} size={15} ratingValue={5}/></td>
                                 </tr>
-                                <tr className="table-success">
+                                <tr>
                                     <td>プレーの自己評価</td>
                                     <td style={{width: '165px'}}><RatingView stars={10} size={15} ratingValue={5}/></td>
                                 </tr>
                             </tbody>
                         </table>
+                        <p className="w-25 w-md-50 p-1 pl-2 mb-2 bg-black-4 rounded-right-20 text-white">試合の流れ</p>
+                        <div style={{overflowX:'scroll'}}>
+                            <table className="table table-bordered text-center table-success mb-0" id="result-table">
+                                <tbody>
+                                    <tr>
+                                        <th colSpan="2"></th>
+                                        <th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th><th>10</th><th>11</th><th>12</th><th>T</th>
+                                    </tr>
+                                    <tr>
+                                        <th rowSpan="2" className="align-middle">1set</th>
+                                        <th>自分</th>
+                                        <td>15</td><td>15</td><td>15</td><td>15</td><td>15</td><td>15</td><td>15</td><td>15</td><td>15</td><td>15</td><td>15</td><td>15</td>
+                                        <th>350</th>
+                                    </tr>
+                                    <tr>
+                                        <th>相手</th>
+                                        <td>15</td><td>15</td><td>15</td><td>15</td><td>15</td><td>15</td><td>15</td><td>15</td><td>15</td><td>15</td><td>15</td><td>15</td>
+                                        <th>350</th>
+                                    </tr>
+                                    <tr>
+                                        <th rowSpan="2" className="align-middle">2set</th>
+                                        <th>自分</th>
+                                        <td>15</td><td>15</td><td>15</td><td>15</td><td>15</td><td>15</td><td>15</td><td>15</td><td>15</td><td>15</td><td>15</td><td>15</td>
+                                        <th>350</th>
+                                    </tr>
+                                    <tr>
+                                        <th>相手</th>
+                                        <td>15</td><td>15</td><td>15</td><td>15</td><td>15</td><td>15</td><td>15</td><td>15</td><td>15</td><td>15</td><td>15</td><td>15</td>
+                                        <th>350</th>
+                                    </tr>
+                                    <tr>
+                                        <th rowSpan="2" className="align-middle">3set</th>
+                                        <th>自分</th>
+                                        <td>15</td><td>15</td><td>15</td><td>15</td><td>15</td><td>15</td><td>15</td><td>15</td><td>15</td><td>15</td><td>15</td><td>15</td>
+                                        <th>350</th>
+                                    </tr>
+                                    <tr>
+                                        <th>相手</th>
+                                        <td>15</td><td>15</td><td>15</td><td>15</td><td>15</td><td>15</td><td>15</td><td>15</td><td>15</td><td>15</td><td>15</td><td>15</td>
+                                        <th>350</th>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                     <p className="w-100 p-1 pl-2 mb-2 bg-black-4 text-white text-right">最新の更新日 : 2019/3/20 19:40</p>
                 </>

@@ -192,9 +192,9 @@ const  PlayerGoalEditor = () => {
 
     return (
     <form  className="needs-validation"  onSubmit={handleSubmit}>
-        <div className="mt-3 py-2 rounded-15 bg-white shadow-lg" style={{minHeight:'500px'}}>
+        <div className="mt-3 py-2 rounded-15 bg-white shadow-lg" style={{minHeight:'700px'}}>
             <h3 className="mt-2 p-1  text-white bg-green text-center font-weight-bold">
-                <span className="ft-25">選手管理編集</span>
+                <span>選手管理編集</span>
             </h3>
             {
                 !load && <CircularProgress color="secondary" style={{top:'calc(40vh - 22px)', left:'calc(50% - 22px)', color:'green', position:'absolute'}}/>
@@ -241,7 +241,7 @@ const  PlayerGoalEditor = () => {
                                 
                             </tbody>
                         </table>
-                        <p className="w-25 w-md-50 p-1 pl-2 mb-2 bg-black-4 rounded-right-20 text-white ft-16 ft-xs-14">私の目標</p>
+                        <p className="w-25 w-md-50 p-1 pl-2 mb-2 bg-black-4 rounded-right-20 text-white">私の目標</p>
                         <table className="table table-bordered table-info mb-2 text-center">
                             <tbody>
                                 <tr>
@@ -291,7 +291,7 @@ const  PlayerGoalEditor = () => {
                             }
                         </div>
                         <div className="w-50 w-sm-100">
-                            <table className="table table-bordered mb-2 text-center ft-16">
+                            <table className="table table-bordered mb-2 text-center">
                                 <tbody>
                                     <tr>
                                         <td><img src="/images/icons/icon-book.svg" width="25" height="25" /></td>

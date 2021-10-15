@@ -32,12 +32,12 @@ function PlayerMatch() {
 
     return (
     <div id="prepare">
-        <div className="mt-3 py-2 rounded-15 bg-white shadow-lg" style={{minHeight:'500px'}}>
+        <div className="mt-3 py-2 rounded-15 bg-white shadow-lg" style={{minHeight:'700px'}}>
             <h3 className="mt-2 p-1 text-white bg-green text-center font-weight-bold position-relative">
                 <Link to="/player/match/edit" className="edit edit-left py-1" style={{marginTop:'-5px'}}>
                     <img src="/images/icon-pencil.svg" alt="icon-pencil.svg" width="30" height="30" title="Edit"/>
                 </Link>
-                <span  className="ft-25">試合前準備</span>
+                <span>試合前準備</span>
                 <Link to="/player/match/new" className="edit edit-right py-1" style={{marginTop:'-5px'}}>
                     <img src="/images/icon-add.svg" alt="icon-add.svg" width="30" height="30"title="Add"/>
                 </Link>

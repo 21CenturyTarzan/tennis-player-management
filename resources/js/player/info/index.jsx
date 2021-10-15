@@ -225,7 +225,7 @@ function PlayerInfo() {
                     <tr>
                         <th>主な戦績</th>
                         <td>
-                            <pre className="text-left pre-scrollable ft-sm-15">{params.profile.career}</pre>
+                            <pre className="text-left pre-scrollable">{params.profile.career}</pre>
                         </td>
                     </tr>                   
                 </tbody>
