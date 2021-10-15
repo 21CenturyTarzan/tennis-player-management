@@ -35,11 +35,7 @@ function PlayerInfo() {
                 <p className="text-center bg-red-4 font-weight-bold">
                     { params.profile.account.name }
                     <Link to="/player/info/edit" className="edit edit-right">
-                        <img src="/images/icon-pencil.svg" 
-                            alt="icon-pencil.svg" 
-                            width="30" height="30"
-                            title="Edit"
-                        />
+                        <img src="/images/icon-pencil.svg" alt="icon-pencil.svg" width="30" height="30" title="Edit"/>
                     </Link>
                 </p>
             </div>

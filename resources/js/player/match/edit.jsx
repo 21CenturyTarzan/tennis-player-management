@@ -13,7 +13,7 @@ import ClearIcon from '@mui/icons-material/Clear';
 import RemoveIcon from '@mui/icons-material/Remove';
 import AddIcon from '@mui/icons-material/Add';
 
-import { Rating, RatingView } from 'react-simple-star-rating'
+import { Rating, RatingView } from 'react-simple-star-rating';
 
 
 const  PlayerMatchEdit = (props) => {
@@ -111,7 +111,7 @@ const  PlayerMatchEdit = (props) => {
     return (
     <form  className="needs-validation"  onSubmit={handleSubmit} >
         <div className="mt-3 py-2 rounded-15 bg-white shadow-lg" style={{minHeight:'500px'}}>
-            <h3 className="mt-2 p-1 text-white bg-green text-center font-weight-bold position-relative">
+            <h3 className="mt-2 p-1 text-white bg-green text-center font-weight-bold">
                 <span className="ft-25">試合前準備編集</span>
             </h3>
             {

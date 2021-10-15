@@ -34,14 +34,8 @@ function PlayerGoal() {
             <div className="mt-3 py-2 rounded-15 bg-white shadow-lg" style={{minHeight:'500px'}}>
                 <h3 className="mt-2 p-1 position-relative text-white bg-green text-center font-weight-bold">
                     <span className="ft-25">選手管理</span>
-                    <Link to="/player/goal/edit" 
-                        className="edit edit-right py-1" 
-                        style={{marginTop:'-5px'}}
-                    >
-                        <img src="/images/icon-pencil.svg" 
-                            alt="icon-pencil.svg" 
-                            width="30" height="30"
-                            title="Add"/>
+                    <Link to="/player/goal/edit" className="edit edit-right py-1" style={{marginTop:'-5px'}}>
+                        <img src="/images/icon-pencil.svg" alt="icon-pencil.svg" width="30" height="30" title="Add"/>
                     </Link>
                 </h3>
                 {
