@@ -19,6 +19,7 @@ import { Rating, RatingView } from 'react-simple-star-rating';
 function PlayerResult() {
     const [load, setLoad] = useState(false);
     const [tournament, setTournament] = useState(null);
+    const [select, setSelect] = useState(false);
 
     useEffect( () => {
 
@@ -132,6 +133,21 @@ function PlayerResult() {
                                     </tr>
                                 </tbody>
                             </table>
+                        </div>
+                    </div>
+                    <p className="w-50 w-md-75 p-1 pl-2 mb-2 bg-black-4 rounded-right-20 text-white">どんな相手だったか？</p>
+                    <div className="px-2 mb-2">
+                        <div className="form-check">
+                            <input className="form-check-input" type="checkbox" value={select} id="flexCheckDefault" onChange={()=>setSelect(!select)}/>
+                            <label className="form-check-label" htmlFor="flexCheckDefault">
+                                フォアハンドが強い
+                            </label>
+                        </div>
+                        <div className="form-check">
+                            <input className="form-check-input" type="checkbox" id="flexCheckChecked"/>
+                            <label className="form-check-label" htmlFor="flexCheckChecked">
+                                バックが弱い
+                            </label>
                         </div>
                     </div>
                     <p className="w-100 p-1 pl-2 mb-2 bg-black-4 text-white text-right">最新の更新日 : 2019/3/20 19:40</p>
