@@ -63,11 +63,10 @@ function PlayerMatch() {
                             <table className="table table-bordered text-center mb-2">
                                 <tbody>
                                     <tr className="table-success">
-                                        <td>大会名</td>
+                                        <td rowSpan="2">大会</td>
                                         <td>{tournament.tournament_name}</td>
                                     </tr>
                                     <tr className="table-success">
-                                        <td>大会日にち</td>
                                         <td>{moment(tournament.tournament_date).format('YYYY-MM-DD')}</td>
                                     </tr>
                                     <tr className="table-success">

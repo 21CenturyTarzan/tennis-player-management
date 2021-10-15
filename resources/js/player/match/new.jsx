@@ -113,13 +113,12 @@ const  PlayerMatchNew = () => {
                     <table className="table table-bordered text-center mb-2">
                         <tbody>
                             <tr className="table-success">
-                                <td>大会名</td>
+                                <td rowSpan="2">大会</td>
                                 <td>
                                     <input type="text" className="w-100 bg-none border-0 text-center"  value={tournament_name} onChange={e => setTournamentName(e.target.value)} required/>
                                 </td>
                             </tr>
                             <tr className="table-success">
-                                <td>大会日にち</td>
                                 <td>
                                     <input type="date" className="w-100 bg-none border-0 text-center"  value={tournament_date} onChange={e => setTournamentDate(e.target.value)} required/>
                                 </td>
