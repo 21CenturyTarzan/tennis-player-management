@@ -195,12 +195,17 @@ const  PlayerMatchEdit = (props) => {
                                         <th>カテゴリー</th>
                                         <td>
                                             <select className="bg-none w-100 text-center border-0" value={category} onChange={e => setCategory(e.target.value)}>
-                                                <option value="ITF">ITF</option>
-                                                <option value="JTAU18">JTAU18</option>
-                                                <option value="関東U18">関東U18</option>
-                                                <option value="JTAU24">JTAU24</option>
-                                                <option value="関東U24">関東U24</option>
-                                                <option value="埼玉U24">埼玉U24</option>
+                                                <option value="U8">U8</option>
+                                                <option value="U9">U9</option>
+                                                <option value="U10">U10</option>
+                                                <option value="U11">U11</option>
+                                                <option value="U12">U12</option>
+                                                <option value="U13">U13</option>
+                                                <option value="U14">U14</option>
+                                                <option value="U15">U15</option>
+                                                <option value="U16">U16</option>
+                                                <option value="U17">U17</option>
+                                                <option value="U18">U18</option>
                                             </select>
                                         </td>
                                     </tr>

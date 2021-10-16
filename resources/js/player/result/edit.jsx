@@ -84,19 +84,16 @@ function PlayerResultEdit() {
                     <div className="px-2 mb-2">
                         {
                             tournament.caution &&
-                            <table className="table table-bordered text-center mb-2">
-                                <tbody>
-                                    {
-                                        tournament.caution.map((x, i)=>
-                                        <tr key={i}>
-                                            <td className="w-40-px align-middle"><span>{i+1}</span></td>
-                                            <td>{x.caution}<br/>
-                                             <Rating stars={10} ratingValue={5}/></td>
-                                        </tr>
-                                        )
-                                    }
-                                </tbody>
-                            </table>
+                            <div>
+                            {
+                                tournament.caution.map((x, i)=>
+                                    <div className="d-block d-sm-flex justify-content-between" key={i}>
+                                        <div>{x.caution}</div>
+                                        <div><Rating stars={10} ratingValue={5}/></div>
+                                    </div>
+                                )
+                            }
+                            </div>
                         } 
                         <p className="w-25 w-md-50 p-1 pl-2 mb-2 bg-black-4 rounded-right-20 text-white">自己評価</p>
                         <table className="table table-bordered text-center mb-2">
