@@ -15,7 +15,7 @@ class CreateGoalStageTable extends Migration
     {
         Schema::create('goal_stage', function (Blueprint $table) {
             $table->unsignedBigInteger('id')->autoIncrement()->comment('ID');
-            $table->foreignId('goal_id')->constrained('goals')->comment('GoalID');
+            $table->foreignId('player_id')->constrained('players')->comment('playerID');
             $table->string('stage_type');
             $table->string('stage_match');
             $table->string('stage_goal');

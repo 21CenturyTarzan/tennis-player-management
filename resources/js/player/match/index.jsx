@@ -118,11 +118,29 @@ function PlayerMatch() {
                         </table>
                     </div>
 
+                    <p className="w-50 w-md-75 p-1 pl-2 mb-2 bg-black-4 rounded-right-20 text-white">自己分析</p>
+                    <div className="px-2 mb-2 pre-scrollable">
+                        <table className="table table-bordered text-center">
+                            <tbody>
+                                {
+                                    question_list ? 
+                                        question_list.map((x, i)=>
+                                            <tr key={i}>
+                                                <td className="w-40-px"><span>{i+1}</span></td>
+                                                <td>{x.question}</td>
+                                            </tr>
+                                        )
+                                    : <tr><td>分析資料がありません。</td></tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+
                     <p className="w-50 w-md-75 p-1 pl-2 mb-2 bg-black-4 rounded-right-20 text-white">試合前に心がける事</p>
                     <div className="px-2 mb-2">
                         {
                             tournament.caution &&
-                            <table className="table table-bordered text-center">
+                            <table className="table table-bordered text-center mb-0">
                                 <tbody>
                                     {
                                         tournament.caution.map((x, i)=>

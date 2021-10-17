@@ -33,7 +33,7 @@
             </picture>
             <p class="mt-1 mt-md-4 ft-sm-25">HYS TENNIS PLAYER MANAGEMENT</p>
 
-            <div class="btn-bar mt-1 mt-md-5">
+            <div class="btn-bar mt-1 mt-md-1">
                 @yield('auth-btn')
             </div>
         </div>

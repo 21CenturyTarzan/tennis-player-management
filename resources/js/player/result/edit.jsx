@@ -47,9 +47,11 @@ function PlayerResultEdit() {
         })
     }, []);
 
-    const changeScore = (e, iy, ix) => {
+    const changeScore = (rate, iy, ix) => {
         const list = [...scores];
-        list[iy]['scores'][ix] = Number(e.target.value);
+        if(rate == 1 && list[iy]['scores'][ix] == 1)
+            list[iy]['scores'][ix] = 0;
+        else list[iy]['scores'][ix] = rate;
         var sum = 0;
         for(let i=0; i<list[iy]['scores'].length; i++)
             sum += list[iy]['scores'][i];
@@ -59,7 +61,6 @@ function PlayerResultEdit() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(scores);
     }
 
     return (
@@ -84,19 +85,16 @@ function PlayerResultEdit() {
                     <div className="px-2 mb-2">
                         {
                             tournament.caution &&
-                            <table className="table table-bordered text-center mb-2">
-                                <tbody>
-                                    {
-                                        tournament.caution.map((x, i)=>
-                                        <tr key={i}>
-                                            <td className="w-40-px align-middle"><span>{i+1}</span></td>
-                                            <td>{x.caution}<br/>
-                                             <Rating stars={10} ratingValue={5}/></td>
-                                        </tr>
-                                        )
-                                    }
-                                </tbody>
-                            </table>
+                            <div>
+                            {
+                                tournament.caution.map((x, i)=>
+                                    <div className="d-block d-sm-flex justify-content-between" key={i}>
+                                        <div>{x.caution}</div>
+                                        <div><Rating stars={10} ratingValue={5}/></div>
+                                    </div>
+                                )
+                            }
+                            </div>
                         } 
                         <p className="w-25 w-md-50 p-1 pl-2 mb-2 bg-black-4 rounded-right-20 text-white">自己評価</p>
                         <table className="table table-bordered text-center mb-2">
@@ -127,11 +125,7 @@ function PlayerResultEdit() {
                                                 {
                                                     yItem.scores.map((xItem, ix)=>
                                                         <td key={ix}>
-                                                            <input type="number" min="0" max="50" step="5" 
-                                                                className="w-35-px bg-none text-center text-black border-0" 
-                                                                value={xItem} 
-                                                                onChange={e=>changeScore(e, iy, ix)}
-                                                                required/>
+                                                            <Rating ratingValue={xItem} stars={1} onClick={rate=>changeScore(rate, iy, ix)} style={{color:'green'}}/>
                                                         </td>             
                                                     )
                                                 }
@@ -164,7 +158,7 @@ function PlayerResultEdit() {
                             <div className="col-6">
                                 <Link to="/player/result" style={{textDecoration:'none'}}>
                                     <Button size="large" fullWidth variant="contained" style={{backgroundColor: 'transparent', border: '1px solid green', color:'green', fontSize:'16px'}} >
-                                        <span>キャンセル</span>
+                                        <span>閉じる</span>
                                     </Button>
                                 </Link>
                             </div>

@@ -43,13 +43,11 @@ var g_TaskObj = [
 
 // ----------------------------------------------------------------------
 
-const  PlayerGoalEditor = () => {
+const  PlayerGoalNew = () => {
 
     const history = useHistory();
     const [load, setLoad] = useState(false);
     const [submit, setSubmit] = useState(false);
-    const [goal_id, setGoalId] = useState(null);
-    const [ok_data, setOKData] = useState(false);
     ////////////////////////////////////////////////////////
     const [stage_list, setStageList] = useState([]);
     const [match_list,  setMatchList] = useState([]);
@@ -95,18 +93,19 @@ const  PlayerGoalEditor = () => {
                 setRateBreakfast(params.goal.breakfast);
                 setRateLunch(params.goal.lunch);
                 setRateDinner(params.goal.dinner);
-                
+
                 setMatchList(params.goal.goal_match);
                 setStageList(params.stage);
                 setTaskList(params.goal.goal_task);
-                
-                setGoalId(params.goal.id);
-                setOKData(true);
+            }
+            if(response.data.status_code == 400){
+                setStageList(g_StageObj);
+                setTaskList(g_TaskObj);
             }
         });
 
     }, []);
-
+    
    
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -129,7 +128,7 @@ const  PlayerGoalEditor = () => {
 
         setSubmit(true)
 
-        axios.post('/player/goal/update', formdata, {params:{goal_id: goal_id}})
+        axios.post('/player/goal/store', formdata)
         .then(response => {
             if(response.data.status_code==200){
                 setSubmit(false);
@@ -141,6 +140,17 @@ const  PlayerGoalEditor = () => {
         })
     }
 
+    const addMatchItem = () => {
+        var today = new Date();
+        var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+        setMatchList([...match_list, { match_date: date, match_name: '', match_goal:'勝つ' }]);
+    };
+
+    const removeMatchItem = () => {
+        const list = [...match_list];
+        list.pop();
+        setMatchList(list);
+    };
     
     const changeMatchItem = (e, index) => {
         const { id, value } = e.target;
@@ -173,25 +183,22 @@ const  PlayerGoalEditor = () => {
     <form  className="needs-validation"  onSubmit={handleSubmit}>
         <div className="mt-3 py-2 rounded-15 bg-white shadow-lg" style={{minHeight:'700px'}}>
             <h3 className="mt-2 p-1  text-white bg-green text-center font-weight-bold">
-                <span>選手管理編集</span>
+                <span>選手管理追加</span>
             </h3>
             {
                 !load && <CircularProgress color="secondary" style={{top:'calc(40vh - 22px)', left:'calc(50% - 22px)', color:'green', position:'absolute'}}/>
             }
             {
-                    load && !ok_data &&
-                    <>
-                        <p className="mt-5 text-center">登録された資料がありません。</p>
-                        <Link to="/player/goal/new">
-                            <p className="mt-2 text-center">新たに追加するには...</p>
-                        </Link>
-                    </>
-            }
-            {
-                load && ok_data &&
+                load &&
                 <>
-                    <p className="w-50 w-md-75 p-1 pl-2 mb-2 bg-black-4 rounded-right-20 text-white">近日予定の試合</p>
+                    <p className="w-50 w-md-75 p-1 pl-2 mb-0 bg-black-4 rounded-right-20 text-white">近日予定の試合</p>
                     <div className="px-2 mb-2">
+                        <IconButton onClick={removeMatchItem}>
+                            <RemoveIcon fontSize="small"/>
+                        </IconButton>
+                        <IconButton className="float-right" onClick={addMatchItem}>
+                            <AddIcon fontSize="small"/>
+                        </IconButton>
                         <table className="table table-bordered table-success mb-2 text-center">
                             <tbody>
                                 <tr>
@@ -387,4 +394,4 @@ const  PlayerGoalEditor = () => {
   }
 
 
-export default PlayerGoalEditor;
+export default PlayerGoalNew;

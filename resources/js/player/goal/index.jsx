@@ -18,12 +18,16 @@ function PlayerGoal() {
         var id = Number(document.getElementById('player_id').value);
         axios.get('/api/player/goal', {params:{player_id: id}})
         .then(async (response)=>{
+            setLoad(true);
             if(response.data.status_code == 200){
-                setLoad(true);
                 setParams(response.data.params)
             }
         })
     }, []);
+
+    // useEffect(()=>{
+    //     console.log(params);
+    // },[params])
 
     const getHHMM = (str) => {
         return str.split(':')[0] +':'+ str.split(':')[1];
@@ -33,9 +37,12 @@ function PlayerGoal() {
         <div id="goal">
             <div className="mt-3 py-2 rounded-15 bg-white shadow-lg" style={{minHeight:'700px'}}>
                 <h3 className="mt-2 p-1 position-relative text-white bg-green text-center font-weight-bold">
+                    <Link to="/player/goal/edit" className="edit edit-left py-1" style={{marginTop:'-5px'}}>
+                        <img src="/images/icon-pencil.svg" alt="icon-pencil.svg" width="30" height="30" title="Edit"/>
+                    </Link>
                     <span>選手管理</span>
-                    <Link to="/player/goal/edit" className="edit edit-right py-1" style={{marginTop:'-5px'}}>
-                        <img src="/images/icon-pencil.svg" alt="icon-pencil.svg" width="30" height="30" title="Add"/>
+                    <Link to="/player/goal/new" className="edit edit-right py-1" style={{marginTop:'-5px'}}>
+                        <img src="/images/icon-add.svg" alt="icon-add.svg" width="30" height="30"title="Add"/>
                     </Link>
                 </h3>
                 {
@@ -58,13 +65,15 @@ function PlayerGoal() {
                                         <th style={{width:'100px'}}>目標</th>
                                     </tr>
                                     {
-                                        params.goal_match.map((item, idx)=>
-                                            <tr key={idx}>
-                                                <td>{moment(item.match_date).format('YYYY-MM-DD')}</td>
-                                                <td>{item.match_name}</td>
-                                                <td>{item.match_goal}</td>
-                                            </tr>
-                                        )
+                                        params.goal.goal_match.length > 0 ?
+                                            params.goal.goal_match.map((item, idx)=>
+                                                <tr key={idx}>
+                                                    <td>{moment(item.match_date).format('YYYY-MM-DD')}</td>
+                                                    <td>{item.match_name}</td>
+                                                    <td>{item.match_goal}</td>
+                                                </tr>
+                                            )
+                                            : <tr><td colSpan="3">予定された試合はありません。</td></tr>
                                     }
                                 </tbody>
                             </table>
@@ -78,7 +87,7 @@ function PlayerGoal() {
                                         <th className="w-100-px w-xs-50-px">結果</th>
                                     </tr>
                                     {
-                                        params.goal_stage.map((item, idx)=>
+                                        params.stage.map((item, idx)=>
                                             <tr className={`${idx>=0&&idx<3&&'table-success'} ${idx>=3&&idx<6&&'table-danger'} ${idx>=6&&idx<9&&'table-primary'}`} key={idx}>
                                                 <th className={`${idx%3!=0 && 'd-none'} align-middle`} rowSpan="3">{item.stage_type}<br className="d-block d-sm-none"/>目標</th>
                                                 <td>{item.stage_match}</td>
@@ -103,7 +112,7 @@ function PlayerGoal() {
                                     <table className="table table-bordered text-center mb-2">
                                         <tbody>
                                             {
-                                                params.goal_task.map((item, idx)=>
+                                                params.goal.goal_task.map((item, idx)=>
                                                     <tr 
                                                         // className={`${idx>=0&&idx<3&&'table-success'} 
                                                         //             ${idx>=3&&idx<6&&'table-danger'} 
@@ -131,39 +140,39 @@ function PlayerGoal() {
                                                 <td className="w-40-px"><img src="/images/icons/icon-book.svg" width="25" height="25" /></td>
                                                 <td><p className="mb-0 text-center">勉強時間</p></td>
                                                 <td>
-                                                    {`${getHHMM(params.study_time_start)} ~ ${getHHMM(params.study_time_end)}`}
+                                                    {`${getHHMM(params.goal.study_time_start)} ~ ${getHHMM(params.goal.study_time_end)}`}
                                                 </td>
                                                 <td className="w-40-px pointer"><img src="/images/icons/icon-graph.svg" width="25" height="25" /></td>
                                             </tr>
                                             <tr className="table-success">
                                                 <td><img src="/images/icons/icon-pushups.svg" width="25" height="25" /></td>
                                                 <td><p className="mb-0 text-center">腕立て</p></td>
-                                                <td>{`${params.pushups} 回`}</td>
+                                                <td>{`${params.goal.pushups} 回`}</td>
                                                 <td className="w-40-px pointer"><img src="/images/icons/icon-graph.svg" width="25" height="25" /></td>
                                             </tr>
                                             <tr className="table-success">
                                                 <td><img src="/images/icons/icon-pilates.svg" width="25" height="25" /></td>
                                                 <td><p className="mb-0 text-center">腹筋</p></td>
-                                                <td>{`${params.pilates} 回`}</td>
+                                                <td>{`${params.goal.pilates} 回`}</td>
                                                 <td className="w-40-px pointer"><img src="/images/icons/icon-graph.svg" width="25" height="25" /></td>
                                             </tr>
                                             <tr className="table-success">
                                                 <td><img src="/images/icons/icon-gymnastics.svg" width="25" height="25" /></td>
                                                 <td><p className="mb-0 text-center">背筋</p></td>
-                                                <td>{`${params.gymnastics} 回`}</td>
+                                                <td>{`${params.goal.gymnastics} 回`}</td>
                                                 <td className="w-40-px pointer"><img src="/images/icons/icon-graph.svg" width="25" height="25" /></td>
                                             </tr>
                                             <tr className="table-success">
                                                 <td><img src="/images/icons/icon-stretching.svg" width="25" height="25" /></td>
                                                 <td><p className="mb-0 text-center">ストレッチ</p></td>
-                                                <td>{`${params.stretching_time.split(':')[0]}時間  ${params.stretching_time.split(':')[1]}分`}</td>
+                                                <td>{`${params.goal.stretching_time.split(':')[0]}時間  ${params.goal.stretching_time.split(':')[1]}分`}</td>
                                                 <td className="w-40-px pointer"><img src="/images/icons/icon-graph.svg" width="25" height="25" /></td>
                                             </tr>
                                             <tr className="table-success">
                                                 <td><img src="/images/icons/icon-food.svg" width="25" height="25" /></td>
                                                 <td><p className="mb-0 text-center">朝食</p></td>
                                                 <td>
-                                                    <RatingView stars={3} size={20} ratingValue={params.breakfast}/>
+                                                    <RatingView stars={3} size={20} ratingValue={params.goal.breakfast}/>
                                                 </td>
                                                 <td className="w-40-px pointer"><img src="/images/icons/icon-graph.svg" width="25" height="25" /></td>
                                             </tr>
@@ -171,7 +180,7 @@ function PlayerGoal() {
                                                 <td><img src="/images/icons/icon-food.svg" width="25" height="25" /></td>
                                                 <td><p className="mb-0 text-center">昼食</p></td>
                                                 <td>
-                                                    <RatingView stars={3} size={20} ratingValue={params.lunch}/>
+                                                    <RatingView stars={3} size={20} ratingValue={params.goal.lunch}/>
                                                 </td>
                                                 <td className="w-40-px pointer"><img src="/images/icons/icon-graph.svg" width="25" height="25" /></td>
                                             </tr>
@@ -179,7 +188,7 @@ function PlayerGoal() {
                                                 <td><img src="/images/icons/icon-food.svg" width="25" height="25" /></td>
                                                 <td><p className="mb-0 text-center">夕食</p></td>
                                                 <td>
-                                                    <RatingView stars={3} size={20} ratingValue={params.dinner}/>
+                                                    <RatingView stars={3} size={20} ratingValue={params.goal.dinner}/>
                                                 </td>
                                                 <td className="w-40-px pointer"><img src="/images/icons/icon-graph.svg" width="25" height="25" /></td>
                                             </tr>
@@ -187,7 +196,7 @@ function PlayerGoal() {
                                                 <td><img src="/images/icons/icon-bed.svg" width="25" height="25" /></td>
                                                 <td><p className="mb-0 text-center">睡眠時間</p></td>
                                                 <td>
-                                                    {`${getHHMM(params.sleep_time_start)} ~ ${getHHMM(params.sleep_time_end)}`}
+                                                    {`${getHHMM(params.goal.sleep_time_start)} ~ ${getHHMM(params.goal.sleep_time_end)}`}
                                                 </td>
                                                 <td className="w-40-px pointer"><img src="/images/icons/icon-graph.svg" width="25" height="25" /></td>
                                             </tr>
@@ -196,7 +205,7 @@ function PlayerGoal() {
                                 </div>
                             </div>
                         </div>
-                        <p className="w-100 p-1 pl-2 mb-2 bg-black-4 text-white text-right">最新の更新日 : {moment(params.updated_at).format('YYYY/MM/DD HH:mm')}</p>
+                        <p className="w-100 p-1 pl-2 mb-2 bg-black-4 text-white text-right">最新の更新日 : {moment(params.goal.updated_at).format('YYYY/MM/DD HH:mm')}</p>
                     </>
                 }
             </div>

@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Player;
 use App\Models\Rank;
 use App\Models\Goal;
+use App\Models\GoalStage;
 use App\Models\Analysis;
 use App\Models\Tournament;
 
@@ -33,9 +34,13 @@ class PlayerController extends Controller
     {
         $player_id = (int)$r->get('player_id');
 
-        $res = Goal::where('player_id', $player_id)->with('goal_match')->with('goal_task')->with('goal_stage') -> orderBy('id', 'DESC') -> first();
+        $res['goal'] = Goal::where('player_id', $player_id)->with('goal_match')->with('goal_task')->orderBy('id', 'DESC') -> first();
+        $res['stage'] = GoalStage::where('player_id', $player_id)->get();
 
-        return ['status_code'=>200, 'params'=>$res];
+        if($res['goal']  && $res['stage']->toArray())
+            return ['status_code'=>200, 'params'=>$res];
+        
+        return ['status_code'=>400];
     }
 
     public function match(Request $r)

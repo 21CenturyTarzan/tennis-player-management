@@ -44,7 +44,7 @@ const  PlayerResultNew = () => {
                         <div className="col-6">
                             <Link to="/player/result" style={{textDecoration:'none'}}>
                                 <Button size="large" fullWidth variant="contained" style={{backgroundColor: 'transparent', border: '1px solid green', color:'green', fontSize:'16px'}} >
-                                    <span>キャンセル</span>
+                                    <span>閉じる</span>
                                 </Button>
                             </Link>
                         </div>
