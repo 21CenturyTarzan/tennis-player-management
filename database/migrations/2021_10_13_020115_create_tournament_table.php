@@ -26,6 +26,7 @@ class CreateTournamentTable extends Migration
             $table->string('round', 255);
             $table->string('weather', 255);
             $table->integer('mood');
+            $table->longText('caution_list');
 
             $table->timestamps();
         });

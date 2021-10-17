@@ -21,10 +21,6 @@ class Tournament extends Model
         'round',
         'weather',
         'mood',
+        'caution_list',
     ];
-
-    public function caution()
-    {
-        return $this->hasMany(Caution::class);
-    }
 }

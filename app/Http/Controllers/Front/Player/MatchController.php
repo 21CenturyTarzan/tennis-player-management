@@ -34,7 +34,7 @@ class MatchController extends Controller
         $weather = $r->get('weather');
         $category = $r->get('category');
         $mood = (int)$r->get('mood');
-        $caution_list = json_decode($r->get('caution_list'));
+        $caution_list = $r->get('caution_list');       //Dont Change Json decode. input raw data
 
         $player_id = Player::where('account_id', Auth::user()->id)->first()->id;
 
@@ -49,17 +49,8 @@ class MatchController extends Controller
             'round' => $round,
             'weather' => $weather,
             'mood' => $mood,
+            'caution_list' => $caution_list
         ]);
-
-        $tournament_id = Tournament::where('player_id', $player_id)->orderBy('id', 'DESC')->first()->id;
-
-        foreach($caution_list as $item)
-        {
-            Caution::create([
-                'tournament_id' => $tournament_id,
-                'caution' => $item,
-            ]);
-        }
 
         return ['status_code' => 200];
     }
@@ -78,7 +69,7 @@ class MatchController extends Controller
         $weather = $r->get('weather');
         $category = $r->get('category');
         $mood = (int)$r->get('mood');
-        $caution_list = json_decode($r->get('caution_list'));
+        $caution_list = $r->get('caution_list');       //Dont Change Json decode. input raw data
 
         Tournament::where(['id' => $tournament_id])->first()->update([
             'category' => $category,
@@ -90,14 +81,9 @@ class MatchController extends Controller
             'round' => $round,
             'weather' => $weather,
             'mood' => $mood,
+            'caution_list' => $caution_list
         ]);
 
-        foreach($caution_list as $item)
-        {
-            Caution::where(['id'=>$item->id])->first()->update([
-                'caution' => $item->caution
-            ]);
-        }
 
         return ['status_code' => 200];
     }

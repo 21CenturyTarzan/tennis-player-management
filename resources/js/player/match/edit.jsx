@@ -60,7 +60,7 @@ const  PlayerMatchEdit = (props) => {
                     setWeather(tournament.weather);                   //晴/曇/雨
                     setCategory(tournament.category);                  //U34
                     setMood(tournament.mood);
-                    setCautionList(tournament.caution);
+                    setCautionList(JSON.parse(tournament.caution_list));
                     
                     setTournamentID(tournament.id);
                     setOKData(true);
@@ -103,7 +103,7 @@ const  PlayerMatchEdit = (props) => {
 
     const handleChangeCaution = (e, index) => {
         const list = [...caution_list];
-        list[index]['caution'] = e.target.value;
+        list[index] = e.target.value;
         setCautionList(list);
     };
 
@@ -255,7 +255,7 @@ const  PlayerMatchEdit = (props) => {
                                     caution_list.map((x, i)=>
                                         <tr key={i}>
                                             <td>{i+1}</td>
-                                            <td><input type="text" id="match_name" className="w-100 bg-none border-0 text-center"  value={x.caution} onChange={e => handleChangeCaution(e, i)} required/></td>
+                                            <td><input type="text" className="w-100 bg-none border-0 text-center"  value={x} onChange={e => handleChangeCaution(e, i)} required/></td>
                                         </tr>
                                     )
                                 }

@@ -138,21 +138,18 @@ function PlayerMatch() {
 
                     <p className="w-50 w-md-75 p-1 pl-2 mb-2 bg-black-4 rounded-right-20 text-white">試合前に心がける事</p>
                     <div className="px-2 mb-2">
-                        {
-                            tournament.caution &&
-                            <table className="table table-bordered text-center mb-0">
-                                <tbody>
-                                    {
-                                        tournament.caution.map((x, i)=>
-                                        <tr key={i}>
-                                            <td className="w-40-px"><span>{i+1}</span></td>
-                                            <td>{x.caution}</td>
-                                        </tr>
-                                        )
-                                    }
-                                </tbody>
-                            </table>
-                        }
+                        <table className="table table-bordered text-center mb-0">
+                            <tbody>
+                                {
+                                    JSON.parse(tournament.caution_list)?.map((x, i)=>
+                                    <tr key={i}>
+                                        <td className="w-40-px"><span>{i+1}</span></td>
+                                        <td>{x}</td>
+                                    </tr>
+                                    )
+                                }
+                            </tbody>
+                        </table>
                     </div>
 
                     <p className="w-100 p-1 pl-2 mb-2 bg-black-4 text-white text-right">最新の更新日 : {moment(tournament.updated_at).format('YYYY/MM/DD HH:mm')}</p>
