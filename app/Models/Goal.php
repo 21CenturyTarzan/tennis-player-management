@@ -28,8 +28,4 @@ class Goal extends Model
         'sleep_time_end',     
     ];
 
-    // public function goal_task()
-    // {
-    //     return $this->hasMany(GoalTask::class);
-    // }
 }
