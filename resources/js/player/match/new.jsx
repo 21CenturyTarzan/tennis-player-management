@@ -29,7 +29,7 @@ const  PlayerMatchNew = () => {
     const [surface, setSurface] = useState('クレー');      //クレー/オムニ/ハード
     const [round, setRound] = useState('予選');            //予選/本戦
     const [weather, setWeather] = useState('sunny');      //晴/曇/雨
-    const [category, setCategory] = useState('ITF');    //U34
+    const [category, setCategory] = useState('U8');    //U34
     const [mood, setMood] = useState(0);
     const [caution_list, setCautionList] = useState(['','','']);
     const [question_list, setQuestionList] = useState([]);
