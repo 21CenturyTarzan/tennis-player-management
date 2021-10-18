@@ -34,13 +34,6 @@ class PlayerController extends Controller
     {
         $player_id = (int)$r->get('player_id');
 
-        // $res['goal'] = Goal::where('player_id', $player_id)->with('goal_match')->with('goal_task')->orderBy('id', 'DESC') -> first();
-        // $res['stage'] = GoalStage::where('player_id', $player_id)->get();
-
-        // if($res['goal']  && $res['stage']->toArray())
-        //     return ['status_code'=>200, 'params'=>$res];
-        
-        // return ['status_code'=>400];
         $res = Goal::where('player_id', $player_id)->orderBy('id', 'DESC') -> first();
         if($res)
             return ['status_code'=>200, 'params'=>$res];
@@ -55,7 +48,9 @@ class PlayerController extends Controller
         $player_id = (int)$r->get('player_id');
         $res['tournament'] = Tournament::where('player_id', $player_id)->orderBy('id', 'DESC')->first();
 
+        if($res['tournament'])
+            return ['status_code'=>200, 'params'=>$res];
 
-        return ['status_code'=>200, 'params'=>$res];
+        return ['status_code'=>400];
     }
 }

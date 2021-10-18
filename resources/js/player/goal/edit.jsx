@@ -280,13 +280,13 @@ const  PlayerGoalEditor = () => {
                                         <td><p className="mb-0 text-center">勉強時間</p></td>
                                         <td>
                                             <span className="mr-3">開始:</span>
-                                                <input type="time" className="border-0 mb-1 w-125-px"
+                                                <input type="time" className="border-0 mb-1 w-100-px"
                                                     value={study_start_time} onChange={e=>setStudyStartTime(e.target.value)} required/>
                                                     
                                             <br/>
 
                                             <span className="mr-3">終了:</span>
-                                                <input type="time" className="border-0 w-125-px" 
+                                                <input type="time" className="border-0 w-100-px" 
                                                     value={study_end_time} onChange={e=>setStudyEndTime(e.target.value)} required/>
                                         </td>
                                     </tr>
@@ -318,7 +318,7 @@ const  PlayerGoalEditor = () => {
                                         <td><img src="/images/icons/icon-stretching.svg" width="25" height="25" /></td>
                                         <td><p className="mb-0 text-center">ストレッチ</p></td>
                                         <td>
-                                            <input type="time" className="border-0 text-center w-125-px" 
+                                            <input type="time" className="border-0 text-center w-100-px" 
                                                 value={stretching_time} onChange={e=>setStretchTime(e.target.value)} required/> 
                                         </td>
                                     </tr>
@@ -347,8 +347,8 @@ const  PlayerGoalEditor = () => {
                                         <td><img src="/images/icons/icon-bed.svg" width="25" height="25" /></td>
                                         <td><p className="mb-0 text-center">睡眠時間</p></td>
                                         <td>
-                                            <span className="mr-3">開始:</span><input type="time" className="border-0 mb-1 w-125-px" value={sleep_start_time} onChange={e=>setSleepStartTime(e.target.value)} required/><br/>
-                                            <span className="mr-3">終了:</span><input type="time" className="border-0 w-125-px" value={sleep_end_time} onChange={e=>setSleepEndTime(e.target.value)} required/>
+                                            <span className="mr-3">開始:</span><input type="time" className="border-0 mb-1 w-100-px" value={sleep_start_time} onChange={e=>setSleepStartTime(e.target.value)} required/><br/>
+                                            <span className="mr-3">終了:</span><input type="time" className="border-0 w-100-px" value={sleep_end_time} onChange={e=>setSleepEndTime(e.target.value)} required/>
                                         </td>
                                     </tr>
                                 </tbody>
