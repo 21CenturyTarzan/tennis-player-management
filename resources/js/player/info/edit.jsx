@@ -102,7 +102,7 @@ const  PlayerInfoEditor = () => {
         
                     setRankList(obj);
                 }
-                console.log(response.data.params);
+                // console.log(response.data.params);
                 setIniting(false);
             }
         })
@@ -457,7 +457,7 @@ const  PlayerInfoEditor = () => {
                     <div className="col-6">
                         <Link to="/player/info" style={{textDecoration:'none'}}>
                             <Button size="large" fullWidth variant="contained" style={{backgroundColor: 'transparent', border: '2px solid white', fontSize:'16px'}}  >
-                                <span>キャンセル</span>
+                                <span>閉じる</span>
                             </Button>
                         </Link>
                     </div>

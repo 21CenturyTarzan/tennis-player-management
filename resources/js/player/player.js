@@ -7,7 +7,8 @@ import PlayerInfo from './info';
 import PlayerInfoEditor from './info/edit';
 
 import PlayerGoal from './goal';
-import PlayerGoalEditor from './goal/edit';
+import PlayerGoalNew from './goal/new';
+import PlayerGoalEdit from './goal/edit';
 
 import PlayerMatch from './match';
 import PlayerMatchNew from './match/new';
@@ -33,7 +34,8 @@ export default class PlayerApp extends Component {
                         <Route exact path="/player/info/edit" component = {PlayerInfoEditor} />
 
                         <Route exact path="/player/goal" component = {PlayerGoal} />
-                        <Route exact path="/player/goal/edit" component = {PlayerGoalEditor} />
+                        <Route exact path="/player/goal/new" component = {PlayerGoalNew} />
+                        <Route exact path="/player/goal/edit" component = {PlayerGoalEdit} />
 
                         <Route exact path="/player/match" component = {PlayerMatch} />
                         <Route exact path="/player/match/new" component = {PlayerMatchNew} />

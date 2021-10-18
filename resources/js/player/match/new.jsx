@@ -46,7 +46,7 @@ const  PlayerMatchNew = () => {
         .then(res=>{
             if(res.data.status_code == 200)
             {
-                console.log(res.data.params);
+                // console.log(res.data.params);
                 setQuestionList(res.data.params.question_list);
             }
         })
@@ -202,6 +202,7 @@ const  PlayerMatchNew = () => {
             </div>
 
             <p className="w-50 w-md-75 p-1 pl-2 mb-2 bg-black-4 rounded-right-20 text-white">自己分析</p>
+            <p className="ml-2 mb-2 ft-15">※テーブルのデータを参照して下欄に書きなさい。</p>
             <div className="px-2 mb-2 pre-scrollable">
                 {
                     question_list.length > 0 ? 
@@ -256,7 +257,7 @@ const  PlayerMatchNew = () => {
                     <div className="col-6">
                         <Link to="/player/match" style={{textDecoration:'none'}}>
                             <Button size="large" fullWidth variant="contained" style={{backgroundColor: 'transparent', border: '1px solid green', color:'green', fontSize:'16px'}} >
-                                <span>キャンセル</span>
+                                <span>閉じる</span>
                             </Button>
                         </Link>
                     </div>

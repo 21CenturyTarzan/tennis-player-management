@@ -11,7 +11,7 @@ class GoalStage extends Model
 
     protected $table = 'goal_stage';
     protected $fillable = [
-        'goal_id',
+        'player_id',
         'stage_type',            //長期目標  中期目標  短期目標
         'stage_match',
         'stage_goal',

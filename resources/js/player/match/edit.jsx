@@ -20,7 +20,7 @@ const  PlayerMatchEdit = (props) => {
 
     const history = useHistory();
     const [submit, setSubmit] = useState(false);
-    const [ok, setOK] = useState(false);
+    const [ok_data, setOKData] = useState(false);
     const [load, setLoad] = useState(false);
     const [tournamen_id, setTournamentID] = useState(null);
     ///////////////////////////////////////
@@ -63,7 +63,7 @@ const  PlayerMatchEdit = (props) => {
                     setCautionList(tournament.caution);
                     
                     setTournamentID(tournament.id);
-                    setOK(true);
+                    setOKData(true);
                 }
                 if(question_list){
                     setQuestionList(question_list);
@@ -119,7 +119,7 @@ const  PlayerMatchEdit = (props) => {
                     <CircularProgress color="secondary" style={{top:'calc(40vh - 22px)', left:'calc(50% - 22px)', color:'green', position:'absolute'}}/>
             }
             {
-                    load && !ok &&
+                    load && !ok_data &&
                     <>
                         <p className="mt-5 text-center">登録された資料がありません。</p>
                         <Link to="/player/match/new">
@@ -128,7 +128,7 @@ const  PlayerMatchEdit = (props) => {
                     </>
             }
             {
-                load && ok &&
+                load && ok_data &&
                 <>
                     <p className="w-50 w-md-75 p-1 pl-2 mb-2 bg-black-4 rounded-right-20 text-white">大会情報</p>
                     <div className="px-2 mb-2">
@@ -225,26 +225,22 @@ const  PlayerMatchEdit = (props) => {
                     </div>
 
                     <p className="w-50 w-md-75 p-1 pl-2 mb-2 bg-black-4 rounded-right-20 text-white">自己分析</p>
+                    <p className="ml-2 mb-2 ft-15">※テーブルのデータを参照して下欄に書きなさい。</p>
                     <div className="px-2 mb-2 pre-scrollable">
-                        {
-                            question_list.length > 0 ? 
-                            <table className="table table-bordered text-center">
-                                <tbody>
-                                    {
+                        <table className="table table-bordered text-center">
+                            <tbody>
+                                {
+                                    question_list ? 
                                         question_list.map((x, i)=>
-                                        <tr key={i}>
-                                            <td className="w-40-px"><span>{i+1}</span></td>
-                                            <td>{x.question}</td>
-                                        </tr>
+                                            <tr key={i}>
+                                                <td className="w-40-px"><span>{i+1}</span></td>
+                                                <td>{x.question}</td>
+                                            </tr>
                                         )
-                                    }
-                                </tbody>
-                            </table>
-                            :<CircularProgress color="secondary" 
-                                style={{top:'calc(50vh - 22px)', left:'calc(50% - 22px)', 
-                                color:'green', position:'absolute'}}
-                            />
-                        }
+                                    : <tr><td>分析資料がありません。</td></tr>
+                                }
+                            </tbody>
+                        </table>
                     </div>
 
                     <p className="w-50 w-md-75 p-1 pl-2 mb-0 bg-black-4 rounded-right-20 text-white">試合前に心がける事</p>
@@ -272,7 +268,7 @@ const  PlayerMatchEdit = (props) => {
                             <div className="col-6">
                                 <Link to="/player/match" style={{textDecoration:'none'}}>
                                     <Button size="large" fullWidth variant="contained" style={{backgroundColor: 'transparent', border: '1px solid green', color:'green', fontSize:'16px'}} >
-                                        <span>キャンセル</span>
+                                        <span>閉じる</span>
                                     </Button>
                                 </Link>
                             </div>

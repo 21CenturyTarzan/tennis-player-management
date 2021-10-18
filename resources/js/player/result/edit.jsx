@@ -47,9 +47,11 @@ function PlayerResultEdit() {
         })
     }, []);
 
-    const changeScore = (e, iy, ix) => {
+    const changeScore = (rate, iy, ix) => {
         const list = [...scores];
-        list[iy]['scores'][ix] = Number(e.target.value);
+        if(rate == 1 && list[iy]['scores'][ix] == 1)
+            list[iy]['scores'][ix] = 0;
+        else list[iy]['scores'][ix] = rate;
         var sum = 0;
         for(let i=0; i<list[iy]['scores'].length; i++)
             sum += list[iy]['scores'][i];
@@ -59,7 +61,6 @@ function PlayerResultEdit() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(scores);
     }
 
     return (
@@ -124,11 +125,7 @@ function PlayerResultEdit() {
                                                 {
                                                     yItem.scores.map((xItem, ix)=>
                                                         <td key={ix}>
-                                                            <input type="number" min="0" max="50" step="5" 
-                                                                className="w-35-px bg-none text-center text-black border-0" 
-                                                                value={xItem} 
-                                                                onChange={e=>changeScore(e, iy, ix)}
-                                                                required/>
+                                                            <Rating ratingValue={xItem} stars={1} onClick={rate=>changeScore(rate, iy, ix)} style={{color:'green'}}/>
                                                         </td>             
                                                     )
                                                 }
@@ -161,7 +158,7 @@ function PlayerResultEdit() {
                             <div className="col-6">
                                 <Link to="/player/result" style={{textDecoration:'none'}}>
                                     <Button size="large" fullWidth variant="contained" style={{backgroundColor: 'transparent', border: '1px solid green', color:'green', fontSize:'16px'}} >
-                                        <span>キャンセル</span>
+                                        <span>閉じる</span>
                                     </Button>
                                 </Link>
                             </div>

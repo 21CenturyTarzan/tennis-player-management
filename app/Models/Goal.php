@@ -29,12 +29,7 @@ class Goal extends Model
     {
         return $this->hasMany(GoalTask::class);
     }
-
-    public function goal_stage()
-    {
-        return $this->hasMany(GoalStage::class);
-    }
-
+    
     public function goal_match()
     {
         return $this->hasMany(GoalMatch::class);
