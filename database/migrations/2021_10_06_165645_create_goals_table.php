@@ -16,6 +16,11 @@ class CreateGoalsTable extends Migration
         Schema::create('goals', function (Blueprint $table) {
             $table->unsignedBigInteger('id')->autoIncrement()->comment('ID');
             $table->foreignId('player_id')->constrained('players')->comment('PlayerID');
+
+            $table->longText('match_list');
+            $table->longText('stage_list');
+            $table->longText('task_list');
+
             $table->time('study_time_start')->comment('study start time');
             $table->time('study_time_end')->comment('study end time');
             $table->integer('pushups')->comment('腕立て');

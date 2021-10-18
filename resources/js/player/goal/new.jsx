@@ -82,21 +82,21 @@ const  PlayerGoalNew = () => {
             setLoad(true);
             if(response.data.status_code == 200){
                 params = response.data.params;
-                setStudyStartTime(params.goal.study_time_start);
-                setStudyEndTime(params.goal.study_time_end);
-                setSleepStartTime(params.goal.sleep_time_start);
-                setSleepEndTime(params.goal.sleep_time_end);
-                setPushups(params.goal.pushups);
-                setPilates(params.goal.pilates);
-                setGymnastics(params.goal.gymnastics);
-                setStretchTime(params.goal.stretching_time);
-                setRateBreakfast(params.goal.breakfast);
-                setRateLunch(params.goal.lunch);
-                setRateDinner(params.goal.dinner);
+                setStudyStartTime(params.study_time_start);
+                setStudyEndTime(params.study_time_end);
+                setSleepStartTime(params.sleep_time_start);
+                setSleepEndTime(params.sleep_time_end);
+                setPushups(params.pushups);
+                setPilates(params.pilates);
+                setGymnastics(params.gymnastics);
+                setStretchTime(params.stretching_time);
+                setRateBreakfast(params.breakfast);
+                setRateLunch(params.lunch);
+                setRateDinner(params.dinner);
 
-                setMatchList(params.goal.goal_match);
-                setStageList(params.stage);
-                setTaskList(params.goal.goal_task);
+                setMatchList(JSON.parse(params.match_list));
+                setStageList(JSON.parse(params.stage_list));
+                setTaskList(JSON.parse(params.task_list));
             }
             if(response.data.status_code == 400){
                 setStageList(g_StageObj);

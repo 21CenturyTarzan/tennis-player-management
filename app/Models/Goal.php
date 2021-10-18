@@ -11,7 +11,10 @@ class Goal extends Model
 
     protected $table = 'goals';
     protected $fillable = [
-        'player_id',                
+        'player_id', 
+        'match_list',
+        'stage_list',
+        'task_list',
         'study_time_start',          //勉強時間
         'study_time_end',          
         'pushups',           //腕立て
@@ -25,13 +28,8 @@ class Goal extends Model
         'sleep_time_end',     
     ];
 
-    public function goal_task()
-    {
-        return $this->hasMany(GoalTask::class);
-    }
-    
-    public function goal_match()
-    {
-        return $this->hasMany(GoalMatch::class);
-    }
+    // public function goal_task()
+    // {
+    //     return $this->hasMany(GoalTask::class);
+    // }
 }

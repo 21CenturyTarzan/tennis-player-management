@@ -29,9 +29,10 @@ class GoalManageController extends Controller
     public function store(Request $request)
     {
         ///////////////////////////////////////////////////////
-        $stage_list  = json_decode($request->get('stage_list'));
-        $match_list  = json_decode($request->get('match_list'));
-        $task_list  = json_decode($request->get('task_list'));
+        $stage_list  = $request->get('stage_list');      //Dont convert Json decode
+        $match_list  = $request->get('match_list');      //Dont convert Json decode
+        $task_list   = $request->get('task_list');         //Dont convert Json decode
+        
         $study_start_time  = $request->get('study_start_time');
         $study_end_time  = $request->get('study_end_time');
         $sleep_start_time  = $request->get('sleep_start_time');
@@ -46,35 +47,11 @@ class GoalManageController extends Controller
         /////////////////////////////////////////////////////
         $player_id = Player::where('account_id', Auth::id())->first()->id;
 
-        $cnt = GoalStage::where(['player_id'=>$player_id])->count();
-
-        if($cnt == 0)
-        {
-            foreach($stage_list as $item){
-                GoalStage::create([
-                    'player_id' => $player_id,
-                    'stage_type' => $item->stage_type,            //長期目標  中期目標  短期目標
-                    'stage_match'=> $item->stage_match,
-                    'stage_goal'=> $item->stage_goal,
-                    'stage_result'=> $item->stage_result
-                ]);
-            }
-        }
-        else{
-            foreach($stage_list as $item){
-                GoalStage::where('id', $item->id)->update([
-                    'player_id' => $player_id,
-                    'stage_type' => $item->stage_type,            //長期目標  中期目標  短期目標
-                    'stage_match'=> $item->stage_match,
-                    'stage_goal'=> $item->stage_goal,
-                    'stage_result'=> $item->stage_result
-                ]);
-            }
-        }
-
-
         Goal::create([
-            'player_id'=>$player_id,                
+            'player_id'=> $player_id,
+            'match_list'=> $match_list,               
+            'stage_list'=> $stage_list,               
+            'task_list'=> $task_list,               
             'study_time_start'=> $study_start_time,
             'study_time_end'=> $study_end_time,          
             'pushups' => $pushups,           //腕立て
@@ -88,37 +65,16 @@ class GoalManageController extends Controller
             'sleep_time_end'=> $sleep_end_time 
         ]);
         
-        
-        $goal_id = Goal::select('id')->orderBy('id', 'DESC')->first()->id;
-
-        foreach($match_list as $item){
-            GoalMatch::create([
-                'goal_id' => $goal_id,
-                'match_name'=> $item->match_name,   
-                'match_date'=> $item->match_date,
-                'match_goal'=> $item->match_goal,
-            ]);
-        }
-
-
-        foreach($task_list as $item){
-            GoalTask::create([
-                'goal_id' => $goal_id,
-                'task_type' => $item->task_type,            //技術的な課題  フィジカル的な課題 メンタル的な課題 戦術的な課題
-                'icon' => $item->icon,
-                'task_detail' => $item->task_detail,
-                'task_rate' => $item->task_rate
-            ]);
-        }
         return ['status_code' => 200];
     }
 
     public function update(Request $request)
     {
         # code...
-        $stage_list  = json_decode($request->get('stage_list'));
-        $match_list  = json_decode($request->get('match_list'));
-        $task_list  = json_decode($request->get('task_list'));
+        $stage_list  = $request->get('stage_list');      //Dont convert Json decode
+        $match_list  = $request->get('match_list');      //Dont convert Json decode
+        $task_list   = $request->get('task_list');         //Dont convert Json decode
+        
         $study_start_time  = $request->get('study_start_time');
         $study_end_time  = $request->get('study_end_time');
         $sleep_start_time  = $request->get('sleep_start_time');
@@ -136,17 +92,10 @@ class GoalManageController extends Controller
         $goal_id = (int)$request->get('goal_id');
 
         
-        foreach($stage_list as $item){
-            GoalStage::where('id', $item->id)->update([
-                'player_id' => $player_id,
-                'stage_type' => $item->stage_type,            //長期目標  中期目標  短期目標
-                'stage_match'=> $item->stage_match,
-                'stage_goal'=> $item->stage_goal,
-                'stage_result'=> $item->stage_result
-            ]);
-        }
-        
-        Goal::where('id', $goal_id) -> update([                
+        Goal::where('id', $goal_id) -> update([          
+            'match_list'=> $match_list,               
+            'stage_list'=> $stage_list,               
+            'task_list'=> $task_list,                     
             'study_time_start'=> $study_start_time,
             'study_time_end'=> $study_end_time,          
             'pushups' => $pushups,           //腕立て
@@ -160,23 +109,7 @@ class GoalManageController extends Controller
             'sleep_time_end'=> $sleep_end_time 
         ]);
         
-        foreach($match_list as $item){
-            GoalMatch::where('id', $item->id)->update([
-                'match_name'=> $item->match_name,   
-                'match_date'=> $item->match_date,
-                'match_goal'=> $item->match_goal,
-            ]);
-        }
-
-
-        foreach($task_list as $item){
-            GoalTask::where('id', $item->id)->update([
-                'task_type' => $item->task_type,            //技術的な課題  フィジカル的な課題 メンタル的な課題 戦術的な課題
-                'icon' => $item->icon,
-                'task_detail' => $item->task_detail,
-                'task_rate' => $item->task_rate
-            ]);
-        }
+       
         return ['status_code' => 200];
     }
 }
