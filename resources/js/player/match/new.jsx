@@ -46,7 +46,6 @@ const  PlayerMatchNew = () => {
         .then(res=>{
             if(res.data.status_code == 200)
             {
-                // console.log(res.data.params);
                 setQuestionList(res.data.params.question_list);
             }
         })

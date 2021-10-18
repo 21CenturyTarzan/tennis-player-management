@@ -48,7 +48,7 @@ class PlayerController extends Controller
         $res['question_list'] = Analysis::get();
 
         $player_id = (int)$r->get('player_id');
-        $res['tournament'] = Tournament::where('player_id', $player_id)->with('caution')->orderBy('id', 'DESC')->first();
+        $res['tournament'] = Tournament::where('player_id', $player_id)->orderBy('id', 'DESC')->first();
 
 
         return ['status_code'=>200, 'params'=>$res];

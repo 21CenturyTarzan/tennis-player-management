@@ -19,6 +19,7 @@ import { Rating, RatingView } from 'react-simple-star-rating';
 function PlayerResultEdit() {
     const [load, setLoad] = useState(false);
     const [tournament, setTournament] = useState(null);
+    const [question_list, setQuestionList] = useState(null);
     const [select, setSelect] = useState(false);
 
     const [scores, setScores] = useState([
@@ -40,9 +41,15 @@ function PlayerResultEdit() {
         var id = Number(document.getElementById('player_id').value);
         axios.get('/api/player/match', {params:{player_id: id}})
         .then( response=>{
+
+            setLoad(true);
             if(response.data.status_code == 200){
-                setLoad(true);
+                console.log(response.data);
                 setTournament(response.data.params.tournament);
+                setQuestionList(response.data.params.question_list);
+            }
+            else{
+
             }
         })
     }, []);
@@ -138,13 +145,17 @@ function PlayerResultEdit() {
                         </div>
                     </div>
                     <p className="w-50 w-md-75 p-1 pl-2 mb-2 bg-black-4 rounded-right-20 text-white">どんな相手だったか？</p>
-                    <div className="px-2 mb-2">
-                        <div className="form-check">
-                            <input className="form-check-input" type="checkbox" value={select} id="flexCheckDefault" onChange={()=>setSelect(!select)}/>
-                            <label className="form-check-label" htmlFor="flexCheckDefault">
-                                フォアハンドが強い
-                            </label>
-                        </div>
+                    <div className="px-2 mb-2 pre-scrollable">
+                        {
+                            question_list?.map((x, i)=>
+                                <div className="form-check" key={i}>
+                                    <input className="form-check-input" id={`check${i}`} type="checkbox"/>
+                                    <label className="form-check-label" htmlFor={`check${i}`}>
+                                        {x.question}
+                                    </label>
+                                </div>
+                            )
+                        }
                         <div className="form-check">
                             <input className="form-check-input" type="checkbox" id="flexCheckChecked"/>
                             <label className="form-check-label" htmlFor="flexCheckChecked">
