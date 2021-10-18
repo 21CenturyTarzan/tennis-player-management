@@ -20,7 +20,6 @@ function PlayerGoal() {
         .then(async (response)=>{
             setLoad(true);
             if(response.data.status_code == 200){
-                console.log(response.data.params)
                 setParams(response.data.params)
             }
         })
