@@ -22,33 +22,4 @@ class PlayerController extends Controller
         
     }
 
-    public function info(Request $r){
-        $player_id = (int)$r->get('player_id');
-        $res['rank'] = Rank::where('player_id', $player_id)->with('rank_list') -> orderBy('id', 'DESC') -> first();
-        $res['profile'] = Player::where('id', $player_id)->with('account')->first();
-
-        return ['status_code' => 200, 'params' => $res];
-    }
-
-    public function goal(Request $r)
-    {
-        $player_id = (int)$r->get('player_id');
-
-        $res = Goal::where('player_id', $player_id)->orderBy('id', 'DESC') -> first();
-        if($res)
-            return ['status_code'=>200, 'params'=>$res];
-        
-        return ['status_code'=>400];
-    }
-
-    public function match(Request $r)
-    {
-        $res['question_list'] = Analysis::get();
-
-        $player_id = (int)$r->get('player_id');
-        $res['tournament'] = Tournament::where('player_id', $player_id)->with('result')->orderBy('id', 'DESC')->first();
-
-        
-        return ['status_code'=>200, 'params'=>$res];
-    }
 }

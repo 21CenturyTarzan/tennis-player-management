@@ -6,11 +6,14 @@ import axios from 'axios';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { Button } from '@material-ui/core';
 import { LoadingButton } from '@material-ui/lab';
+
 import IconButton from '@mui/material/IconButton';
 import SendIcon from '@mui/icons-material/Send';
-import ClearIcon from '@mui/icons-material/Clear';
+import DeleteIcon from '@mui/icons-material/Delete';
 import RemoveIcon from '@mui/icons-material/Remove';
 import AddIcon from '@mui/icons-material/Add';
+import EditIcon from '@mui/icons-material/Edit';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 import { Rating, RatingView } from 'react-simple-star-rating';
 
@@ -43,7 +46,7 @@ var g_TaskObj = [
 
 // ----------------------------------------------------------------------
 
-const  PlayerGoalEditor = () => {
+const  PlayerGoalEditor = (props) => {
 
     const history = useHistory();
     const [load, setLoad] = useState(false);
@@ -79,7 +82,7 @@ const  PlayerGoalEditor = () => {
         var params;
         
         var id = Number(document.getElementById('player_id').value);
-        axios.get('/api/player/goal', {params:{player_id: id}})
+        axios.get(`/api/player/goal/detail/${props.match.params?.id}`, {params:{player_id: id}})
         .then(async (response)=>{
 
             setLoad(true);
@@ -124,19 +127,20 @@ const  PlayerGoalEditor = () => {
         formdata.append('pushups', pushups);
         formdata.append('pilates', pilates);
         formdata.append('gymnastics', gymnastics );
-        formdata.append('stretching_time', stretching_time);
+        formdata.append('sleep_end_time', sleep_end_time );
         formdata.append('breakfast', rate_breakfast);
         formdata.append('lunch', rate_lunch);
         formdata.append('dinner', rate_dinner);
 
         setSubmit(true)
 
-        axios.post('/player/goal/update', formdata, {params:{goal_id: goal_id}})
+        var id = Number(document.getElementById('player_id').value);
+        axios.post(`/api/player/goal/update/${props.match.params?.id}`, formdata, {params:{player_id: id}})
         .then(response => {
             setSubmit(false);
             if(response.data.status_code==200){
                 history.push({
-                    pathname: '/player/goal',
+                    pathname: `/player/goal/detail/${props.match.params?.id}`,
                     state: {}
                 });
             }
@@ -174,11 +178,16 @@ const  PlayerGoalEditor = () => {
     return (
     <form  className="needs-validation"  onSubmit={handleSubmit}>
         <div className="mt-3 py-2 rounded-15 bg-white shadow-lg" style={{minHeight:'700px'}}>
-            <h3 className="mt-2 p-1  text-white bg-green text-center font-weight-bold">
-                <span>選手管理編集</span>
+            <h3 className="mt-2 p-1 text-white bg-green text-center font-weight-bold position-relative">
+                <Link to="/player/goal">
+                    <IconButton style={{color:'white', position:'absolute', padding:'3px', left:'23px'}}>
+                        <ArrowBackIcon/>
+                    </IconButton>
+                </Link>
+                <span>目標編集</span>
             </h3>
             {
-                !load && <CircularProgress color="secondary" style={{top:'calc(40vh - 22px)', left:'calc(50% - 22px)', color:'green', position:'absolute'}}/>
+                !load && <CircularProgress style={{top:'calc(40vh - 22px)', left:'calc(50% - 22px)', color:'green', position:'absolute'}}/>
             }
             {
                     load && !ok_data &&
@@ -197,7 +206,7 @@ const  PlayerGoalEditor = () => {
                         <table className="table table-bordered table-success mb-2 text-center">
                             <tbody>
                                 <tr>
-                                    <th>日にち</th>
+                                    <th>予定日</th>
                                     <th>試合名</th>
                                     <th className="w-100-px">目標</th>
                                 </tr>

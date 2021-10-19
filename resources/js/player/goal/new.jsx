@@ -6,11 +6,14 @@ import axios from 'axios';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { Button } from '@material-ui/core';
 import { LoadingButton } from '@material-ui/lab';
+
 import IconButton from '@mui/material/IconButton';
 import SendIcon from '@mui/icons-material/Send';
-import ClearIcon from '@mui/icons-material/Clear';
+import DeleteIcon from '@mui/icons-material/Delete';
 import RemoveIcon from '@mui/icons-material/Remove';
 import AddIcon from '@mui/icons-material/Add';
+import EditIcon from '@mui/icons-material/Edit';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 import { Rating, RatingView } from 'react-simple-star-rating';
 
@@ -77,7 +80,7 @@ const  PlayerGoalNew = () => {
         var params;
         
         var id = Number(document.getElementById('player_id').value);
-        axios.get('/api/player/goal', {params:{player_id: id}})
+        axios.get('/api/player/goal/last', {params:{player_id: id}})
         .then(async (response)=>{
 
             setLoad(true);
@@ -113,6 +116,7 @@ const  PlayerGoalNew = () => {
         e.preventDefault();
         const formdata = new FormData();
 
+
         formdata.append('stage_list',  JSON.stringify(stage_list));
         formdata.append('match_list', JSON.stringify(match_list));
         formdata.append('task_list',  JSON.stringify(task_list));
@@ -130,12 +134,17 @@ const  PlayerGoalNew = () => {
 
         setSubmit(true)
 
-        axios.post('/player/goal/store', formdata)
+        var id = Number(document.getElementById('player_id').value);
+
+        axios.post('/api/player/goal/store', formdata, {params:{player_id: id}})
         .then(response => {
             setSubmit(false);
             if(response.data.status_code==200){
+
+                const goal_id = response.data.params.id;
+                console.log(response.data.params);
                 history.push({
-                    pathname: '/player/goal',
+                    pathname: `/player/goal/detail/${goal_id}`,
                     state: {}
                 });
             }
@@ -184,8 +193,13 @@ const  PlayerGoalNew = () => {
     return (
     <form  className="needs-validation"  onSubmit={handleSubmit}>
         <div className="mt-3 py-2 rounded-15 bg-white shadow-lg" style={{minHeight:'700px'}}>
-            <h3 className="mt-2 p-1  text-white bg-green text-center font-weight-bold">
-                <span>選手管理追加</span>
+            <h3 className="mt-2 p-1  text-white bg-green text-center font-weight-bold position-relative">
+                <Link to="/player/goal">
+                    <IconButton style={{color:'white', position:'absolute', padding:'3px', left:'23px'}}>
+                        <ArrowBackIcon/>
+                    </IconButton>
+                </Link>
+                <span>新目標追加</span>
             </h3>
             {
                 !load && <CircularProgress color="secondary" style={{top:'calc(40vh - 22px)', left:'calc(50% - 22px)', color:'green', position:'absolute'}}/>
@@ -204,7 +218,7 @@ const  PlayerGoalNew = () => {
                         <table className="table table-bordered table-success mb-2 text-center">
                             <tbody>
                                 <tr>
-                                    <th>日にち</th>
+                                    <th>予定日</th>
                                     <th>試合名</th>
                                     <th className="w-100-px">目標</th>
                                 </tr>

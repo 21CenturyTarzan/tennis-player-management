@@ -148,7 +148,9 @@ const  PlayerInfoEditor = () => {
 
         setLoading(true)
 
-        axios.post('/player/info/store', formdata)
+        var id = Number(document.getElementById('player_id').value);
+
+        axios.post('/api/player/info/store', formdata, {params:{player_id: id}})
         .then(response => {
             setLoading(false);
             if(response.data.status_code == 200){
