@@ -6,13 +6,16 @@ import axios from 'axios';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { Button } from '@material-ui/core';
 import { LoadingButton } from '@material-ui/lab';
+
 import IconButton from '@mui/material/IconButton';
 import SendIcon from '@mui/icons-material/Send';
-import ClearIcon from '@mui/icons-material/Clear';
 import RemoveIcon from '@mui/icons-material/Remove';
 import AddIcon from '@mui/icons-material/Add';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 import { Rating, RatingView } from 'react-simple-star-rating';
+
+
 
 var g_StageObj = [
     {stage_type:'長期',  stage_match:'', stage_goal:'勝つ', stage_result:''},
@@ -62,7 +65,8 @@ const  PlayerGoalNew = () => {
     const [pilates, setPilates] = useState(0);
     const [gymnastics, setGymnastics] = useState(0);
     
-    const [stretching_time, setStretchTime] = useState(new Date());
+    const [stretching_hour, setStretchHour] = useState('0時間');
+    const [stretching_min, setStretchMin] = useState('00分');
 
     const [rate_breakfast, setRateBreakfast] = useState(0)
     const [rate_lunch, setRateLunch] = useState(0)
@@ -76,7 +80,7 @@ const  PlayerGoalNew = () => {
         var params;
         
         var id = Number(document.getElementById('player_id').value);
-        axios.get('/api/player/goal', {params:{player_id: id}})
+        axios.get('/api/player/goal/last', {params:{player_id: id}})
         .then(async (response)=>{
 
             setLoad(true);
@@ -89,7 +93,8 @@ const  PlayerGoalNew = () => {
                 setPushups(params.pushups);
                 setPilates(params.pilates);
                 setGymnastics(params.gymnastics);
-                setStretchTime(params.stretching_time);
+                setStretchHour(params.stretching_time.split(' ')[0]);
+                setStretchMin(params.stretching_time.split(' ')[1]);
                 setRateBreakfast(params.breakfast);
                 setRateLunch(params.lunch);
                 setRateDinner(params.dinner);
@@ -111,6 +116,7 @@ const  PlayerGoalNew = () => {
         e.preventDefault();
         const formdata = new FormData();
 
+
         formdata.append('stage_list',  JSON.stringify(stage_list));
         formdata.append('match_list', JSON.stringify(match_list));
         formdata.append('task_list',  JSON.stringify(task_list));
@@ -121,19 +127,24 @@ const  PlayerGoalNew = () => {
         formdata.append('pushups', pushups);
         formdata.append('pilates', pilates);
         formdata.append('gymnastics', gymnastics );
-        formdata.append('stretching_time', stretching_time);
+        formdata.append('stretching_time', stretching_hour + ' ' + stretching_min);
         formdata.append('breakfast', rate_breakfast);
         formdata.append('lunch', rate_lunch);
         formdata.append('dinner', rate_dinner);
 
         setSubmit(true)
 
-        axios.post('/player/goal/store', formdata)
+        var id = Number(document.getElementById('player_id').value);
+
+        axios.post('/api/player/goal/store', formdata, {params:{player_id: id}})
         .then(response => {
+            setSubmit(false);
             if(response.data.status_code==200){
-                setSubmit(false);
+
+                const goal_id = response.data.params.id;
+                console.log(response.data.params);
                 history.push({
-                    pathname: '/player/goal',
+                    pathname: `/player/goal/detail/${goal_id}`,
                     state: {}
                 });
             }
@@ -182,8 +193,13 @@ const  PlayerGoalNew = () => {
     return (
     <form  className="needs-validation"  onSubmit={handleSubmit}>
         <div className="mt-3 py-2 rounded-15 bg-white shadow-lg" style={{minHeight:'700px'}}>
-            <h3 className="mt-2 p-1  text-white bg-green text-center font-weight-bold">
-                <span>選手管理追加</span>
+            <h3 className="mt-2 p-1  text-white bg-green text-center font-weight-bold position-relative">
+                <Link to="/player/goal">
+                    <IconButton style={{color:'white', position:'absolute', padding:'3px', left:'23px'}}>
+                        <ArrowBackIcon/>
+                    </IconButton>
+                </Link>
+                <span>新目標追加</span>
             </h3>
             {
                 !load && <CircularProgress color="secondary" style={{top:'calc(40vh - 22px)', left:'calc(50% - 22px)', color:'green', position:'absolute'}}/>
@@ -202,7 +218,7 @@ const  PlayerGoalNew = () => {
                         <table className="table table-bordered table-success mb-2 text-center">
                             <tbody>
                                 <tr>
-                                    <th>日にち</th>
+                                    <th>予定日</th>
                                     <th>試合名</th>
                                     <th className="w-100-px">目標</th>
                                 </tr>
@@ -287,13 +303,13 @@ const  PlayerGoalNew = () => {
                                         <td><p className="mb-0 text-center">勉強時間</p></td>
                                         <td>
                                             <span className="mr-3">開始:</span>
-                                                <input type="time" className="border-0 mb-1 w-125-px"
+                                                <input type="time" className="border-0 mb-1 w-120-px"
                                                     value={study_start_time} onChange={e=>setStudyStartTime(e.target.value)} required/>
                                                     
                                             <br/>
 
                                             <span className="mr-3">終了:</span>
-                                                <input type="time" className="border-0 w-125-px" 
+                                                <input type="time" className="border-0 w-120-px" 
                                                     value={study_end_time} onChange={e=>setStudyEndTime(e.target.value)} required/>
                                         </td>
                                     </tr>
@@ -325,8 +341,17 @@ const  PlayerGoalNew = () => {
                                         <td><img src="/images/icons/icon-stretching.svg" width="25" height="25" /></td>
                                         <td><p className="mb-0 text-center">ストレッチ</p></td>
                                         <td>
-                                            <input type="time" className="border-0 text-center w-125-px" 
-                                                value={stretching_time} onChange={e=>setStretchTime(e.target.value)} required/> 
+                                            <select className="border-0" value={stretching_hour} onChange={e=>setStretchHour(e.target.value)}>
+                                                <option value="0時間">0時間</option>
+                                                <option value="1時間">1時間</option>
+                                                <option value="2時間">2時間</option>
+                                            </select>
+                                            <select className="border-0" value={stretching_min} onChange={e=>setStretchMin(e.target.value)}>
+                                                <option value="00分">00分</option>
+                                                <option value="15分">15分</option>
+                                                <option value="30分">30分</option>
+                                                <option value="45分">45分</option>
+                                            </select>
                                         </td>
                                     </tr>
                                     <tr>
@@ -354,8 +379,8 @@ const  PlayerGoalNew = () => {
                                         <td><img src="/images/icons/icon-bed.svg" width="25" height="25" /></td>
                                         <td><p className="mb-0 text-center">睡眠時間</p></td>
                                         <td>
-                                            <span className="mr-3">開始:</span><input type="time" className="border-0 mb-1 w-125-px" value={sleep_start_time} onChange={e=>setSleepStartTime(e.target.value)} required/><br/>
-                                            <span className="mr-3">終了:</span><input type="time" className="border-0 w-125-px" value={sleep_end_time} onChange={e=>setSleepEndTime(e.target.value)} required/>
+                                            <span className="mr-3">開始:</span><input type="time" className="border-0 mb-1 w-120-px" value={sleep_start_time} onChange={e=>setSleepStartTime(e.target.value)} required/><br/>
+                                            <span className="mr-3">終了:</span><input type="time" className="border-0 w-120-px" value={sleep_end_time} onChange={e=>setSleepEndTime(e.target.value)} required/>
                                         </td>
                                     </tr>
                                 </tbody>

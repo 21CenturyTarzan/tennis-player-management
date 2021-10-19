@@ -17,6 +17,7 @@ function PlayerInfo() {
          axios.get('/api/player/info', {params:{player_id: id}})
         .then(async (response)=>{
             if(response.data.status_code == 200){
+                console.log(response.data.params);
                 setParams(response.data.params);
             }
         })
@@ -33,7 +34,7 @@ function PlayerInfo() {
         <div className="mt-3 pt-2 rounded-top-15 text-white player-main-info">
             <div className="name pt-3 pt-md-5 ">
                 <p className="text-center bg-red-4 font-weight-bold">
-                    { params.profile.account.name }
+                    { params.account.name }
                     <Link to="/player/info/edit" className="edit edit-right">
                         <img src="/images/icon-pencil.svg" alt="icon-pencil.svg" width="30" height="30" title="Edit"/>
                     </Link>
@@ -43,15 +44,15 @@ function PlayerInfo() {
                 <div className="row mx-0">
                     <div className="col-md-4 text-center text-md-right">
                         <div className="m-auto ml-md-auto m-md-0 border-1 avatar-wrapper">
-                            <img src={params.profile.account.img} alt="avatar" className="avatar"/>
+                            <img src={params.account.img} alt="avatar" className="avatar"/>
                         </div>
                     </div>
                     <div className="col-md-8">
                         <p className="text-center bg-black-4 ft-30 ft-sm-20 m-1 mt-3 m-md-0 my-md-3" style={{overflowX:'hidden'}}>
-                            { params.rank ? params.rank.title1 : <span>私の目標は○○！！</span> }  
+                            { params.title1 ? params.title1 : <span>私の目標は○○！！</span> }  
                         </p>
                         <p className="text-center bg-black-4 ft-30 ft-sm-20  m-1 m-md-0 my-md-3" style={{overflowX:'hidden'}}>
-                            { params.rank ? params.rank.title2 : <span>私の目標は○○！！</span> } 
+                            { params.title2 ? params.title2 : <span>誰々に勝ちたい！！</span> } 
                         </p>
                     </div>
                 </div>
@@ -61,23 +62,23 @@ function PlayerInfo() {
                     <tbody>
                         <tr>
                             <td className="col-4 border-0">
-                                <p className="hint"> { moment(params.profile.birth).format('YYYY/MM/DD') }</p>
-                                <p className="value">{calculateAge(params.profile.birth, new Date())}<span>歳</span></p>
+                                <p className="hint"> { moment(params.birth).format('YYYY/MM/DD') }</p>
+                                <p className="value">{calculateAge(params.birth, new Date())}<span>歳</span></p>
                             </td>
                             <td className="col-4 border-0">
                                 <p className="hint">Height</p>
-                                <p className="value">{params.profile.height}<span>cm</span></p>
+                                <p className="value">{params.height}<span>cm</span></p>
                             </td>
                             <td className="col-4 border-0">
                                 <p className="hint">Weight</p>
-                                <p className="value">{params.profile.weight}<span>kg</span></p>
+                                <p className="value">{params.weight}<span>kg</span></p>
                             </td>
                         </tr>
                         <tr>    
                             <td className="col-4 border-0">
                                 <p className="hint">U18</p>
                                 {
-                                    params.rank ? <p className="value">{params.rank.kanto_u_18}<span>位</span></p>
+                                    params.kanto_u_18 ? <p className="value">{params.kanto_u_18}<span>位</span></p>
                                         : <p className="value">-</p>
                                 }
                             </td>
@@ -158,8 +159,8 @@ function PlayerInfo() {
                                 <td>JTAU18</td>
                                 <td>
                                 {
-                                    params.rank ? 
-                                        <span>{params.rank.jta_u_18}</span> : 
+                                    params.jta_u_18 ? 
+                                        <span>{params.jta_u_18}</span> : 
                                         <span>-</span>
                                 }
                                 </td>
@@ -168,18 +169,17 @@ function PlayerInfo() {
                                 <td>関東U18</td>
                                 <td>
                                 {
-                                    params.rank ? 
-                                        <span>{params.rank.kanto_u_18}</span> : 
+                                    params.kanto_u_18 ? 
+                                        <span>{params.kanto_u_18}</span> : 
                                         <span>-</span>
                                 }
                                 </td>
                             </tr>
                             {
-                                params.rank && 
-                                params.rank.rank_list.map((item, idx)=>(
+                                JSON.parse(params.rank_list)?.map((item, idx)=>(
                                     <tr key={idx}>
-                                        <td>{item.rank_type}</td>
-                                        <td>{item.rank_value}</td>
+                                        <td>{item.rankType}</td>
+                                        <td>{item.rankValue}</td>
                                     </tr>
                                 ))
                             }
@@ -196,36 +196,36 @@ function PlayerInfo() {
                 <tbody>
                     <tr>
                         <th>性別</th>
-                        <td>{params.profile.gender}</td>
+                        <td>{params.gender}</td>
                     </tr>
                     <tr>
                         <th>生年月日</th>
-                        <td>{moment(params.profile.birth).format('MM月DD日YYYY年')}</td>
+                        <td>{moment(params.birth).format('MM月DD日YYYY年')}</td>
                     </tr>
                     <tr>
                         <th>学校</th>
-                        <td>{params.profile.school}</td>
+                        <td>{params.school}</td>
                     </tr>
                     <tr>
                         <th>学年</th>
-                        <td>{params.profile.grade}</td>
+                        <td>{params.grade}</td>
                     </tr>
                     <tr>
                         <th>郵便番号</th>
-                        <td>{params.profile.phone}</td>
+                        <td>{params.phone}</td>
                     </tr>
                     <tr>
                         <th>住所</th>
-                        <td>{params.profile.address}</td>
+                        <td>{params.address}</td>
                     </tr>
                     <tr>
                         <th>受講回数</th>
-                        <td>{params.profile.lesson}</td>
+                        <td>{params.lesson}</td>
                     </tr>      
                     <tr>
                         <th>主な戦績</th>
                         <td>
-                            <pre className="text-left pre-scrollable">{params.profile.career}</pre>
+                            <pre className="text-left pre-scrollable">{params.career}</pre>
                         </td>
                     </tr>                   
                 </tbody>

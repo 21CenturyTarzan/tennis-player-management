@@ -26,9 +26,14 @@ class CreatePlayersTable extends Migration
             $table->string('address', 255)->comment('address');
             $table->string('lesson', 255)->comment('lesson');
             $table->text('career', 4096)->comment('career');
+            $table->tinyInteger('jta_u_18')->nullable();
+            $table->tinyInteger('kanto_u_18')->nullable();
+            $table->text('rank_list')->nullable();
+            $table->string('title1')->nullable();
+            $table->string('title2')->nullable();
+            
+            $table->timestamps();
 
-            $table->dateTime('created_at', $precision = 0)->nullable();
-            $table->dateTime('updated_at', $precision = 0)->nullable();
         });
     }
 

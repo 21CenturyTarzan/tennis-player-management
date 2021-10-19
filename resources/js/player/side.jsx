@@ -36,7 +36,7 @@ export default function Side() {
                             setSelected('goal');
                         }}>
                         <Link to="/player/goal" className="mypage-nav-list__link">
-                            <i className="icon parents"></i><span>選手管理</span>
+                            <i className="icon parents"></i><span>目標管理</span>
                         </Link>
                     </li>
                     <li className={`mypage-nav-list__item  ${(selected == 'match' || (selected == '' && document.getElementById('player_router').value == 'match')) && "nav-active"}`}

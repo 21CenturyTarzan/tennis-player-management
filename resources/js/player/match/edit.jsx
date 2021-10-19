@@ -31,7 +31,7 @@ const  PlayerMatchEdit = (props) => {
     const [surface, setSurface] = useState('クレー');      //クレー/オムニ/ハード
     const [round, setRound] = useState('予選');            //予選/本戦
     const [weather, setWeather] = useState('sunny');      //晴/曇/雨
-    const [category, setCategory] = useState('ITF');    //U34
+    const [category, setCategory] = useState('U8');    //U34
     const [mood, setMood] = useState(0);
     const [caution_list, setCautionList] = useState([]);
     const [question_list, setQuestionList] = useState([]);
@@ -45,9 +45,9 @@ const  PlayerMatchEdit = (props) => {
 
         axios.get(`/api/player/match`, {params:{player_id: id}})
         .then(res=>{
+            setLoad(true);
             if(res.data.status_code == 200)
             {
-                setLoad(true);
                 var tournament = res.data.params.tournament;
                 var question_list = res.data.params.question_list;
                 if(tournament){
@@ -91,8 +91,8 @@ const  PlayerMatchEdit = (props) => {
 
         axios.post('/player/match/update', formdata, {params:{tournament_id: tournamen_id}})
         .then(response => {
+            setSubmit(false);
             if(response.data.status_code == 200){
-                setSubmit(false);
                 history.push({
                     pathname: '/player/match',
                     state: {}

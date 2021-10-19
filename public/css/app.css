@@ -11925,8 +11925,12 @@ h3 {
   width: 100px;
 }
 
+.w-120-px {
+  width: 120px;
+}
+
 .w-125-px {
-  width: 135px;
+  width: 125px;
 }
 
 .w-135-px {
@@ -13108,6 +13112,15 @@ table#person-info pre {
 
 textarea {
   resize: none;
+}
+
+body {
+  margin: 0;
+  font-size: 18px;
+  line-height: 1.6;
+  font-family: "游ゴシック", YuGothic, "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", Verdana, "メイリオ", Meiryo, Osaka, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
+  overflow-wrap: break-word;
+  word-break: normal;
 }
 
 table, th, td {

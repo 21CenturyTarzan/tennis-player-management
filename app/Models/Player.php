@@ -21,21 +21,15 @@ class Player extends Model
         'address',
         'lesson',
         'career',
+        'jta_u_18',
+        'kanto_u_18',
+        'rank_list',
+        'title1',
+        'title2',
     ];
 
     public function account()
     {
         return $this->belongsTo(User::class, 'account_id');
     }
-
-    public function rank()
-    {
-        return $this->belongsTo(Rank::class, 'account_id');
-    }
-
-    public function ranklist()
-    {
-        return $this->hasMany(RankList::class, 'account_id');
-    }
-
 }
