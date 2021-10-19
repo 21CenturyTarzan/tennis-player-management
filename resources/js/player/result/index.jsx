@@ -28,8 +28,8 @@ function PlayerResult() {
         var id = Number(document.getElementById('player_id').value);
         axios.get('/api/player/match', {params:{player_id: id}})
         .then( response=>{
+            setLoad(true);
             if(response.data.status_code == 200){
-                setLoad(true);
                 setTournament(response.data.params.tournament);
             }
         })

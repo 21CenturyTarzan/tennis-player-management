@@ -26,7 +26,7 @@ class CreateGoalsTable extends Migration
             $table->integer('pushups')->comment('腕立て');
             $table->integer('pilates')->comment('腹筋');
             $table->integer('gymnastics')->comment('背筋');
-            $table->time('stretching_time')->comment('ストレッチ');
+            $table->string('stretching_time')->comment('ストレッチ');
             $table->integer('breakfast')->comment('朝食');
             $table->integer('lunch')->comment('昼食');
             $table->integer('dinner')->comment('夕食');

@@ -51,6 +51,7 @@ Route::middleware(['auth', 'verified'])->name('account.')->group(function () {
     Route::post('/player/info/store', [App\Http\Controllers\Front\Player\InfoController::class, 'store']);
 
     Route::get('/player/goal', [App\Http\Controllers\Front\Player\GoalManageController::class, 'index']);
+    Route::get('/player/goal/new', [App\Http\Controllers\Front\Player\GoalManageController::class, 'index']);
     Route::get('/player/goal/edit', [App\Http\Controllers\Front\Player\GoalManageController::class, 'index']);
     Route::post('/player/goal/store', [App\Http\Controllers\Front\Player\GoalManageController::class, 'store']);
     Route::post('/player/goal/update', [App\Http\Controllers\Front\Player\GoalManageController::class, 'update']);
@@ -65,6 +66,7 @@ Route::middleware(['auth', 'verified'])->name('account.')->group(function () {
     Route::get('/player/result/new', [App\Http\Controllers\Front\Player\ResultController::class, 'index']);
     Route::get('/player/result/edit', [App\Http\Controllers\Front\Player\ResultController::class, 'index']);
     Route::post('/player/result/store', [App\Http\Controllers\Front\Player\ResultController::class, 'store']);
+    Route::post('/player/result/update', [App\Http\Controllers\Front\Player\ResultController::class, 'update']);
 
 });
 

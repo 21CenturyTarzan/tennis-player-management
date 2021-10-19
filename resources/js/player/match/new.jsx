@@ -70,8 +70,8 @@ const  PlayerMatchNew = () => {
 
         axios.post('/player/match/store', formdata)
         .then(response => {
+            setSubmit(false);
             if(response.data.status_code == 200){
-                setSubmit(false);
                 history.push({
                     pathname: '/player/match',
                     state: {}

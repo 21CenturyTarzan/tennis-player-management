@@ -45,9 +45,9 @@ const  PlayerMatchEdit = (props) => {
 
         axios.get(`/api/player/match`, {params:{player_id: id}})
         .then(res=>{
+            setLoad(true);
             if(res.data.status_code == 200)
             {
-                setLoad(true);
                 var tournament = res.data.params.tournament;
                 var question_list = res.data.params.question_list;
                 if(tournament){
@@ -91,8 +91,8 @@ const  PlayerMatchEdit = (props) => {
 
         axios.post('/player/match/update', formdata, {params:{tournament_id: tournamen_id}})
         .then(response => {
+            setSubmit(false);
             if(response.data.status_code == 200){
-                setSubmit(false);
                 history.push({
                     pathname: '/player/match',
                     state: {}

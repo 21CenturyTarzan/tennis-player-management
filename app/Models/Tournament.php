@@ -23,4 +23,10 @@ class Tournament extends Model
         'mood',
         'caution_list',
     ];
+
+    public function result()
+    {
+        return $this->belongsTo(TournamentResult::class, 'id');
+    }
+    
 }

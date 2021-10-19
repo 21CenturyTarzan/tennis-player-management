@@ -165,7 +165,7 @@ function PlayerGoal() {
                                             <tr className="table-success">
                                                 <td><img src="/images/icons/icon-stretching.svg" width="25" height="25" /></td>
                                                 <td><p className="mb-0 text-center">ストレッチ</p></td>
-                                                <td>{`${params.stretching_time.split(':')[0]}時間  ${params.stretching_time.split(':')[1]}分`}</td>
+                                                <td>{params.stretching_time}</td>
                                                 <td className="w-40-px pointer"><img src="/images/icons/icon-graph.svg" width="25" height="25" /></td>
                                             </tr>
                                             <tr className="table-success">

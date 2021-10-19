@@ -137,23 +137,7 @@ function PlayerResultEdit() {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        const formdata = new FormData();
-        formdata.append('caution_rate', caution_rate);
-        formdata.append('effort_eval', effort_eval);
-        formdata.append('play_eval', play_eval);
-        formdata.append('tactics', tactics);
-        formdata.append('improvement', improvement);
-        formdata.append('check_mental', check_mental);
-
-        for(let i=0; i<question_list.length; i++)
-        {
-            if(document.getElementById('check'+i).value == true)
-                console.log(question_list[i])
-                // setAboutOpponent([...about_opponent, question_list[i]]);
-        }
-        console.log(about_opponent);
-
-        setSubmit(true)
+        
     }
 
 
@@ -292,7 +276,7 @@ function PlayerResultEdit() {
                         {
                             question_list?.map((x, i)=>
                                 <div className="form-check" key={i}>
-                                    <input className="form-check-input" id={`check${i}`} type="checkbox"/>
+                                    <input className="form-check-input" id={`check${i}`} type="checkbox" value={x.question}/>
                                     <label className="form-check-label pointer" htmlFor={`check${i}`}>
                                         {x.question}
                                     </label>

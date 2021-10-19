@@ -50,14 +50,14 @@ const  PlayerInfoEditor = () => {
     const [age, setAge] = useState(0);
     const [loading, setLoading] = useState(false);
     const [isEditFlag, setEditFlag] = useState(false);
-    const [initing, setIniting] = useState(false);
+    const [load, setLoad] = useState(false);
 
     
     useEffect( () => {
 
         var id = Number(document.getElementById('player_id').value);
 
-        setIniting(true);
+        setLoad(true);
 
          axios.get('/api/player/info', {params:{player_id: id}})
         .then((response)=>{
@@ -103,7 +103,7 @@ const  PlayerInfoEditor = () => {
                     setRankList(obj);
                 }
                 // console.log(response.data.params);
-                setIniting(false);
+                setLoad(false);
             }
         })
 
@@ -150,8 +150,8 @@ const  PlayerInfoEditor = () => {
 
         axios.post('/player/info/store', formdata)
         .then(response => {
+            setLoading(false);
             if(response.data.status_code == 200){
-                setLoading(false);
                 history.push({
                     pathname: '/player/info',
                     state: {}
@@ -219,7 +219,7 @@ const  PlayerInfoEditor = () => {
         setDefaultRank(age);
     }
      
-    if(initing) 
+    if(load) 
         return( <CircularProgress color="secondary" style={{top:'calc(40vh - 22px)', left:'calc(50% - 22px)', color:'#F0DE00', position:'absolute'}}/> );
     else 
     return (

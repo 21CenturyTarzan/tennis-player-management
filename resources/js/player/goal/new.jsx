@@ -62,7 +62,8 @@ const  PlayerGoalNew = () => {
     const [pilates, setPilates] = useState(0);
     const [gymnastics, setGymnastics] = useState(0);
     
-    const [stretching_time, setStretchTime] = useState(new Date());
+    const [stretching_hour, setStretchHour] = useState('0時間');
+    const [stretching_min, setStretchMin] = useState('00分');
 
     const [rate_breakfast, setRateBreakfast] = useState(0)
     const [rate_lunch, setRateLunch] = useState(0)
@@ -89,7 +90,8 @@ const  PlayerGoalNew = () => {
                 setPushups(params.pushups);
                 setPilates(params.pilates);
                 setGymnastics(params.gymnastics);
-                setStretchTime(params.stretching_time);
+                setStretchHour(params.stretching_time.split(' ')[0]);
+                setStretchMin(params.stretching_time.split(' ')[1]);
                 setRateBreakfast(params.breakfast);
                 setRateLunch(params.lunch);
                 setRateDinner(params.dinner);
@@ -121,7 +123,7 @@ const  PlayerGoalNew = () => {
         formdata.append('pushups', pushups);
         formdata.append('pilates', pilates);
         formdata.append('gymnastics', gymnastics );
-        formdata.append('stretching_time', stretching_time);
+        formdata.append('stretching_time', stretching_hour + ' ' + stretching_min);
         formdata.append('breakfast', rate_breakfast);
         formdata.append('lunch', rate_lunch);
         formdata.append('dinner', rate_dinner);
@@ -130,8 +132,8 @@ const  PlayerGoalNew = () => {
 
         axios.post('/player/goal/store', formdata)
         .then(response => {
+            setSubmit(false);
             if(response.data.status_code==200){
-                setSubmit(false);
                 history.push({
                     pathname: '/player/goal',
                     state: {}
@@ -287,13 +289,13 @@ const  PlayerGoalNew = () => {
                                         <td><p className="mb-0 text-center">勉強時間</p></td>
                                         <td>
                                             <span className="mr-3">開始:</span>
-                                                <input type="time" className="border-0 mb-1 w-100-px"
+                                                <input type="time" className="border-0 mb-1 w-120-px"
                                                     value={study_start_time} onChange={e=>setStudyStartTime(e.target.value)} required/>
                                                     
                                             <br/>
 
                                             <span className="mr-3">終了:</span>
-                                                <input type="time" className="border-0 w-100-px" 
+                                                <input type="time" className="border-0 w-120-px" 
                                                     value={study_end_time} onChange={e=>setStudyEndTime(e.target.value)} required/>
                                         </td>
                                     </tr>
@@ -325,8 +327,17 @@ const  PlayerGoalNew = () => {
                                         <td><img src="/images/icons/icon-stretching.svg" width="25" height="25" /></td>
                                         <td><p className="mb-0 text-center">ストレッチ</p></td>
                                         <td>
-                                            <input type="time" className="border-0 text-center w-100-px" 
-                                                value={stretching_time} onChange={e=>setStretchTime(e.target.value)} required/> 
+                                            <select className="border-0" value={stretching_hour} onChange={e=>setStretchHour(e.target.value)}>
+                                                <option value="0時間">0時間</option>
+                                                <option value="1時間">1時間</option>
+                                                <option value="2時間">2時間</option>
+                                            </select>
+                                            <select className="border-0" value={stretching_min} onChange={e=>setStretchMin(e.target.value)}>
+                                                <option value="00分">00分</option>
+                                                <option value="15分">15分</option>
+                                                <option value="30分">30分</option>
+                                                <option value="45分">45分</option>
+                                            </select>
                                         </td>
                                     </tr>
                                     <tr>
@@ -354,8 +365,8 @@ const  PlayerGoalNew = () => {
                                         <td><img src="/images/icons/icon-bed.svg" width="25" height="25" /></td>
                                         <td><p className="mb-0 text-center">睡眠時間</p></td>
                                         <td>
-                                            <span className="mr-3">開始:</span><input type="time" className="border-0 mb-1 w-100-px" value={sleep_start_time} onChange={e=>setSleepStartTime(e.target.value)} required/><br/>
-                                            <span className="mr-3">終了:</span><input type="time" className="border-0 w-100-px" value={sleep_end_time} onChange={e=>setSleepEndTime(e.target.value)} required/>
+                                            <span className="mr-3">開始:</span><input type="time" className="border-0 mb-1 w-120-px" value={sleep_start_time} onChange={e=>setSleepStartTime(e.target.value)} required/><br/>
+                                            <span className="mr-3">終了:</span><input type="time" className="border-0 w-120-px" value={sleep_end_time} onChange={e=>setSleepEndTime(e.target.value)} required/>
                                         </td>
                                     </tr>
                                 </tbody>
