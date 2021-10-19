@@ -18,10 +18,11 @@ class InfoController extends Controller
 {
     //
 
-    public function info(Request $r){
-        $player_id = (int)$r->get('player_id');
-        $res['rank'] = Rank::where('player_id', $player_id)->with('rank_list') -> orderBy('id', 'DESC') -> first();
-        $res['profile'] = Player::where('id', $player_id)->with('account')->first();
+    public function info(Request $request){
+        $player_id = (int)$request->get('player_id');
+        // $res['rank'] = Rank::where('player_id', $player_id)->with('rank_list') -> orderBy('id', 'DESC') -> first();
+        // $res['profile'] = Player::where('id', $player_id)->with('account')->first();
+        $res = Player::where('id', $player_id)->with('account')->first();
 
         return ['status_code' => 200, 'params' => $res];
     }
@@ -43,7 +44,7 @@ class InfoController extends Controller
         $career = json_decode($request->get('career'));
         $jta_u_18 = (int)json_decode($request->get('jta_u_18'));
         $kanto_u_18 = (int)json_decode($request->get('kanto_u_18'));
-        $rank_list = json_decode($request->get('rankList'));
+        $rank_list = $request->get('rank_list');            //dont change json
         $title1 = json_decode($request->get('title1'));
         $title2 = json_decode($request->get('title2'));
 
@@ -69,26 +70,7 @@ class InfoController extends Controller
         $player_id = (int) $request->get('player_id');
 
         try {
-            Rank::create([
-                'player_id' => $player_id,
-                'jta_u_18' => $jta_u_18,
-                'kanto_u_18' => $kanto_u_18,
-                'title1' => $title1,
-                'title2' => $title2
-            ]);
-
-            $rank_id = Rank::get()->count();
-            $index = 0;
-            foreach($rank_list as $rank){
-                $index ++;
-                RankList::create([
-                    'rank_id'=>$rank_id,
-                    'index'=>$index,
-                    'rank_type'=>$rank->rankType,
-                    'rank_value'=>(int)$rank->rankValue,
-                ]);
-            }
-
+            
             Player::where('id', $player_id)->first()->update([
                 'gender' => $gender,
                 'birth' => $birth,
@@ -99,7 +81,12 @@ class InfoController extends Controller
                 'phone' => $phone,
                 'address' => $address,
                 'lesson' => $lesson,
-                'career' => $career
+                'career' => $career,
+                'jta_u_18' => $jta_u_18,
+                'kanto_u_18' => $kanto_u_18,
+                'rank_list' => $rank_list,
+                'title1' => $title1,
+                'title2' => $title2
             ]);
 
             $account_id = Player::where('id', $player_id)->first()->account_id;

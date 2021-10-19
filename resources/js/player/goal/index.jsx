@@ -1,15 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import CircularProgress from '@material-ui/core/CircularProgress';
-import { Rating, RatingView } from 'react-simple-star-rating';
 
 import IconButton from '@mui/material/IconButton';
-import SendIcon from '@mui/icons-material/Send';
 import DeleteIcon from '@mui/icons-material/Delete';
-import RemoveIcon from '@mui/icons-material/Remove';
 import AddIcon from '@mui/icons-material/Add';
-import EditIcon from '@mui/icons-material/Edit';
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 import moment from 'moment';
 
@@ -59,39 +54,35 @@ function PlayerGoal() {
                     !load && <CircularProgress color="secondary" style={{top:'calc(40vh - 22px)', left:'calc(50% - 22px)', color:'green', position:'absolute'}}/>
                 }
                 {
-                    load && !params &&
-                        <p className="mt-5 text-center">記録されたデータのリストがありません。</p>
-                }
-                {
                     load && params &&
                     <>
                         <p className="w-50 w-md-75 p-1 pl-2 mb-2 bg-black-4 rounded-right-20 text-white">入力リスト</p>
                         <div className="px-2 mb-2">
                             <table className="table table-bordered mb-2 text-center">
-                                <thead>
+                                <tbody>
                                     <tr>
                                         <th>入力日</th>
                                         <th>予定試合数</th>
                                         <th className="w-60-px">削除</th>
                                     </tr>
-                                </thead>
-                                <tbody>
                                     {
-                                        params?.map((x, i)=>
-                                            <tr className="pointer" key={i}>
-                                                <td>
-                                                    <Link to={`/player/goal/detail/${x.id}`}>                                
-                                                        {moment(x.created_at).format('YYYY/MM/DD  HH:mm')}
-                                                    </Link>
-                                                </td>
-                                                <td>{`${JSON.parse(x.match_list).length}`}</td>
-                                                <td className="p-0">
-                                                    <IconButton color="error" size="small">
-                                                        <DeleteIcon fontSize="small"/>
-                                                    </IconButton>
-                                                </td>
-                                            </tr>
-                                        )
+                                        params.length > 0 ?
+                                            params?.map((x, i)=>
+                                                <tr className="pointer" key={i}>
+                                                    <td>
+                                                        <Link to={`/player/goal/detail/${x.id}`}>                                
+                                                            {moment(x.created_at).format('YYYY/MM/DD  HH:mm')}
+                                                        </Link>
+                                                    </td>
+                                                    <td>{`${JSON.parse(x.match_list).length}`}</td>
+                                                    <td className="p-0">
+                                                        <IconButton color="error" size="small">
+                                                            <DeleteIcon fontSize="small"/>
+                                                        </IconButton>
+                                                    </td>
+                                                </tr>
+                                            )
+                                        : <tr><td colSpan="3">入力されたデータがありません。</td></tr>
                                     }
                                 </tbody>
                             </table>

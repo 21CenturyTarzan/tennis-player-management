@@ -14,7 +14,7 @@ import SendIcon from '@mui/icons-material/Send';
 import ImageCrop from 'react-image-crop-component';
 import 'react-image-crop-component/style.css';
 
-
+import moment from 'moment';
 
 // ----------------------------------------------------------------------
 
@@ -39,16 +39,16 @@ const  PlayerInfoEditor = () => {
     const [convertimgUri, setConvertImgUri] = useState('');
     const [cropimgUri, setCropImgUri] = useState('');
     
-    const [title1, setTitle1] = useState('');
-    const [title2, setTitle2] = useState('');
+    const [title1, setTitle1] = useState('私の目標は○○！！');
+    const [title2, setTitle2] = useState('誰々に勝ちたい！！');
     
     const [jta_u_18, setJTAU18] = useState('');
     const [kanto_u_18, setKantoU18] = useState('');
-    const [rankList, setRankList] = useState([]);
+    const [rank_list, setRankList] = useState([]);
     /////////////////////////////////////////////////////////////
     
     const [age, setAge] = useState(0);
-    const [loading, setLoading] = useState(false);
+    const [submit, setSubmit] = useState(false);
     const [isEditFlag, setEditFlag] = useState(false);
     const [load, setLoad] = useState(false);
 
@@ -57,16 +57,16 @@ const  PlayerInfoEditor = () => {
 
         var id = Number(document.getElementById('player_id').value);
 
-        setLoad(true);
-
          axios.get('/api/player/info', {params:{player_id: id}})
         .then((response)=>{
+
+            setLoad(true);
+
             if(response.data.status_code == 200){
-                var {rank, profile} = response.data.params;
+                var profile = response.data.params;
 
                 setName(profile.account.name);
-                let birth = profile.birth.split(' ')[0]; //string 1998-07-09
-                setBirth(birth);
+                setBirth(moment(profile.birth).format('YYYY-MM-DD'));
                 setGender(profile.gender);
                 setSchool(profile.school);
                 setGrade(profile.grade);
@@ -82,28 +82,20 @@ const  PlayerInfoEditor = () => {
                 setCropImgUri(profile.account.img);
 
                 let today = new Date();
-                let age = calculateAge(new Date(birth), today);
+                let age = today.getFullYear() - Number(moment(profile.birth).format('YYYY'));
+                setAge(age);
         
-                if(!rank){
-                    setTitle1("私の目標は○○！！");
-                    setTitle2("誰々に勝ちたい！！");
+                if(!profile.rank_list){
                     setDefaultRank(age);
-                    setJTAU18('-');
-                    setKantoU18('-');
                 }
                 else{
-                    setTitle1(rank.title1);
-                    setTitle2(rank.title2);
-                    setJTAU18(rank.jta_u_18);
-                    setKantoU18(rank.kanto_u_18);
-                    var obj = [];
-                    for(var i = 0; i < rank.rank_list.length; i++)                
-                        obj.push({'rankType': rank.rank_list[i].rank_type, 'rankValue': rank.rank_list[i].rank_value});
-        
-                    setRankList(obj);
+                    setTitle1(profile.title1);
+                    setTitle2(profile.title2);
+                    setJTAU18(profile.jta_u_18);
+                    setKantoU18(profile.kanto_u_18);
+                    setRankList(JSON.parse(profile.rank_list)) ;
                 }
                 // console.log(response.data.params);
-                setLoad(false);
             }
         })
 
@@ -142,17 +134,17 @@ const  PlayerInfoEditor = () => {
         formdata.append('image', convertimgUri);
         formdata.append('jta_u_18', JSON.stringify(jta_u_18));
         formdata.append('kanto_u_18', JSON.stringify(kanto_u_18));
-        formdata.append('rankList', JSON.stringify(rankList));
+        formdata.append('rank_list', JSON.stringify(rank_list));
         formdata.append('title1', JSON.stringify(title1));
         formdata.append('title2', JSON.stringify(title2));
 
-        setLoading(true)
+        setSubmit(true)
 
         var id = Number(document.getElementById('player_id').value);
 
         axios.post('/api/player/info/store', formdata, {params:{player_id: id}})
         .then(response => {
-            setLoading(false);
+            setSubmit(false);
             if(response.data.status_code == 200){
                 history.push({
                     pathname: '/player/info',
@@ -194,34 +186,34 @@ const  PlayerInfoEditor = () => {
 
 
     const addRank = () => {
-        setRankList([...rankList, { rankType: "", rankValue: "" }]);
+        setRankList([...rank_list, { rankType: "", rankValue: "" }]);
     };
 
     const removeRank = () => {
-        const list = [...rankList];
+        const list = [...rank_list];
         list.pop();
         setRankList(list);
     };
 
     const deleteRank = (e, index) => {
-        const list = [...rankList];
+        const list = [...rank_list];
         list.splice(index, 1);
         setRankList(list);
     }
     
     const changeRank = (e, index) => {
         const { name, value } = e.target;
-        const list = [...rankList];
+        const list = [...rank_list];
         list[index][name] = value;
         setRankList(list);
     };
     
     
-    const reloadRankList = () => {
+    const reloadrank_list = () => {
         setDefaultRank(age);
     }
      
-    if(load) 
+    if(!load) 
         return( <CircularProgress color="secondary" style={{top:'calc(40vh - 22px)', left:'calc(50% - 22px)', color:'#F0DE00', position:'absolute'}}/> );
     else 
     return (
@@ -334,7 +326,7 @@ const  PlayerInfoEditor = () => {
                                         <img src="/images/icon-reload-white.svg" 
                                             width="25" 
                                             style={{position:'absolute', right:'30px', cursor:'pointer'}} 
-                                            onClick={reloadRankList}
+                                            onClick={reloadrank_list}
                                         />
                                     </td>
                                 </tr>
@@ -367,8 +359,8 @@ const  PlayerInfoEditor = () => {
                                     </td>
                                 </tr>
                                 {
-                                    rankList.length != 0 && 
-                                    rankList.map((x, i)=>{
+                                    rank_list.length != 0 && 
+                                    rank_list.map((x, i)=>{
                                         return(
                                             <tr key={i}>
                                                 <td>
@@ -465,7 +457,7 @@ const  PlayerInfoEditor = () => {
                     </div>
                     <div className="col-6">
                         <LoadingButton size="large" type="submit" 
-                            loading={loading}
+                            loading={submit}
                             fullWidth  variant="contained" 
                             style={{backgroundColor: 'transparent', border: '2px solid white', fontSize:'16px'}} 
                             endIcon={<SendIcon />}>
