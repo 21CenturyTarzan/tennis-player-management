@@ -11,9 +11,9 @@ class GoalManageController extends Controller
 {
     //
 
-    public function detail(Request $r, $id)
+    public function detail(Request $request, $id)
     {
-        $player_id = (int)$r->get('player_id');
+        $player_id = (int)$request->get('player_id');
         $goal_id = (int)$id;
         
         $res = Goal::where([
@@ -26,18 +26,18 @@ class GoalManageController extends Controller
         return ['status_code'=>400];
     }
 
-    public function last(Request $r)
+    public function last(Request $request)
     {
-        $player_id = (int)$r->get('player_id');
+        $player_id = (int)$request->get('player_id');
         $res = Goal::where('player_id', $player_id)->orderBy('id', 'DESC') -> first();
         if($res)
             return ['status_code'=>200, 'params'=>$res];
         return ['status_code'=>400];
     }
     
-    public function list(Request $r)
+    public function list(Request $request)
     {
-        $player_id = (int)$r->get('player_id');
+        $player_id = (int)$request->get('player_id');
         $res = Goal::where('player_id', $player_id)->orderBy('id', 'DESC') -> get();
         if($res)
             return ['status_code'=>200, 'params'=>$res];
@@ -132,6 +132,18 @@ class GoalManageController extends Controller
         
        
         return ['status_code' => 200];
+    }
+
+    public function delete(Request $request, $id)
+    {
+        //TODO
+        Goal::where('id', (int)$id)->delete();
+
+        $player_id = (int)$request->get('player_id');
+        $res = Goal::where('player_id', $player_id)->orderBy('id', 'DESC') -> get();
+        if($res)
+            return ['status_code'=>200, 'params'=>$res];
+        return ['status_code'=>400];
     }
 
 }

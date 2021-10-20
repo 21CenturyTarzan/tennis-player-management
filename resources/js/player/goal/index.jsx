@@ -8,11 +8,32 @@ import AddIcon from '@mui/icons-material/Add';
 
 import moment from 'moment';
 
+import Button from '@mui/material/Button';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
+import Slide from '@mui/material/Slide';
+import axios from 'axios';
 
-function PlayerGoal() {
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+
+const Transition = React.forwardRef(function Transition(props, ref) {
+    return <Slide direction="up" ref={ref} {...props} />;
+});
+
+
+
+
+const  PlayerGoal = () => {
     
+    const [open, setOpen] = useState(false);
     const [load, setLoad] = useState(false);
     const [params, setParams] = useState(null);
+    const [delIndex, setDeleteIndex] = useState(null);
 
     useEffect( () => {
 
@@ -32,6 +53,28 @@ function PlayerGoal() {
     //     console.log(params);
     // },[params])
 
+    const deleteGoal = (ix) => {
+        setOpen(true);
+        setDeleteIndex(ix);
+    };
+    
+    const handleOK = () => {
+        setOpen(false);
+        var id = Number(document.getElementById('player_id').value);
+        axios.delete('/api/player/goal/delete/'+delIndex, {params:{player_id: id}})
+        .then(response=>{
+            if(response.data.status_code == 200){
+                notify();
+                setParams(response.data.params)
+            }
+        })
+    };
+
+    const handleCancel = () => {
+        setOpen(false);
+    } 
+
+    const notify = () => toast("削除成功");
     
     return (
         <div id="goal">
@@ -57,7 +100,7 @@ function PlayerGoal() {
                     <>
                         <p className="w-50 w-md-75 p-1 pl-2 mb-2 bg-black-4 rounded-right-20 text-white">入力リスト</p>
                         <div className="px-2 mb-2">
-                            <table className="table table-bordered mb-2 text-center">
+                            <table className="table table-bordered mb-2 text-center ft-xs-15">
                                 <tbody>
                                     <tr>
                                         <th>入力日</th>
@@ -75,9 +118,9 @@ function PlayerGoal() {
                                                     </td>
                                                     <td>{`${JSON.parse(x.match_list).length}`}</td>
                                                     <td className="p-0">
-                                                        <IconButton color="error" size="small">
-                                                            <DeleteIcon fontSize="small"/>
-                                                        </IconButton>
+                                                        <Button color="error" size="small">
+                                                            <DeleteIcon fontSize="small" onClick={e=>deleteGoal(x.id)}/>
+                                                        </Button>
                                                     </td>
                                                 </tr>
                                             )
@@ -90,6 +133,28 @@ function PlayerGoal() {
                     </>
                 }
             </div>
+            <Dialog
+                open={open}
+                TransitionComponent={Transition}
+                keepMounted
+                onClose={handleCancel}
+                aria-describedby="alert-dialog-slide-description"
+            >
+                <DialogTitle>{"本当に削除しますか？"}</DialogTitle>
+                <DialogContent>
+                    <DialogContentText id="alert-dialog-slide-description">
+                        いったん削除されると、復元できません。<br/>
+                        利点をご了承ください。
+                    </DialogContentText>
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={handleCancel}>いいえ</Button>
+                    <Button onClick={handleOK}>はい</Button>
+                </DialogActions>
+            </Dialog>
+            
+
+            <ToastContainer />
         </div>
     );
 }
