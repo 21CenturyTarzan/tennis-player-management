@@ -60,4 +60,109 @@ class MatchController extends Controller
             return ['status_code'=>200, 'params'=>$res];
         return ['status_code'=>400];
     }
+
+
+    //////////////////////////
+
+
+    public function prepare_store(Request $request)
+    {
+        $tournament_name = $request->get('tournament_name');
+        $tournament_date = $request->get('tournament_date');
+        $opponent_name = $request->get('opponent_name');
+        $opponent_club = $request->get('opponent_club');
+        $surface = $request->get('surface');
+        $round = $request->get('round');
+        $weather = $request->get('weather');
+        $category = $request->get('category');
+        $mood = (int)$request->get('mood');
+        $caution_list = $request->get('caution_list');       //Dont Change Json decode. input raw data
+
+        $player_id = (int)$request->get('player_id');
+
+        $res = Tournament::create([
+            'player_id' => $player_id,
+            'category' => $category,
+            'tournament_name' => $tournament_name,
+            'tournament_date' => $tournament_date,
+            'opponent_name' => $opponent_name,
+            'opponent_club' => $opponent_club,
+            'surface' => $surface,
+            'round' => $round,
+            'weather' => $weather,
+            'mood' => $mood,
+            'caution_list' => $caution_list
+        ]);
+
+        return ['status_code' => 200, 'params'=>$res];
+    }
+
+    public function prepare_update(Request $request, $id)
+    {
+        //TODO
+        $tournament_name = $request->get('tournament_name');
+        $tournament_date = $request->get('tournament_date');
+        $opponent_name = $request->get('opponent_name');
+        $opponent_club = $request->get('opponent_club');
+        $surface = $request->get('surface');
+        $round = $request->get('round');
+        $weather = $request->get('weather');
+        $category = $request->get('category');
+        $mood = (int)$request->get('mood');
+        $caution_list = $request->get('caution_list');       //Dont Change Json decode. input raw data
+
+        $player_id = $request -> get('player_id');
+
+        Tournament::where([
+            'id' => (int)$id,
+            'player_id' => $player_id
+        ])->first()->update([
+            'category' => $category,
+            'tournament_name' => $tournament_name,
+            'tournament_date' => $tournament_date,
+            'opponent_name' => $opponent_name,
+            'opponent_club' => $opponent_club,
+            'surface' => $surface,
+            'round' => $round,
+            'weather' => $weather,
+            'mood' => $mood,
+            'caution_list' => $caution_list
+        ]);
+
+
+        return ['status_code' => 200];
+    }
+
+
+
+    /////////////////////////
+
+    public function result_store(Request $request)
+    {
+        //TODO
+        $caution_rate =    $request->get('caution_rate');
+        $effort_eval = (int)$request->get('effort_eval');
+        $play_eval =   (int)$request->get('play_eval');
+        $tactics =         $request->get('tactics');
+        $improvement =     $request->get('improvement');
+        $check_mental =    $request->get('check_mental');
+        $about_opponent =  $request->get('about_opponent');
+        $score_list =      $request->get('score_list');
+
+        $tournament_id = $request->get('tournament_id');
+
+        TournamentResult::create([
+            'tournament_id' => $tournament_id,
+            'caution_rate' => $caution_rate,
+            'effort_eval' => $effort_eval,
+            'play_eval' => $play_eval,
+            'score_list' => $score_list,
+            'about_opponent' => $about_opponent,
+            'tactics' => $tactics,
+            'improvement' => $improvement,
+            'check_mental' => $check_mental
+        ]);
+
+        return ['status_code' => 200];
+    }
 }

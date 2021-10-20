@@ -66,12 +66,16 @@ const  PlayerMatchPrepareNew = () => {
        
         setSubmit(true)
 
-        axios.post('/player/match/store', formdata)
+        var id = Number(document.getElementById('player_id').value);
+
+        axios.post('/api/player/match/prepare/store', formdata, {params:{player_id: id}})
         .then(response => {
             setSubmit(false);
             if(response.data.status_code == 200){
+
+                console.log(response.data.params)
                 history.push({
-                    pathname: '/player/match',
+                    pathname: `/player/match/detail/${response.data.params.id}`,
                     state: {}
                 });
             }

@@ -86,13 +86,14 @@ const  PlayerMatchPrepareEdit = (props) => {
         formdata.append('caution_list', JSON.stringify(caution_list));
        
         setSubmit(true)
+        var id = Number(document.getElementById('player_id').value);
 
-        axios.post('/player/match/update', formdata, {params:{tournament_id: tournamen_id}})
+        axios.post(`/api/player/match/prepare/update/${tournamen_id}`, formdata, {params:{player_id: id}})
         .then(response => {
             setSubmit(false);
             if(response.data.status_code == 200){
                 history.push({
-                    pathname: '/player/match',
+                    pathname: `/player/match/detail/${tournamen_id}`,
                     state: {}
                 });
             }
@@ -264,7 +265,7 @@ const  PlayerMatchPrepareEdit = (props) => {
                     <div className="mt-3 mb-2 px-2 px-md-4">
                         <div className="row">
                             <div className="col-6">
-                                <Link to="/player/match" style={{textDecoration:'none'}}>
+                                <Link to={`/player/match/detail/${props.match.params?.id}`} style={{textDecoration:'none'}}>
                                     <Button size="large" fullWidth variant="contained" style={{backgroundColor: 'transparent', border: '1px solid green', color:'green', fontSize:'16px'}} >
                                         <span>閉じる</span>
                                     </Button>

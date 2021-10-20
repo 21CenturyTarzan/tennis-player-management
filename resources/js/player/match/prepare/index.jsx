@@ -16,7 +16,6 @@ const PlayerMatchPrepare = (props) => {
 
     useEffect( () => {
         setTournament(props.tournament);
-        console.log(props.tournament);
     }, []);
 
     // useEffect( ()=>{
@@ -33,7 +32,7 @@ const PlayerMatchPrepare = (props) => {
                     </IconButton>
                 </Link>
                 <span>試合前詳細</span>
-                <Link to={`/player/match/edit/${props.id}`}>
+                <Link to={`/player/match/prepare/edit/${tournament?.id}`}>
                     <IconButton style={{color:'white', position:'absolute', padding:'3px', right:'23px'}}>
                         <EditIcon/>
                     </IconButton>

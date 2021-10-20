@@ -14,6 +14,11 @@ import PlayerGoalEdit from './goal/edit';
 import PlayerMatch from './match';
 import PlayerMatchDetail from './match/detail';
 
+import PlayerMatchPrepareNew from './match/prepare/new';
+import PlayerMatchPrepareEdit from './match/prepare/edit';
+import PlayerMatchResultNew from './match/result/new';
+import PlayerMatchResultEdit from './match/result/edit';
+
 import PlayerFavourite from './favourite';
 
 import Notification from '../components/notification';
@@ -36,14 +41,12 @@ export default class PlayerApp extends Component {
                         <Route exact path="/player/goal/detail/:id" component = {PlayerGoalDetail} />
                         <Route exact path="/player/goal/edit/:id" component = {PlayerGoalEdit} />
 
-                        <Route exact path="/player/match" component = {PlayerMatch} />
-                        {/* <Route exact path="/player/match/new" component = {PlayerMatchNew} /> */}
+                        <Route exact path="/player/match"    component = {PlayerMatch} />
                         <Route exact path="/player/match/detail/:id" component = {PlayerMatchDetail} />
-                        {/* <Route exact path="/player/match/edit/:id" component = {PlayerMatchEdit} />
-
-                        <Route exact path="/player/result" component = {PlayerResult} />
-                        <Route exact path="/player/result/new" component = {PlayerResultNew} />
-                        <Route exact path="/player/result/edit" component = {PlayerResultEdit} /> */}
+                        <Route exact path="/player/match/prepare/new" component = {PlayerMatchPrepareNew} />
+                        <Route exact path="/player/match/prepare/edit/:id" component = {PlayerMatchPrepareEdit} />
+                        <Route exact path="/player/match/result/new/:id"       component = {PlayerMatchResultNew} />
+                        <Route exact path="/player/match/result/edit/:id" component = {PlayerMatchResultEdit} /> 
 
                         <Route exact path="/player/favourite" component = {PlayerFavourite} />
 

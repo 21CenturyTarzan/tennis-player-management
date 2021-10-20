@@ -88,13 +88,13 @@ function PlayerMatch() {
     <div id="match">
         <div className="mt-3 py-2 rounded-15 bg-white shadow-lg" style={{minHeight:'700px'}}>
             <h3 className="mt-2 p-1 position-relative text-white bg-green text-center font-weight-bold">
-                <Link to="/player/match/new">
+                <Link to="/player/match/prepare/new">
                     <IconButton style={{color:'white', position:'absolute', padding:'3px', left:'23px'}}>
                         <AddIcon/>
                     </IconButton>
                 </Link>
                 <span>試合管理</span>
-                <Link to="/player/match/new">
+                <Link to="/player/match/prepare/new">
                     <IconButton style={{color:'white', position:'absolute', padding:'3px', right:'23px'}}>
                         <AddIcon/>
                     </IconButton>
@@ -136,7 +136,7 @@ function PlayerMatch() {
                                                             </Link>
                                                         </td>
                                                         :<td>
-                                                            <Link to={`/player/result/new`}>                                
+                                                            <Link to={`/player/match/result/new/${x.id}`}>                                
                                                                 未入力
                                                             </Link>
                                                         </td>
