@@ -45,16 +45,16 @@ export default function Side() {
                             setSelected('match');
                         }}>
                         <Link to="/player/match" className="mypage-nav-list__link">
-                            <i className="icon match"></i><span>試合前準備</span>
+                            <i className="icon meeting"></i><span>試合管理</span>
                         </Link>
                     </li>
-                    <li className={`mypage-nav-list__item  ${(selected == 'result' || (selected == '' && document.getElementById('player_router').value == 'result')) && "nav-active"}`}
+                    <li className={`mypage-nav-list__item  ${(selected == 'favourite' || (selected == '' && document.getElementById('player_router').value == 'favourite')) && "nav-active"}`}
                         onClick={e => {
                             e.preventDefault();
-                            setSelected('result');
+                            setSelected('favourite');
                         }}>
-                        <Link to="/player/result" className="user-icon mypage-nav-list__link">
-                            <i className="icon meeting"></i><span>試合結果</span>
+                        <Link to="/player/favourite" className="user-icon mypage-nav-list__link">
+                            <i className="icon star"></i><span>お気に入り</span>
                         </Link>
                     </li>
                     <li className={`mypage-nav-list__item  ${(selected == 'logout') && "nav-active"}`}

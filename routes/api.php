@@ -27,7 +27,6 @@ Route::middleware(['throttle:seventy'])->group(function() {
     Route::get('/player/info', 'App\Http\Controllers\Api\InfoController@info');
     Route::post('/player/info/store', 'App\Http\Controllers\Api\InfoController@store');
 
-
     Route::get('/player/goal/detail/{id}', 'App\Http\Controllers\Api\GoalManageController@detail');
     Route::get('/player/goal/last', 'App\Http\Controllers\Api\GoalManageController@last');
     Route::get('/player/goal/list', 'App\Http\Controllers\Api\GoalManageController@list');
@@ -35,6 +34,10 @@ Route::middleware(['throttle:seventy'])->group(function() {
     Route::post('/player/goal/update/{id}', 'App\Http\Controllers\Api\GoalManageController@update');
     Route::delete('/player/goal/delete/{id}', 'App\Http\Controllers\Api\GoalManageController@delete');
 
-    Route::get('player/match', 'App\Http\Controllers\Api\MatchController@match');
+    Route::get('player/match/detail', 'App\Http\Controllers\Api\MatchController@match');
+    Route::get('player/match/list', 'App\Http\Controllers\Api\MatchController@list');
+    Route::delete('player/match/delete/{id}', 'App\Http\Controllers\Api\MatchController@delete');
+    
+    Route::get('player/analysis/list', 'App\Http\Controllers\Api\MatchController@analysis');
     
 });

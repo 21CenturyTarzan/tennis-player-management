@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
+import { LoadingButton } from '@material-ui/lab';
+
 import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
 import AddIcon from '@mui/icons-material/Add';
@@ -32,8 +34,9 @@ const  PlayerGoal = () => {
     
     const [open, setOpen] = useState(false);
     const [load, setLoad] = useState(false);
-    const [params, setParams] = useState(null);
-    const [delIndex, setDeleteIndex] = useState(null);
+    const [goal_list, setGoalList] = useState(null);
+    const [deleteIndex, setDeleteIndex] = useState(null);
+    const [submit, setSubmit] = useState(false);
 
     useEffect( () => {
 
@@ -44,33 +47,35 @@ const  PlayerGoal = () => {
         .then(async (response)=>{
             setLoad(true);
             if(response.data.status_code == 200){
-                setParams(response.data.params)
+                setGoalList(response.data.params)
             }
         })
     }, []);
 
     // useEffect(()=>{
-    //     console.log(params);
-    // },[params])
+    //     console.log(goal_list);
+    // },[goal_list])
 
-    const deleteGoal = (ix) => {
+    const openModal = (ix) => {
         setOpen(true);
         setDeleteIndex(ix);
     };
     
     const handleOK = () => {
-        setOpen(false);
         var id = Number(document.getElementById('player_id').value);
-        axios.delete('/api/player/goal/delete/'+delIndex, {params:{player_id: id}})
+        setSubmit(true);
+        axios.delete('/api/player/goal/delete/'+ deleteIndex, {params:{player_id: id}})
         .then(response=>{
+            setSubmit(false);
+            closeModal();
             if(response.data.status_code == 200){
                 notify();
-                setParams(response.data.params)
+                setGoalList(response.data.params)
             }
         })
     };
 
-    const handleCancel = () => {
+    const closeModal = () => {
         setOpen(false);
     } 
 
@@ -96,9 +101,9 @@ const  PlayerGoal = () => {
                     !load && <CircularProgress color="secondary" style={{top:'calc(40vh - 22px)', left:'calc(50% - 22px)', color:'green', position:'absolute'}}/>
                 }
                 {
-                    load && params &&
+                    load && goal_list &&
                     <>
-                        <p className="w-50 w-md-75 p-1 pl-2 mb-2 bg-black-4 rounded-right-20 text-white">入力リスト</p>
+                        <p className="w-50 w-md-75 p-1 pl-2 mb-2 bg-black-4 rounded-right-20 text-white">目標リスト</p>
                         <div className="px-2 mb-2">
                             <table className="table table-bordered mb-2 text-center ft-xs-15">
                                 <tbody>
@@ -108,8 +113,8 @@ const  PlayerGoal = () => {
                                         <th className="w-60-px">削除</th>
                                     </tr>
                                     {
-                                        params.length > 0 ?
-                                            params?.map((x, i)=>
+                                        goal_list.length > 0 ?
+                                            goal_list?.map((x, i)=>
                                                 <tr className="pointer" key={i}>
                                                     <td>
                                                         <Link to={`/player/goal/detail/${x.id}`}>                                
@@ -118,8 +123,8 @@ const  PlayerGoal = () => {
                                                     </td>
                                                     <td>{`${JSON.parse(x.match_list).length}`}</td>
                                                     <td className="p-0">
-                                                        <Button color="error" size="small">
-                                                            <DeleteIcon fontSize="small" onClick={e=>deleteGoal(x.id)}/>
+                                                        <Button color="error" size="small"  onClick={e=>openModal(x.id)}>
+                                                            <DeleteIcon fontSize="small"/>
                                                         </Button>
                                                     </td>
                                                 </tr>
@@ -137,19 +142,18 @@ const  PlayerGoal = () => {
                 open={open}
                 TransitionComponent={Transition}
                 keepMounted
-                onClose={handleCancel}
                 aria-describedby="alert-dialog-slide-description"
             >
-                <DialogTitle>{"本当に削除しますか？"}</DialogTitle>
+                <DialogTitle style={{fontSize:'18px', textAlign:'center'}}>{"本当に削除しますか？"}</DialogTitle>
                 <DialogContent>
-                    <DialogContentText id="alert-dialog-slide-description">
+                    <DialogContentText id="alert-dialog-slide-description" style={{fontSize:'16px'}}>
                         いったん削除されると、復元できません。<br/>
                         利点をご了承ください。
                     </DialogContentText>
                 </DialogContent>
                 <DialogActions>
-                    <Button onClick={handleCancel}>いいえ</Button>
-                    <Button onClick={handleOK}>はい</Button>
+                    <Button onClick={closeModal} size="small" color="secondary">いいえ</Button>
+                    <LoadingButton loading={submit} onClick={handleOK} size="small" color="primary">はい</LoadingButton>
                 </DialogActions>
             </Dialog>
             

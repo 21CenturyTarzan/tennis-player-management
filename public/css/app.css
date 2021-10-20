@@ -12529,9 +12529,12 @@ categories: [layout]
     background-image: url(/images/list-black.svg?bb77778dacd15a2e89c94df413b610b1);
   }
 }
-@media screen and (max-width: 1067px) {
+.mypage-nav-list__item.nav-active .icon.star:before {
+  background-image: url(/images/star-outline-yellow02.svg?12419a0efb747f2bf657265d762cf945);
+}
+@media screen and (min-width: 1068px) {
   .mypage-nav-list__item.nav-active .icon.star:before {
-    background-image: url(/images/star-outline-yellow02.svg?12419a0efb747f2bf657265d762cf945);
+    background-image: url(/images/star-outline-black.svg?2352845e920a85ca74c72cb51b46603a);
   }
 }
 .mypage-nav-list__item.nav-active .icon.parents:before {
