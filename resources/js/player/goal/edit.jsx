@@ -332,9 +332,17 @@ const  PlayerGoalEditor = (props) => {
                                             </select>
                                             <select className="border-0" value={stretching_min} onChange={e=>setStretchMin(e.target.value)}>
                                                 <option value="00分">00分</option>
+                                                <option value="05分">05分</option>
+                                                <option value="10分">10分</option>
                                                 <option value="15分">15分</option>
+                                                <option value="20分">20分</option>
+                                                <option value="25分">25分</option>
                                                 <option value="30分">30分</option>
+                                                <option value="35分">35分</option>
+                                                <option value="40分">40分</option>
                                                 <option value="45分">45分</option>
+                                                <option value="50分">50分</option>
+                                                <option value="55分">55分</option>
                                             </select>
                                         </td>
                                     </tr>

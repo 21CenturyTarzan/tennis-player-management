@@ -22,7 +22,6 @@ function PlayerGoal() {
         axios.get('/api/player/goal/list', {params:{player_id: id}})
         .then(async (response)=>{
             setLoad(true);
-            console.log(response.data.params)
             if(response.data.status_code == 200){
                 setParams(response.data.params)
             }
