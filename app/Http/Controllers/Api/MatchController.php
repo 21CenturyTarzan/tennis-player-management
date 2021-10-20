@@ -17,14 +17,16 @@ class MatchController extends Controller
 {
     //
 
-    public function match(Request $request)
+    public function detail(Request $request, $id)
     {
-        $res['question_list'] = Analysis::get();
-
         $player_id = (int)$request->get('player_id');
-        $res['tournament'] = Tournament::where('player_id', $player_id)->with('result')->orderBy('id', 'DESC')->first();
+        $res['tournament'] = Tournament::where([
+            'id' => (int)$id,
+            'player_id' => $player_id
+        ])->with('result')->orderBy('id', 'DESC')->first();
 
-        
+        $res['analysis'] = Analysis::get();
+
         return ['status_code'=>200, 'params'=>$res];
     }
 
@@ -43,7 +45,6 @@ class MatchController extends Controller
     public function analysis(Request $request)
     {
         $res = Analysis::get();
-
         return ['status_code'=>200, 'params'=>$res];
     }
 

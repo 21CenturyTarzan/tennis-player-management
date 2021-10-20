@@ -110,7 +110,7 @@ const  PlayerGoal = () => {
                                     <tr>
                                         <th>入力日</th>
                                         <th>予定試合数</th>
-                                        <th className="w-60-px">削除</th>
+                                        <th className="w-25-px"></th>
                                     </tr>
                                     {
                                         goal_list.length > 0 ?
@@ -123,9 +123,9 @@ const  PlayerGoal = () => {
                                                     </td>
                                                     <td>{`${JSON.parse(x.match_list).length}`}</td>
                                                     <td className="p-0">
-                                                        <Button color="error" size="small"  onClick={e=>openModal(x.id)}>
+                                                        <IconButton color="error" size="small"  onClick={e=>openModal(x.id)}>
                                                             <DeleteIcon fontSize="small"/>
-                                                        </Button>
+                                                        </IconButton>
                                                     </td>
                                                 </tr>
                                             )

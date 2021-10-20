@@ -55,7 +55,8 @@ Route::middleware(['auth', 'verified'])->name('account.')->group(function () {
     
     Route::get('/player/match', [App\Http\Controllers\Front\Player\DashboardController::class, 'index']);
     Route::get('/player/match/new', [App\Http\Controllers\Front\Player\DashboardController::class, 'index']);
-    Route::get('/player/match/edit', [App\Http\Controllers\Front\Player\DashboardController::class, 'index']);
+    Route::get('/player/match/edit/{id}', [App\Http\Controllers\Front\Player\DashboardController::class, 'index']);
+    Route::get('/player/match/detail/{id}', [App\Http\Controllers\Front\Player\DashboardController::class, 'index']);
     Route::post('/player/match/store', [App\Http\Controllers\Front\Player\MatchController::class, 'store']);
     Route::post('/player/match/update', [App\Http\Controllers\Front\Player\MatchController::class, 'update']);
 

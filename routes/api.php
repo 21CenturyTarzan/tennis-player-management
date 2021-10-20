@@ -34,7 +34,7 @@ Route::middleware(['throttle:seventy'])->group(function() {
     Route::post('/player/goal/update/{id}', 'App\Http\Controllers\Api\GoalManageController@update');
     Route::delete('/player/goal/delete/{id}', 'App\Http\Controllers\Api\GoalManageController@delete');
 
-    Route::get('player/match/detail', 'App\Http\Controllers\Api\MatchController@match');
+    Route::get('player/match/detail/{id}', 'App\Http\Controllers\Api\MatchController@detail');
     Route::get('player/match/list', 'App\Http\Controllers\Api\MatchController@list');
     Route::delete('player/match/delete/{id}', 'App\Http\Controllers\Api\MatchController@delete');
     

@@ -115,13 +115,17 @@ function PlayerMatch() {
                                     <th>選手</th>
                                     <th>クラブ</th>
                                     <th>試合結果入力</th>
-                                    <th className="w-60-px">削除</th>
+                                    <th className="w-25-px"></th>
                                 </tr>
                                 {
                                     tournament_list.length > 0 ?
                                         tournament_list?.map((x, i)=>
                                             <tr className="pointer" key={i}>
-                                                <td>{moment(x.tournament_date).format("YYYY/MM/DD")}</td>
+                                                <td>
+                                                    <Link to={`/player/match/detail/${x.id}`}>  
+                                                        {moment(x.tournament_date).format("YYYY/MM/DD")}
+                                                    </Link>
+                                                </td>
                                                 <td>{x.opponent_name}</td>
                                                 <td>{x.opponent_club}</td>
                                                 {
@@ -138,9 +142,9 @@ function PlayerMatch() {
                                                         </td>
                                                 }
                                                 <td className="p-0">
-                                                    <Button color="error" size="small" onClick={e=>openModal(x.id)}>
+                                                    <IconButton color="error" size="small" onClick={e=>openModal(x.id)}>
                                                         <DeleteIcon fontSize="small"/>
-                                                    </Button>
+                                                    </IconButton>
                                                 </td> 
                                             </tr>
                                         )
