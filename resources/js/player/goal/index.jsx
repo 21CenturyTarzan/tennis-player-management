@@ -2,17 +2,41 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
+import { LoadingButton } from '@material-ui/lab';
+
 import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
 import AddIcon from '@mui/icons-material/Add';
 
 import moment from 'moment';
 
+import Button from '@mui/material/Button';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
+import Slide from '@mui/material/Slide';
+import axios from 'axios';
 
-function PlayerGoal() {
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+
+const Transition = React.forwardRef(function Transition(props, ref) {
+    return <Slide direction="up" ref={ref} {...props} />;
+});
+
+
+
+
+const  PlayerGoal = () => {
     
+    const [open, setOpen] = useState(false);
     const [load, setLoad] = useState(false);
-    const [params, setParams] = useState(null);
+    const [goal_list, setGoalList] = useState(null);
+    const [deleteIndex, setDeleteIndex] = useState(null);
+    const [submit, setSubmit] = useState(false);
 
     useEffect( () => {
 
@@ -22,17 +46,40 @@ function PlayerGoal() {
         axios.get('/api/player/goal/list', {params:{player_id: id}})
         .then(async (response)=>{
             setLoad(true);
-            console.log(response.data.params)
             if(response.data.status_code == 200){
-                setParams(response.data.params)
+                setGoalList(response.data.params)
             }
         })
     }, []);
 
     // useEffect(()=>{
-    //     console.log(params);
-    // },[params])
+    //     console.log(goal_list);
+    // },[goal_list])
 
+    const openModal = (ix) => {
+        setOpen(true);
+        setDeleteIndex(ix);
+    };
+    
+    const handleOK = () => {
+        var id = Number(document.getElementById('player_id').value);
+        setSubmit(true);
+        axios.delete('/api/player/goal/delete/'+ deleteIndex, {params:{player_id: id}})
+        .then(response=>{
+            setSubmit(false);
+            closeModal();
+            if(response.data.status_code == 200){
+                notify();
+                setGoalList(response.data.params)
+            }
+        })
+    };
+
+    const closeModal = () => {
+        setOpen(false);
+    } 
+
+    const notify = () => toast("削除成功");
     
     return (
         <div id="goal">
@@ -54,20 +101,20 @@ function PlayerGoal() {
                     !load && <CircularProgress color="secondary" style={{top:'calc(40vh - 22px)', left:'calc(50% - 22px)', color:'green', position:'absolute'}}/>
                 }
                 {
-                    load && params &&
+                    load && goal_list &&
                     <>
-                        <p className="w-50 w-md-75 p-1 pl-2 mb-2 bg-black-4 rounded-right-20 text-white">入力リスト</p>
+                        <p className="w-50 w-md-75 p-1 pl-2 mb-2 bg-black-4 rounded-right-20 text-white">目標リスト</p>
                         <div className="px-2 mb-2">
-                            <table className="table table-bordered mb-2 text-center">
+                            <table className="table table-bordered mb-2 text-center ft-xs-15">
                                 <tbody>
                                     <tr>
                                         <th>入力日</th>
                                         <th>予定試合数</th>
-                                        <th className="w-60-px">削除</th>
+                                        <th className="w-25-px"></th>
                                     </tr>
                                     {
-                                        params.length > 0 ?
-                                            params?.map((x, i)=>
+                                        goal_list.length > 0 ?
+                                            goal_list?.map((x, i)=>
                                                 <tr className="pointer" key={i}>
                                                     <td>
                                                         <Link to={`/player/goal/detail/${x.id}`}>                                
@@ -76,7 +123,7 @@ function PlayerGoal() {
                                                     </td>
                                                     <td>{`${JSON.parse(x.match_list).length}`}</td>
                                                     <td className="p-0">
-                                                        <IconButton color="error" size="small">
+                                                        <IconButton color="error" size="small"  onClick={e=>openModal(x.id)}>
                                                             <DeleteIcon fontSize="small"/>
                                                         </IconButton>
                                                     </td>
@@ -91,6 +138,27 @@ function PlayerGoal() {
                     </>
                 }
             </div>
+            <Dialog
+                open={open}
+                TransitionComponent={Transition}
+                keepMounted
+                aria-describedby="alert-dialog-slide-description"
+            >
+                <DialogTitle style={{fontSize:'18px', textAlign:'center'}}>{"本当に削除しますか？"}</DialogTitle>
+                <DialogContent>
+                    <DialogContentText id="alert-dialog-slide-description" style={{fontSize:'16px'}}>
+                        いったん削除されると、復元できません。<br/>
+                        利点をご了承ください。
+                    </DialogContentText>
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={closeModal} size="small" color="secondary">いいえ</Button>
+                    <LoadingButton loading={submit} onClick={handleOK} size="small" color="primary">はい</LoadingButton>
+                </DialogActions>
+            </Dialog>
+            
+
+            <ToastContainer />
         </div>
     );
 }

@@ -83,8 +83,9 @@
           }
           &.star{
             &:before{
-              @include sp{
-                background-image: url(../assets/img/icon/star-outline-yellow02.svg);
+              background-image: url(../assets/img/icon/star-outline-yellow02.svg);
+              @include pc{
+                background-image: url(../assets/img/icon/star-outline-black.svg);
               }
             }
           }
