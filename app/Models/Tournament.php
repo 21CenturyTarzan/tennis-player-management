@@ -11,6 +11,7 @@ class Tournament extends Model
 
     protected $table = 'tournament';
     protected $fillable = [
+        'id',
         'player_id',
         'category',
         'tournament_name',
@@ -21,12 +22,12 @@ class Tournament extends Model
         'round',
         'weather',
         'mood',
-        'caution_list',
+        'caution_list'
     ];
 
-    public function result()
+    public function tournament_result()
     {
-        return $this->belongsTo(TournamentResult::class, 'id');
+        return $this->hasOne(TournamentResult::class, 'tournament_id');
     }
-    
+
 }

@@ -16,7 +16,7 @@ import AddIcon from '@mui/icons-material/Add';
 import { Rating, RatingView } from 'react-simple-star-rating';
 
 
-function PlayerMatchResultEdit() {
+function PlayerMatchResultEdit(props) {
     const [load, setLoad] = useState(false);
     const [submit, setSubmit] = useState(false);
 
@@ -144,7 +144,7 @@ function PlayerMatchResultEdit() {
     useEffect( () => {
         setLoad(false);
         var id = Number(document.getElementById('player_id').value);
-        axios.get('/api/player/match', {params:{player_id: id}})
+        axios.get(`/api/player/match/detail/${props.match.params?.id}`, {params:{player_id: id}})
         .then( response=>{
             setLoad(true);
             if(response.data.status_code == 200){
@@ -201,7 +201,7 @@ function PlayerMatchResultEdit() {
     <form  className="needs-validation"  onSubmit={handleSubmit}>
         <div className="mt-3 py-2 rounded-15 bg-white shadow-lg" style={{minHeight:'700px'}}>
             <h3 className="mt-2 p-1 text-white bg-green text-center font-weight-bold position-relative">
-                <span>試合結果</span>
+                <span>試合結果編集</span>
             </h3>
             {
                 !load && 
@@ -345,7 +345,7 @@ function PlayerMatchResultEdit() {
                     <div className="mt-3 mb-2 px-2 px-md-4">
                         <div className="row">
                             <div className="col-6">
-                                <Link to="/player/result" style={{textDecoration:'none'}}>
+                                <Link to={`/player/match/detail/${props.match.params?.id}`} style={{textDecoration:'none'}}>
                                     <Button size="large" fullWidth variant="contained" style={{backgroundColor: 'transparent', border: '1px solid green', color:'green', fontSize:'16px'}} >
                                         <span>閉じる</span>
                                     </Button>

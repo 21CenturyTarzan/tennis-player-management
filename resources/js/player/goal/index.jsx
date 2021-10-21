@@ -108,6 +108,7 @@ const  PlayerGoal = () => {
                             <table className="table table-bordered mb-2 text-center ft-xs-15">
                                 <tbody>
                                     <tr>
+                                        <th className="w-30-px"></th>
                                         <th>入力日</th>
                                         <th>予定試合数</th>
                                         <th className="w-25-px"></th>
@@ -116,6 +117,7 @@ const  PlayerGoal = () => {
                                         goal_list.length > 0 ?
                                             goal_list?.map((x, i)=>
                                                 <tr className="pointer" key={i}>
+                                                    <td>{i+1}</td>
                                                     <td>
                                                         <Link to={`/player/goal/detail/${x.id}`}>                                
                                                             {moment(x.created_at).format('YYYY/MM/DD  HH:mm')}
@@ -129,7 +131,7 @@ const  PlayerGoal = () => {
                                                     </td>
                                                 </tr>
                                             )
-                                        : <tr><td colSpan="3">入力されたデータがありません。</td></tr>
+                                        : <tr><td colSpan="4">入力されたデータがありません。</td></tr>
                                     }
                                 </tbody>
                             </table>

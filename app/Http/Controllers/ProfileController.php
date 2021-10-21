@@ -28,7 +28,7 @@ class ProfileController extends Controller
             $tmp = Player::where('account_id', Auth::user()->id)->count();
             if($tmp == 0)
                 return view('player.profile');
-            else return redirect('/player/dashboard');
+            else return redirect('/player/info');
         }
         else return redirect('/admin/dashboard');
     }

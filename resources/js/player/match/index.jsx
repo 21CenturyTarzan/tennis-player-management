@@ -88,13 +88,13 @@ function PlayerMatch() {
     <div id="match">
         <div className="mt-3 py-2 rounded-15 bg-white shadow-lg" style={{minHeight:'700px'}}>
             <h3 className="mt-2 p-1 position-relative text-white bg-green text-center font-weight-bold">
-                <Link to="/player/match/new">
+                <Link to="/player/match/prepare/new">
                     <IconButton style={{color:'white', position:'absolute', padding:'3px', left:'23px'}}>
                         <AddIcon/>
                     </IconButton>
                 </Link>
                 <span>試合管理</span>
-                <Link to="/player/match/new">
+                <Link to="/player/match/prepare/new">
                     <IconButton style={{color:'white', position:'absolute', padding:'3px', right:'23px'}}>
                         <AddIcon/>
                     </IconButton>
@@ -104,54 +104,54 @@ function PlayerMatch() {
                 !load && <CircularProgress color="secondary" style={{top:'calc(40vh - 22px)', left:'calc(50% - 22px)', color:'green', position:'absolute'}}/>
             }
             {
-                load && tournament_list &&
+                load &&
                 <>
                     <p className="w-50 w-md-75 p-1 pl-2 mb-2 bg-black-4 rounded-right-20 text-white">トーナメントのリスト</p>
                     <div className="px-2 mb-2">
-                        <table className="table table-bordered mb-2 text-center ft-xs-15">
-                            <tbody>
-                                <tr>
-                                    <th>大会日</th>
-                                    <th>選手</th>
-                                    <th>クラブ</th>
-                                    <th>試合結果入力</th>
-                                    <th className="w-25-px"></th>
-                                </tr>
-                                {
-                                    tournament_list.length > 0 ?
-                                        tournament_list?.map((x, i)=>
-                                            <tr className="pointer" key={i}>
-                                                <td>
-                                                    <Link to={`/player/match/detail/${x.id}`}>  
-                                                        {moment(x.tournament_date).format("YYYY/MM/DD")}
-                                                    </Link>
-                                                </td>
-                                                <td>{x.opponent_name}</td>
-                                                <td>{x.opponent_club}</td>
-                                                {
-                                                    x.result ? 
-                                                        <td>
-                                                            <Link to={`/player/match/detail/${x.id}`}>                                
-                                                                {moment(x.result.created_at).format('YYYY/MM/DD  HH:mm')}
-                                                            </Link>
-                                                        </td>
-                                                        :<td>
-                                                            <Link to={`/player/result/new`}>                                
-                                                                未入力
-                                                            </Link>
-                                                        </td>
-                                                }
-                                                <td className="p-0">
-                                                    <IconButton color="error" size="small" onClick={e=>openModal(x.id)}>
-                                                        <DeleteIcon fontSize="small"/>
-                                                    </IconButton>
-                                                </td> 
-                                            </tr>
-                                        )
-                                    : <tr><td colSpan="5">入力されたデータがありません。</td></tr>
-                                }
-                            </tbody>
-                        </table>
+                        <div style={{overflowX:'scroll'}}>
+                            <table className="table table-bordered mb-0 text-center ft-xs-15">
+                                <tbody>
+                                    <tr>
+                                        <th>大会日</th>
+                                        <th>選手</th>
+                                        <th>クラブ</th>
+                                        <th>試合結果入力</th>
+                                        <th className="w-25-px"></th>
+                                    </tr>
+                                    {
+                                        tournament_list ?
+                                            tournament_list?.map((x, i)=>
+                                                <tr className="pointer" key={i}>
+                                                    <td>
+                                                        <Link to={`/player/match/detail/${x.id}`}>  
+                                                            {moment(x.tournament_date).format("YYYY/MM/DD")}
+                                                        </Link>
+                                                    </td>
+                                                    <td>{x.opponent_name}</td>
+                                                    <td>{x.opponent_club}</td>
+                                                    {
+                                                        x.tournament_result ? 
+                                                            <td>                         
+                                                                {moment(x.tournament_result.created_at).format('YYYY/MM/DD  HH:mm')}
+                                                            </td>
+                                                            :<td>
+                                                                <Link to={`/player/match/result/new/${x.id}`}>                                
+                                                                    未入力
+                                                                </Link>
+                                                            </td>
+                                                    }
+                                                    <td className="p-0">
+                                                        <IconButton color="error" size="small" onClick={e=>openModal(x.id)}>
+                                                            <DeleteIcon fontSize="small"/>
+                                                        </IconButton>
+                                                    </td> 
+                                                </tr>
+                                            )
+                                        : <tr><td colSpan="5">入力されたデータがありません。</td></tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
                         
                     </div>
                 </>

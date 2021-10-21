@@ -10,18 +10,7 @@ import moment from 'moment';
 import { Rating, RatingView } from 'react-simple-star-rating';
 
 
-const PlayerMatchPrepare = (props) => {
-
-    const [tournament, setTournament] = useState(null);
-
-    useEffect( () => {
-        setTournament(props.tournament);
-        console.log(props.tournament);
-    }, []);
-
-    // useEffect( ()=>{
-    //     console.log(tournament, question_list);
-    // }, [tournament, question_list])
+const PlayerMatchPrepare = ({tournament}) => {
 
     return (
     <div id="prepare mb-5">
@@ -32,8 +21,8 @@ const PlayerMatchPrepare = (props) => {
                         <ArrowBackIcon/>
                     </IconButton>
                 </Link>
-                <span>試合前詳細</span>
-                <Link to={`/player/match/edit/${props.id}`}>
+                <span>試合情報詳細</span>
+                <Link to={`/player/match/prepare/edit/${tournament?.id}`}>
                     <IconButton style={{color:'white', position:'absolute', padding:'3px', right:'23px'}}>
                         <EditIcon/>
                     </IconButton>
@@ -46,7 +35,7 @@ const PlayerMatchPrepare = (props) => {
             {
                 tournament &&
                 <>
-                    <p className="w-50 w-md-75 p-1 pl-2 mb-2 bg-black-4 rounded-right-20 ft-15 text-white">大会情報</p>
+                    <p className="w-50 w-md-75 p-1 pl-2 mb-2 bg-black-4 rounded-right-20 ft-xs-15 text-white">大会情報</p>
                     <div className="px-2 mb-2">
                         <div className="d-block d-md-flex">
                             <table className="table table-bordered text-center mb-2">
@@ -108,7 +97,7 @@ const PlayerMatchPrepare = (props) => {
                     </div>
 
 
-                    <p className="w-50 w-md-75 p-1 pl-2 mb-2 bg-black-4 rounded-right-20 ft-15 text-white">試合前に心がける事</p>
+                    <p className="w-50 w-md-75 p-1 pl-2 mb-2 bg-black-4 rounded-right-20 ft-xs-15 text-white">試合前に心がける事</p>
                     <div className="px-2 mb-2">
                         <table className="table table-bordered text-center mb-0">
                             <tbody>
@@ -124,7 +113,7 @@ const PlayerMatchPrepare = (props) => {
                         </table>
                     </div>
 
-                    <p className="w-100 p-1 pl-2 mb-2 bg-black-4 text-white text-right ft-15 d-flex justify-content-between flex-column flex-sm-row">
+                    <p className="w-100 p-1 pl-2 mb-2 bg-black-4 text-white text-right ft-xs-15 d-flex justify-content-between flex-column flex-sm-row">
                         <span>入力日 : {moment(tournament.created_at).format('YYYY/MM/DD HH:mm')}</span>
                         <span>更新日 : {moment(tournament.updated_at).format('YYYY/MM/DD HH:mm')}</span>
                     </p>

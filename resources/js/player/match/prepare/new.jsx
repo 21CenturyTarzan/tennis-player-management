@@ -66,12 +66,16 @@ const  PlayerMatchPrepareNew = () => {
        
         setSubmit(true)
 
-        axios.post('/player/match/store', formdata)
+        var id = Number(document.getElementById('player_id').value);
+
+        axios.post('/api/player/match/prepare/store', formdata, {params:{player_id: id}})
         .then(response => {
             setSubmit(false);
             if(response.data.status_code == 200){
+
+                console.log(response.data.params)
                 history.push({
-                    pathname: '/player/match',
+                    pathname: `/player/match/detail/${response.data.params.id}`,
                     state: {}
                 });
             }
@@ -101,7 +105,7 @@ const  PlayerMatchPrepareNew = () => {
     <form  className="needs-validation"  onSubmit={handleSubmit} >
         <div className="mt-3 py-2 rounded-15 bg-white shadow-lg">
             <h3 className="mt-2 p-1 text-white bg-green text-center font-weight-bold">
-                <span>試合前準備追加</span>
+                <span>新試合追加</span>
             </h3>
             
             <p className="w-50 w-md-75 p-1 pl-2 mb-2 bg-black-4 rounded-right-20 text-white">大会情報</p>
@@ -199,7 +203,7 @@ const  PlayerMatchPrepareNew = () => {
             </div>
 
             <p className="w-50 w-md-75 p-1 pl-2 mb-2 bg-black-4 rounded-right-20 text-white">自己分析</p>
-            <p className="ml-2 mb-2 ft-15">※テーブルのデータを参照して下欄に書きなさい。</p>
+            <p className="ml-2 mb-2 ft-xs-15">※テーブルのデータを参照して下欄に書きなさい。</p>
             <div className="px-2 mb-2 pre-scrollable">
                 {
                     question_list.length > 0 ? 

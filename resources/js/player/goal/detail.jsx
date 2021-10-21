@@ -8,6 +8,7 @@ import moment from 'moment';
 import IconButton from '@mui/material/IconButton';
 import EditIcon from '@mui/icons-material/Edit';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import BarChartIcon from '@mui/icons-material/BarChart';
 
 
 const  PlayerGoalDetail = (props) => {
@@ -64,7 +65,7 @@ const  PlayerGoalDetail = (props) => {
                 {
                     load && params &&
                     <>
-                        <p className="w-50 w-md-75 p-1 pl-2 mb-2 bg-black-4 rounded-right-20 ft-15  text-white">近日予定の試合</p>
+                        <p className="w-50 w-md-75 p-1 pl-2 mb-2 bg-black-4 rounded-right-20 ft-xs-15  text-white">近日予定の試合</p>
                         <div className="px-2 mb-2">
                             <table className="table table-bordered table-success mb-2 text-center">
                                 <tbody>
@@ -86,7 +87,7 @@ const  PlayerGoalDetail = (props) => {
                                     }
                                 </tbody>
                             </table>
-                            <p className="w-25 w-md-50 p-1 pl-2 mb-2 bg-black-4 rounded-right-20 ft-15  text-white">私の目標</p>
+                            <p className="w-25 w-md-50 p-1 pl-2 mb-2 bg-black-4 rounded-right-20 ft-xs-15  text-white">私の目標</p>
                             <table className="table table-bordered mb-2 text-center">
                                 <tbody>
                                     <tr className="table-secondary">
@@ -108,7 +109,7 @@ const  PlayerGoalDetail = (props) => {
                                 </tbody>
                             </table>
                         </div>
-                        <p className="w-50 w-md-75 p-1 pl-2 mb-2 bg-black-4 rounded-right-20 ft-15  text-white">短期目標に向かっての課題</p>
+                        <p className="w-50 w-md-75 p-1 pl-2 mb-2 bg-black-4 rounded-right-20 ft-xs-15  text-white">短期目標に向かっての課題</p>
                         <div className="px-2 mb-2">
                             <nav className="mb-2">
                                 <div className="nav nav-tabs justify-content-center" id="nav-tab" role="tablist">
@@ -135,7 +136,11 @@ const  PlayerGoalDetail = (props) => {
                                                         <td className="w-95-px">
                                                             <RatingView stars={5} size={15} ratingValue={item.task_rate}/>
                                                         </td>
-                                                        <td className="w-40-px pointer"><img src="/images/icons/icon-graph.svg" width="25" height="25" /></td>
+                                                        <td className="w-40-px p-0">
+                                                            <IconButton size="small">
+                                                                <BarChartIcon size="small"/>
+                                                            </IconButton>
+                                                        </td>
                                                     </tr>
                                                 )
                                             }
@@ -151,31 +156,51 @@ const  PlayerGoalDetail = (props) => {
                                                 <td>
                                                     {`${getHHMM(params.study_time_start)} ~ ${getHHMM(params.study_time_end)}`}
                                                 </td>
-                                                <td className="w-40-px pointer"><img src="/images/icons/icon-graph.svg" width="25" height="25" /></td>
+                                                <td className="w-40-px p-0">
+                                                    <IconButton size="small">
+                                                        <BarChartIcon size="small"/>
+                                                    </IconButton>
+                                                </td>
                                             </tr>
                                             <tr className="table-success">
                                                 <td><img src="/images/icons/icon-pushups.svg" width="25" height="25" /></td>
                                                 <td><p className="mb-0 text-center">腕立て</p></td>
                                                 <td>{`${params.pushups} 回`}</td>
-                                                <td className="w-40-px pointer"><img src="/images/icons/icon-graph.svg" width="25" height="25" /></td>
+                                                <td className="w-40-px p-0">
+                                                    <IconButton size="small">
+                                                        <BarChartIcon size="small"/>
+                                                    </IconButton>
+                                                </td>
                                             </tr>
                                             <tr className="table-success">
                                                 <td><img src="/images/icons/icon-pilates.svg" width="25" height="25" /></td>
                                                 <td><p className="mb-0 text-center">腹筋</p></td>
                                                 <td>{`${params.pilates} 回`}</td>
-                                                <td className="w-40-px pointer"><img src="/images/icons/icon-graph.svg" width="25" height="25" /></td>
+                                                <td className="w-40-px p-0">
+                                                    <IconButton size="small">
+                                                        <BarChartIcon size="small"/>
+                                                    </IconButton>
+                                                </td>
                                             </tr>
                                             <tr className="table-success">
                                                 <td><img src="/images/icons/icon-gymnastics.svg" width="25" height="25" /></td>
                                                 <td><p className="mb-0 text-center">背筋</p></td>
                                                 <td>{`${params.gymnastics} 回`}</td>
-                                                <td className="w-40-px pointer"><img src="/images/icons/icon-graph.svg" width="25" height="25" /></td>
+                                                <td className="w-40-px p-0">
+                                                    <IconButton size="small">
+                                                        <BarChartIcon size="small"/>
+                                                    </IconButton>
+                                                </td>
                                             </tr>
                                             <tr className="table-success">
                                                 <td><img src="/images/icons/icon-stretching.svg" width="25" height="25" /></td>
                                                 <td><p className="mb-0 text-center">ストレッチ</p></td>
                                                 <td>{params.stretching_time}</td>
-                                                <td className="w-40-px pointer"><img src="/images/icons/icon-graph.svg" width="25" height="25" /></td>
+                                                <td className="w-40-px p-0">
+                                                    <IconButton size="small">
+                                                        <BarChartIcon size="small"/>
+                                                    </IconButton>
+                                                </td>
                                             </tr>
                                             <tr className="table-success">
                                                 <td><img src="/images/icons/icon-food.svg" width="25" height="25" /></td>
@@ -183,7 +208,11 @@ const  PlayerGoalDetail = (props) => {
                                                 <td>
                                                     <RatingView stars={3} size={20} ratingValue={params.breakfast}/>
                                                 </td>
-                                                <td className="w-40-px pointer"><img src="/images/icons/icon-graph.svg" width="25" height="25" /></td>
+                                                <td className="w-40-px p-0">
+                                                    <IconButton size="small">
+                                                        <BarChartIcon size="small"/>
+                                                    </IconButton>
+                                                </td>
                                             </tr>
                                             <tr className="table-success">
                                                 <td><img src="/images/icons/icon-food.svg" width="25" height="25" /></td>
@@ -191,7 +220,11 @@ const  PlayerGoalDetail = (props) => {
                                                 <td>
                                                     <RatingView stars={3} size={20} ratingValue={params.lunch}/>
                                                 </td>
-                                                <td className="w-40-px pointer"><img src="/images/icons/icon-graph.svg" width="25" height="25" /></td>
+                                                <td className="w-40-px p-0">
+                                                    <IconButton size="small">
+                                                        <BarChartIcon size="small"/>
+                                                    </IconButton>
+                                                </td>
                                             </tr>
                                             <tr className="table-success">
                                                 <td><img src="/images/icons/icon-food.svg" width="25" height="25" /></td>
@@ -199,7 +232,11 @@ const  PlayerGoalDetail = (props) => {
                                                 <td>
                                                     <RatingView stars={3} size={20} ratingValue={params.dinner}/>
                                                 </td>
-                                                <td className="w-40-px pointer"><img src="/images/icons/icon-graph.svg" width="25" height="25" /></td>
+                                                <td className="w-40-px p-0">
+                                                    <IconButton size="small">
+                                                        <BarChartIcon size="small"/>
+                                                    </IconButton>
+                                                </td>
                                             </tr>
                                             <tr className="table-success">
                                                 <td><img src="/images/icons/icon-bed.svg" width="25" height="25" /></td>
@@ -207,14 +244,18 @@ const  PlayerGoalDetail = (props) => {
                                                 <td>
                                                     {`${getHHMM(params.sleep_time_start)} ~ ${getHHMM(params.sleep_time_end)}`}
                                                 </td>
-                                                <td className="w-40-px pointer"><img src="/images/icons/icon-graph.svg" width="25" height="25" /></td>
+                                                <td className="w-40-px p-0">
+                                                    <IconButton size="small">
+                                                        <BarChartIcon size="small"/>
+                                                    </IconButton>
+                                                </td>
                                             </tr>
                                         </tbody>
                                     </table>
                                 </div>
                             </div>
                         </div>
-                        <p className="w-100 p-1 pl-2 mb-2 bg-black-4 text-white text-right ft-15 d-flex justify-content-between flex-column flex-sm-row">
+                        <p className="w-100 p-1 pl-2 mb-2 bg-black-4 text-white text-right ft-xs-15 d-flex justify-content-between flex-column flex-sm-row">
                             <span>更新日 : {moment(params.updated_at).format('YYYY/MM/DD HH:mm')}</span>
                             <span>入力日 : {moment(params.created_at).format('YYYY/MM/DD HH:mm')}</span>  
                         </p>

@@ -17,6 +17,7 @@ const PlayerMatchDetail = (props) => {
         axios.get(`/api/player/match/detail/${props.match.params?.id}`, {params:{player_id: id}})
         .then( response=>{
             if(response.data.status_code == 200){
+                console.log(response.data.params)
                 Promise.resolve()
                 .then(()=>{
                     setTournament(response.data.params.tournament);
@@ -27,10 +28,6 @@ const PlayerMatchDetail = (props) => {
             }
         })
     }, []);
-
-    useEffect(()=>{
-        console.log(tournament);
-    },[tournament])
    
     if(!load) 
         return(
@@ -41,7 +38,7 @@ const PlayerMatchDetail = (props) => {
     return (
         <div id="match">
             <PlayerMatchPrepareDetail tournament={tournament}/>
-            <PlayerMatchResultDetail tournament={tournament}/>
+            <PlayerMatchResultDetail  tournament={tournament}/>
         </div>
     );
 }

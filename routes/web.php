@@ -19,6 +19,7 @@ use App\Http\Controllers\Front\Admin\PlayerController;
 */
 
 Route::get('/', function () {
+    
     return view('home');
 })->name('home');
 
@@ -52,19 +53,15 @@ Route::middleware(['auth', 'verified'])->name('account.')->group(function () {
     Route::get('/player/goal', [App\Http\Controllers\Front\Player\DashboardController::class, 'index']);
     Route::get('/player/goal/new', [App\Http\Controllers\Front\Player\DashboardController::class, 'index']);
     Route::get('/player/goal/edit/{id}', [App\Http\Controllers\Front\Player\DashboardController::class, 'index']);
+    Route::get('/player/goal/detail/{id}', [App\Http\Controllers\Front\Player\DashboardController::class, 'index']);
     
     Route::get('/player/match', [App\Http\Controllers\Front\Player\DashboardController::class, 'index']);
-    Route::get('/player/match/new', [App\Http\Controllers\Front\Player\DashboardController::class, 'index']);
-    Route::get('/player/match/edit/{id}', [App\Http\Controllers\Front\Player\DashboardController::class, 'index']);
     Route::get('/player/match/detail/{id}', [App\Http\Controllers\Front\Player\DashboardController::class, 'index']);
-    Route::post('/player/match/store', [App\Http\Controllers\Front\Player\MatchController::class, 'store']);
-    Route::post('/player/match/update', [App\Http\Controllers\Front\Player\MatchController::class, 'update']);
-
-    Route::get('/player/result', [App\Http\Controllers\Front\Player\DashboardController::class, 'index']);
-    Route::get('/player/result/new', [App\Http\Controllers\Front\Player\DashboardController::class, 'index']);
-    Route::get('/player/result/edit', [App\Http\Controllers\Front\Player\DashboardController::class, 'index']);
-    Route::post('/player/result/store', [App\Http\Controllers\Front\Player\ResultController::class, 'store']);
-    Route::post('/player/result/update', [App\Http\Controllers\Front\Player\ResultController::class, 'update']);
+    Route::get('/player/match/prepare/new', [App\Http\Controllers\Front\Player\DashboardController::class, 'index']);
+    Route::get('/player/match/prepare/edit/{id}', [App\Http\Controllers\Front\Player\DashboardController::class, 'index']);
+    Route::get('/player/match/result/new/{id}', [App\Http\Controllers\Front\Player\DashboardController::class, 'index']);
+    Route::get('/player/match/result/edit/{id}', [App\Http\Controllers\Front\Player\DashboardController::class, 'index']);
+    
 
     Route::get('/player/favourite', [App\Http\Controllers\Front\Player\DashboardController::class, 'index']);
 
