@@ -14,7 +14,7 @@ class CreateQuotationTable extends Migration
     public function up()
     {
         Schema::create('quotations', function (Blueprint $table) {
-            $table->id();
+            $table->unsignedBigInteger('id')->autoIncrement()->comment('ID');
             $table->string('category');
             $table->string('author');
             $table->longText('quotation');
