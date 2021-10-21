@@ -13,8 +13,11 @@ class CreateQuotationTable extends Migration
      */
     public function up()
     {
-        Schema::create('quotation', function (Blueprint $table) {
+        Schema::create('quotations', function (Blueprint $table) {
             $table->id();
+            $table->string('category');
+            $table->longText('quote');
+            $table->string('person');
             $table->timestamps();
         });
     }
@@ -26,6 +29,6 @@ class CreateQuotationTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('quotation');
+        Schema::dropIfExists('quotations');
     }
 }
