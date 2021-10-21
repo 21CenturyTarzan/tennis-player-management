@@ -8,6 +8,7 @@ import moment from 'moment';
 import IconButton from '@mui/material/IconButton';
 import EditIcon from '@mui/icons-material/Edit';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import BarChartIcon from '@mui/icons-material/BarChart';
 
 
 const  PlayerGoalDetail = (props) => {
@@ -135,7 +136,11 @@ const  PlayerGoalDetail = (props) => {
                                                         <td className="w-95-px">
                                                             <RatingView stars={5} size={15} ratingValue={item.task_rate}/>
                                                         </td>
-                                                        <td className="w-40-px pointer"><img src="/images/icons/icon-graph.svg" width="25" height="25" /></td>
+                                                        <td className="w-40-px p-0">
+                                                            <IconButton size="small">
+                                                                <BarChartIcon size="small"/>
+                                                            </IconButton>
+                                                        </td>
                                                     </tr>
                                                 )
                                             }
@@ -151,31 +156,51 @@ const  PlayerGoalDetail = (props) => {
                                                 <td>
                                                     {`${getHHMM(params.study_time_start)} ~ ${getHHMM(params.study_time_end)}`}
                                                 </td>
-                                                <td className="w-40-px pointer"><img src="/images/icons/icon-graph.svg" width="25" height="25" /></td>
+                                                <td className="w-40-px p-0">
+                                                    <IconButton size="small">
+                                                        <BarChartIcon size="small"/>
+                                                    </IconButton>
+                                                </td>
                                             </tr>
                                             <tr className="table-success">
                                                 <td><img src="/images/icons/icon-pushups.svg" width="25" height="25" /></td>
                                                 <td><p className="mb-0 text-center">腕立て</p></td>
                                                 <td>{`${params.pushups} 回`}</td>
-                                                <td className="w-40-px pointer"><img src="/images/icons/icon-graph.svg" width="25" height="25" /></td>
+                                                <td className="w-40-px p-0">
+                                                    <IconButton size="small">
+                                                        <BarChartIcon size="small"/>
+                                                    </IconButton>
+                                                </td>
                                             </tr>
                                             <tr className="table-success">
                                                 <td><img src="/images/icons/icon-pilates.svg" width="25" height="25" /></td>
                                                 <td><p className="mb-0 text-center">腹筋</p></td>
                                                 <td>{`${params.pilates} 回`}</td>
-                                                <td className="w-40-px pointer"><img src="/images/icons/icon-graph.svg" width="25" height="25" /></td>
+                                                <td className="w-40-px p-0">
+                                                    <IconButton size="small">
+                                                        <BarChartIcon size="small"/>
+                                                    </IconButton>
+                                                </td>
                                             </tr>
                                             <tr className="table-success">
                                                 <td><img src="/images/icons/icon-gymnastics.svg" width="25" height="25" /></td>
                                                 <td><p className="mb-0 text-center">背筋</p></td>
                                                 <td>{`${params.gymnastics} 回`}</td>
-                                                <td className="w-40-px pointer"><img src="/images/icons/icon-graph.svg" width="25" height="25" /></td>
+                                                <td className="w-40-px p-0">
+                                                    <IconButton size="small">
+                                                        <BarChartIcon size="small"/>
+                                                    </IconButton>
+                                                </td>
                                             </tr>
                                             <tr className="table-success">
                                                 <td><img src="/images/icons/icon-stretching.svg" width="25" height="25" /></td>
                                                 <td><p className="mb-0 text-center">ストレッチ</p></td>
                                                 <td>{params.stretching_time}</td>
-                                                <td className="w-40-px pointer"><img src="/images/icons/icon-graph.svg" width="25" height="25" /></td>
+                                                <td className="w-40-px p-0">
+                                                    <IconButton size="small">
+                                                        <BarChartIcon size="small"/>
+                                                    </IconButton>
+                                                </td>
                                             </tr>
                                             <tr className="table-success">
                                                 <td><img src="/images/icons/icon-food.svg" width="25" height="25" /></td>
@@ -183,7 +208,11 @@ const  PlayerGoalDetail = (props) => {
                                                 <td>
                                                     <RatingView stars={3} size={20} ratingValue={params.breakfast}/>
                                                 </td>
-                                                <td className="w-40-px pointer"><img src="/images/icons/icon-graph.svg" width="25" height="25" /></td>
+                                                <td className="w-40-px p-0">
+                                                    <IconButton size="small">
+                                                        <BarChartIcon size="small"/>
+                                                    </IconButton>
+                                                </td>
                                             </tr>
                                             <tr className="table-success">
                                                 <td><img src="/images/icons/icon-food.svg" width="25" height="25" /></td>
@@ -191,7 +220,11 @@ const  PlayerGoalDetail = (props) => {
                                                 <td>
                                                     <RatingView stars={3} size={20} ratingValue={params.lunch}/>
                                                 </td>
-                                                <td className="w-40-px pointer"><img src="/images/icons/icon-graph.svg" width="25" height="25" /></td>
+                                                <td className="w-40-px p-0">
+                                                    <IconButton size="small">
+                                                        <BarChartIcon size="small"/>
+                                                    </IconButton>
+                                                </td>
                                             </tr>
                                             <tr className="table-success">
                                                 <td><img src="/images/icons/icon-food.svg" width="25" height="25" /></td>
@@ -199,7 +232,11 @@ const  PlayerGoalDetail = (props) => {
                                                 <td>
                                                     <RatingView stars={3} size={20} ratingValue={params.dinner}/>
                                                 </td>
-                                                <td className="w-40-px pointer"><img src="/images/icons/icon-graph.svg" width="25" height="25" /></td>
+                                                <td className="w-40-px p-0">
+                                                    <IconButton size="small">
+                                                        <BarChartIcon size="small"/>
+                                                    </IconButton>
+                                                </td>
                                             </tr>
                                             <tr className="table-success">
                                                 <td><img src="/images/icons/icon-bed.svg" width="25" height="25" /></td>
@@ -207,7 +244,11 @@ const  PlayerGoalDetail = (props) => {
                                                 <td>
                                                     {`${getHHMM(params.sleep_time_start)} ~ ${getHHMM(params.sleep_time_end)}`}
                                                 </td>
-                                                <td className="w-40-px pointer"><img src="/images/icons/icon-graph.svg" width="25" height="25" /></td>
+                                                <td className="w-40-px p-0">
+                                                    <IconButton size="small">
+                                                        <BarChartIcon size="small"/>
+                                                    </IconButton>
+                                                </td>
                                             </tr>
                                         </tbody>
                                     </table>

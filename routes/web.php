@@ -53,6 +53,7 @@ Route::middleware(['auth', 'verified'])->name('account.')->group(function () {
     Route::get('/player/goal', [App\Http\Controllers\Front\Player\DashboardController::class, 'index']);
     Route::get('/player/goal/new', [App\Http\Controllers\Front\Player\DashboardController::class, 'index']);
     Route::get('/player/goal/edit/{id}', [App\Http\Controllers\Front\Player\DashboardController::class, 'index']);
+    Route::get('/player/goal/detail/{id}', [App\Http\Controllers\Front\Player\DashboardController::class, 'index']);
     
     Route::get('/player/match', [App\Http\Controllers\Front\Player\DashboardController::class, 'index']);
     Route::get('/player/match/detail/{id}', [App\Http\Controllers\Front\Player\DashboardController::class, 'index']);
