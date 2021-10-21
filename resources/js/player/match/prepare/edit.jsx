@@ -111,7 +111,7 @@ const  PlayerMatchPrepareEdit = (props) => {
     <form  className="needs-validation"  onSubmit={handleSubmit} >
         <div className="mt-3 py-2 rounded-15 bg-white shadow-lg" style={{minHeight:'700px'}}>
             <h3 className="mt-2 p-1 text-white bg-green text-center font-weight-bold">
-                <span>試合前準備編集</span>
+                <span>試合情報編集</span>
             </h3>
             {
                 !load && 

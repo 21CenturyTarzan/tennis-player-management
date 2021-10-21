@@ -105,7 +105,7 @@ const  PlayerMatchPrepareNew = () => {
     <form  className="needs-validation"  onSubmit={handleSubmit} >
         <div className="mt-3 py-2 rounded-15 bg-white shadow-lg">
             <h3 className="mt-2 p-1 text-white bg-green text-center font-weight-bold">
-                <span>試合前準備追加</span>
+                <span>新試合追加</span>
             </h3>
             
             <p className="w-50 w-md-75 p-1 pl-2 mb-2 bg-black-4 rounded-right-20 text-white">大会情報</p>

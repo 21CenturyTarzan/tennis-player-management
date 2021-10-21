@@ -31,7 +31,7 @@ const PlayerMatchPrepare = (props) => {
                         <ArrowBackIcon/>
                     </IconButton>
                 </Link>
-                <span>試合前詳細</span>
+                <span>試合情報詳細</span>
                 <Link to={`/player/match/prepare/edit/${tournament?.id}`}>
                     <IconButton style={{color:'white', position:'absolute', padding:'3px', right:'23px'}}>
                         <EditIcon/>

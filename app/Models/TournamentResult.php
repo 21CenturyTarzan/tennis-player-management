@@ -21,4 +21,5 @@ class TournamentResult extends Model
         'improvement',
         'check_mental',
     ];
+
 }

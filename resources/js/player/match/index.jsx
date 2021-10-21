@@ -104,54 +104,54 @@ function PlayerMatch() {
                 !load && <CircularProgress color="secondary" style={{top:'calc(40vh - 22px)', left:'calc(50% - 22px)', color:'green', position:'absolute'}}/>
             }
             {
-                load && tournament_list &&
+                load &&
                 <>
                     <p className="w-50 w-md-75 p-1 pl-2 mb-2 bg-black-4 rounded-right-20 text-white">トーナメントのリスト</p>
                     <div className="px-2 mb-2">
-                        <table className="table table-bordered mb-2 text-center ft-xs-15">
-                            <tbody>
-                                <tr>
-                                    <th>大会日</th>
-                                    <th>選手</th>
-                                    <th>クラブ</th>
-                                    <th>試合結果入力</th>
-                                    <th className="w-25-px"></th>
-                                </tr>
-                                {
-                                    tournament_list.length > 0 ?
-                                        tournament_list?.map((x, i)=>
-                                            <tr className="pointer" key={i}>
-                                                <td>
-                                                    <Link to={`/player/match/detail/${x.id}`}>  
-                                                        {moment(x.tournament_date).format("YYYY/MM/DD")}
-                                                    </Link>
-                                                </td>
-                                                <td>{x.opponent_name}</td>
-                                                <td>{x.opponent_club}</td>
-                                                {
-                                                    x.result ? 
-                                                        <td>
-                                                            <Link to={`/player/match/detail/${x.id}`}>                                
-                                                                {moment(x.result.created_at).format('YYYY/MM/DD  HH:mm')}
-                                                            </Link>
-                                                        </td>
-                                                        :<td>
-                                                            <Link to={`/player/match/result/new/${x.id}`}>                                
-                                                                未入力
-                                                            </Link>
-                                                        </td>
-                                                }
-                                                <td className="p-0">
-                                                    <IconButton color="error" size="small" onClick={e=>openModal(x.id)}>
-                                                        <DeleteIcon fontSize="small"/>
-                                                    </IconButton>
-                                                </td> 
-                                            </tr>
-                                        )
-                                    : <tr><td colSpan="5">入力されたデータがありません。</td></tr>
-                                }
-                            </tbody>
-                        </table>
+                        <div style={{overflowX:'scroll'}}>
+                            <table className="table table-bordered mb-0 text-center ft-xs-15">
+                                <tbody>
+                                    <tr>
+                                        <th>大会日</th>
+                                        <th>選手</th>
+                                        <th>クラブ</th>
+                                        <th>試合結果入力</th>
+                                        <th className="w-25-px"></th>
+                                    </tr>
+                                    {
+                                        tournament_list ?
+                                            tournament_list?.map((x, i)=>
+                                                <tr className="pointer" key={i}>
+                                                    <td>
+                                                        <Link to={`/player/match/detail/${x.id}`}>  
+                                                            {moment(x.tournament_date).format("YYYY/MM/DD")}
+                                                        </Link>
+                                                    </td>
+                                                    <td>{x.opponent_name}</td>
+                                                    <td>{x.opponent_club}</td>
+                                                    {
+                                                        x.input_result_date ? 
+                                                            <td>                         
+                                                                {moment(x.input_result_date).format('YYYY/MM/DD  HH:mm')}
+                                                            </td>
+                                                            :<td>
+                                                                <Link to={`/player/match/result/new/${x.id}`}>                                
+                                                                    未入力
+                                                                </Link>
+                                                            </td>
+                                                    }
+                                                    <td className="p-0">
+                                                        <IconButton color="error" size="small" onClick={e=>openModal(x.id)}>
+                                                            <DeleteIcon fontSize="small"/>
+                                                        </IconButton>
+                                                    </td> 
+                                                </tr>
+                                            )
+                                        : <tr><td colSpan="5">入力されたデータがありません。</td></tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
                         
                     </div>
                 </>

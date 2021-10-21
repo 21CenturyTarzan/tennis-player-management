@@ -19,6 +19,7 @@ use App\Http\Controllers\Front\Admin\PlayerController;
 */
 
 Route::get('/', function () {
+    
     return view('home');
 })->name('home');
 
@@ -60,7 +61,7 @@ Route::middleware(['auth', 'verified'])->name('account.')->group(function () {
     Route::get('/player/match/result/new/{id}', [App\Http\Controllers\Front\Player\DashboardController::class, 'index']);
     Route::get('/player/match/result/edit/{id}', [App\Http\Controllers\Front\Player\DashboardController::class, 'index']);
     
-    
+
     Route::get('/player/favourite', [App\Http\Controllers\Front\Player\DashboardController::class, 'index']);
 
 });

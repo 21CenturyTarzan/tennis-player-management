@@ -12,6 +12,7 @@ use App\Models\GoalStage;
 use App\Models\Analysis;
 use App\Models\Tournament;
 use App\Models\TournamentResult;
+use Illuminate\Support\Facades\Log;
 
 class MatchController extends Controller
 {
@@ -23,7 +24,9 @@ class MatchController extends Controller
         $res['tournament'] = Tournament::where([
             'id' => (int)$id,
             'player_id' => $player_id
-        ])->with('result')->orderBy('id', 'DESC')->first();
+        ])->orderBy('id', 'DESC')->first();
+
+        $res['result'] = TournamentResult::where('tournament_id', $id)->get();
 
         $res['analysis'] = Analysis::get();
 
@@ -33,7 +36,8 @@ class MatchController extends Controller
     public function list(Request $request)
     {
         $player_id = (int)$request->get('player_id');
-        $res = Tournament::where('player_id', $player_id)->with('result')->orderBy('id', 'DESC')->get();
+     
+        $res = Tournament::where('player_id', $player_id)->orderBy('id', 'DESC')->get()->toArray();
 
         if($res)
             return ['status_code'=>200, 'params'=>$res];
@@ -161,6 +165,10 @@ class MatchController extends Controller
             'tactics' => $tactics,
             'improvement' => $improvement,
             'check_mental' => $check_mental
+        ]);
+
+        Tournament::where('id', $tournament_id)->update([
+            'input_result_date'=>now()
         ]);
 
         return ['status_code' => 200];
