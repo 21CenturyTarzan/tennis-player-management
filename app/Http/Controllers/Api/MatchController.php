@@ -57,7 +57,7 @@ class MatchController extends Controller
         Tournament::where('id', (int)$id)->delete();
 
         $player_id = (int)$request->get('player_id');
-        $res = Tournament::where('player_id', $player_id)->with('result')->orderBy('id', 'DESC')->get();
+        $res = Tournament::where('player_id', $player_id)->with('tournament_result')->orderBy('id', 'DESC')->get();
         if($res)
             return ['status_code'=>200, 'params'=>$res];
         return ['status_code'=>400];
@@ -167,4 +167,33 @@ class MatchController extends Controller
 
         return ['status_code' => 200];
     }
+
+    public function result_update(Request $request, $id)
+    {
+        $caution_rate =    $request->get('caution_rate');
+        $effort_eval = (int)$request->get('effort_eval');
+        $play_eval =   (int)$request->get('play_eval');
+        $tactics =         $request->get('tactics');
+        $improvement =     $request->get('improvement');
+        $check_mental =    $request->get('check_mental');
+        $about_opponent =  $request->get('about_opponent');
+        $score_list =      $request->get('score_list');
+
+        $tournament_id = (int) $id;
+
+        TournamentResult::where('tournament_id', $tournament_id)->update([
+            'tournament_id' => $tournament_id,
+            'caution_rate' => $caution_rate,
+            'effort_eval' => $effort_eval,
+            'play_eval' => $play_eval,
+            'score_list' => $score_list,
+            'about_opponent' => $about_opponent,
+            'tactics' => $tactics,
+            'improvement' => $improvement,
+            'check_mental' => $check_mental
+        ]);
+
+        return ['status_code' => 200];
+    }
+
 }

@@ -45,14 +45,9 @@ function PlayerMatch() {
             setLoad(true);
             if(response.data.status_code == 200){
                 setTournamentList(response.data.params);
-                console.log(response.data.params)
             }
         })
     }, []);
-
-    // useEffect( ()=>{
-    //     console.log(tournament, question_list);
-    // }, [tournament, question_list])
 
 
     const openModal = (ix) => {
