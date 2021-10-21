@@ -224,7 +224,7 @@ const  PlayerMatchPrepareEdit = (props) => {
                     </div>
 
                     <p className="w-50 w-md-75 p-1 pl-2 mb-2 bg-black-4 rounded-right-20 text-white">自己分析</p>
-                    <p className="ml-2 mb-2 ft-15">※テーブルのデータを参照して下欄に書きなさい。</p>
+                    <p className="ml-2 mb-2 ft-xs-15">※テーブルのデータを参照して下欄に書きなさい。</p>
                     <div className="px-2 mb-2 pre-scrollable">
                         <table className="table table-bordered text-center">
                             <tbody>

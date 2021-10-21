@@ -130,9 +130,9 @@ function PlayerMatch() {
                                                     <td>{x.opponent_name}</td>
                                                     <td>{x.opponent_club}</td>
                                                     {
-                                                        x.input_result_date ? 
+                                                        x.tournament_result ? 
                                                             <td>                         
-                                                                {moment(x.input_result_date).format('YYYY/MM/DD  HH:mm')}
+                                                                {moment(x.tournament_result.created_at).format('YYYY/MM/DD  HH:mm')}
                                                             </td>
                                                             :<td>
                                                                 <Link to={`/player/match/result/new/${x.id}`}>                                

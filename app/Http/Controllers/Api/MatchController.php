@@ -24,9 +24,7 @@ class MatchController extends Controller
         $res['tournament'] = Tournament::where([
             'id' => (int)$id,
             'player_id' => $player_id
-        ])->orderBy('id', 'DESC')->first();
-
-        $res['result'] = TournamentResult::where('tournament_id', $id)->get();
+        ])->with('tournament_result')->orderBy('id', 'DESC')->first();
 
         $res['analysis'] = Analysis::get();
 
@@ -37,7 +35,7 @@ class MatchController extends Controller
     {
         $player_id = (int)$request->get('player_id');
      
-        $res = Tournament::where('player_id', $player_id)->orderBy('id', 'DESC')->get()->toArray();
+        $res = Tournament::where('player_id', $player_id)->orderBy('id', 'DESC')->with('tournament_result')->get()->toArray();
 
         if($res)
             return ['status_code'=>200, 'params'=>$res];
@@ -165,10 +163,6 @@ class MatchController extends Controller
             'tactics' => $tactics,
             'improvement' => $improvement,
             'check_mental' => $check_mental
-        ]);
-
-        Tournament::where('id', $tournament_id)->update([
-            'input_result_date'=>now()
         ]);
 
         return ['status_code' => 200];

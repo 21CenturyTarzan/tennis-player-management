@@ -28,10 +28,6 @@ const PlayerMatchDetail = (props) => {
             }
         })
     }, []);
-
-    useEffect(()=>{
-        console.log(tournament);
-    },[tournament])
    
     if(!load) 
         return(
@@ -42,7 +38,7 @@ const PlayerMatchDetail = (props) => {
     return (
         <div id="match">
             <PlayerMatchPrepareDetail tournament={tournament}/>
-            <PlayerMatchResultDetail tournament={tournament}/>
+            <PlayerMatchResultDetail  tournament={tournament}/>
         </div>
     );
 }

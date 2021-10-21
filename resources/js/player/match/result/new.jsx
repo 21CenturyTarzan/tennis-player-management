@@ -290,7 +290,7 @@ function PlayerMatchResultNew(props) {
                                                 {
                                                     yItem.round.map((xItem, ix)=>
                                                         <td key={ix}>
-                                                            <Rating ratingValue={xItem.score} stars={1} onClick={rate=>changeScore(rate, iy, ix)} style={{color:'green'}}/>
+                                                            <Rating ratingValue={xItem.score} stars={1} onClick={rate=>changeScore(rate, iy, ix)}/>
                                                         </td>             
                                                     )
                                                 }

@@ -22,8 +22,12 @@ class Tournament extends Model
         'round',
         'weather',
         'mood',
-        'caution_list',
-        'input_result_date'
+        'caution_list'
     ];
+
+    public function tournament_result()
+    {
+        return $this->hasOne(TournamentResult::class, 'tournament_id');
+    }
 
 }
