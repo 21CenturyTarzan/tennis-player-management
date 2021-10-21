@@ -17,7 +17,7 @@ const PlayerMatchDetail = (props) => {
         axios.get(`/api/player/match/detail/${props.match.params?.id}`, {params:{player_id: id}})
         .then( response=>{
             if(response.data.status_code == 200){
-                console.log(response.data.params)
+                
                 Promise.resolve()
                 .then(()=>{
                     setTournament(response.data.params.tournament);

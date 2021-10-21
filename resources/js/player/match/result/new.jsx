@@ -116,7 +116,7 @@ function PlayerMatchResultNew(props) {
     const [caution_rate, setCautionRate] = useState([]);            //Object( {caution:'', rate:0})  //試合前の課題達成度
     const [effort_eval, setEffortEval] = useState(0);               //努力・闘志の評価
     const [play_eval, setPlayEval] = useState(0);                   //プレーの自己評価
-    const [about_opponent, setAboutOpponent] = useState([]);        //どんな相手だったか？
+    // const [about_opponent, setAboutOpponent] = useState([]);        //どんな相手だったか？
     const [tactics, setTactics] = useState(['','','']);            //再度同じ相手にあたるとしたら、具体的にどう戦うか？上をふまえて
     const [improvement, setImprovement] = useState(['','','']);     //改善すべき内容
     const [check_mental, setCheckMental] = useState([                  //試合後のメンタルチェック
@@ -136,16 +136,37 @@ function PlayerMatchResultNew(props) {
 
     //////////////////////////////////////////////////
 
+    useEffect( () => {
+        setLoad(false);
+        var id = Number(document.getElementById('player_id').value);
+        axios.get(`/api/player/match/detail/${props.match.params?.id}`, {params:{player_id: id}})
+        .then( response=>{
+            setLoad(true);
+            if(response.data.status_code == 200){
+
+                setTournament(response.data.params.tournament);
+                setAnalysisList(response.data.params.analysis);
+
+                var arr = [];
+                var caution_list = JSON.parse(response.data.params.tournament.caution_list);
+                for(let i=0; i<caution_list.length; i++)
+                    arr.push({caution:caution_list[i], rate:0});
+                setCautionRate(arr);
+            }
+        })
+    }, []);
+
+
+
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        var arr = [];
+        var about_opponent = [];
         for(let i=0; i<analysis_list.length; i++)
         {
             if(document.getElementById('check'+i).checked)
-                arr.push(document.getElementById('check'+i).value);
+                about_opponent.push(document.getElementById('check'+i).value);
         }
-        setAboutOpponent(arr);
 
         setSubmit(true)
         const formdata = new FormData();
@@ -171,26 +192,6 @@ function PlayerMatchResultNew(props) {
 
     }
 
-
-    useEffect( () => {
-        setLoad(false);
-        var id = Number(document.getElementById('player_id').value);
-        axios.get(`/api/player/match/detail/${props.match.params?.id}`, {params:{player_id: id}})
-        .then( response=>{
-            setLoad(true);
-            if(response.data.status_code == 200){
-                console.log(response.data);
-                setTournament(response.data.params.tournament);
-                setAnalysisList(response.data.params.analysis);
-
-                var arr = [];
-                var caution_list = JSON.parse(response.data.params.tournament.caution_list);
-                for(let i=0; i<caution_list.length; i++)
-                    arr.push({caution:caution_list[i], rate:0});
-                setCautionRate(arr);
-            }
-        })
-    }, []);
 
     const changeScore = (rate, iy, ix) => {
         const list = [...score_list];

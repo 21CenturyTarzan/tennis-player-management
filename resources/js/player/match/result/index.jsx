@@ -26,7 +26,6 @@ const PlayerMatchResult = ({tournament}) => {
         improvement = JSON.parse(tournament_result.improvement);
         check_mental = JSON.parse(tournament_result.check_mental);
     }
-        console.log(score_list);
     
 
     return (
@@ -112,7 +111,7 @@ const PlayerMatchResult = ({tournament}) => {
                     </div>
 
                     <p className="w-50 w-md-75 p-1 pl-2 mb-2 bg-black-4 rounded-right-20 ft-xs-15 text-white">どんな相手だったか？</p>
-                    <div className="px-2 mb-2">
+                    <div className="px-2 mb-2 pre-scrollable">
                         <table className="table table-bordered text-center mb-0">
                             <tbody>
                                 {

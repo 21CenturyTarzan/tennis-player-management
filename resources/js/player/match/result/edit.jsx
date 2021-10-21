@@ -17,12 +17,13 @@ import { Rating, RatingView } from 'react-simple-star-rating';
 
 
 function PlayerMatchResultEdit(props) {
+    
+    const history = useHistory();
     const [load, setLoad] = useState(false);
     const [submit, setSubmit] = useState(false);
 
     //////////////////////////////////////////////////
-    const [tournament, setTournament] = useState(null);
-    const [question_list, setQuestionList] = useState(null);
+    const [analysis_list, setAnalysisList] = useState(null);
 
     const [score_list, setScoreList] = useState([
         {type:'1set_mine',  total:0, round:[
@@ -114,32 +115,25 @@ function PlayerMatchResultEdit(props) {
     const [caution_rate, setCautionRate] = useState([]);            //Object( {caution:'', rate:0})  //試合前の課題達成度
     const [effort_eval, setEffortEval] = useState(0);               //努力・闘志の評価
     const [play_eval, setPlayEval] = useState(0);                   //プレーの自己評価
-    const [about_opponent, setAboutOpponent] = useState([]);        //どんな相手だったか？
+    // const [about_opponent, setAboutOpponent] = useState([]);        //どんな相手だったか？
     const [tactics, setTactics] = useState(['','','']);            //再度同じ相手にあたるとしたら、具体的にどう戦うか？上をふまえて
     const [improvement, setImprovement] = useState(['','','']);     //改善すべき内容
     const [check_mental, setCheckMental] = useState([                  //試合後のメンタルチェック
-        {sen1:'最高のプレーができた',           rate:0, sen2:'最悪のプレーだった'},
-        {sen1:'体（筋肉）はリラックスしていた',  rate:0, sen2:'体（筋肉）は緊張していた'},
-        {sen1:'不安はなかった',                 rate:0, sen2:'とても不安だった'},
-        {sen1:'落ち着いて冷静だった',            rate:0, sen2:'混乱し動揺していた'},
-        {sen1:'積極的、楽観的な考え方をしていた', rate:0, sen2:'消極的、悲観的な考えをしていた'},
-        {sen1:'挑戦する事を楽しんでいた',        rate:0, sen2:'意欲やエネルギーが不足していた'},
-        {sen1:'自動的、本能的にプレーしていた',   rate:0, sen2:'意識が先走って指図しすぎていた'},
-        {sen1:'プレーに集中できた',              rate:0, sen2:'集中していなかった'},
-        {sen1:'注意力が鋭かった',                rate:0, sen2:'注意力が散漫だった'},
-        {sen1:'ポジティブなエネルギーに満ちていた', rate:0, sen2:'ネガティブなエネルギーだらけだった'},
-        {sen1:'自信満々だった',                 rate:0, sen2:'自信がなかった'},
-        {sen1:'自己コントロールができていた',    rate:0, sen2:'自分をコントロールできなかった'}
+        {sen1:'最悪のプレーだった',           rate:0, sen2:'最高のプレーができた'},
+        {sen1:'体（筋肉）は緊張していた',  rate:0, sen2:'体（筋肉）はリラックスしていた'},
+        {sen1:'とても不安だった',                 rate:0, sen2:'不安はなかった'},
+        {sen1:'混乱し動揺していた',            rate:0, sen2:'落ち着いて冷静だった'},
+        {sen1:'消極的、悲観的な考えをしていた', rate:0, sen2:'積極的、楽観的な考え方をしていた'},
+        {sen1:'意欲やエネルギーが不足していた',        rate:0, sen2:'挑戦する事を楽しんでいた'},
+        {sen1:'意識が先走って指図しすぎていた',   rate:0, sen2:'自動的、本能的にプレーしていた'},
+        {sen1:'集中していなかった',              rate:0, sen2:'プレーに集中できた'},
+        {sen1:'注意力が散漫だった',                rate:0, sen2:'注意力が鋭かった'},
+        {sen1:'ネガティブなエネルギーだらけだった', rate:0, sen2:'ポジティブなエネルギーに満ちていた'},
+        {sen1:'自信がなかった',                 rate:0, sen2:'自信満々だった'},
+        {sen1:'自分をコントロールできなかった',    rate:0, sen2:'自己コントロールができていた'}
     ])
 
     //////////////////////////////////////////////////
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-
-        
-    }
-
 
     useEffect( () => {
         setLoad(false);
@@ -148,18 +142,84 @@ function PlayerMatchResultEdit(props) {
         .then( response=>{
             setLoad(true);
             if(response.data.status_code == 200){
-                console.log(response.data);
-                setTournament(response.data.params.tournament);
-                setQuestionList(response.data.params.question_list);
+                setAnalysisList(response.data.params.analysis);
 
                 var arr = [];
                 var caution_list = JSON.parse(response.data.params.tournament.caution_list);
                 for(let i=0; i<caution_list.length; i++)
                     arr.push({caution:caution_list[i], rate:0});
                 setCautionRate(arr);
+
+                var result = response.data.params.tournament.tournament_result;
+
+                if(result){
+                    ///If change the match prepare caution, you have to change the match result caution too
+                    var caution_rate = JSON.parse(result.caution_rate);
+                    var tmp = JSON.parse(response.data.params.tournament.caution_list);
+                    for(let i=0; i<caution_list.length; i++)
+                    {
+                        caution_rate[i].caution = tmp[i];
+                    }
+                    setCautionRate(caution_rate);
+                    //-----------------------------------------
+                    setEffortEval(result.effort_eval);
+                    setPlayEval(result.play_eval);
+                    setScoreList(JSON.parse(result.score_list));
+                    setTactics(JSON.parse(result.tactics));
+                    setImprovement(JSON.parse(result.improvement));
+                    setCheckMental(JSON.parse(result.check_mental))
+                    
+                    var arr = JSON.parse(result.about_opponent);
+                    var analysis = response.data.params.analysis;
+                    for(var i=0; i<arr.length; i++)
+                        for(var j=0; j<analysis.length; j++)
+                    {
+                        if(arr[i] === analysis[j].question){
+                            document.getElementById('check'+j).checked = true;
+                            break;
+                        }
+                    }
+                }
             }
         })
     }, []);
+
+
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+
+        var about_opponent = [];
+        for(let i=0; i<analysis_list.length; i++)
+        {
+            if(document.getElementById('check'+i).checked)
+                about_opponent.push(document.getElementById('check'+i).value);
+        }
+
+        setSubmit(true)
+        const formdata = new FormData();
+        formdata.append('caution_rate', JSON.stringify(caution_rate));
+        formdata.append('effort_eval', effort_eval);
+        formdata.append('play_eval', play_eval);
+        formdata.append('tactics',    JSON.stringify(tactics));
+        formdata.append('improvement', JSON.stringify(improvement));
+        formdata.append('check_mental', JSON.stringify(check_mental));
+        formdata.append('about_opponent', JSON.stringify(about_opponent));
+        formdata.append('score_list',     JSON.stringify(score_list));
+
+        axios.post(`/api/player/match/result/update/${props.match.params?.id}`, formdata)
+        .then(response => {
+            setSubmit(false);
+            if(response.data.status_code == 200){
+                history.push({
+                    pathname: `/player/match/detail/${props.match.params?.id}`,
+                    state: {}
+                });
+            }
+        })
+
+    }
+
 
     const changeScore = (rate, iy, ix) => {
         const list = [...score_list];
@@ -201,7 +261,7 @@ function PlayerMatchResultEdit(props) {
     <form  className="needs-validation"  onSubmit={handleSubmit}>
         <div className="mt-3 py-2 rounded-15 bg-white shadow-lg" style={{minHeight:'700px'}}>
             <h3 className="mt-2 p-1 text-white bg-green text-center font-weight-bold position-relative">
-                <span>試合結果編集</span>
+                <span>試合結果追加</span>
             </h3>
             {
                 !load && 
@@ -209,11 +269,7 @@ function PlayerMatchResultEdit(props) {
                         style={{top:'calc(40vh - 22px)', left:'calc(50% - 22px)', color:'green', position:'absolute'}}/>
             }
             {
-                load && !tournament &&
-                    <p className="mt-5 text-center">登録された資料がありません。</p>
-            }
-            {
-                load && tournament &&
+                load &&
                 <>
                     <p className="w-50 w-md-75 p-1 pl-2 mb-2 bg-black-4 rounded-right-20 text-white">試合前の課題達成度</p>
                     <div className="px-2 mb-2">
@@ -259,7 +315,7 @@ function PlayerMatchResultEdit(props) {
                                                 {
                                                     yItem.round.map((xItem, ix)=>
                                                         <td key={ix}>
-                                                            <Rating ratingValue={xItem.score} stars={1} onClick={rate=>changeScore(rate, iy, ix)} style={{color:'green'}}/>
+                                                            <Rating ratingValue={xItem.score} stars={1} onClick={rate=>changeScore(rate, iy, ix)}/>
                                                         </td>             
                                                     )
                                                 }
@@ -274,7 +330,7 @@ function PlayerMatchResultEdit(props) {
                     <p className="w-50 w-md-75 p-1 pl-2 mb-2 bg-black-4 rounded-right-20 text-white">どんな相手だったか？</p>
                     <div className="mx-2 mb-2 py-2 pl-3 pre-scrollable border">
                         {
-                            question_list?.map((x, i)=>
+                            analysis_list?.map((x, i)=>
                                 <div className="form-check" key={i}>
                                     <input className="form-check-input" id={`check${i}`} type="checkbox" value={x.question}/>
                                     <label className="form-check-label pointer" htmlFor={`check${i}`}>
@@ -357,7 +413,7 @@ function PlayerMatchResultEdit(props) {
                                     variant="contained" 
                                     endIcon={<SendIcon />}
                                     style={{backgroundColor: 'green', fontSize:'16px'}}
-                                    // loading={submit}
+                                    loading={submit}
                                 >
                                     <span>送信</span>
                                 </LoadingButton>
@@ -374,3 +430,5 @@ function PlayerMatchResultEdit(props) {
 
 
 export default PlayerMatchResultEdit;
+
+
