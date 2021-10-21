@@ -16,7 +16,7 @@ import AddIcon from '@mui/icons-material/Add';
 import { Rating, RatingView } from 'react-simple-star-rating';
 
 
-function PlayerMatchResultNew() {
+function PlayerMatchResultNew(props) {
     
     const history = useHistory();
     const [load, setLoad] = useState(false);
@@ -24,7 +24,7 @@ function PlayerMatchResultNew() {
 
     //////////////////////////////////////////////////
     const [tournament, setTournament] = useState(null);
-    const [question_list, setQuestionList] = useState(null);
+    const [analysis_list, setAnalysisList] = useState(null);
 
     const [score_list, setScoreList] = useState([
         {type:'1set_mine',  total:0, round:[
@@ -140,7 +140,7 @@ function PlayerMatchResultNew() {
         e.preventDefault();
 
         var arr = [];
-        for(let i=0; i<question_list.length; i++)
+        for(let i=0; i<analysis_list.length; i++)
         {
             if(document.getElementById('check'+i).checked)
                 arr.push(document.getElementById('check'+i).value);
@@ -158,12 +158,12 @@ function PlayerMatchResultNew() {
         formdata.append('about_opponent', JSON.stringify(about_opponent));
         formdata.append('score_list',     JSON.stringify(score_list));
 
-        axios.post('/player/result/store', formdata, {params:{tournament_id: tournament.id}})
+        axios.post('/api/player/match/result/store', formdata, {params:{tournament_id: tournament.id}})
         .then(response => {
             setSubmit(false);
             if(response.data.status_code == 200){
                 history.push({
-                    pathname: '/player/result',
+                    pathname: `/player/match/detail/${tournament.id}`,
                     state: {}
                 });
             }
@@ -175,13 +175,13 @@ function PlayerMatchResultNew() {
     useEffect( () => {
         setLoad(false);
         var id = Number(document.getElementById('player_id').value);
-        axios.get('/api/player/match', {params:{player_id: id}})
+        axios.get(`/api/player/match/detail/${props.match.params?.id}`, {params:{player_id: id}})
         .then( response=>{
             setLoad(true);
             if(response.data.status_code == 200){
                 console.log(response.data);
                 setTournament(response.data.params.tournament);
-                setQuestionList(response.data.params.question_list);
+                setAnalysisList(response.data.params.analysis);
 
                 var arr = [];
                 var caution_list = JSON.parse(response.data.params.tournament.caution_list);
@@ -305,7 +305,7 @@ function PlayerMatchResultNew() {
                     <p className="w-50 w-md-75 p-1 pl-2 mb-2 bg-black-4 rounded-right-20 text-white">どんな相手だったか？</p>
                     <div className="mx-2 mb-2 py-2 pl-3 pre-scrollable border">
                         {
-                            question_list?.map((x, i)=>
+                            analysis_list?.map((x, i)=>
                                 <div className="form-check" key={i}>
                                     <input className="form-check-input" id={`check${i}`} type="checkbox" value={x.question}/>
                                     <label className="form-check-label pointer" htmlFor={`check${i}`}>

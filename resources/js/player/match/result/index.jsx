@@ -27,7 +27,7 @@ function PlayerMatchResult(props) {
                     </IconButton>
                 </Link>
                 <span>試合結果詳細</span>
-                <Link to={`/player/match/edit/${props.id}`}>
+                <Link to={`/player/match/result/edit/${props.id}`}>
                     <IconButton style={{color:'white', position:'absolute', padding:'3px', right:'23px'}}>
                         <EditIcon/>
                     </IconButton>
