@@ -102,11 +102,16 @@ function PlayerMatch() {
                 load &&
                 <>
                     <p className="w-50 w-md-75 p-1 pl-2 mb-2 bg-black-4 rounded-right-20 text-white">トーナメントのリスト</p>
-                    <div className="px-2 mb-2">
-                        <div style={{overflowX:'scroll'}}>
+                    {
+                        tournament_list &&
+                            <p className="mb-2 pl-2 ft-xs-15">入力数:{tournament_list.length}</p>
+                    }
+                    <div className="pl-2 mb-2">
+                        <div style={{overflowX:'scroll', overflowY:'scroll', maxHeight:'600px'}}>
                             <table className="table table-bordered mb-0 text-center ft-xs-15">
                                 <tbody>
                                     <tr>
+                                        <th className="w-25-px"></th>
                                         <th>大会日</th>
                                         <th>選手</th>
                                         <th>クラブ</th>
@@ -117,6 +122,7 @@ function PlayerMatch() {
                                         tournament_list ?
                                             tournament_list?.map((x, i)=>
                                                 <tr className="pointer" key={i}>
+                                                    <td>{i+1}</td>
                                                     <td>
                                                         <Link to={`/player/match/detail/${x.id}`}>  
                                                             {moment(x.tournament_date).format("YYYY/MM/DD")}
