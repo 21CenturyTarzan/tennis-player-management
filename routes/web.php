@@ -18,23 +18,14 @@ use App\Http\Controllers\Front\Admin\PlayerController;
 |
 */
 
-Route::get('/', function () {
-    
-    return view('home');
-})->name('home');
+Route::get('/', function () { return view('home');  })->name('home');
 
 Auth::routes();
 
-Route::middleware(['auth', 'verified'])->name('account.')->group(function () {
+Route::middleware(['auth'])->group(function () {
 
     Route::get('/home', [HomeController::class, 'index'])->name('home');
-    
-    Route::get('/admin/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
-    
-    Route::get('/parent/dashboard', [App\Http\Controllers\Front\Parent\DashboardController::class, 'index'])->name('parent.dashboard');
-    Route::get('/parent/profile/edit', [App\Http\Controllers\Front\Parent\ProfileController::class, 'edit'])->name('parent.profile.edit');
-    Route::post('/parent/profile/store', [App\Http\Controllers\Front\Parent\ProfileController::class, 'store'])->name('parent.profile.store');
-    
+
     // Route::get('/dashboard/player/{id}', [DashboardController::class, 'show'])->name('dashboard.player.show');
     
     // Route::get('/api/msgs', [NoticeController::class, 'index'])->name('msgs.get');
@@ -42,29 +33,49 @@ Route::middleware(['auth', 'verified'])->name('account.')->group(function () {
     // Route::post('/api/msgs/reply/{id}', [NoticeController::class, 'saveReplyMsg'])->name('message.reply');
     // Route::get('/api/players', [PlayerController::class, 'index'])->name('players.get');
     
-    Route::get('/player/dashboard', [App\Http\Controllers\Front\Player\DashboardController::class, 'index'])->name('player.dashboard');
+
+    Route::group(['prefix'=>'player'], function(){
+
+        Route::get('/dashboard', [App\Http\Controllers\Front\Player\DashboardController::class, 'index'])->name('player.dashboard');
+
+        Route::get('/profile/edit', [App\Http\Controllers\Front\Player\ProfileController::class, 'edit'])->name('player.profile.edit');
+        Route::post('/profile/store', [App\Http\Controllers\Front\Player\ProfileController::class, 'store'])->name('player.profile.store');
     
-    Route::get('/player/profile/edit', [App\Http\Controllers\Front\Player\ProfileController::class, 'edit'])->name('player.profile.edit');
-    Route::post('/player/profile/store', [App\Http\Controllers\Front\Player\ProfileController::class, 'store'])->name('player.profile.store');
-
-    Route::get('/player/info', [App\Http\Controllers\Front\Player\DashboardController::class, 'index']);
-    Route::get('/player/info/edit', [App\Http\Controllers\Front\Player\DashboardController::class, 'index']);
-
-    Route::get('/player/goal', [App\Http\Controllers\Front\Player\DashboardController::class, 'index']);
-    Route::get('/player/goal/new', [App\Http\Controllers\Front\Player\DashboardController::class, 'index']);
-    Route::get('/player/goal/edit/{id}', [App\Http\Controllers\Front\Player\DashboardController::class, 'index']);
-    Route::get('/player/goal/detail/{id}', [App\Http\Controllers\Front\Player\DashboardController::class, 'index']);
+        Route::get('/info', [App\Http\Controllers\Front\Player\DashboardController::class, 'index']);
+        Route::get('/info/edit', [App\Http\Controllers\Front\Player\DashboardController::class, 'index']);
     
-    Route::get('/player/match', [App\Http\Controllers\Front\Player\DashboardController::class, 'index']);
-    Route::get('/player/match/detail/{id}', [App\Http\Controllers\Front\Player\DashboardController::class, 'index']);
-    Route::get('/player/match/prepare/new', [App\Http\Controllers\Front\Player\DashboardController::class, 'index']);
-    Route::get('/player/match/prepare/edit/{id}', [App\Http\Controllers\Front\Player\DashboardController::class, 'index']);
-    Route::get('/player/match/result/new/{id}', [App\Http\Controllers\Front\Player\DashboardController::class, 'index']);
-    Route::get('/player/match/result/edit/{id}', [App\Http\Controllers\Front\Player\DashboardController::class, 'index']);
+        Route::get('/goal', [App\Http\Controllers\Front\Player\DashboardController::class, 'index']);
+        Route::get('/goal/new', [App\Http\Controllers\Front\Player\DashboardController::class, 'index']);
+        Route::get('/goal/edit/{id}', [App\Http\Controllers\Front\Player\DashboardController::class, 'index']);
+        Route::get('/goal/detail/{id}', [App\Http\Controllers\Front\Player\DashboardController::class, 'index']);
+        
+        Route::get('/match', [App\Http\Controllers\Front\Player\DashboardController::class, 'index']);
+        Route::get('/match/detail/{id}', [App\Http\Controllers\Front\Player\DashboardController::class, 'index']);
+        Route::get('/match/prepare/new', [App\Http\Controllers\Front\Player\DashboardController::class, 'index']);
+        Route::get('/match/prepare/edit/{id}', [App\Http\Controllers\Front\Player\DashboardController::class, 'index']);
+        Route::get('/match/result/new/{id}', [App\Http\Controllers\Front\Player\DashboardController::class, 'index']);
+        Route::get('/match/result/edit/{id}', [App\Http\Controllers\Front\Player\DashboardController::class, 'index']);
+        
+        Route::get('/favourite', [App\Http\Controllers\Front\Player\DashboardController::class, 'index']);
+
+    });
+//--------------------------------------------------------------------------------------------------------------------
+
+
+    Route::group(['prefix'=>'admin'], function(){
+
+        Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
+    });
+
+
+//---------------------------------------------------------------------------------------------------------------------
+    Route::group(['prefix'=>'parent'], function(){
     
-
-    Route::get('/player/favourite', [App\Http\Controllers\Front\Player\DashboardController::class, 'index']);
-
+        Route::get('/dashboard', [App\Http\Controllers\Front\Parent\DashboardController::class, 'index'])->name('parent.dashboard');
+        Route::get('/profile/edit', [App\Http\Controllers\Front\Parent\ProfileController::class, 'edit'])->name('parent.profile.edit');
+        Route::post('/profile/store', [App\Http\Controllers\Front\Parent\ProfileController::class, 'store'])->name('parent.profile.store');
+        
+    });
 });
 
 
