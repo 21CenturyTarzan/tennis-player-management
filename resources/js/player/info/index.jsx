@@ -7,7 +7,6 @@ import moment from 'moment';
 
 function PlayerInfo() {
     
-    const [load, setLoad] = useState(false);
     const [params, setParams] = useState(null);
 
     useEffect( () => {
