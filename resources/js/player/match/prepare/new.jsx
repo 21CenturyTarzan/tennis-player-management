@@ -265,7 +265,7 @@ const  PlayerMatchPrepareNew = () => {
                     <div className="col-6">
                         <LoadingButton size="large" type="submit" 
                             color="primary" fullWidth  
-                            variant="contained" 
+                            // variant="contained" 
                             endIcon={<SendIcon />}
                             style={{backgroundColor: 'green', fontSize:'16px'}}
                             loading={submit}

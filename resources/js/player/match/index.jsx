@@ -31,7 +31,7 @@ function PlayerMatch() {
 
     const [open, setOpen] = useState(false);
     const [load, setLoad] = useState(false);
-    const [tournament_list, setTournamentList] = useState(null);
+    const [tournament_list, setTournamentList] = useState([]);
     const [deleteIndex, setDeleteIndex] = useState(null);
     const [submit, setSubmit] = useState(false);
 
@@ -75,9 +75,19 @@ function PlayerMatch() {
         setOpen(false);
     } 
 
-    const notify = () => toast("削除成功");
 
-
+    const notify = () => 
+    toast.success("削除成功", {
+        position: "top-right",
+        autoClose: 5000,
+        className:"bg-danger",
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: false,
+        progress: undefined,
+        style:{ color: '#ffffff'}
+    });
 
     return (
     <div id="match">
@@ -119,7 +129,7 @@ function PlayerMatch() {
                                         <th className="w-25-px"></th>
                                     </tr>
                                     {
-                                        tournament_list ?
+                                        tournament_list.length > 0 ?
                                             tournament_list?.map((x, i)=>
                                                 <tr className="pointer" key={i}>
                                                     <td>{i+1}</td>

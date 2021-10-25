@@ -9,18 +9,38 @@ import { Button } from '@material-ui/core';
 import { LoadingButton } from '@material-ui/lab';
 import IconButton from '@mui/material/IconButton';
 import SendIcon from '@mui/icons-material/Send';
-import ClearIcon from '@mui/icons-material/Clear';
-import RemoveIcon from '@mui/icons-material/Remove';
-import AddIcon from '@mui/icons-material/Add';
+
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
+import Slide from '@mui/material/Slide';
 
 import { Rating, RatingView } from 'react-simple-star-rating';
+import { makeStyles } from '@material-ui/styles';
+
+const Transition = React.forwardRef(function Transition(props, ref) {
+    return <Slide direction="up" ref={ref} {...props} />;
+});
+
+
+const useStyles = makeStyles(theme => ({
+    comment_show:{
+        background: 'radial-gradient(yellow, transparent)'
+    }
+}));
 
 
 function PlayerMatchResultEdit(props) {
     
     const history = useHistory();
+    const classes = useStyles();
     const [load, setLoad] = useState(false);
+    const [open, setOpen] = useState(false);
     const [submit, setSubmit] = useState(false);
+    const [curPos, setCurrentPos] = useState({y:'', x:''});
+    const [comment, setComment] = useState('');
 
     //////////////////////////////////////////////////
     const [analysis_list, setAnalysisList] = useState(null);
@@ -185,7 +205,6 @@ function PlayerMatchResultEdit(props) {
     }, []);
 
 
-
     const handleSubmit = (e) => {
         e.preventDefault();
 
@@ -220,11 +239,13 @@ function PlayerMatchResultEdit(props) {
 
     }
 
-
     const changeScore = (rate, iy, ix) => {
         const list = [...score_list];
-        if(rate == 1 && list[iy]['round'][ix]['score'] == 1)
+        if(rate == 1 && list[iy]['round'][ix]['score'] == 1){
             list[iy]['round'][ix]['score'] = 0;
+            list[iy]['round'][ix]['keyGame'] = false;
+            list[iy]['round'][ix]['comment'] = '';
+        }
         else list[iy]['round'][ix]['score'] = rate;
         var sum = 0;
         for(let i=0; i<list[iy]['round'].length; i++)
@@ -256,6 +277,40 @@ function PlayerMatchResultEdit(props) {
         list[ix]['rate'] = rate;
         setCheckMental(list);
     }
+
+//------------------------------------------------
+    const openModal = (y,x) => {
+        setOpen(true);
+        const list = [...score_list];
+        setComment(list[y]['round'][x]['comment']);
+        setCurrentPos({y:y, x:x});
+    };
+    
+    const handleComment = () => {
+        if(comment == ''){
+            document.getElementById('comment').focus();
+            return;
+        } 
+        const list = [...score_list];
+        list[curPos.y]['round'][curPos.x]['keyGame'] = true;
+        list[curPos.y]['round'][curPos.x]['comment'] = comment;
+        setComment('');
+        setScoreList(list);
+        closeModal();
+    };
+
+    const closeModal = () => {
+        setOpen(false);
+    } 
+
+    //--------------------------------------------
+    const handleClickStar = (rate, iy, ix) => {
+        if(score_list[iy]['round'][ix]['score'] == 0){
+            openModal(iy, ix);
+        }
+        changeScore(rate, iy, ix); 
+    }
+
 
     return (
     <form  className="needs-validation"  onSubmit={handleSubmit}>
@@ -314,8 +369,8 @@ function PlayerMatchResultEdit(props) {
                                                 <th className="w-60-px">{iy%2==0 ?'自分':'相手'}</th>
                                                 {
                                                     yItem.round.map((xItem, ix)=>
-                                                        <td key={ix}>
-                                                            <Rating ratingValue={xItem.score} stars={1} onClick={rate=>changeScore(rate, iy, ix)}/>
+                                                        <td key={ix} className={`${xItem.keyGame && classes.comment_show}`}>
+                                                            <Rating ratingValue={xItem.score} stars={1} onClick={rate=>handleClickStar(rate, iy, ix)}/>
                                                         </td>             
                                                     )
                                                 }
@@ -392,7 +447,6 @@ function PlayerMatchResultEdit(props) {
                                     </tr>
                                 )
                             }
-                            
                             </tbody>
                         </table>
                     </div>
@@ -420,6 +474,23 @@ function PlayerMatchResultEdit(props) {
                             </div>
                         </div>
                     </div>
+
+                    <Dialog
+                        open={open}
+                        TransitionComponent={Transition}
+                        keepMounted
+                        aria-describedby="alert-dialog-slide-description"
+                        onClose={closeModal}
+                    >
+                        <DialogTitle style={{fontSize:'18px', textAlign:'center'}}>{"キーゲームを設定しますか？"}</DialogTitle>
+                        <DialogContent className="px-3 py-0" style={{width:'350px'}}>
+                            <textarea rows="5" className="w-100 p-2 ft-16" placeholder="コメント入力" id="comment" value={comment} onChange={e=>setComment(e.target.value)} required/>
+                        </DialogContent>
+                        <DialogActions className="pt-0 px-3">
+                            <Button onClick={closeModal} color="secondary" variant="contained" size="small">いいえ</Button>
+                            <Button type="submit" onClick={handleComment} color="primary" variant="contained" size="small">はい</Button>
+                        </DialogActions>
+                    </Dialog>
                 </>
             }
         </div>
