@@ -7,7 +7,6 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 
 import { Button } from '@material-ui/core';
 import { LoadingButton } from '@material-ui/lab';
-import IconButton from '@mui/material/IconButton';
 import SendIcon from '@mui/icons-material/Send';
 
 import Dialog from '@mui/material/Dialog';
@@ -239,20 +238,7 @@ function PlayerMatchResultEdit(props) {
 
     }
 
-    const changeScore = (rate, iy, ix) => {
-        const list = [...score_list];
-        if(rate == 1 && list[iy]['round'][ix]['score'] == 1){
-            list[iy]['round'][ix]['score'] = 0;
-            list[iy]['round'][ix]['keyGame'] = false;
-            list[iy]['round'][ix]['comment'] = '';
-        }
-        else list[iy]['round'][ix]['score'] = rate;
-        var sum = 0;
-        for(let i=0; i<list[iy]['round'].length; i++)
-            sum += list[iy]['round'][i]['score'];
-        list[iy]['total'] = sum;
-        setScoreList(list);
-    }
+   
 
     const changeCautionRate = (rate, ix) => {
         const list = [...caution_rate];
@@ -281,12 +267,11 @@ function PlayerMatchResultEdit(props) {
 //------------------------------------------------
     const openModal = (y,x) => {
         setOpen(true);
-        const list = [...score_list];
-        setComment(list[y]['round'][x]['comment']);
+        setComment(score_list[y]['round'][x]['comment']);
         setCurrentPos({y:y, x:x});
     };
     
-    const handleComment = () => {
+    const commentOK = () => {
         if(comment == ''){
             document.getElementById('comment').focus();
             return;
@@ -294,22 +279,34 @@ function PlayerMatchResultEdit(props) {
         const list = [...score_list];
         list[curPos.y]['round'][curPos.x]['keyGame'] = true;
         list[curPos.y]['round'][curPos.x]['comment'] = comment;
-        setComment('');
+        list[curPos.y]['round'][curPos.x]['score'] = 1;
+        
+        var sum = 0;
+        for(let i=0; i<list[curPos.y]['round'].length; i++)
+            sum += list[curPos.y]['round'][i]['score'];
+        list[curPos.y]['total'] = sum;
         setScoreList(list);
         closeModal();
     };
 
+    const commentCancel = () => {
+        const list = [...score_list];
+        list[curPos.y]['round'][curPos.x]['keyGame'] = false;
+        list[curPos.y]['round'][curPos.x]['comment'] = '';
+        list[curPos.y]['round'][curPos.x]['score'] = !list[curPos.y]['round'][curPos.x]['score'];
+        
+        var sum = 0;
+        for(let i=0; i<list[curPos.y]['round'].length; i++)
+            sum += list[curPos.y]['round'][i]['score'];
+        list[curPos.y]['total'] = sum;
+        setScoreList(list);
+        closeModal();
+    }
+
     const closeModal = () => {
         setOpen(false);
+        setComment('');
     } 
-
-    //--------------------------------------------
-    const handleClickStar = (rate, iy, ix) => {
-        if(score_list[iy]['round'][ix]['score'] == 0){
-            openModal(iy, ix);
-        }
-        changeScore(rate, iy, ix); 
-    }
 
 
     return (
@@ -369,8 +366,8 @@ function PlayerMatchResultEdit(props) {
                                                 <th className="w-60-px">{iy%2==0 ?'自分':'相手'}</th>
                                                 {
                                                     yItem.round.map((xItem, ix)=>
-                                                        <td key={ix} className={`${xItem.keyGame && classes.comment_show}`}>
-                                                            <Rating ratingValue={xItem.score} stars={1} onClick={rate=>handleClickStar(rate, iy, ix)}/>
+                                                        <td key={ix} className={`${xItem.keyGame && classes.comment_show}`} onClick={e=>openModal(iy, ix)}>
+                                                            <RatingView ratingValue={xItem.score} stars={1} />
                                                         </td>             
                                                     )
                                                 }
@@ -487,8 +484,8 @@ function PlayerMatchResultEdit(props) {
                             <textarea rows="5" className="w-100 p-2 ft-16" placeholder="コメント入力" id="comment" value={comment} onChange={e=>setComment(e.target.value)} required/>
                         </DialogContent>
                         <DialogActions className="pt-0 px-3">
-                            <Button onClick={closeModal} color="secondary" variant="contained" size="small">いいえ</Button>
-                            <Button type="submit" onClick={handleComment} color="primary" variant="contained" size="small">はい</Button>
+                            <Button onClick={commentCancel} color="secondary" variant="contained" size="small">いいえ</Button>
+                            <Button type="submit" onClick={commentOK} color="primary" variant="contained" size="small">はい</Button>
                         </DialogActions>
                     </Dialog>
                 </>
