@@ -168,8 +168,8 @@ const  PlayerGoal = () => {
                     </DialogContentText>
                 </DialogContent>
                 <DialogActions>
-                    <Button onClick={closeModal} size="small" color="secondary">いいえ</Button>
-                    <LoadingButton loading={submit} onClick={handleOK} size="small" color="primary">はい</LoadingButton>
+                    <Button onClick={closeModal} size="small" color="secondary" variant="contained">いいえ</Button>
+                    <LoadingButton loading={submit} onClick={handleOK} size="small" color="primary" variant="contained">はい</LoadingButton>
                 </DialogActions>
             </Dialog>
         

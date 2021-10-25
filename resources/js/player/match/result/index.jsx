@@ -243,10 +243,11 @@ const PlayerMatchResult = ({tournament}) => {
                         keepMounted
                         aria-describedby="alert-dialog-slide-description"
                         onClose={closeModal}
+                        style={{minWidth:'300px'}}
                     >
                         <DialogTitle style={{fontSize:'18px', textAlign:'center'}}>{"コメント"}</DialogTitle>
-                        <DialogContent className="px-2 py-0" style={{width:'350px'}}>
-                            <pre id="alert-dialog-slide-description" className="p-2 table-info rounded">
+                        <DialogContent className="px-2 py-0">
+                            <pre id="alert-dialog-slide-description" className="p-2 table-info rounded" style={{minHeight:'150px'}}>
                                 {current_comment}
                             </pre>
                         </DialogContent>
