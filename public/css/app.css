@@ -12357,7 +12357,7 @@ categories: [layout]
 @media screen and (min-width: 1068px) {
   .l-content {
     margin: 25px 0 0 300px;
-    padding: 0 100px 50px 100px;
+    padding: 0 150px 50px 150px;
   }
 }
 @media screen and (max-width: 1067px) {
@@ -13133,6 +13133,15 @@ table#result-table {
   min-width: 700px;
 }
 table#result-table td {
+  background-color: white;
+}
+table#result-table td:hover {
+  background: radial-gradient(yellow, transparent);
+}
+table#result-table-view {
+  min-width: 700px;
+}
+table#result-table-view td {
   background-color: white;
 }
 

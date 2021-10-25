@@ -20,6 +20,15 @@ table{
         min-width: 700px;
         td{
             background-color: white;
+            &:hover{
+                background: radial-gradient(yellow, transparent);
+            }
+        }
+    }
+    &#result-table-view{
+        min-width: 700px;
+        td{
+            background-color: white;
         }
     }
 }

@@ -94,7 +94,7 @@ $(function () {
             },
             url: "{{ route('register') }}",
             data: formData,
-            success: () => window.location.assign("{{ route('account.home') }}"),
+            success: () => window.location.assign("{{ route('home') }}"),
             error: (response) => {
                 if(response.status === 422) {
                     let errors = response.responseJSON.errors;

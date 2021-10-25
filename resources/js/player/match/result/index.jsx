@@ -7,10 +7,37 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 import moment from 'moment';
 
+import { Button } from '@material-ui/core';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
+import Slide from '@mui/material/Slide';
+
 import { Rating, RatingView } from 'react-simple-star-rating';
+import { makeStyles } from '@material-ui/styles';
+
+
+const Transition = React.forwardRef(function Transition(props, ref) {
+    return <Slide direction="up" ref={ref} {...props} />;
+});
+
+
+const useStyles = makeStyles(theme => ({
+    comment_show:{
+        background: 'radial-gradient(yellow, transparent)',
+        cursor:'pointer',
+    },
+}));
+
 
 
 const PlayerMatchResult = ({tournament}) => {
+
+    const classes = useStyles();
+    const [open, setOpen] = useState(false);
+    const [current_comment, setCurrentComment] = useState('');
 
     const tournament_result = tournament.tournament_result;
     var score_list, 
@@ -26,7 +53,17 @@ const PlayerMatchResult = ({tournament}) => {
         improvement = JSON.parse(tournament_result.improvement);
         check_mental = JSON.parse(tournament_result.check_mental);
     }
-    
+
+    const openModal = (comment) => {
+        setOpen(true);
+        setCurrentComment(comment);
+    }
+
+    const closeModal = ()=>{
+        setOpen(false);
+        setCurrentComment('');
+    }
+
 
     return (
     <div id="result">
@@ -83,7 +120,7 @@ const PlayerMatchResult = ({tournament}) => {
 
                         <p className="w-25 w-md-50 p-1 pl-2 mb-2 bg-black-4 rounded-right-20 ft-xs-15 text-white">試合の流れ</p>
                         <div style={{overflowX:'scroll'}}>
-                            <table className="table table-bordered text-center table-success mb-0" id="result-table">
+                            <table className="table table-bordered text-center table-success mb-0" id="result-table-view">
                                 <tbody>
                                     <tr>
                                         <th colSpan="2"></th>
@@ -95,11 +132,17 @@ const PlayerMatchResult = ({tournament}) => {
                                                 <th rowSpan="2" className={`align-middle ${iy%2==1 && 'd-none'}`}>{iy/2+1}set</th>
                                                 <th className="w-60-px">{iy%2==0 ?'自分':'相手'}</th>
                                                 {
-                                                    yItem.round.map((xItem, ix)=>
-                                                        <td key={ix}>
-                                                            <RatingView ratingValue={xItem.score} stars={1}/>
-                                                        </td>             
-                                                    )
+                                                    yItem.round.map((xItem, ix)=>{
+                                                        return(
+                                                            xItem.keyGame ? 
+                                                            <td key={ix} className={classes.comment_show} onClick={e=>openModal(xItem.comment)}>
+                                                                <RatingView ratingValue={xItem.score} stars={1}/>
+                                                            </td>
+                                                            :<td key={ix}>
+                                                                <RatingView ratingValue={xItem.score} stars={1}/>
+                                                            </td>    
+                                                        )           
+                                                    })
                                                 }
                                                 <th className="w-65-px">{yItem.total}</th>
                                             </tr>
@@ -193,13 +236,30 @@ const PlayerMatchResult = ({tournament}) => {
                         <span>入力日 : {moment(tournament_result.created_at).format('YYYY/MM/DD HH:mm')}</span>
                         <span>更新日 : {moment(tournament_result.updated_at).format('YYYY/MM/DD HH:mm')}</span>
                     </p>
+
+                    <Dialog
+                        open={open}
+                        TransitionComponent={Transition}
+                        keepMounted
+                        aria-describedby="alert-dialog-slide-description"
+                        onClose={closeModal}
+                    >
+                        <DialogTitle style={{fontSize:'18px', textAlign:'center'}}>{"コメント"}</DialogTitle>
+                        <DialogContent className="px-2 py-0" style={{width:'350px'}}>
+                            <pre id="alert-dialog-slide-description" className="p-2 table-info rounded">
+                                {current_comment}
+                            </pre>
+                        </DialogContent>
+                        <DialogActions>
+                            <Button onClick={closeModal} color="primary" variant="contained" size="small">確認</Button>
+                        </DialogActions>
+                    </Dialog>
                 </>
             }
         </div>
     </div>
     );
 }
-
 
 
 export default PlayerMatchResult;

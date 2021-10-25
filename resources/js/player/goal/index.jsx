@@ -34,7 +34,7 @@ const  PlayerGoal = () => {
     
     const [open, setOpen] = useState(false);
     const [load, setLoad] = useState(false);
-    const [goal_list, setGoalList] = useState(null);
+    const [goal_list, setGoalList] = useState([]);
     const [deleteIndex, setDeleteIndex] = useState(null);
     const [submit, setSubmit] = useState(false);
 
@@ -79,7 +79,18 @@ const  PlayerGoal = () => {
         setOpen(false);
     } 
 
-    const notify = () => toast("削除成功");
+    const notify = () => 
+    toast.success("削除成功", {
+        position: "top-right",
+        autoClose: 5000,
+        className:"bg-danger",
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: false,
+        progress: undefined,
+        style:{ color: '#ffffff'}
+    });
     
     return (
         <div id="goal">
