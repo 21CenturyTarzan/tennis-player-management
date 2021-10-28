@@ -20,18 +20,15 @@ function PlayerFavourite() {
     const [submit, setSubmit] = useState(false);
     const [category_list, setCategoryList] = useState([]);
     const [quotation_list, setQuotationList] = useState([]);
+    const [favourite_list, setFavouriteList] = useState([]);
 
     const [filter_key, setFilterKey] = useState('');
     const [FILTERLIST, setFilterList] = useState([]);
 
 
     useEffect( () => {
-
-        setLoad(false);
-        
         axios.get('/api/quotation/list')
         .then( response=>{
-            setLoad(true);
             console.log(response.data.params);
             if(response.data.status_code == 200){
                 setQuotationList(response.data.params.quotations);
@@ -40,7 +37,20 @@ function PlayerFavourite() {
             }
         })
     }, []);
-    
+
+
+    useEffect( () => {
+        var id = Number(document.getElementById('player_id').value);
+        axios.get('/api/player/favourite/list', {params:{player_id: id}})
+        .then( response=>{
+            setLoad(true);
+            console.log(response.data.params);
+            if(response.data.status_code == 200){
+                setFavouriteList(response.data.params.indexes);
+            }
+        })
+    }, []);
+
     
     useEffect(()=>{
         filtering(filter_key);
@@ -50,6 +60,17 @@ function PlayerFavourite() {
     const filtering = (query) => {
         var filterlist = filter(quotation_list, (_quot) => _quot.category.toLowerCase().indexOf(query.toLowerCase()) !== -1);        
         setFilterList(filterlist);
+    }
+
+    const setFavourite = (quotation_id) => {
+        var id = Number(document.getElementById('player_id').value);
+        axios.get('/api/player/favourite/set', {params:{player_id: id, quotation_id: quotation_id}})
+        .then(async (response)=>{
+            setLoad(true);
+            if(response.data.status_code == 200){
+                setFavouriteList(response.data.params)
+            }
+        })
     }
    
 
@@ -87,10 +108,11 @@ function PlayerFavourite() {
                     <div className="m-2 p-1 border">
                     {
                         FILTERLIST.map((item,k)=>
-                            <div className="quotation-item" key={k}>
+                            <div className="quotation-item" key={k}
+                                onClick={e=>setFavourite(item.id)}>
                                 <p className="mb-1">{ReactHtmlParser(item.quotation)}</p>
                                 <p className="m-0 font-weight-bold">{item.author}</p>
-                                <Rating stars={1} ratingValue={1} className="favourite-icon"/>
+                                <RatingView stars={1} ratingValue={favourite_list.findIndex((element) => element == item.id) >= 0} className="favourite-icon"/>
                             </div>
                         )
                     }

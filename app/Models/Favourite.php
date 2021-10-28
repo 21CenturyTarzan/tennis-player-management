@@ -14,4 +14,10 @@ class Favourite extends Model
         'player_id', 
         'quotation_id'
     ];
+
+    public function quotation()
+    {
+        return $this->belongsTo(Quotation::class, 'quotation_id');
+    }
+
 }

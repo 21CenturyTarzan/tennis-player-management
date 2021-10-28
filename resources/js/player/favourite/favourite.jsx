@@ -21,22 +21,20 @@ function PlayerFavoriteStore() {
     const [category_list, setCategoryList] = useState([]);
     const [quotation_list, setQuotationList] = useState([]);
 
-    const [filter_key, setFilterKey] = useState('');
+    const [filter_key, setFilterKey] = useState("");
     const [FILTERLIST, setFilterList] = useState([]);
 
 
     useEffect( () => {
-
         setLoad(false);
-        
-        axios.get('/api/quotation/list')
+        var id = Number(document.getElementById('player_id').value);
+        axios.get('/api/player/favourite/list', {params:{player_id: id}})
         .then( response=>{
             setLoad(true);
-            console.log(response.data.params);
             if(response.data.status_code == 200){
                 setQuotationList(response.data.params.quotations);
                 setCategoryList(response.data.params.category);
-                setFilterKey(response.data.params.category[0].category);
+                setFilterKey(response.data.params.category[0]);
             }
         })
     }, []);
@@ -48,7 +46,7 @@ function PlayerFavoriteStore() {
 
 
     const filtering = (query) => {
-        var filterlist = filter(quotation_list, (_quot) => _quot.category.toLowerCase().indexOf(query.toLowerCase()) !== -1);        
+        var filterlist = filter(quotation_list, (_quot) => _quot.quotation.category.toLowerCase().indexOf(query.toLowerCase()) !== -1);        
         setFilterList(filterlist);
     }
    
@@ -74,20 +72,21 @@ function PlayerFavoriteStore() {
                         <select className="text-center p-1 float-right" value={filter_key} onChange={e=>setFilterKey(e.target.value)}>
                         {
                             category_list.map((item, k)=>
-                                <option value={item.category} key={k}>{item.category}</option>
+                                <option value={item} key={k}>{item}</option>
                             )
                         }
                         </select>
                     </div>
                     <div className="m-2 p-1 border">
                     {
+                        FILTERLIST.length > 0 ?
                         FILTERLIST.map((item,k)=>
-                            <div className="quotation-item" key={k}>
-                                <p className="mb-1">{ReactHtmlParser(item.quotation)}</p>
-                                <p className="m-0 font-weight-bold">{item.author}</p>
-                                <Rating stars={1} ratingValue={1} className="favourite-icon"/>
-                            </div>
+                        <div className="quotation-item" key={k}>
+                                <p className="mb-1">{ReactHtmlParser(item.quotation.quotation)}</p>
+                                <p className="m-0 font-weight-bold">{item.quotation.author}</p>
+                        </div>
                         )
+                        : <p className="text-center m-0">お気に入りデータがありません。</p>
                     }
                     </div>
                 </div>

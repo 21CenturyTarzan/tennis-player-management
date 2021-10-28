@@ -55,6 +55,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/match/result/edit/{id}', [App\Http\Controllers\Front\Player\DashboardController::class, 'index']);
         
         Route::get('/favourite', [App\Http\Controllers\Front\Player\DashboardController::class, 'index']);
+        Route::get('favourite/store', [App\Http\Controllers\Front\Player\DashboardController::class, 'index']);
 
     });
 //--------------------------------------------------------------------------------------------------------------------

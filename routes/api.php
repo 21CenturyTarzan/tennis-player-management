@@ -47,6 +47,9 @@ Route::middleware(['throttle:seventy'])->group(function() {
         Route::post('/match/result/update/{id}', 'App\Http\Controllers\Api\MatchController@result_update');
         Route::delete('/match/delete/{id}', 'App\Http\Controllers\Api\MatchController@delete');
         
+        Route::get('/favourite/list', 'App\Http\Controllers\Api\FavouriteController@list');
+        Route::get('/favourite/set', 'App\Http\Controllers\Api\FavouriteController@set');
+
     });
     
     
