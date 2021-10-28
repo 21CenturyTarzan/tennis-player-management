@@ -24,6 +24,9 @@ Route::middleware(['throttle:seventy'])->group(function() {
     
     Route::apiResource('/players', PlayerController::class)->only(['index', 'show']);
 
+    Route::get('/analysis/list', 'App\Http\Controllers\Api\AnalysisController@list');
+    Route::get('/quotation/list', 'App\Http\Controllers\Api\QuotationController@list');
+
     Route::group(['prefix' => 'player'], function () {
         Route::get('/info', 'App\Http\Controllers\Api\InfoController@info');
         Route::post('/info/update/profile', 'App\Http\Controllers\Api\InfoController@updateProfile');
@@ -46,7 +49,6 @@ Route::middleware(['throttle:seventy'])->group(function() {
         
     });
     
-    Route::get('/analysis/list', 'App\Http\Controllers\Api\AnalysisController@list');
-    Route::get('/quotation/list', 'App\Http\Controllers\Api\Quotation@list');
+    
     
 });

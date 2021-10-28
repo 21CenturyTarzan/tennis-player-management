@@ -52,15 +52,11 @@ function PlayerInfo() {
         })
     }, []);
 
-
-
     const calculateAge = (birth, today) => {
         let age = today.getFullYear() - new Date(birth).getFullYear();
         return age;
     }
 
-
-    
     async function openModal() {
         setOpen(true);
     };
@@ -69,6 +65,10 @@ function PlayerInfo() {
         setOpen(false);
         setPassword('');
         setPasswordConfirmation('');
+        set422Errors({
+            password:'',
+            password_confirmation:''
+        });
     };
   
 
