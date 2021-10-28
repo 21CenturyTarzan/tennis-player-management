@@ -44,8 +44,9 @@ Route::middleware(['throttle:seventy'])->group(function() {
         Route::post('/match/result/update/{id}', 'App\Http\Controllers\Api\MatchController@result_update');
         Route::delete('/match/delete/{id}', 'App\Http\Controllers\Api\MatchController@delete');
         
-        Route::get('/analysis/list', 'App\Http\Controllers\Api\MatchController@analysis');
     });
     
+    Route::get('/analysis/list', 'App\Http\Controllers\Api\AnalysisController@list');
+    Route::get('/quotation/list', 'App\Http\Controllers\Api\Quotation@list');
     
 });
