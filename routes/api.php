@@ -26,7 +26,8 @@ Route::middleware(['throttle:seventy'])->group(function() {
 
     Route::group(['prefix' => 'player'], function () {
         Route::get('/info', 'App\Http\Controllers\Api\InfoController@info');
-        Route::post('/info/store', 'App\Http\Controllers\Api\InfoController@store');
+        Route::post('/info/update/profile', 'App\Http\Controllers\Api\InfoController@updateProfile');
+        Route::put('/info/update/password', 'App\Http\Controllers\Api\InfoController@updatePassword');
     
         Route::get('/goal/detail/{id}', 'App\Http\Controllers\Api\GoalManageController@detail');
         Route::get('/goal/last', 'App\Http\Controllers\Api\GoalManageController@last');

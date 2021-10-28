@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Hash;
 
 use App\Models\Player;
 use App\Models\Rank;
@@ -28,7 +30,7 @@ class InfoController extends Controller
     }
 
     
-    public function store(Request $request)
+    public function updateProfile(Request $request)
     {
         $name = json_decode($request->get('name'));
         $gender = json_decode($request->get('gender'));
@@ -100,5 +102,35 @@ class InfoController extends Controller
             throw $th;
             return ['status_code' => 400];
         }
+    }
+
+
+    public function updatePassword(Request $request)
+    {
+            // バリデーションエラー
+        $validate = Validator::make($request->all(), [
+            'password' => 'required|min:8|max:72|confirmed',
+        ]);
+
+        if ($validate->fails()) {
+            return ['status_code' => 422, 'error_messages' => $validate->errors()];
+        }
+
+        $update = [
+            'password' => Hash::make($request->password)
+        ];
+
+        $account_id = Player::where('id', $request->player_id)->first()->account_id;
+
+        try {
+            User::where('id', $account_id)->update($update);
+        } catch (\Throwable $e) {
+            // 失敗
+            Log::critical($e->getMessage());
+            return ['status_code' => 400, 'error_messages' => ['パスワード変更に失敗しました']];
+        }
+
+        // 成功
+        return ['status_code' => 200, 'success_messages' => ['パスワード変更成功しました']];
     }
 }
