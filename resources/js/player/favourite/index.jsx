@@ -2,12 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { filter } from 'lodash';
+import ReactHtmlParser from "react-html-parser";
+import { Rating, RatingView } from 'react-simple-star-rating';
 
 import { LoadingButton } from '@material-ui/lab';
 
 import IconButton from '@mui/material/IconButton';
-import DeleteIcon from '@mui/icons-material/Delete';
-import AddIcon from '@mui/icons-material/Add';
 import ListAltIcon from '@mui/icons-material/ListAlt';
 
 import moment from 'moment';
@@ -57,13 +57,13 @@ function PlayerFavourite() {
     <div id="favourite">
         <div className="mt-3 py-2 rounded-15 bg-white shadow-lg" style={{minHeight:'700px'}}>
             <h3 className="mt-2 p-1 position-relative text-white bg-green text-center font-weight-bold">
-                <Link>
+                <Link to="/player/favourite/store">
                     <IconButton style={{color:'white', position:'absolute', padding:'3px', left:'23px'}}>
                         <ListAltIcon/>
                     </IconButton>
                 </Link>
                 <span>格言集</span>
-                <Link>
+                <Link to="/player/favourite/store">
                     <IconButton style={{color:'white', position:'absolute', padding:'3px', right:'23px'}}>
                         <ListAltIcon/>
                     </IconButton>
@@ -87,9 +87,10 @@ function PlayerFavourite() {
                     <div className="m-2 p-1 border">
                     {
                         FILTERLIST.map((item,k)=>
-                            <div className="mb-1 quotation-item p-2" key={k}>
-                                <p className="mb-1">{item.quotation}</p>
+                            <div className="quotation-item" key={k}>
+                                <p className="mb-1">{ReactHtmlParser(item.quotation)}</p>
                                 <p className="m-0 font-weight-bold">{item.author}</p>
+                                <Rating stars={1} ratingValue={1} className="favourite-icon"/>
                             </div>
                         )
                     }

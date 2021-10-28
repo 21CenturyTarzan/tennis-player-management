@@ -13235,4 +13235,19 @@ pre {
 
 .quotation-item {
   background-color: #c4ebd6;
+  margin-bottom: 0.25rem;
+  padding: 10px;
+  position: relative;
+  cursor: pointer;
+}
+.quotation-item:last-child {
+  margin: 0 !important;
+}
+.quotation-item:hover {
+  background-color: #b0f8d2;
+}
+.quotation-item .favourite-icon {
+  position: absolute;
+  bottom: 0px;
+  right: 6px;
 }

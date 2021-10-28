@@ -20,6 +20,7 @@ import PlayerMatchResultNew from './match/result/new';
 import PlayerMatchResultEdit from './match/result/edit';
 
 import PlayerFavourite from './favourite';
+import PlayerFavouriteStore from './favourite/favourite';
 
 import Notification from '../components/notification';
 
@@ -49,6 +50,7 @@ export default class PlayerApp extends Component {
                         <Route exact path="/player/match/result/edit/:id" component = {PlayerMatchResultEdit} /> 
 
                         <Route exact path="/player/favourite" component = {PlayerFavourite} />
+                        <Route exact path="/player/favourite/store" component = {PlayerFavouriteStore} />
 
                     </Switch>
                 </div>
