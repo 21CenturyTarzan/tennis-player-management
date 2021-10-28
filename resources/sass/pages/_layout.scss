@@ -124,3 +124,24 @@ pre{
 .css-1t1j96h-MuiPaper-root-MuiDialog-paper{
     min-width: 300px;
 }
+
+.quotation-item{
+    background-color: #c4ebd6;
+    margin-bottom: 0.25rem;
+    padding: 10px;
+    position: relative;
+    cursor: pointer;
+    
+    &:last-child{
+        margin: 0 !important;
+    }
+    &:hover{
+        background-color: #b0f8d2;
+    }
+
+    .favourite-icon{
+        position: absolute;
+        bottom: 0px;
+        right: 6px;
+    }
+}

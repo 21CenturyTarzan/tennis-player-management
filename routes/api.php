@@ -24,9 +24,13 @@ Route::middleware(['throttle:seventy'])->group(function() {
     
     Route::apiResource('/players', PlayerController::class)->only(['index', 'show']);
 
+    Route::get('/analysis/list', 'App\Http\Controllers\Api\AnalysisController@list');
+    Route::get('/quotation/list', 'App\Http\Controllers\Api\QuotationController@list');
+
     Route::group(['prefix' => 'player'], function () {
         Route::get('/info', 'App\Http\Controllers\Api\InfoController@info');
-        Route::post('/info/store', 'App\Http\Controllers\Api\InfoController@store');
+        Route::post('/info/update/profile', 'App\Http\Controllers\Api\InfoController@updateProfile');
+        Route::put('/info/update/password', 'App\Http\Controllers\Api\InfoController@updatePassword');
     
         Route::get('/goal/detail/{id}', 'App\Http\Controllers\Api\GoalManageController@detail');
         Route::get('/goal/last', 'App\Http\Controllers\Api\GoalManageController@last');
@@ -43,8 +47,11 @@ Route::middleware(['throttle:seventy'])->group(function() {
         Route::post('/match/result/update/{id}', 'App\Http\Controllers\Api\MatchController@result_update');
         Route::delete('/match/delete/{id}', 'App\Http\Controllers\Api\MatchController@delete');
         
-        Route::get('/analysis/list', 'App\Http\Controllers\Api\MatchController@analysis');
+        Route::get('/favourite/list', 'App\Http\Controllers\Api\FavouriteController@list');
+        Route::get('/favourite/set', 'App\Http\Controllers\Api\FavouriteController@set');
+
     });
+    
     
     
 });

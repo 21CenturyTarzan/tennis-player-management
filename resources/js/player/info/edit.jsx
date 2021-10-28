@@ -142,7 +142,7 @@ const  PlayerInfoEditor = () => {
 
         var id = Number(document.getElementById('player_id').value);
 
-        axios.post('/api/player/info/store', formdata, {params:{player_id: id}})
+        axios.post('/api/player/info/update/profile', formdata, {params:{player_id: id}})
         .then(response => {
             setSubmit(false);
             if(response.data.status_code == 200){

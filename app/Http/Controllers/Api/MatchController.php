@@ -43,13 +43,7 @@ class MatchController extends Controller
         return ['status_code'=>400];
         
     }
-
-    public function analysis(Request $request)
-    {
-        $res = Analysis::get();
-        return ['status_code'=>200, 'params'=>$res];
-    }
-
+    
     public function delete(Request $request, $id)
     {
         //TODO

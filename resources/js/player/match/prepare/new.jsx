@@ -40,7 +40,7 @@ const  PlayerMatchPrepareNew = () => {
         var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
         setTournamentDate(date);
 
-        axios.get('/api/player/analysis/list')
+        axios.get('/api/analysis/list')
         .then(res=>{
             if(res.data.status_code == 200)
             {

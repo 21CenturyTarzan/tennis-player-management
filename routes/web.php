@@ -36,8 +36,6 @@ Route::middleware(['auth'])->group(function () {
 
     Route::group(['prefix'=>'player'], function(){
 
-        Route::get('/dashboard', [App\Http\Controllers\Front\Player\DashboardController::class, 'index'])->name('player.dashboard');
-
         Route::get('/profile/edit', [App\Http\Controllers\Front\Player\ProfileController::class, 'edit'])->name('player.profile.edit');
         Route::post('/profile/store', [App\Http\Controllers\Front\Player\ProfileController::class, 'store'])->name('player.profile.store');
     
@@ -57,6 +55,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/match/result/edit/{id}', [App\Http\Controllers\Front\Player\DashboardController::class, 'index']);
         
         Route::get('/favourite', [App\Http\Controllers\Front\Player\DashboardController::class, 'index']);
+        Route::get('favourite/store', [App\Http\Controllers\Front\Player\DashboardController::class, 'index']);
 
     });
 //--------------------------------------------------------------------------------------------------------------------
