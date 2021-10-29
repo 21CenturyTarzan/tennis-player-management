@@ -52,7 +52,7 @@ trait AuthenticationTrait {
 
         // セッションを想像する
         $guard = $this->getGuard();
-        if (session()->has($guard)) {
+        if (!session()->has($guard)) {
             // 認証されたデータのpassword以外を把握する
             $login_user_datum = $get->toArray();
             unset($login_user_datum['password']);
