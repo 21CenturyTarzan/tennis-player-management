@@ -19,6 +19,7 @@ require('./components/notification')
 require('./player');
 
 require('./admin/playerList')
+require('./admin/login')
 
 require('./parent/profileEditor')
 require('./player/profileEditor')
