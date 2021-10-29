@@ -1,10 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\Front\Admin\DashboardController;
-use App\Http\Controllers\Front\Admin\NoticeController;
-use App\Http\Controllers\Front\Admin\PlayerController;
 
 
 /*
@@ -22,9 +18,11 @@ Route::get('/', function () { return view('home');  })->name('home');
 
 Auth::routes();
 
-Route::middleware(['auth'])->group(function () {
 
-    Route::get('/home', [HomeController::class, 'index'])->name('home');
+
+Route::middleware(['auth:users'])->group(function () {
+
+    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
     // Route::get('/dashboard/player/{id}', [DashboardController::class, 'show'])->name('dashboard.player.show');
     
@@ -58,13 +56,6 @@ Route::middleware(['auth'])->group(function () {
         Route::get('favourite/store', [App\Http\Controllers\Front\Player\DashboardController::class, 'index']);
 
     });
-//--------------------------------------------------------------------------------------------------------------------
-
-
-    Route::group(['prefix'=>'admin'], function(){
-
-        Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
-    });
 
 
 //---------------------------------------------------------------------------------------------------------------------
@@ -77,6 +68,20 @@ Route::middleware(['auth'])->group(function () {
     });
 });
 
+
+
+
+
+
+Route::group(['prefix' => 'admin'], function () {
+
+    Route::get('/login',                               '\App\Http\Controllers\Api\AdminController@checkLogin')->name('adminlogin');
+    Route::get('/logout',                              '\App\Http\Controllers\Api\AdminController@logout');
+
+    Route::group(['middleware' => 'auth:admins'], function () {
+     
+    });
+});
 
 
 

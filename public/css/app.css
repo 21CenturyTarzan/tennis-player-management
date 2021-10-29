@@ -1,5 +1,9 @@
 @import url(https://fonts.googleapis.com/css?family=Nunito);
 @charset "UTF-8";
+.bg-yellow {
+  background-color: #ffed4a !important;
+}
+
 /*!
  * Bootstrap v4.6.0 (https://getbootstrap.com/)
  * Copyright 2011-2021 The Bootstrap Authors
@@ -12302,7 +12306,7 @@ categories: [layout]
   }
 }
 .l-single-container h1 {
-  font-size: 3rem;
+  font-size: 2rem;
   text-align: center;
   margin-bottom: 35px;
   line-height: 1;

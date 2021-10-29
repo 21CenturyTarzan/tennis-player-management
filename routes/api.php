@@ -51,7 +51,22 @@ Route::middleware(['throttle:seventy'])->group(function() {
         Route::get('/favourite/set', 'App\Http\Controllers\Api\FavouriteController@set');
 
     });
-    
-    
-    
+
+});
+
+
+Route::group(['prefix' => 'admin'], function () {
+    // AdminController
+    Route::post('/login', '\App\Http\Controllers\Api\AdminController@login')->name('adminlogin');
+
+    Route::group(['middleware' => 'auth:admins'], function () {
+        // AdminController
+        Route::post('/logout', '\App\Http\Controllers\Api\AdminController@logout');
+
+        // FathersController
+        // Route::group(['prefix' => 'fathers'], function () {
+        //     Route::get('/list', '\App\Http\Controllers\Api\FathersController@list');
+          
+        // });
+    });
 });
