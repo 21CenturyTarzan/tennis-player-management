@@ -42,8 +42,7 @@ class FavouriteController extends Controller
         if(!$cnt){
             Favourite::create([
                 'player_id'=>$player_id,
-                'quotation_id'=>$quotation_id,
-                'author'
+                'quotation_id'=>$quotation_id
             ]);
         }  //Add Favourite
         else{
