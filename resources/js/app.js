@@ -18,6 +18,7 @@ require('./components/notification')
 
 require('./player');
 
+require('./admin')
 require('./admin/playerList')
 require('./admin/login')
 
