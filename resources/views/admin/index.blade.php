@@ -10,6 +10,6 @@
     }
 @endphp
 @section('admin.content')
-<div id="player-app"></div>
+<div id="admin-app"></div>
 <input type="hidden" id="admin_router" value="{{$router}}" />
 @endsection
