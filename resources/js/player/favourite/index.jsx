@@ -17,6 +17,8 @@ function PlayerFavourite() {
 
     const [open, setOpen] = useState(false);
     const [load, setLoad] = useState(false);
+    const [load1, setLoad1] = useState(false);
+    const [load2, setLoad2] = useState(false);
     const [submit, setSubmit] = useState(false);
     const [category_list, setCategoryList] = useState([]);
     const [quotation_list, setQuotationList] = useState([]);
@@ -29,7 +31,7 @@ function PlayerFavourite() {
     useEffect( () => {
         axios.get('/api/quotation/list')
         .then( response=>{
-            console.log(response.data.params);
+            setLoad1(true);
             if(response.data.status_code == 200){
                 setQuotationList(response.data.params.quotations);
                 setCategoryList(response.data.params.category);
@@ -43,13 +45,16 @@ function PlayerFavourite() {
         var id = Number(document.getElementById('player_id').value);
         axios.get('/api/player/favourite/list', {params:{player_id: id}})
         .then( response=>{
-            setLoad(true);
-            console.log(response.data.params);
+            setLoad2(true);
             if(response.data.status_code == 200){
                 setFavouriteList(response.data.params.indexes);
             }
         })
     }, []);
+
+    useEffect(()=>{
+        if(load1 && load2) setLoad(true);
+    },[load1, load2])
 
     
     useEffect(()=>{
