@@ -49,8 +49,8 @@ const PlayerMatchResult = ({tournament}) => {
     {
         score_list = JSON.parse(tournament_result.score_list);
         about_oppenent = JSON.parse(tournament_result.about_opponent);
-        tactics = JSON.parse(tournament_result.tactics);
-        improvement = JSON.parse(tournament_result.improvement);
+        tactics = tournament_result.tactics;
+        improvement = tournament_result.improvement;
         check_mental = JSON.parse(tournament_result.check_mental);
     }
 
@@ -174,41 +174,15 @@ const PlayerMatchResult = ({tournament}) => {
                     <div className="px-2 mb-2">
                         <table className="table table-bordered table-success mb-2 text-center">
                             <tbody>
-                                <tr>
-                                    <th className="w-40-px"></th>
-                                    <th>再度同じ相手にあたるとしたら、具体的にどう戦うか？</th>
-                                </tr>
-                                {
-                                    tactics.length > 0 ?
-                                        tactics.map((x, i)=>
-                                            <tr key={i}>
-                                                <td className="w-40-px"><span>{i+1}</span></td>
-                                                <td>{x}</td>
-                                            </tr>
-                                        )
-                                    : <tr><td colSpan="2">データが入力されていません。</td></tr>
-                                }
-                                
+                                <tr><th>再度同じ相手にあたるとしたら...</th></tr>
+                                <tr><td className="text-left">{tactics}</td></tr>
                             </tbody>
                         </table>
 
                         <table className="table table-bordered table-success mb-2 text-center">
                             <tbody>
-                                <tr>
-                                    <th className="w-40-px"></th>
-                                    <th>改善すべき内容</th>
-                                </tr>
-                                {
-                                    improvement.length > 0 ?
-                                        improvement.map((x, i)=>
-                                            <tr key={i}>
-                                                <td className="w-40-px"><span>{i+1}</span></td>
-                                                <td>{x}</td>
-                                            </tr>
-                                        )
-                                    : <tr><td colSpan="2">データが入力されていません。</td></tr>
-                                }
-                                
+                                <tr><th>改善すべき内容</th></tr>
+                                <tr><td className="text-left">{improvement}</td></tr>
                             </tbody>
                         </table>
                     </div>

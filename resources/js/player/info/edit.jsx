@@ -411,11 +411,11 @@ const  PlayerInfoEditor = () => {
                         </tr>
                         <tr>
                             <th>キー(cm)</th>
-                            <td><input type="number" name="height" min="100" step="0.1" className="w-100 bg-none text-center text-white border-0" value={height} onChange={(e)=>{setHeight(e.target.value);} }  required/></td>
+                            <td><input type="number" name="height" min="30" step="0.1" className="w-100 bg-none text-center text-white border-0" value={height} onChange={(e)=>{setHeight(e.target.value);} }  required/></td>
                         </tr>
                         <tr>
                             <th>体重(kg)</th>
-                            <td><input type="number" name="weight" min="30" step="0.1" className="w-100 bg-none text-center text-white border-0" value={weight} onChange={(e)=>{setWeight(e.target.value);} }  required /></td>
+                            <td><input type="number" name="weight" min="10" step="0.1" className="w-100 bg-none text-center text-white border-0" value={weight} onChange={(e)=>{setWeight(e.target.value);} }  required /></td>
                         </tr>
                         <tr>
                             <th>学校</th>

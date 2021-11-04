@@ -135,8 +135,8 @@ function PlayerMatchResultEdit(props) {
     const [effort_eval, setEffortEval] = useState(0);               //努力・闘志の評価
     const [play_eval, setPlayEval] = useState(0);                   //プレーの自己評価
     // const [about_opponent, setAboutOpponent] = useState([]);        //どんな相手だったか？
-    const [tactics, setTactics] = useState(['','','']);            //再度同じ相手にあたるとしたら、具体的にどう戦うか？上をふまえて
-    const [improvement, setImprovement] = useState(['','','']);     //改善すべき内容
+    const [tactics, setTactics] = useState('');            //再度同じ相手にあたるとしたら、具体的にどう戦うか？上をふまえて
+    const [improvement, setImprovement] = useState('');     //改善すべき内容
     const [check_mental, setCheckMental] = useState([                  //試合後のメンタルチェック
         {sen1:'最悪のプレーだった',           rate:0, sen2:'最高のプレーができた'},
         {sen1:'体（筋肉）は緊張していた',  rate:0, sen2:'体（筋肉）はリラックスしていた'},
@@ -184,8 +184,8 @@ function PlayerMatchResultEdit(props) {
                     setEffortEval(result.effort_eval);
                     setPlayEval(result.play_eval);
                     setScoreList(JSON.parse(result.score_list));
-                    setTactics(JSON.parse(result.tactics));
-                    setImprovement(JSON.parse(result.improvement));
+                    setTactics(result.tactics);
+                    setImprovement(result.improvement);
                     setCheckMental(JSON.parse(result.check_mental))
                     
                     var arr = JSON.parse(result.about_opponent);
@@ -219,8 +219,8 @@ function PlayerMatchResultEdit(props) {
         formdata.append('caution_rate', JSON.stringify(caution_rate));
         formdata.append('effort_eval', effort_eval);
         formdata.append('play_eval', play_eval);
-        formdata.append('tactics',    JSON.stringify(tactics));
-        formdata.append('improvement', JSON.stringify(improvement));
+        formdata.append('tactics',    tactics);
+        formdata.append('improvement', improvement);
         formdata.append('check_mental', JSON.stringify(check_mental));
         formdata.append('about_opponent', JSON.stringify(about_opponent));
         formdata.append('score_list',     JSON.stringify(score_list));
@@ -244,18 +244,6 @@ function PlayerMatchResultEdit(props) {
         const list = [...caution_rate];
         list[ix]['rate'] = rate;
         setCautionRate(list);
-    }
-
-    const changeTactics = (e, ix) => {
-        const list = [...tactics];
-        list[ix] = e.target.value;
-        setTactics(list);
-    }
-
-    const changeImprovement = (e, ix) => {
-        const list = [...improvement];
-        list[ix] = e.target.value;
-        setImprovement(list);
     }
 
     const changeCheckMental = (rate, ix) => {
@@ -395,37 +383,15 @@ function PlayerMatchResultEdit(props) {
                     <div className="px-2 mb-2">
                         <table className="table table-bordered table-success mb-2 text-center">
                             <tbody>
-                                <tr>
-                                    <th className="w-40-px"></th>
-                                    <th>再度同じ相手にあたるとしたら、具体的にどう戦うか？上をふまえて</th>
-                                </tr>
-                                {
-                                    tactics.map((x, i)=>
-                                        <tr key={i}>
-                                            <td>{i+1}</td>
-                                            <td><input type="text" id="match_name" className="w-100 bg-none border-0 text-center"  value={x} onChange={e => changeTactics(e, i)} required/></td>
-                                        </tr>
-                                    )
-                                }
-                                
+                                <tr><th>再度同じ相手にあたるとしたら...</th></tr>
+                                <tr><td><textarea name="tactics" className="w-100 bg-none border-0 p-1" cols="30" rows="4" placeholder="具体的にどう戦うか？上をふまえて3つ以上書き留めてください。" value={tactics} onChange={e => setTactics(e.target.value)} required/></td></tr>                                
                             </tbody>
                         </table>
 
                         <table className="table table-bordered table-success mb-2 text-center">
                             <tbody>
-                                <tr>
-                                    <th className="w-40-px"></th>
-                                    <th>改善すべき内容</th>
-                                </tr>
-                                {
-                                    improvement.map((x, i)=>
-                                        <tr key={i}>
-                                            <td>{i+1}</td>
-                                            <td><input type="text" id="match_name" className="w-100 bg-none border-0 text-center"  value={x} onChange={e => changeImprovement(e, i)} required/></td>
-                                        </tr>
-                                    )
-                                }
-                                
+                                <tr><th>改善すべき内容</th></tr>
+                                <tr><td><textarea name="improvement" className="w-100 bg-none border-0 p-1"  cols="30" rows="4" value={improvement} onChange={e => setImprovement(e.target.value)} required/></td></tr>   
                             </tbody>
                         </table>
                     </div>
