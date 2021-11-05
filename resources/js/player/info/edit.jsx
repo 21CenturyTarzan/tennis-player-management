@@ -403,7 +403,12 @@ const  PlayerInfoEditor = () => {
                     <tbody>
                         <tr>
                             <th>性別</th>
-                            <td><input type="text" name="gender" className="w-100 bg-none text-center text-white border-0" value={gender} onChange={(e)=>setGender(e.target.value)}  required /></td>
+                            <td>
+                                <select className="w-100 bg-none text-center text-white border-0" value={gender} onChange={e=>setGender(e.target.value)}>
+                                    <option value="男" className="text-black">男</option>
+                                    <option value="女" className="text-black">女</option>
+                                </select>
+                            </td>
                         </tr>
                         <tr>
                             <th>生年月日</th>
@@ -435,7 +440,15 @@ const  PlayerInfoEditor = () => {
                         </tr>
                         <tr>
                             <th>受講回数</th>
-                            <td><input type="text" name="lesson" className="w-100 bg-none text-center text-white border-0" value={lesson} onChange={(e)=>setLesson(e.target.value)}  required /></td>
+                            <td>
+                                <select className="w-100 bg-none text-center text-white border-0" value={lesson} onChange={e=>setLesson(e.target.value)}>
+                                    <option value="4回" className="text-black">4回</option>
+                                    <option value="8回" className="text-black">8回</option>
+                                    <option value="12回" className="text-black">12回</option>
+                                    <option value="16回" className="text-black">16回</option>
+                                    <option value="フリー" className="text-black">フリー</option>
+                                </select>
+                            </td>
                         </tr>
                         <tr>
                             <th>主な戦績</th>
