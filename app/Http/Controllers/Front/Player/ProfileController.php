@@ -45,17 +45,17 @@ class ProfileController extends Controller
     public function store(Request $request)
     {
         //
-        $gender = json_decode($request->get('gender'));
-        $birth  =  json_decode($request->get('birth'));
+        $gender = $request->get('gender');
+        $birth  = $request->get('birth');
         $birth = date_create_from_format('Y-m-d', $birth);
-        $height   = (float)json_decode($request->get('height'));
-        $weight = (float)json_decode($request->get('weight'));
-        $school = json_decode($request->get('school'));
-        $grade  = json_decode($request->get('grade'));
-        $phone  = json_decode($request->get('phone'));
-        $address= json_decode($request->get('address'));
-        $lesson = json_decode($request->get('lesson'));
-        $career = json_decode($request->get('career'));
+        $height   = (float)$request->get('height');
+        $weight = (float)$request->get('weight');
+        $school = $request->get('school');
+        $grade  = $request->get('grade');
+        $phone  = $request->get('phone');
+        $address= $request->get('address');
+        $lesson = $request->get('lesson');
+        $career = $request->get('career');
 
         $path = 'uploads/avatar';
         if (!file_exists(public_path($path))) {

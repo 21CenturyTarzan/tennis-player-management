@@ -63,11 +63,6 @@ const preference = [
         {value: '沖縄県'  , label: '沖縄県'  }
 ]
 
-const gender_options = [
-  { value: '男', label: '男' },
-  { value: '女', label: '女' }
-]
-
 const grade_options = [
     { value: '小学', label: '小学' },
     { value: '中学', label: '中学' },
@@ -89,14 +84,14 @@ const  PlayerProfileEditor = () => {
     const [isEditFlag, setEditFlag] = useState(false);
     
     const [birth, setBirth] = useState(new Date());
-    const [gender, setGender] = useState(gender_options[0]);
+    const [gender, setGender] = useState('男');
     const [school, setSchool] = useState('');
     const [grade, setGrade] = useState(grade_options[0]);
     const [grade_year, setGradeYear] = useState(grade_year_options[0]);
     const [phone, setPhone] = useState('');
     const [area, setArea] = useState(preference[0]);
     const [address, setAddress] = useState('');
-    const [lesson, setLesson] = useState('');
+    const [lesson, setLesson] = useState('4回');
     const [career, setCareer] = useState('');
     const [height, setheight] = useState('');
     const [weight, setWeight] = useState('');
@@ -110,16 +105,16 @@ const  PlayerProfileEditor = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         const formdata = new FormData();
-        formdata.append('gender', JSON.stringify(gender.value));
-        formdata.append('birth', JSON.stringify(birth.getFullYear()+'-'+(birth.getMonth()+1)+'-'+birth.getDate()));
-        formdata.append('height', JSON.stringify(height));
-        formdata.append('weight', JSON.stringify(weight));
-        formdata.append('school', JSON.stringify(school));
-        formdata.append('grade', JSON.stringify(grade.value +' '+ grade_year.value));
-        formdata.append('phone', JSON.stringify(phone));
-        formdata.append('address', JSON.stringify(area.value+' '+address));
-        formdata.append('lesson', JSON.stringify(lesson));
-        formdata.append('career', JSON.stringify(career));
+        formdata.append('gender', gender);
+        formdata.append('birth', birth.getFullYear()+'-'+(birth.getMonth()+1)+'-'+birth.getDate());
+        formdata.append('height', height);
+        formdata.append('weight', weight);
+        formdata.append('school', school);
+        formdata.append('grade', grade.value +' '+ grade_year.value);
+        formdata.append('phone', phone);
+        formdata.append('address', area.value+' '+address);
+        formdata.append('lesson', lesson);
+        formdata.append('career', career);
         formdata.append('image', convertimgUri);
 
         setSubmit(true)
@@ -190,8 +185,8 @@ const  PlayerProfileEditor = () => {
                     }
                     {
                         isEditFlag ? 
-                            <Button fullWidth variant="contained" onClick={(e)=>{ e.preventDefault(); setEditFlag(false)}}>save</Button> 
-                            :<Button fullWidth variant="contained" onClick={(e)=>{ e.preventDefault(); setEditFlag(true)}}>crop</Button>                                
+                            <Button fullWidth variant="contained" onClick={(e)=>{ e.preventDefault(); setEditFlag(false)}} style={{backgroundColor: 'green', fontSize:'16px'}}>save</Button> 
+                            :<Button fullWidth variant="contained" onClick={(e)=>{ e.preventDefault(); setEditFlag(true)}} style={{backgroundColor: 'green', fontSize:'16px'}}>crop</Button>                                
                     }    
                 </div>
             </div>
@@ -200,7 +195,10 @@ const  PlayerProfileEditor = () => {
                 <div className="form-group row">
                     <label htmlFor="gender" className="col-md-3 col-form-label text-md-right">性別</label>
                     <div className="col-md-9">
-                        <Select id="gender" options={gender_options} value={gender} onChange={(option)=>{setGender(option)}} required/>
+                        <select className="form-control" aria-label="Default select example" onChange={e=>setGender(e.target.value)}>
+                            <option value="男">男</option>
+                            <option value="女">女</option>
+                        </select>
                     </div>
                 </div>
 
@@ -216,11 +214,11 @@ const  PlayerProfileEditor = () => {
                     <div className="col-md-9">
                         <div className="row">
                             <div className="col-6">
-                                <input id="height" name="height" type="number" className="form-control"  value={height} onChange={(e)=>{setheight(e.target.value)}} required/>
+                                <input id="height" name="height" type="number" min="10" max="250" step="0.1" className="form-control"  value={height} onChange={(e)=>{setheight(e.target.value)}} required/>
                                 <label style={{position: 'absolute', bottom:'0', right:'25px'}}>cm</label>
                             </div>
                             <div className="col-6">
-                                <input id="weight" name="weight" type="number" className="form-control"  value={weight} onChange={(e)=>{setWeight(e.target.value)}} required/>
+                                <input id="weight" name="weight" type="number" min="10" max="120" step="0.1" className="form-control"  value={weight} onChange={(e)=>{setWeight(e.target.value)}} required/>
                                 <label style={{position: 'absolute', bottom:'0', right:'25px'}}>kg</label>
                             </div>
                         </div>
@@ -272,7 +270,13 @@ const  PlayerProfileEditor = () => {
                 <div className="form-group row">
                     <label htmlFor="lesson" className="col-md-3 col-form-label text-md-right">受講回数</label>
                     <div className="col-md-9">
-                        <input id="lesson" name="lesson" type="text" className="form-control" value={lesson} onChange={(e)=>{setLesson(e.target.value)}} required/>
+                        <select className="form-control" aria-label="Default select example" onChange={e=>setLesson(e.target.value)}>
+                            <option value="4回">4回</option>
+                            <option value="8回">8回</option>
+                            <option value="12回">12回</option>
+                            <option value="16回">16回</option>
+                            <option value="フリー">フリー</option>
+                        </select>
                     </div>
                 </div>
 
@@ -285,7 +289,11 @@ const  PlayerProfileEditor = () => {
 
                 <div className="form-group row">
                     <div className="col-md-9 offset-md-3">
-                        <LoadingButton   fullWidth  size="large"  type="submit"   variant="contained" loading={isSubmitting}>
+                        <LoadingButton   fullWidth  size="large"  
+                            type="submit"   
+                            variant="contained" 
+                            style={{backgroundColor: 'green', fontSize:'16px'}}
+                            loading={isSubmitting}>
                             送信
                         </LoadingButton>
                     </div>

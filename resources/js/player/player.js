@@ -32,7 +32,7 @@ export default class PlayerApp extends Component {
         <main className="l-container meeting-consent">
             <BrowserRouter>
                 <div className="l-content position-relative">
-                    <Notification/>
+                    {/* <Notification/> */}
                     <Switch>
                         <Route exact path="/player/info" component = {PlayerInfo} />
                         <Route exact path="/player/info/edit" component = {PlayerInfoEditor} />
