@@ -28,11 +28,11 @@ class HomeController extends Controller
      */
     public function index()
     {
-        if(strcmp(Auth::user()->type, 'parent') == 0){
+        if(strcmp(Auth::user()->type, 'father') == 0){
             $tmp = Father::where('account_id', Auth::user()->id)->count();
             if($tmp == 0)
-                return redirect('/parent/profile/edit');
-            else return redirect('/parent/dashboard');
+                return redirect('/father/profile/edit');
+            else return redirect('/father/dashboard');
         }
         else if(strcmp(Auth::user()->type, 'player') == 0){
             $tmp = Player::where('account_id', Auth::user()->id)->count();

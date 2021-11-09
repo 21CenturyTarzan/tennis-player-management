@@ -15,7 +15,7 @@ class CreateFatherRelationTable extends Migration
     {
         Schema::create('father_relation', function (Blueprint $table) {
             $table->unsignedBigInteger('id')->autoIncrement()->comment('ID');
-            $table->foreignId('parent_id')->constrained('users')->comment('parentID');
+            $table->foreignId('father_id')->constrained('fathers')->comment('parentID');
             $table->string('child_email');
             
             $table->dateTime('created_at', $precision = 0)->nullable();

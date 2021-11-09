@@ -22,19 +22,19 @@ class ProfileTableSeeder extends Seeder
         //
         $faker = Faker::create();
         
-        $players = User::get();
+        $users = User::get();
 
-        foreach($players as $player){ 
+        foreach($users as $user){ 
 
            
             $birth = $faker->dateTimeBetween('-50 years', 'now');
             $birth = $birth->format("Y-m-d");
 
 
-            if(strcmp($player->type, 'player') == 0){
+            if(strcmp($user->type, 'player') == 0){
 
                 Player::create([
-                    'account_id' => $player->id,
+                    'account_id' => $user->id,
                     'gender' => $this->gender(),
                     'birth' => $birth,
                     'height' => rand(1500, 1800)/10,
@@ -48,10 +48,10 @@ class ProfileTableSeeder extends Seeder
                     'created_at'=>$faker->dateTimeBetween($startDate = '-5 years', $endDate = 'now')
                 ]);
             }
-            else if(strcmp($player->type, 'parent') == 0){
+            else if(strcmp($user->type, 'father') == 0){
                 
                 Father::create([
-                    'account_id' => $player->id,
+                    'account_id' => $user->id,
                     'gender' => $this->gender(),
                     'birth' => $birth,
                     'phone' => $this->phone(),
@@ -62,7 +62,7 @@ class ProfileTableSeeder extends Seeder
                 $n = rand(0, $cnt-1);
                 $child_email = $users[$n] -> email;
                 FatherRelation::create([
-                    'parent_id' => $player->id,
+                    'father_id' => $user->id,
                     'child_email' => $child_email
                 ]);
             }

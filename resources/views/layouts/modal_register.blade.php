@@ -27,7 +27,7 @@
                         <div class="col-md-8">
                             <select id="user_type" name="user_type" class="form-control form-select" aria-label="Default select example">
                                 <option value="player" selected>選手</option>
-                                <option value="parent">親</option>
+                                <option value="father">親</option>
                             </select>
                         </div>
                     </div>

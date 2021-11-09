@@ -79,7 +79,7 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('/logout',                              '\App\Http\Controllers\Api\AdminController@logout');
 
     Route::group(['middleware' => 'auth:admins'], function () {
-     
+        Route::get('/player/list', function () { return view('admin.index');  });
     });
 });
 
