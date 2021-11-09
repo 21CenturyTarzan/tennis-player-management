@@ -34,7 +34,7 @@ const AdminLogin = () => {
         .then(response => {
             if(response.data.status_code == 200){
                 setSuccess('ログインに成功しました。');
-                window.location.href = '/admin/meeting';
+                window.location.href = '/admin/player/list';
             }
             else if(response.data.status_code == 422){
                 set422Errors(response.data.error_messages);

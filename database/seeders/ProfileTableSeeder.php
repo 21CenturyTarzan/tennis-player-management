@@ -50,7 +50,7 @@ class ProfileTableSeeder extends Seeder
             }
             else if(strcmp($user->type, 'father') == 0){
                 
-                Father::create([
+                $father = Father::create([
                     'account_id' => $user->id,
                     'gender' => $this->gender(),
                     'birth' => $birth,
@@ -62,7 +62,7 @@ class ProfileTableSeeder extends Seeder
                 $n = rand(0, $cnt-1);
                 $child_email = $users[$n] -> email;
                 FatherRelation::create([
-                    'father_id' => $user->id,
+                    'father_id' => $father->id,
                     'child_email' => $child_email
                 ]);
             }

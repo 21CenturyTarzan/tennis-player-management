@@ -36,7 +36,7 @@ class UserFactory extends Factory
 
     public function type(){
         if( rand(1, 90000) % 2 == 1 )
-            return 'parent';
+            return 'father';
         else return 'player';
     }
 

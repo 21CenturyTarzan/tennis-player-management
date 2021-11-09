@@ -11,7 +11,7 @@ class FatherRelation extends Model
 
     protected $table = 'father_relation';
     protected $fillable = [
-        'parent_id',
+        'father_id',
         'child_email'
     ];
 }

@@ -75,7 +75,7 @@ Route::middleware(['auth:users'])->group(function () {
 
 Route::group(['prefix' => 'admin'], function () {
 
-    Route::get('/login',                               '\App\Http\Controllers\Api\AdminController@checkLogin')->name('adminlogin');
+    Route::get('/login',                               '\App\Http\Controllers\Api\AdminController@checkLogin')->name('adminslogin');
     Route::get('/logout',                              '\App\Http\Controllers\Api\AdminController@logout');
 
     Route::group(['middleware' => 'auth:admins'], function () {
