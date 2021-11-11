@@ -22,5 +22,5 @@ require('./admin')
 require('./admin/playerList')
 require('./admin/login')
 
-require('./parent/profileEditor')
+require('./father/profileEditor')
 require('./player/profileEditor')

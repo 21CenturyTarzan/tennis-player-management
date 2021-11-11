@@ -63,18 +63,16 @@ class MatchController extends Controller
 
     public function prepare_store(Request $request)
     {
-        $tournament_name = $request->get('tournament_name');
-        $tournament_date = $request->get('tournament_date');
-        $opponent_name = $request->get('opponent_name');
-        $opponent_club = $request->get('opponent_club');
-        $surface = $request->get('surface');
-        $round = $request->get('round');
-        $weather = $request->get('weather');
-        $category = $request->get('category');
-        $mood = (int)$request->get('mood');
-        $caution_list = $request->get('caution_list');       //Dont Change Json decode. input raw data
-
-        $player_id = (int)$request->get('player_id');
+        $tournament_name = $request->tournament_name;
+        $tournament_date = $request->tournament_date;
+        $opponent_name = $request->opponent_name;
+        $opponent_club = $request->opponent_club;
+        $surface =       $request->surface;
+        $round =         $request->round;
+        $weather =       $request->weather;
+        $category =      $request->category;
+        $caution_list =  $request->caution_list;       //Dont Change Json decode. input raw data
+        $player_id = (int)$request->player_id;
 
         $res = Tournament::create([
             'player_id' => $player_id,
@@ -86,7 +84,6 @@ class MatchController extends Controller
             'surface' => $surface,
             'round' => $round,
             'weather' => $weather,
-            'mood' => $mood,
             'caution_list' => $caution_list
         ]);
 
@@ -96,18 +93,16 @@ class MatchController extends Controller
     public function prepare_update(Request $request, $id)
     {
         //TODO
-        $tournament_name = $request->get('tournament_name');
-        $tournament_date = $request->get('tournament_date');
-        $opponent_name = $request->get('opponent_name');
-        $opponent_club = $request->get('opponent_club');
-        $surface = $request->get('surface');
-        $round = $request->get('round');
-        $weather = $request->get('weather');
-        $category = $request->get('category');
-        $mood = (int)$request->get('mood');
-        $caution_list = $request->get('caution_list');       //Dont Change Json decode. input raw data
-
-        $player_id = $request -> get('player_id');
+        $tournament_name = $request->tournament_name;
+        $tournament_date = $request->tournament_date;
+        $opponent_name = $request->opponent_name;
+        $opponent_club = $request->opponent_club;
+        $surface =       $request->surface;
+        $round =         $request->round;
+        $weather =       $request->weather;
+        $category =      $request->category;
+        $caution_list =  $request->caution_list;       //Dont Change Json decode. input raw data
+        $player_id = (int)$request->player_id;
 
         Tournament::where([
             'id' => (int)$id,
@@ -121,7 +116,6 @@ class MatchController extends Controller
             'surface' => $surface,
             'round' => $round,
             'weather' => $weather,
-            'mood' => $mood,
             'caution_list' => $caution_list
         ]);
 
@@ -136,21 +130,23 @@ class MatchController extends Controller
     public function result_store(Request $request)
     {
         //TODO
-        $caution_rate =    $request->get('caution_rate');
-        $effort_eval = (int)$request->get('effort_eval');
-        $play_eval =   (int)$request->get('play_eval');
-        $tactics =         $request->get('tactics');
-        $improvement =     $request->get('improvement');
-        $check_mental =    $request->get('check_mental');
-        $about_opponent =  $request->get('about_opponent');
-        $score_list =      $request->get('score_list');
+        $caution_rate =    $request->caution_rate;
+        $effort_eval = (int)$request->effort_eval;
+        $play_eval =   (int)$request->play_eval;
+        $mood =        (int)$request->mood;
+        $tactics =         $request->tactics;
+        $improvement =     $request->improvement;
+        $check_mental =    $request->check_mental;
+        $about_opponent =  $request->about_opponent;
+        $score_list =      $request->score_list;
 
-        $tournament_id = $request->get('tournament_id');
+        $tournament_id = $request->tournament_id;
 
         TournamentResult::create([
             'tournament_id' => $tournament_id,
             'caution_rate' => $caution_rate,
             'effort_eval' => $effort_eval,
+            'mood' => $mood,
             'play_eval' => $play_eval,
             'score_list' => $score_list,
             'about_opponent' => $about_opponent,
@@ -164,22 +160,24 @@ class MatchController extends Controller
 
     public function result_update(Request $request, $id)
     {
-        $caution_rate =    $request->get('caution_rate');
-        $effort_eval = (int)$request->get('effort_eval');
-        $play_eval =   (int)$request->get('play_eval');
-        $tactics =         $request->get('tactics');
-        $improvement =     $request->get('improvement');
-        $check_mental =    $request->get('check_mental');
-        $about_opponent =  $request->get('about_opponent');
-        $score_list =      $request->get('score_list');
+        $caution_rate =    $request->caution_rate;
+        $effort_eval = (int)$request->effort_eval;
+        $play_eval =   (int)$request->play_eval;
+        $mood =        (int)$request->mood;
+        $tactics =         $request->tactics;
+        $improvement =     $request->improvement;
+        $check_mental =    $request->check_mental;
+        $about_opponent =  $request->about_opponent;
+        $score_list =      $request->score_list;
 
-        $tournament_id = (int) $id;
+        $tournament_id = $id;
 
         TournamentResult::where('tournament_id', $tournament_id)->update([
             'tournament_id' => $tournament_id,
             'caution_rate' => $caution_rate,
             'effort_eval' => $effort_eval,
             'play_eval' => $play_eval,
+            'mood' => $mood,
             'score_list' => $score_list,
             'about_opponent' => $about_opponent,
             'tactics' => $tactics,

@@ -77,7 +77,7 @@ class ProfileController extends Controller
                 'phone' => $phone
             ]);
             FatherRelation::create([
-                'parent_id' => Auth::user()->id,
+                'father_id' => Auth::user()->id,
                 'child_email' => $child_email
             ]);
 

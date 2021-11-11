@@ -131,6 +131,7 @@ function PlayerMatchResultNew(props) {
         ] }
     ]);
 
+    const [mood, setMood] = useState(0);
     const [caution_rate, setCautionRate] = useState([]);            //Object( {caution:'', rate:0})  //試合前の課題達成度
     const [effort_eval, setEffortEval] = useState(0);               //努力・闘志の評価
     const [play_eval, setPlayEval] = useState(0);                   //プレーの自己評価
@@ -193,6 +194,7 @@ function PlayerMatchResultNew(props) {
         formdata.append('play_eval', play_eval);
         formdata.append('tactics',    tactics);
         formdata.append('improvement', improvement);
+        formdata.append('mood', mood);
         formdata.append('check_mental', JSON.stringify(check_mental));
         formdata.append('about_opponent', JSON.stringify(about_opponent));
         formdata.append('score_list',     JSON.stringify(score_list));
@@ -309,6 +311,10 @@ function PlayerMatchResultNew(props) {
                                 <tr>
                                     <td>プレーの自己評価</td>
                                     <td style={{width: '210px'}}><Rating stars={10} size={20} ratingValue={play_eval} onClick={rate=>setPlayEval(rate)}/></td>
+                                </tr>
+                                <tr>
+                                    <td>起きた時の体調や気分</td>
+                                    <td><Rating stars={5} size={20} ratingValue={mood}  onClick={(rate)=>setMood(rate)} /></td>
                                 </tr>
                             </tbody>
                         </table>

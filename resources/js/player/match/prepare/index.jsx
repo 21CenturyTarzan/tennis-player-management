@@ -84,16 +84,6 @@ const PlayerMatchPrepare = ({tournament}) => {
                                 </tbody>
                             </table>
                         </div>
-                        <table className="table table-bordered text-center mb-2">
-                            <tbody>
-                                <tr className="table-success">
-                                    <td>起きた時の体調や気分</td>
-                                    <td>
-                                        <RatingView stars={5} ratingValue={tournament.mood}/>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
                     </div>
 
 

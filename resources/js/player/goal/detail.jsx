@@ -93,8 +93,8 @@ const  PlayerGoalDetail = (props) => {
                                     <tr className="table-secondary">
                                         <th className="w-135-px w-xs-60-px"></th>
                                         <th>試合</th>
-                                        <th className="w-100-px w-xs-75-px">目標</th>
-                                        <th className="w-100-px w-xs-50-px">結果</th>
+                                        <th className="w-100-px w-xs-100-px">目標</th>
+                                        <th className="w-100-px w-xs-100-px">結果</th>
                                     </tr>
                                     {
                                         JSON.parse(params.stage_list)?.map((item, idx)=>

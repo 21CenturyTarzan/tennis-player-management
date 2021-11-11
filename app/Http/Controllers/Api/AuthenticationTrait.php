@@ -52,12 +52,12 @@ trait AuthenticationTrait {
 
         // セッションを想像する
         $guard = $this->getGuard();
-        if (!session()->has($guard)) {
+        if (!$r->session()->has($guard)) {
             // 認証されたデータのpassword以外を把握する
             $login_user_datum = $get->toArray();
             unset($login_user_datum['password']);
             // セッションに保存する
-            session()->put($guard, $login_user_datum);
+            $r->session()->put($guard, $login_user_datum);
         }
 
         return ['status_code' => 200];

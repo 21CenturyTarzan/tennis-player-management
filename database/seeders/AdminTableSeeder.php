@@ -19,7 +19,6 @@ class AdminTableSeeder extends Seeder
         
         Admin::create([
             'name' => '富士　中村',
-            'type' => 'admin',
             'img' => '/images/blank.png',
             'email' => 'admin@gmail.com',
             'email_verified_at' => now(),

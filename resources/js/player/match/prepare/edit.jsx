@@ -7,14 +7,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 
 import { Button } from '@material-ui/core';
 import { LoadingButton } from '@material-ui/lab';
-import IconButton from '@mui/material/IconButton';
 import SendIcon from '@mui/icons-material/Send';
-import ClearIcon from '@mui/icons-material/Clear';
-import RemoveIcon from '@mui/icons-material/Remove';
-import AddIcon from '@mui/icons-material/Add';
-
-import { Rating, RatingView } from 'react-simple-star-rating';
-
 
 const  PlayerMatchPrepareEdit = (props) => {
 
@@ -29,10 +22,9 @@ const  PlayerMatchPrepareEdit = (props) => {
     const [opponent_name, setOpponentName] = useState('');
     const [opponent_club, setClub] = useState('');
     const [surface, setSurface] = useState('クレー');      //クレー/オムニ/ハード
-    const [round, setRound] = useState('予選');            //予選/本戦
+    const [round, setRound] = useState('予選ー1R');            //予選/本戦
     const [weather, setWeather] = useState('sunny');      //晴/曇/雨
     const [category, setCategory] = useState('U8');    //U34
-    const [mood, setMood] = useState(0);
     const [caution_list, setCautionList] = useState([]);
     const [analysis_template, setAnalysis] = useState([]);
 
@@ -58,7 +50,6 @@ const  PlayerMatchPrepareEdit = (props) => {
                     setRound(tournament.round);                   //予選/本戦
                     setWeather(tournament.weather);                   //晴/曇/雨
                     setCategory(tournament.category);                  //U34
-                    setMood(tournament.mood);
                     setCautionList(JSON.parse(tournament.caution_list));
                     
                     setTournamentID(tournament.id);
@@ -82,7 +73,6 @@ const  PlayerMatchPrepareEdit = (props) => {
         formdata.append('round', round);
         formdata.append('weather', weather);
         formdata.append('category', category);
-        formdata.append('mood', mood);
         formdata.append('caution_list', JSON.stringify(caution_list));
        
         setSubmit(true)
@@ -175,8 +165,18 @@ const  PlayerMatchPrepareEdit = (props) => {
                                         <th>ラウンド</th>
                                         <td>
                                             <select className="bg-none w-100 text-center border-0" value={round} onChange={e => setRound(e.target.value)}>
-                                                <option value="予選">予選</option>
-                                                <option value="本戦">本戦</option>
+                                                <option value="予選ー1R">予選ー1R</option>
+                                                <option value="予選ー2R">予選ー2R</option>
+                                                <option value="予選ー3R">予選ー3R</option>
+                                                <option value="予選ー4R">予選ー4R</option>
+                                                <option value="予選ーF"> 予選ーF</option>
+                                                <option value="本戦ー1R">本戦ー1R</option>
+                                                <option value="本戦ー2R">本戦ー2R</option>
+                                                <option value="本戦ー3R">本戦ー3R</option>
+                                                <option value="本戦ー4R">本戦ー4R</option>
+                                                <option value="本戦ーQF">本戦ーQF</option>
+                                                <option value="本戦ーSF">本戦ーSF</option>
+                                                <option value="本戦ーF"> 本戦ーF</option>
                                             </select>
                                         </td>
                                     </tr>
@@ -211,16 +211,6 @@ const  PlayerMatchPrepareEdit = (props) => {
                                 </tbody>
                             </table>
                         </div>
-                        <table className="table table-bordered text-center mb-2">
-                            <tbody>
-                                <tr className="table-success">
-                                    <td>起きた時の体調や気分</td>
-                                    <td>
-                                        <Rating ratingValue={mood} stars={5} onClick={(rate)=>setMood(rate)} />
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
                     </div>
 
                     <p className="w-50 w-md-75 p-1 pl-2 mb-2 bg-black-4 rounded-right-20 text-white">自己分析</p>

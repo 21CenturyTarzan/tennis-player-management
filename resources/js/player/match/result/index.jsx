@@ -116,6 +116,10 @@ const PlayerMatchResult = ({tournament}) => {
                                 <div>プレーの自己評価</div>
                                 <div><RatingView stars={10} ratingValue={tournament_result.play_eval} size={20}/></div>
                             </div>
+                            <div className="d-block d-sm-flex justify-content-between mb-1">
+                                <div>起きた時の体調や気分</div>
+                                <div><RatingView stars={5} ratingValue={tournament_result.mood} size={20}/></div>
+                            </div>
                         </div>
 
                         <p className="w-25 w-md-50 p-1 pl-2 mb-2 bg-black-4 rounded-right-20 ft-xs-15 text-white">試合の流れ</p>

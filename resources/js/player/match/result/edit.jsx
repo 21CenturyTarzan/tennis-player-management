@@ -130,7 +130,7 @@ function PlayerMatchResultEdit(props) {
             {score:0, keyGame:false, comment:''}
         ] }
     ]);
-
+    const [mood, setMood] = useState(0);
     const [caution_rate, setCautionRate] = useState([]);            //Object( {caution:'', rate:0})  //試合前の課題達成度
     const [effort_eval, setEffortEval] = useState(0);               //努力・闘志の評価
     const [play_eval, setPlayEval] = useState(0);                   //プレーの自己評価
@@ -183,6 +183,7 @@ function PlayerMatchResultEdit(props) {
                     //-----------------------------------------
                     setEffortEval(result.effort_eval);
                     setPlayEval(result.play_eval);
+                    setMood(result.mood);
                     setScoreList(JSON.parse(result.score_list));
                     setTactics(result.tactics);
                     setImprovement(result.improvement);
@@ -219,6 +220,7 @@ function PlayerMatchResultEdit(props) {
         formdata.append('caution_rate', JSON.stringify(caution_rate));
         formdata.append('effort_eval', effort_eval);
         formdata.append('play_eval', play_eval);
+        formdata.append('mood', mood);
         formdata.append('tactics',    tactics);
         formdata.append('improvement', improvement);
         formdata.append('check_mental', JSON.stringify(check_mental));
@@ -336,6 +338,10 @@ function PlayerMatchResultEdit(props) {
                                 <tr>
                                     <td>プレーの自己評価</td>
                                     <td style={{width: '210px'}}><Rating stars={10} size={20} ratingValue={play_eval} onClick={rate=>setPlayEval(rate)}/></td>
+                                </tr>
+                                <tr>
+                                    <td>起きた時の体調や気分</td>
+                                    <td><Rating stars={5} size={20} ratingValue={mood}  onClick={rate=>setMood(rate)} /></td>
                                 </tr>
                             </tbody>
                         </table>

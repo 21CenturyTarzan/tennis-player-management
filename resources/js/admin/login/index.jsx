@@ -34,7 +34,7 @@ const AdminLogin = () => {
         .then(response => {
             if(response.data.status_code == 200){
                 setSuccess('ログインに成功しました。');
-                window.location.href = '/admin/meeting';
+                window.location.href = '/admin/player/list';
             }
             else if(response.data.status_code == 422){
                 set422Errors(response.data.error_messages);
@@ -101,11 +101,7 @@ const AdminLogin = () => {
         {
           _success && 
             <Alert type="success" 
-              hide={()=>  
-                    history.push({
-                      pathname: "/admin/meeting",
-                      state: {}
-                    })}>{_success}</Alert>
+              hide={()=>window.location.href="/admin/player/list"}>{_success}</Alert>
         }
     </main>
         
