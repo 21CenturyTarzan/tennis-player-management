@@ -61,9 +61,9 @@ Route::middleware(['auth:users'])->group(function () {
 //---------------------------------------------------------------------------------------------------------------------
     Route::group(['prefix'=>'parent'], function(){
     
-        Route::get('/dashboard', [App\Http\Controllers\Front\Parent\DashboardController::class, 'index'])->name('parent.dashboard');
-        Route::get('/profile/edit', [App\Http\Controllers\Front\Parent\ProfileController::class, 'edit'])->name('parent.profile.edit');
-        Route::post('/profile/store', [App\Http\Controllers\Front\Parent\ProfileController::class, 'store'])->name('parent.profile.store');
+        Route::get('/dashboard', [App\Http\Controllers\Front\Father\DashboardController::class, 'index']);
+        Route::get('/profile/edit', [App\Http\Controllers\Front\Father\ProfileController::class, 'edit']);
+        Route::post('/profile/store', [App\Http\Controllers\Front\Father\ProfileController::class, 'store']);
         
     });
 });

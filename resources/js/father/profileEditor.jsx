@@ -138,10 +138,10 @@ const  ParentProfileEditor = () => {
     );
   }
 
-if(document.getElementById('parent-profile')){
+if(document.getElementById('father-profile')){
     ReactDOM.render(
         <ParentProfileEditor />,
-    document.getElementById('parent-profile')
+    document.getElementById('father-profile')
   );
 }
 

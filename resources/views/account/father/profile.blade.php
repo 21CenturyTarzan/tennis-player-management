@@ -24,7 +24,7 @@
                         <span class="ft-25">プロフィール編集<span>
                     </h3>
                     <div class="p-3">
-                        <div id="parent-profile"></div>
+                        <div id="father-profile"></div>
                     </div>
                 </div>
             </div>
