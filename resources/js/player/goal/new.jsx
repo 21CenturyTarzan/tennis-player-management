@@ -270,7 +270,18 @@ const  PlayerGoalNew = () => {
                                                     <option value="Best32">Best32</option>
                                                 </select>
                                             </td>
-                                            <td><input type="text" name="stage_result" id="stage_result" className="w-100 bg-none border-0 text-center" value={x.stage_result} onChange={e => changeGoalItem(e, idx)} /></td>
+                                            <td>
+                                                <select className="w-100 bg-none text-center border-0" id="stage_result" value={x.stage_result} onChange={e => changeGoalItem(e, idx)} >
+                                                    <option value=""></option>
+                                                    <option value="勝つ">勝つ</option>
+                                                    <option value="優勝">優勝</option>
+                                                    <option value="準優勝">準優勝</option>
+                                                    <option value="Best4">Best4</option>
+                                                    <option value="Best8">Best8</option>
+                                                    <option value="Best16">Best16</option>
+                                                    <option value="Best32">Best32</option>
+                                                </select>
+                                            </td>
                                         </tr>
                                     )
                                 }
