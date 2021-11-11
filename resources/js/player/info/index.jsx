@@ -25,28 +25,12 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 function PlayerInfo() {
     
     const [player, setPlayer] = useState(null);
-    const [open, setOpen] = useState(false);
-    const [loaded, setLoaded] = useState(false);
-    const [submit, setSubmit] = useState(false);
-    
-    const [password, setPassword] = useState('');
-    const [password_confirmation, setPasswordConfirmation] = useState('');
-
-    const [_422errors, set422Errors] = useState({
-        password:'',
-        password_confirmation:''
-    });
-    const [_400error, set400Error] = useState('');
-    const [_success, setSuccess] = useState('');
 
     useEffect( () => {
-
         var id = Number(document.getElementById('player_id').value);
-
          axios.get('/api/player/info', {params:{player_id: id}})
         .then(async (response)=>{
             if(response.data.status_code == 200){
-                console.log(response.data.player);
                 setPlayer(response.data.params);
             }
         })
@@ -55,67 +39,6 @@ function PlayerInfo() {
     const calculateAge = (birth, today) => {
         let age = today.getFullYear() - new Date(birth).getFullYear();
         return age;
-    }
-
-    async function openModal() {
-        setOpen(true);
-    };
-    
-    async function closeModal() {
-        setOpen(false);
-        setPassword('');
-        setPasswordConfirmation('');
-        set422Errors({
-            password:'',
-            password_confirmation:''
-        });
-    };
-  
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-
-        set422Errors({
-            password:'',
-            password_confirmation:''
-        });
-
-        setSubmit(true);
-
-        const request = {
-            password: password,
-            password_confirmation: password_confirmation
-        }
-
-        var id = Number(document.getElementById('player_id').value);
-
-        
-        axios.put(`/api/player/info/update/password`, request, {params:{player_id: id}})
-        .then(response => {
-            setSubmit(false);
-            switch(response.data.status_code){
-                case 200: closeModal(); notify(); break;
-                case 400: notify(response.data.error_messages); break;
-                case 422: set422Errors(response.data.error_messages); break;
-            }
-        })
-        .catch(err=>console.log(err))
-    }
-
-    const notify = () => {
-        return(
-            toast.success('パスワード変更成功しました', {
-                position: "top-right",
-                autoClose: 5000,
-                className:"bg-danger",
-                hideProgressBar: true,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: false,
-                progress: undefined,
-                style:{ color: '#ffffff'}
-            })
-        )
     }
 
 
@@ -322,50 +245,6 @@ function PlayerInfo() {
                 </tbody>
             </table>
         </div>
-
-        <div className="mt-3">
-            <Button size="large" fullWidth variant="contained" style={{backgroundColor: 'transparent', border: '2px solid white', fontSize:'16px'}}  
-                onClick={openModal}>
-                <span>パスワード変更</span>
-            </Button>
-        </div>
-
-        <Dialog
-            open={open}
-            TransitionComponent={Transition}
-            keepMounted
-            aria-describedby="alert-dialog-slide-description"
-        >
-            <DialogTitle style={{fontSize:'18px', textAlign:'center'}}>{"パスワードを変更します。"}</DialogTitle>
-            <DialogContent className="px-3 py-0">
-                <div className="mb-2">
-                    <input type="password" name="password" id="password" placeholder="パスワード" className={`w-100 px-2 py-1 ${ _422errors.password && "is-invalid  c-input__target" }`}
-                        value={password} onChange={e=>setPassword(e.target.value)} autoFocus/>
-                    {   
-                        _422errors.password && 
-                            <span className="l-alert__text--error ft-16 ft-md-14">
-                                { _422errors.password }
-                            </span> 
-                    }
-                </div>
-                <div className="mb-2">
-                    <input type="password" name="password_confirmation" id="password_confirmation" placeholder="パスワード確認" className={`w-100 px-2 py-1 ${ _422errors.password_confirmation && "is-invalid  c-input__target" }`}  
-                        value={password_confirmation} onChange={e=>setPasswordConfirmation(e.target.value)}/>
-                    {   
-                        _422errors.password_confirmation && 
-                            <span className="l-alert__text--error ft-16 ft-md-14">
-                                { _422errors.password_confirmation }
-                            </span> 
-                    }
-                </div>
-            </DialogContent>
-            <DialogActions className="pt-0 px-3">
-                <Button onClick={closeModal} color="secondary" variant="contained" size="small">いいえ</Button>
-                <LoadingButton loading={submit} onClick={handleSubmit} size="small" color="primary" variant="contained">はい</LoadingButton>
-            </DialogActions>
-        </Dialog>
-
-        <ToastContainer />
     </div>
     );
 }

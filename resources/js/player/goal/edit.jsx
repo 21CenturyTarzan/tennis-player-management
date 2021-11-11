@@ -236,8 +236,8 @@ const  PlayerGoalEditor = (props) => {
                                 <tr>
                                     <th className="w-135-px w-xs-60-px"></th>
                                     <th>試合</th>
-                                    <th className="w-100-px w-xs-75-px">目標</th>
-                                    <th className="w-100-px w-xs-50-px">結果</th>
+                                    <th className="w-100-px w-xs-90-px">目標</th>
+                                    <th className="w-100-px w-xs-90-px">結果</th>
                                 </tr>
                                 {
                                     stage_list.map((x, idx)=>
