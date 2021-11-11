@@ -21,7 +21,6 @@ class Tournament extends Model
         'surface',
         'round',
         'weather',
-        'mood',
         'caution_list'
     ];
 

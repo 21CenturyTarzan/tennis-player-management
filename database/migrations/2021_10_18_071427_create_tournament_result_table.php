@@ -19,6 +19,7 @@ class CreateTournamentResultTable extends Migration
             $table->longText('caution_rate');
             $table->tinyInteger('effort_eval');
             $table->tinyInteger('play_eval');
+            $table->tinyInteger('mood');
             $table->longText('score_list');
             $table->longText('about_opponent');
             $table->longText('tactics');

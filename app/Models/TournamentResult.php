@@ -15,6 +15,7 @@ class TournamentResult extends Model
         'caution_rate',
         'effort_eval',
         'play_eval',
+        'mood',
         'score_list',
         'about_opponent',
         'tactics',
