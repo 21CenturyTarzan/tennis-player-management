@@ -20,8 +20,11 @@ class Authenticate extends Middleware
     }
 
     public function handle ($request, Closure $next, ...$guard) {
-        if (!$request->session()->has($guard)) {
-            return redirect(route($guard[0].'login'));
+
+        if($guard == 'admin'){
+            if (!$request->session()->has($guard)) {
+                return redirect(route($guard[0].'login'));
+            }
         }
 
         return $next($request);

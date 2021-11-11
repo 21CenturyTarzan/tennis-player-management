@@ -101,11 +101,7 @@ const AdminLogin = () => {
         {
           _success && 
             <Alert type="success" 
-              hide={()=>  
-                    history.push({
-                      pathname: "/admin/meeting",
-                      state: {}
-                    })}>{_success}</Alert>
+              hide={()=>window.location.href="/admin/player/list"}>{_success}</Alert>
         }
     </main>
         
